@@ -5525,9 +5525,9 @@ class EventObserver {
 
 State.variables.settings = {};
 State.variables.settings.lang = 'en';
-State.variables.settings.debug = 3;
+State.variables.settings.debug = 1;
 State.variables.settings.dialog_mode = 1;
-getAjaxGlobal();
+
 console.log('init', State.variables.settings)  
 
 State.variables.quests = {};
@@ -16071,17 +16071,17 @@ setup.checkPageDialog = function () {
 
 function drawPageDialog() {
     $.each($('.speech'), function (index, speech_block) {   
-        const speech_character_name = $(speech_block).data('character');      
+        const prop_character = $(speech_block).data('character');      
         const posture = $(speech_block).data('posture');
         const text_idn = $(speech_block).data('text');
 
-        const character = State.variables.characters[speech_character_name] ?? {};
-        const id_name = character.id_name ?? speech_character_name;
-        const name = (character.id_name) ? getLocalizedText(`characters_${id_name}_name`) : speech_character_name;
+        const character = State.variables.characters[prop_character] ?? {};
+        const character_idn = character.id_name ?? prop_character;
+        const character_name = (character.id_name) ? getLocalizedText(`characters_${character_idn}_name`) : capitalize(prop_character);
 
         const dialog_text = getLocalizedText(text_idn);
 
-        const picture_path = (!character.enemy) ? `media/characters/icon/${id_name}/${posture}` : `media/characters/icon/enemies/${character.kind}`;
+        const picture_path = (!character.enemy) ? `media/characters/icon/${character_idn}/${posture}` : `media/characters/icon/enemies/${character.kind}`;
         const picture_path_default = `media/characters/icon/default`;
 
         function drawSpeechBlock(format, default_picture=false) {
@@ -16097,7 +16097,7 @@ function drawPageDialog() {
                         <img src="${picture_source}" class="speech__character-image">
                     </div>
                     <div>
-                        <p class="speech__name ${id_name}">${name}</p>
+                        <p class="speech__name ${character_idn}">${character_name}</p>
                         <hr>
                         <p>${dialog_text}</p>
                     </div>
@@ -16111,7 +16111,7 @@ function drawPageDialog() {
                         <img src="${picture_source}" class="speech__character-image">
                     </div>
                     <div>
-                        <p class="speech__name ${id_name}">${name}</p>
+                        <p class="speech__name ${character_idn}">${character_name}</p>
                         <hr class="speech__line">
                         <p class="speech__text">${dialog_text}</p>
                     </div>
@@ -18440,7 +18440,7 @@ function drawInvenoryLinks() {
 }
 
 
-console.log('asd4', State.variables.settings)  </script><tw-tag name="DeadEnd" color="orange"></tw-tag><tw-tag name="Dialog" color="purple"></tw-tag><tw-tag name="Options" color="red"></tw-tag><tw-tag name="Sandbox" color="green"></tw-tag><tw-tag name="System" color="red"></tw-tag><tw-tag name="dialog" color="gray"></tw-tag><tw-tag name="option" color="red"></tw-tag><tw-tag name="Location" color="orange"></tw-tag><tw-tag name="NPC" color="yellow"></tw-tag><tw-tag name="NeedCheck" color="green"></tw-tag><tw-tag name="Script" color="blue"></tw-tag><tw-tag name="Story" color="blue"></tw-tag><tw-passagedata pid="1" name="City" tags="questionable" position="2400,1350" size="100,100">[[Return|Ferryman]]</tw-passagedata><tw-passagedata pid="2" name="Dream" tags="Location autosave nobr noreturn" position="1600,450" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_dream_out&#39; $return_passage&gt;&gt;
+console.log('asd4', State.variables.settings)  </script><tw-tag name="System" color="red"></tw-tag><tw-tag name="dialog" color="gray"></tw-tag><tw-tag name="DeadEnd" color="orange"></tw-tag><tw-tag name="Dialog" color="purple"></tw-tag><tw-tag name="NPC" color="yellow"></tw-tag><tw-tag name="Options" color="red"></tw-tag><tw-tag name="Script" color="blue"></tw-tag><tw-tag name="Story" color="blue"></tw-tag><tw-tag name="Location" color="orange"></tw-tag><tw-tag name="NeedCheck" color="green"></tw-tag><tw-tag name="Sandbox" color="green"></tw-tag><tw-tag name="option" color="red"></tw-tag><tw-passagedata pid="1" name="City" tags="questionable" position="2400,1350" size="100,100">[[Return|Ferryman]]</tw-passagedata><tw-passagedata pid="2" name="Dream" tags="Location autosave nobr noreturn" position="1600,450" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_dream_out&#39; $return_passage&gt;&gt;
     &lt;&lt;set $player.health += 10;&gt;&gt;
     &lt;&lt;set $player.stamina=$player.stamina_max;&gt;&gt;
 &lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Elf_House_Bloodhound" tags="Location nobr" position="3101,1898" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_village&#39; &#39;Elf_Village&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="Elf_House_Elder" tags="Location nobr" position="3101,1898" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_village&#39; &#39;Elf_Village&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="Elf_House_Herb" tags="Location nobr" position="2968,2099" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_store_herb&#39; &#39;Uni_Store&#39; &#39;gem&#39;&gt;&gt;
@@ -20529,9 +20529,9 @@ Add switcher to change between numbers or progress bars?
 	&lt;&lt;/widget&gt;&gt;
 
 	&lt;&lt;widget &quot;speech&quot;&gt;&gt;
-		&lt;&lt;set _character = $args[0]&gt;&gt;
-		&lt;&lt;set _text = $args[1]&gt;&gt;
-		&lt;&lt;set _posture = $args[2] ?? &#39;default&#39;&gt;&gt;
+		&lt;&lt;set _character = _args[0].toLowerCase()&gt;&gt;
+		&lt;&lt;set _text = _args[1]&gt;&gt;
+		&lt;&lt;set _posture = _args[2] ?? &#39;default&#39;&gt;&gt;
 		&lt;&lt;set _posture = (_posture == &#39;undefined&#39;) ? &#39;default&#39; : _posture&gt;&gt;
 		
 		&lt;&lt;= `&lt;div class=&quot;speech&quot; data-character=${_character} data-text=${_text} data-posture=${_posture}&gt;&lt;/div&gt;`&gt;&gt;
