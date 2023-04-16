@@ -6802,7 +6802,6 @@ function generateItemIdName(_this, defaultConfig) {
     const static_counter = State.variables.misc.static_counter[classaname]; 
     const obj_new_id =`${classaname}_${static_counter}`;
     defaultConfig.id_name = obj_new_id;
-    console.log(defaultConfig.id_name)
 }
 
 
@@ -7763,7 +7762,6 @@ function getQuestTaskList(quest_idn) {
     const quest = State.variables.quest_list[quest_idn] ?? {};
     const task_list = [];
 
-    console.log('quest', quest);
     $.each(quest.states, function (index, state) {   
         $.each(state, function (task_index, task) {
             task_list.push(task.id_name);
@@ -7809,7 +7807,6 @@ function getAllQuestsTaskList() {
 function removeTaskFromQuest(task_idn) {
     const task_quest = getTaskQuest(task_idn);
     const is_task_exists = (!$.isEmptyObject(task_quest));
-    console.log('is_task_exists', is_task_exists);
     
     if (is_task_exists) {                   
         const task_state = State.variables.quest_list[task_quest.id_name].states[task_quest.state];  
@@ -9559,7 +9556,7 @@ function triggerLastTaskSelectChange(cur_block) {
     added_select.change();
 }
 /* twine-user-script #47: "schedule_constructor.js" */
-// console.log('character.constructor.js')
+
 
 // Add style for sections (like character schedule)
 // Add check if character with such id_name already exists
@@ -9706,9 +9703,6 @@ function scheduleConstructor() {
             const serialized_form = getSerializedForm(form);
             console.log('serialized_form', serialized_form)
 
-            // const new_character = new Character(serialized_form);
-            // console.log('new_character', new_character)
-            // State.variables.characters[new_character.id_name] = new_character;
         });
     });
 }
@@ -11023,8 +11017,7 @@ function getElementTypeOptionContent(option, spid, seid, sketch_element={}) {
     };
     
     const content_element_type_image = () => { 
-        const sketch_images = State.variables.lists.image_list;    
-        console.log(sketch_images)
+        const sketch_images = State.variables.lists.image_list;  
 
         const content = `        
             <div class="form-blocks-row">   
@@ -11066,7 +11059,6 @@ function getElementTypeOptionContent(option, spid, seid, sketch_element={}) {
     
     const content_element_type_video = () => {   
         const sketch_videos = State.variables.lists.video_list;   
-        console.log(sketch_videos);
 
         const content = `    
             <div class="form-blocks-row">   
@@ -14272,7 +14264,6 @@ setup.getPlayerName = function () {
     const is_name_not_default = (player_name != entered_name); 
 
     const result_name = (entered_name && is_name_not_default && is_not_index_passage) ? entered_name : player_name;
-    console.log(localization_text[lang]['characters_mc_name'])
 
     return result_name;
 }
@@ -14327,7 +14318,7 @@ function getAjaxGlobal() {
         method: 'GET',
         dataType: 'json' 
     }).done(function(data) {
-        console.log('data', data);
+        // console.log('data', data);
         updateGlobalVariables(data);
     }).fail(function() {
         console.error("Server error, cannot get data results");
@@ -14336,9 +14327,12 @@ function getAjaxGlobal() {
 
 
 function updateGlobalVariables(data) {
-    $.each(data, function(key, value) {        
+    $.each(data, function(key, value) {   
+        console.log(key, value, State.variables.settings, State.variables.settings[key])     
         if (State.variables.settings[key])  State.variables.settings[key] = value ;
     })
+    
+    console.log(State.variables.settings)  
 }
 /* twine-user-script #56: "help.js" */
 
@@ -14781,7 +14775,6 @@ let rarity_tables = {
     quest_items: []
 };
 
-// console.log(rarity_tables);
 
 
 
@@ -14836,7 +14829,6 @@ let rarity_tables = {
 //         }
 //     };
 
-//     console.log('array call');
 
 //     const potions_lists = [
 //         health_potions_data, 
@@ -16089,6 +16081,8 @@ function drawPageDialog() {
 
         function drawSpeechBlock(format, default_picture=false) {
             const dialog_mode = State.variables.settings.dialog_mode; 
+            console.log('default_picture', default_picture)
+            console.log('format', format)
             const picture_source = (!default_picture) ? `${picture_path}.${format}` : `${picture_path_default}.${format}`;
             
             const speech_inner_0 = `
@@ -16485,7 +16479,6 @@ function isInInventoryClass(item_class, character_idn='player') {
 
     $.each(inventory_type_lists, function(item_type_index, item_type) {
         const item_type_has_item = result = item_type.some(item => { 
-            console.log(item); 
             return item.category == item_class || item.sub_category == item_class
         });    
         return !item_type_has_item;         // to break $.each if item is found
@@ -16798,8 +16791,6 @@ $(document).one(':passageinit', function (ev) {
             <p>${version_string}: ${version_number}</p>
         </div>
     `;
-
-    console.log(sidebar_body[0])
 
     sidebar_body.append(content);
 
@@ -18077,7 +18068,7 @@ function addQuestLinkListener() {
 }
 /* twine-user-script #73: "script_imports.js" */
 
-// console.log('other.js included');
+
 
 // ---- PARAMS ----
 
@@ -18139,7 +18130,6 @@ function addQuestLinkListener() {
 // Window.notifyDone = function(){
 // 	// Reload current passage since imported scripts can function now.
 // 	// console.clear();
-// 	// console.log("Cleared console log for spurious errors arising pre-script load state.")
 	
 // 	setup.scriptJsLoaded = true;
 // 	Engine.play(SugarCube.State.passage);	
@@ -18433,7 +18423,7 @@ function drawInvenoryLinks() {
     
     $(container).wiki( nobr(content) );
 }
-</script><tw-tag name="Story" color="blue"></tw-tag><tw-tag name="dialog" color="gray"></tw-tag><tw-tag name="option" color="red"></tw-tag><tw-tag name="NPC" color="yellow"></tw-tag><tw-tag name="NeedCheck" color="green"></tw-tag><tw-tag name="Options" color="red"></tw-tag><tw-tag name="Sandbox" color="green"></tw-tag><tw-tag name="Script" color="blue"></tw-tag><tw-tag name="System" color="red"></tw-tag><tw-tag name="DeadEnd" color="orange"></tw-tag><tw-tag name="Dialog" color="purple"></tw-tag><tw-tag name="Location" color="orange"></tw-tag><tw-passagedata pid="1" name="City" tags="questionable" position="2400,1350" size="100,100">[[Return|Ferryman]]</tw-passagedata><tw-passagedata pid="2" name="Dream" tags="Location autosave nobr noreturn" position="1600,450" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_dream_out&#39; $return_passage&gt;&gt;
+</script><tw-tag name="Options" color="red"></tw-tag><tw-tag name="Story" color="blue"></tw-tag><tw-tag name="dialog" color="gray"></tw-tag><tw-tag name="option" color="red"></tw-tag><tw-tag name="Sandbox" color="green"></tw-tag><tw-tag name="Script" color="blue"></tw-tag><tw-tag name="System" color="red"></tw-tag><tw-tag name="DeadEnd" color="orange"></tw-tag><tw-tag name="Dialog" color="purple"></tw-tag><tw-tag name="Location" color="orange"></tw-tag><tw-tag name="NPC" color="yellow"></tw-tag><tw-tag name="NeedCheck" color="green"></tw-tag><tw-passagedata pid="1" name="City" tags="questionable" position="2400,1350" size="100,100">[[Return|Ferryman]]</tw-passagedata><tw-passagedata pid="2" name="Dream" tags="Location autosave nobr noreturn" position="1600,450" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_dream_out&#39; $return_passage&gt;&gt;
     &lt;&lt;set $player.health += 10;&gt;&gt;
     &lt;&lt;set $player.stamina=$player.stamina_max;&gt;&gt;
 &lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Elf_House_Bloodhound" tags="Location nobr" position="3101,1898" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_village&#39; &#39;Elf_Village&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="Elf_House_Elder" tags="Location nobr" position="3101,1898" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_village&#39; &#39;Elf_Village&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="Elf_House_Herb" tags="Location nobr" position="2968,2099" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_store_herb&#39; &#39;Uni_Store&#39; &#39;gem&#39;&gt;&gt;
