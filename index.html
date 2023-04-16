@@ -3914,20 +3914,30 @@ label.toggle-button span {
 .popup {
     align-items: center;
     background-color: #fff;
-    border: 4px solid grey;
+    border: 4px solid transparent;
+    border-radius: 1px;
     color: black;
     display: flex;
     font-size: 16px;
     font-weight: bold;
     height: var(--popupHeight);
-    justify-content: center;
+    justify-content: flex-start;
+    gap: 0 8px;
+    letter-spacing: -1px;
     line-height: 16px;
     margin-bottom: 15px;
-    padding: 6px 12px 4px 12px;
+    outline: 4px solid #fff;
+    padding: 6px 12px 4px 4px;
     position: relative;
     right: calc(-10px - var(--popupWidth));
     transition-property: right;
     z-index: 1;
+    box-shadow: 2px 4px 20px 5px #fff;
+}
+
+.popup-icon {
+    width: 28px;
+    height: 28px;
 }
 
 .popup.popup--opened {
@@ -3935,16 +3945,46 @@ label.toggle-button span {
 }
 
 
-.popup--quest {
-    border-color: orange;
+.popup--quest_start,
+.popup--quest_complete {
+    border-color: var(--yellow);
 }
 
-.popup--task {
-    border-color: blue;
+.popup--quest_fail {
+    border-color: var(--red);
 }
 
-.popup--health {
+.popup--task_created {
+    border-color: dodgerblue;
+}
+
+.quest_next_state {
+    border-color: lightblue;
+}
+
+.popup--quest_fail {
     border-color: red;
+}
+
+.popup--health_low,
+.popup--stamina_low,
+.popup--mana_low {
+    border-color: moccasin;
+}
+
+.popup--stamina_not_enough {
+    border-color: darkorange;
+}
+
+.popup--add_party,
+.popup--remove-party {
+    border-color: palegreen;
+}
+
+.popup--task_gather,
+.popup--task_escort_finished,
+.popup--task_escort_location {
+    border-color: gainsboro;
 }
 
 /* twine-user-stylesheet #28: "port_data.css" */
@@ -17343,6 +17383,7 @@ function createPopup(type, data) {
 
     const popup_block = `
         <div class="popup ${(has_type) ? `popup--${type}` : ''}">
+            <img class="popup-icon" src="media/icons/popup/${type}.png" alt="${type}" title="${type}">
             <p class="popup-text">${text}</p>
         </div>
     `;
@@ -18420,7 +18461,7 @@ function drawInvenoryLinks() {
     
     $(container).wiki( nobr(content) );
 }
-</script><tw-tag name="Location" color="orange"></tw-tag><tw-tag name="NeedCheck" color="green"></tw-tag><tw-tag name="Story" color="blue"></tw-tag><tw-tag name="System" color="red"></tw-tag><tw-tag name="dialog" color="gray"></tw-tag><tw-tag name="option" color="red"></tw-tag><tw-tag name="DeadEnd" color="orange"></tw-tag><tw-tag name="Dialog" color="purple"></tw-tag><tw-tag name="Sandbox" color="green"></tw-tag><tw-tag name="Script" color="blue"></tw-tag><tw-tag name="NPC" color="yellow"></tw-tag><tw-tag name="Options" color="red"></tw-tag><tw-passagedata pid="1" name="City" tags="questionable" position="2400,1350" size="100,100">[[Return|Ferryman]]</tw-passagedata><tw-passagedata pid="2" name="Dream" tags="Location autosave nobr noreturn" position="1600,450" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_dream_out&#39; $return_passage&gt;&gt;
+</script><tw-tag name="Sandbox" color="green"></tw-tag><tw-tag name="Script" color="blue"></tw-tag><tw-tag name="System" color="red"></tw-tag><tw-tag name="dialog" color="gray"></tw-tag><tw-tag name="Dialog" color="purple"></tw-tag><tw-tag name="NPC" color="yellow"></tw-tag><tw-tag name="Options" color="red"></tw-tag><tw-tag name="Story" color="blue"></tw-tag><tw-tag name="option" color="red"></tw-tag><tw-tag name="DeadEnd" color="orange"></tw-tag><tw-tag name="Location" color="orange"></tw-tag><tw-tag name="NeedCheck" color="green"></tw-tag><tw-passagedata pid="1" name="City" tags="questionable" position="2400,1350" size="100,100">[[Return|Ferryman]]</tw-passagedata><tw-passagedata pid="2" name="Dream" tags="Location autosave nobr noreturn" position="1600,450" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_dream_out&#39; $return_passage&gt;&gt;
     &lt;&lt;set $player.health += 10;&gt;&gt;
     &lt;&lt;set $player.stamina=$player.stamina_max;&gt;&gt;
 &lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Elf_House_Bloodhound" tags="Location nobr" position="3101,1898" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_village&#39; &#39;Elf_Village&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="Elf_House_Elder" tags="Location nobr" position="3101,1898" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_village&#39; &#39;Elf_Village&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="Elf_House_Herb" tags="Location nobr" position="2968,2099" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_store_herb&#39; &#39;Uni_Store&#39; &#39;gem&#39;&gt;&gt;
@@ -20607,7 +20648,9 @@ Add switcher to change between numbers or progress bars?
 16.04.2023
 - Cleared console.logs
 - Fixed error with different cases in images path in &#39;speech&#39; widget.
-
+- Added rewriting to serverside variables from json on server.
+- Added security measures for github server.
+- Updated design for popups.
 
 09.04.2023
 - Rechecked and reordered web links for development purposes.
