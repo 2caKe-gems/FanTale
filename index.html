@@ -5528,7 +5528,6 @@ State.variables.settings.lang = 'en';
 State.variables.settings.debug = 1;
 State.variables.settings.dialog_mode = 1;
 
-console.log('init', State.variables.settings)  
 
 State.variables.quests = {};
 State.variables.tasks = {};
@@ -7717,11 +7716,8 @@ setup.initOnce = function() {
 
 	getAjaxGlobal();
 	
-console.log('asd2', State.variables.settings)  
 }
 
-
-console.log('asd3', State.variables.settings)  
 /* twine-user-script #37: "_func_quest.js" */
 
 
@@ -14336,8 +14332,6 @@ function updateGlobalVariables(data) {
     $.each(data, function(key, value) {      
         if (State.variables.settings[key])  State.variables.settings[key] = value ;
     })
-    
-    console.log('global', State.variables.settings)  
 }
 /* twine-user-script #56: "help.js" */
 
@@ -16086,8 +16080,6 @@ function drawPageDialog() {
 
         function drawSpeechBlock(format, default_picture=false) {
             const dialog_mode = State.variables.settings.dialog_mode; 
-            console.log('default_picture', default_picture)
-            console.log('format', format)
             const picture_source = (!default_picture) ? `${picture_path}.${format}` : `${picture_path_default}.${format}`;
             
             const speech_inner_0 = `
@@ -16122,25 +16114,15 @@ function drawPageDialog() {
             if (dialog_mode == 1) $(speech_block).append(speech_inner_1);
         }
 
-        function checkPicture(path, arrayFormat) {              
-            console.log('arrayFormat', arrayFormat)           
-            console.log('path', path)
-            
+        function checkPicture(path, arrayFormat) {                     
             const cur_format = arrayFormat[0];
             arrayFormat.shift();
 
-            const done = () => {
-                
-                console.log('arrayFormat done', arrayFormat)
-                drawSpeechBlock(cur_format);
-            }
+            const done = () => drawSpeechBlock(cur_format)
             const fail = () => {
-                console.log('arrayFormat fail', arrayFormat)
                 if (arrayFormat.length) {
-                    console.log('1')
                     checkPicture(path, arrayFormat);
                 } else {
-                    console.log('2')
                     drawSpeechBlock('png', true);
                 }
             };
@@ -18438,9 +18420,7 @@ function drawInvenoryLinks() {
     
     $(container).wiki( nobr(content) );
 }
-
-
-console.log('asd4', State.variables.settings)  </script><tw-tag name="System" color="red"></tw-tag><tw-tag name="dialog" color="gray"></tw-tag><tw-tag name="DeadEnd" color="orange"></tw-tag><tw-tag name="Dialog" color="purple"></tw-tag><tw-tag name="NPC" color="yellow"></tw-tag><tw-tag name="Options" color="red"></tw-tag><tw-tag name="Script" color="blue"></tw-tag><tw-tag name="Story" color="blue"></tw-tag><tw-tag name="Location" color="orange"></tw-tag><tw-tag name="NeedCheck" color="green"></tw-tag><tw-tag name="Sandbox" color="green"></tw-tag><tw-tag name="option" color="red"></tw-tag><tw-passagedata pid="1" name="City" tags="questionable" position="2400,1350" size="100,100">[[Return|Ferryman]]</tw-passagedata><tw-passagedata pid="2" name="Dream" tags="Location autosave nobr noreturn" position="1600,450" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_dream_out&#39; $return_passage&gt;&gt;
+</script><tw-tag name="Location" color="orange"></tw-tag><tw-tag name="NeedCheck" color="green"></tw-tag><tw-tag name="Story" color="blue"></tw-tag><tw-tag name="System" color="red"></tw-tag><tw-tag name="dialog" color="gray"></tw-tag><tw-tag name="option" color="red"></tw-tag><tw-tag name="DeadEnd" color="orange"></tw-tag><tw-tag name="Dialog" color="purple"></tw-tag><tw-tag name="Sandbox" color="green"></tw-tag><tw-tag name="Script" color="blue"></tw-tag><tw-tag name="NPC" color="yellow"></tw-tag><tw-tag name="Options" color="red"></tw-tag><tw-passagedata pid="1" name="City" tags="questionable" position="2400,1350" size="100,100">[[Return|Ferryman]]</tw-passagedata><tw-passagedata pid="2" name="Dream" tags="Location autosave nobr noreturn" position="1600,450" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_dream_out&#39; $return_passage&gt;&gt;
     &lt;&lt;set $player.health += 10;&gt;&gt;
     &lt;&lt;set $player.stamina=$player.stamina_max;&gt;&gt;
 &lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Elf_House_Bloodhound" tags="Location nobr" position="3101,1898" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_village&#39; &#39;Elf_Village&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="Elf_House_Elder" tags="Location nobr" position="3101,1898" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_village&#39; &#39;Elf_Village&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="Elf_House_Herb" tags="Location nobr" position="2968,2099" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_store_herb&#39; &#39;Uni_Store&#39; &#39;gem&#39;&gt;&gt;
@@ -20626,6 +20606,7 @@ Add switcher to change between numbers or progress bars?
 
 16.04.2023
 - Cleared console.logs
+- Fixed error with different cases in images path in &#39;speech&#39; widget.
 
 
 09.04.2023
