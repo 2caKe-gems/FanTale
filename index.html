@@ -14326,7 +14326,7 @@ function sumObjectValues (obj) {
 function getAjaxGlobal() {
         console.log('getAjaxGlobal', getAjaxGlobal);
     $.ajax({
-        url: `../global.json`,
+        url: `/FanTale/global.json`,
         async: false,
         method: 'GET',
         headers: { 'Content-Type': 'application/json'},
@@ -14343,7 +14343,7 @@ function getAjaxGlobal() {
 function getAjaxGlobal2() {
         console.log('getAjaxGlobal2', getAjaxGlobal2);
     $.ajax({
-        url: `/global.json`,
+        url: `global.json`,
         async: false,
         method: 'GET',
         dataType: 'json' 
@@ -14359,7 +14359,7 @@ function getAjaxGlobal2() {
 function getAjaxGlobal3() {
 console.log('getAjaxGlobal3', getAjaxGlobal3);
     $.ajax({
-        url: `../..global.json`,
+        url: `/../..global.json`,
         async: false,
         method: 'GET',
         dataType: 'json' 
@@ -14375,7 +14375,7 @@ console.log('getAjaxGlobal3', getAjaxGlobal3);
 function getAjaxGlobal4() {
 console.log('getAjaxGlobal4', getAjaxGlobal4);
     $.ajax({
-        url: `/../global.json`,
+        url: `../../global.json`,
         async: false,
         method: 'GET',
         dataType: 'json' 
