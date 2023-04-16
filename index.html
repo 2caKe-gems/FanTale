@@ -7716,9 +7716,6 @@ setup.initOnce = function() {
 	Config.history.controls = true;
 
 	getAjaxGlobal();
-	getAjaxGlobal2();
-	getAjaxGlobal3();
-	getAjaxGlobal4();
 }
 /* twine-user-script #37: "_func_quest.js" */
 
@@ -14324,13 +14321,10 @@ function sumObjectValues (obj) {
 }
 /* twine-user-script #55: "global_variables.js" */
 function getAjaxGlobal() {
-        console.log('getAjaxGlobal', getAjaxGlobal);
     $.ajax({
-        url: `/FanTale/global.json`,
+        url: `global.json`,
         async: false,
         method: 'GET',
-        headers: { 'Content-Type': 'application/json'},
-        crossDomain: true,
         dataType: 'json' 
     }).done(function(data) {
         console.log('data', data);
@@ -14340,57 +14334,11 @@ function getAjaxGlobal() {
     });
 };
 
-function getAjaxGlobal2() {
-        console.log('getAjaxGlobal2', getAjaxGlobal2);
-    $.ajax({
-        url: `global.json`,
-        async: false,
-        method: 'GET',
-        dataType: 'json' 
-    }).done(function(data) {
-        console.log('data2', data);
-        updateGlobalVariables(data);
-    }).fail(function() {
-        console.error("Server error, cannot get data results");
-    });
-};
-
-
-function getAjaxGlobal3() {
-console.log('getAjaxGlobal3', getAjaxGlobal3);
-    $.ajax({
-        url: `/../..global.json`,
-        async: false,
-        method: 'GET',
-        dataType: 'json' 
-    }).done(function(data) {
-        console.log('data3', data);
-        updateGlobalVariables(data);
-    }).fail(function() {
-        console.error("Server error, cannot get data results");
-    });
-};
-
-
-function getAjaxGlobal4() {
-console.log('getAjaxGlobal4', getAjaxGlobal4);
-    $.ajax({
-        url: `../../global.json`,
-        async: false,
-        method: 'GET',
-        dataType: 'json' 
-    }).done(function(data) {
-        console.log('data4', data);
-        updateGlobalVariables(data);
-    }).fail(function() {
-        console.error("Server error, cannot get data results");
-    });
-};
-
-
 
 function updateGlobalVariables(data) {
-    console.log('updateGlobalVariables', data);
+    $.each(data, function(key, value) {        
+        if (State.variables.settings[key])  State.variables.settings[key] = value ;
+    })
 }
 /* twine-user-script #56: "help.js" */
 
@@ -18485,7 +18433,7 @@ function drawInvenoryLinks() {
     
     $(container).wiki( nobr(content) );
 }
-</script><tw-tag name="option" color="red"></tw-tag><tw-tag name="DeadEnd" color="orange"></tw-tag><tw-tag name="Dialog" color="purple"></tw-tag><tw-tag name="Location" color="orange"></tw-tag><tw-tag name="NPC" color="yellow"></tw-tag><tw-tag name="Options" color="red"></tw-tag><tw-tag name="dialog" color="gray"></tw-tag><tw-tag name="NeedCheck" color="green"></tw-tag><tw-tag name="Sandbox" color="green"></tw-tag><tw-tag name="Script" color="blue"></tw-tag><tw-tag name="Story" color="blue"></tw-tag><tw-tag name="System" color="red"></tw-tag><tw-passagedata pid="1" name="City" tags="questionable" position="2400,1350" size="100,100">[[Return|Ferryman]]</tw-passagedata><tw-passagedata pid="2" name="Dream" tags="Location autosave nobr noreturn" position="1600,450" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_dream_out&#39; $return_passage&gt;&gt;
+</script><tw-tag name="Story" color="blue"></tw-tag><tw-tag name="dialog" color="gray"></tw-tag><tw-tag name="option" color="red"></tw-tag><tw-tag name="NPC" color="yellow"></tw-tag><tw-tag name="NeedCheck" color="green"></tw-tag><tw-tag name="Options" color="red"></tw-tag><tw-tag name="Sandbox" color="green"></tw-tag><tw-tag name="Script" color="blue"></tw-tag><tw-tag name="System" color="red"></tw-tag><tw-tag name="DeadEnd" color="orange"></tw-tag><tw-tag name="Dialog" color="purple"></tw-tag><tw-tag name="Location" color="orange"></tw-tag><tw-passagedata pid="1" name="City" tags="questionable" position="2400,1350" size="100,100">[[Return|Ferryman]]</tw-passagedata><tw-passagedata pid="2" name="Dream" tags="Location autosave nobr noreturn" position="1600,450" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_dream_out&#39; $return_passage&gt;&gt;
     &lt;&lt;set $player.health += 10;&gt;&gt;
     &lt;&lt;set $player.stamina=$player.stamina_max;&gt;&gt;
 &lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Elf_House_Bloodhound" tags="Location nobr" position="3101,1898" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_village&#39; &#39;Elf_Village&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="Elf_House_Elder" tags="Location nobr" position="3101,1898" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_village&#39; &#39;Elf_Village&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="Elf_House_Herb" tags="Location nobr" position="2968,2099" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_store_herb&#39; &#39;Uni_Store&#39; &#39;gem&#39;&gt;&gt;
