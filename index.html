@@ -125,6 +125,10 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
     --green: #90ee90 !important;
 	--green-t6: #2ade2a !important;	
     --black: #111;
+	--blue: #0ebeff;
+	--yellow: #ffdd40;
+	--purple: #47cf73;
+	--red: red;
 }
 
 body, tw-story {
@@ -366,13 +370,7 @@ tw-link:after {
 }
 
 /* twine-user-stylesheet #5: "button_quest.css" */
-:root {
-    --blue: #0ebeff;
-    --green: #ae63e4;
-    --yellow: #ffdd40;
-    --purple: #47cf73;
-    --red: red;
-}
+
 
 .button-action {
     align-items: center;
@@ -395,6 +393,7 @@ tw-link:after {
 .button-action:hover {
     background-color: #000;
     text-decoration: none;
+    transform: scale(1.2);
 }
 
 .button-action:hover * {
@@ -406,12 +405,32 @@ tw-link:after {
 .button-quest {
     border: 1px solid var(--yellow);
     border-radius: 4px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    transition: .5s ease;
+}
+
+.button-quest a {
+    color: var(--yellow);
 }
 
 .button-quest:hover {
-    border: 2px solid var(--yellow);
+    border: 2px solid darkorange;
 }
+
+.button-quest:hover a {
+    color: darkorange;
+}
+
+.button-quest:hover .icon-action[data-state="QUEST"] {
+    --glow-color: darkorange;
+}
+
+.button-quest:hover .icon-action[data-state="QUEST"] .icon-action__file :nth-child(1),
+.button-quest:hover .icon-action[data-state="QUEST"] .icon-action__file :nth-child(4){
+    stroke: darkorange;
+}
+
+
 
 .icon-action[data-state="QUEST"] {
     --glow-color: var(--yellow);
@@ -678,6 +697,7 @@ th.localization-table__header-idn {
     transform: scale(2); 
     height: auto;
     width: auto;
+    z-index: 2;
     position: absolute;
     top: 14px;
     left: 28px;
@@ -844,13 +864,18 @@ th.localization-table__header-idn {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px 0;
-    margin-bottom: 20px;
+    gap: 0 0;
+    margin: 0;
 }
 
 .form-block > label {
     font-size: 20px;
     font-weight: bold;
+    margin-top: 15px;
+}
+
+.form-block-section-wrapper > .form-blocks-row > .form-block:first-child > label  {
+    margin-top: 5px;
 }
 
 .form-block > input {
@@ -868,7 +893,7 @@ th.localization-table__header-idn {
 
 .form-block > textarea {
     min-height: 120px;
-    min-width: 420px;
+    min-width: 28rem;
     resize: both;
 }
 
@@ -910,7 +935,7 @@ th.localization-table__header-idn {
 }
 
 .form-block-section {
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     position: relative;
 }
 
@@ -950,6 +975,7 @@ th.localization-table__header-idn {
     cursor: pointer;
     overflow: hidden;
     text-align: left;
+    margin-bottom: -8px;
 }
 
 .form-block-section__header:after {
@@ -978,7 +1004,7 @@ th.localization-table__header-idn {
 .form_add {
     min-width: 80px;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     height: 34px;
 }
 
@@ -1073,6 +1099,11 @@ th.localization-table__header-idn {
 
 .footer__location {
     margin-top: 30px;
+}
+
+
+.passage-list > *:last-child {
+    margin-bottom: 20px;
 }
 /* twine-user-stylesheet #12: "images.css" */
 
@@ -3386,6 +3417,10 @@ url("fonts/rpgawesome-webfont.svg?v=0.1.0#rpg-awesome") format("svg");
 .select2-container--default .select2-results > .select2-results__options {
     max-height: 300px !important;
 }
+
+.select2--large {
+    width: 240px !important;
+}
 /* twine-user-stylesheet #18: "select2.min.css" */
 .select2-container{box-sizing:border-box;display:inline-block;margin:0;position:relative;vertical-align:middle}.select2-container .select2-selection--single{box-sizing:border-box;cursor:pointer;display:block;height:28px;user-select:none;-webkit-user-select:none}.select2-container .select2-selection--single .select2-selection__rendered{display:block;padding-left:8px;padding-right:20px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.select2-container .select2-selection--single .select2-selection__clear{position:relative}.select2-container[dir="rtl"] .select2-selection--single .select2-selection__rendered{padding-right:8px;padding-left:20px}.select2-container .select2-selection--multiple{box-sizing:border-box;cursor:pointer;display:block;min-height:32px;user-select:none;-webkit-user-select:none}.select2-container .select2-selection--multiple .select2-selection__rendered{display:inline-block;overflow:hidden;padding-left:8px;text-overflow:ellipsis;white-space:nowrap}.select2-container .select2-search--inline{float:left}.select2-container .select2-search--inline .select2-search__field{box-sizing:border-box;border:none;font-size:100%;margin-top:5px;padding:0}.select2-dropdown{background-color:white;border:1px solid #aaa;border-radius:4px;box-sizing:border-box;display:block;position:absolute;left:-100000px;width:100%;z-index:1051}.select2-results{display:block}.select2-results__options{list-style:none;margin:0;padding:0}.select2-results__option{padding:6px;user-select:none;-webkit-user-select:none}.select2-results__option[aria-selected]{cursor:pointer}.select2-container--open .select2-dropdown{left:0}.select2-container--open .select2-dropdown--above{border-bottom:none;border-bottom-left-radius:0;border-bottom-right-radius:0}.select2-container--open .select2-dropdown--below{border-top:none;border-top-left-radius:0;border-top-right-radius:0}.select2-search--dropdown{display:block;padding:4px}.select2-search--dropdown .select2-search__field{padding:4px;width:100%;box-sizing:border-box}.select2-search--dropdown.select2-search--hide{display:none}.select2-close-mask{border:0;margin:0;padding:0;display:block;position:fixed;left:0;top:0;min-height:100%;min-width:100%;height:auto;width:auto;opacity:0;z-index:99;background-color:#fff;filter:alpha(opacity=0)}.select2-hidden-accessible{border:0 !important;clip:rect(0 0 0 0) !important;-webkit-clip-path:inset(50%) !important;clip-path:inset(50%) !important;height:1px !important;overflow:hidden !important;padding:0 !important;position:absolute !important;width:1px !important;white-space:nowrap !important}.select2-container--default .select2-selection--single{background-color:#fff;border:1px solid #aaa;border-radius:4px}.select2-container--default .select2-selection--single .select2-selection__rendered{color:#444;line-height:28px}.select2-container--default .select2-selection--single .select2-selection__clear{cursor:pointer;float:right;font-weight:bold}.select2-container--default .select2-selection--single .select2-selection__placeholder{color:#999}.select2-container--default .select2-selection--single .select2-selection__arrow{height:26px;position:absolute;top:1px;right:1px;width:20px}.select2-container--default .select2-selection--single .select2-selection__arrow b{border-color:#888 transparent transparent transparent;border-style:solid;border-width:5px 4px 0 4px;height:0;left:50%;margin-left:-4px;margin-top:-2px;position:absolute;top:50%;width:0}.select2-container--default[dir="rtl"] .select2-selection--single .select2-selection__clear{float:left}.select2-container--default[dir="rtl"] .select2-selection--single .select2-selection__arrow{left:1px;right:auto}.select2-container--default.select2-container--disabled .select2-selection--single{background-color:#eee;cursor:default}.select2-container--default.select2-container--disabled .select2-selection--single .select2-selection__clear{display:none}.select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b{border-color:transparent transparent #888 transparent;border-width:0 4px 5px 4px}.select2-container--default .select2-selection--multiple{background-color:white;border:1px solid #aaa;border-radius:4px;cursor:text}.select2-container--default .select2-selection--multiple .select2-selection__rendered{box-sizing:border-box;list-style:none;margin:0;padding:0 5px;width:100%}.select2-container--default .select2-selection--multiple .select2-selection__rendered li{list-style:none}.select2-container--default .select2-selection--multiple .select2-selection__clear{cursor:pointer;float:right;font-weight:bold;margin-top:5px;margin-right:10px;padding:1px}.select2-container--default .select2-selection--multiple .select2-selection__choice{background-color:#e4e4e4;border:1px solid #aaa;border-radius:4px;cursor:default;float:left;margin-right:5px;margin-top:5px;padding:0 5px}.select2-container--default .select2-selection--multiple .select2-selection__choice__remove{color:#999;cursor:pointer;display:inline-block;font-weight:bold;margin-right:2px}.select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover{color:#333}.select2-container--default[dir="rtl"] .select2-selection--multiple .select2-selection__choice,.select2-container--default[dir="rtl"] .select2-selection--multiple .select2-search--inline{float:right}.select2-container--default[dir="rtl"] .select2-selection--multiple .select2-selection__choice{margin-left:5px;margin-right:auto}.select2-container--default[dir="rtl"] .select2-selection--multiple .select2-selection__choice__remove{margin-left:2px;margin-right:auto}.select2-container--default.select2-container--focus .select2-selection--multiple{border:solid black 1px;outline:0}.select2-container--default.select2-container--disabled .select2-selection--multiple{background-color:#eee;cursor:default}.select2-container--default.select2-container--disabled .select2-selection__choice__remove{display:none}.select2-container--default.select2-container--open.select2-container--above .select2-selection--single,.select2-container--default.select2-container--open.select2-container--above .select2-selection--multiple{border-top-left-radius:0;border-top-right-radius:0}.select2-container--default.select2-container--open.select2-container--below .select2-selection--single,.select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple{border-bottom-left-radius:0;border-bottom-right-radius:0}.select2-container--default .select2-search--dropdown .select2-search__field{border:1px solid #aaa}.select2-container--default .select2-search--inline .select2-search__field{background:transparent;border:none;outline:0;box-shadow:none;}.select2-container--default .select2-results>.select2-results__options{max-height:200px;overflow-y:auto}.select2-container--default .select2-results__option[role=group]{padding:0}.select2-container--default .select2-results__option[aria-disabled=true]{color:#999}.select2-container--default .select2-results__option[aria-selected=true]{background-color:#ddd}.select2-container--default .select2-results__option .select2-results__option{padding-left:1em}.select2-container--default .select2-results__option .select2-results__option .select2-results__group{padding-left:0}.select2-container--default .select2-results__option .select2-results__option .select2-results__option{margin-left:-1em;padding-left:2em}.select2-container--default .select2-results__option .select2-results__option .select2-results__option .select2-results__option{margin-left:-2em;padding-left:3em}.select2-container--default .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option{margin-left:-3em;padding-left:4em}.select2-container--default .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option{margin-left:-4em;padding-left:5em}.select2-container--default .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option{margin-left:-5em;padding-left:6em}.select2-container--default .select2-results__option--highlighted[aria-selected]{background-color:#5897fb;color:white}.select2-container--default .select2-results__group{cursor:default;display:block;padding:6px}.select2-container--classic .select2-selection--single{background-color:#f7f7f7;border:1px solid #aaa;border-radius:4px;outline:0;background-image:-webkit-linear-gradient(top, #fff 50%, #eee 100%);background-image:-o-linear-gradient(top, #fff 50%, #eee 100%);background-image:linear-gradient(to bottom, #fff 50%, #eee 100%);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFFFF', endColorstr='#FFEEEEEE', GradientType=0)}.select2-container--classic .select2-selection--single:focus{border:1px solid #5897fb}.select2-container--classic .select2-selection--single .select2-selection__rendered{color:#444;line-height:28px}.select2-container--classic .select2-selection--single .select2-selection__clear{cursor:pointer;float:right;font-weight:bold;margin-right:10px}.select2-container--classic .select2-selection--single .select2-selection__placeholder{color:#999}.select2-container--classic .select2-selection--single .select2-selection__arrow{background-color:#ddd;border:none;border-left:1px solid #aaa;border-top-right-radius:4px;border-bottom-right-radius:4px;height:26px;position:absolute;top:1px;right:1px;width:20px;background-image:-webkit-linear-gradient(top, #eee 50%, #ccc 100%);background-image:-o-linear-gradient(top, #eee 50%, #ccc 100%);background-image:linear-gradient(to bottom, #eee 50%, #ccc 100%);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFEEEEEE', endColorstr='#FFCCCCCC', GradientType=0)}.select2-container--classic .select2-selection--single .select2-selection__arrow b{border-color:#888 transparent transparent transparent;border-style:solid;border-width:5px 4px 0 4px;height:0;left:50%;margin-left:-4px;margin-top:-2px;position:absolute;top:50%;width:0}.select2-container--classic[dir="rtl"] .select2-selection--single .select2-selection__clear{float:left}.select2-container--classic[dir="rtl"] .select2-selection--single .select2-selection__arrow{border:none;border-right:1px solid #aaa;border-radius:0;border-top-left-radius:4px;border-bottom-left-radius:4px;left:1px;right:auto}.select2-container--classic.select2-container--open .select2-selection--single{border:1px solid #5897fb}.select2-container--classic.select2-container--open .select2-selection--single .select2-selection__arrow{background:transparent;border:none}.select2-container--classic.select2-container--open .select2-selection--single .select2-selection__arrow b{border-color:transparent transparent #888 transparent;border-width:0 4px 5px 4px}.select2-container--classic.select2-container--open.select2-container--above .select2-selection--single{border-top:none;border-top-left-radius:0;border-top-right-radius:0;background-image:-webkit-linear-gradient(top, #fff 0%, #eee 50%);background-image:-o-linear-gradient(top, #fff 0%, #eee 50%);background-image:linear-gradient(to bottom, #fff 0%, #eee 50%);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFFFF', endColorstr='#FFEEEEEE', GradientType=0)}.select2-container--classic.select2-container--open.select2-container--below .select2-selection--single{border-bottom:none;border-bottom-left-radius:0;border-bottom-right-radius:0;background-image:-webkit-linear-gradient(top, #eee 50%, #fff 100%);background-image:-o-linear-gradient(top, #eee 50%, #fff 100%);background-image:linear-gradient(to bottom, #eee 50%, #fff 100%);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFEEEEEE', endColorstr='#FFFFFFFF', GradientType=0)}.select2-container--classic .select2-selection--multiple{background-color:white;border:1px solid #aaa;border-radius:4px;cursor:text;outline:0}.select2-container--classic .select2-selection--multiple:focus{border:1px solid #5897fb}.select2-container--classic .select2-selection--multiple .select2-selection__rendered{list-style:none;margin:0;padding:0 5px}.select2-container--classic .select2-selection--multiple .select2-selection__clear{display:none}.select2-container--classic .select2-selection--multiple .select2-selection__choice{background-color:#e4e4e4;border:1px solid #aaa;border-radius:4px;cursor:default;float:left;margin-right:5px;margin-top:5px;padding:0 5px}.select2-container--classic .select2-selection--multiple .select2-selection__choice__remove{color:#888;cursor:pointer;display:inline-block;font-weight:bold;margin-right:2px}.select2-container--classic .select2-selection--multiple .select2-selection__choice__remove:hover{color:#555}.select2-container--classic[dir="rtl"] .select2-selection--multiple .select2-selection__choice{float:right;margin-left:5px;margin-right:auto}.select2-container--classic[dir="rtl"] .select2-selection--multiple .select2-selection__choice__remove{margin-left:2px;margin-right:auto}.select2-container--classic.select2-container--open .select2-selection--multiple{border:1px solid #5897fb}.select2-container--classic.select2-container--open.select2-container--above .select2-selection--multiple{border-top:none;border-top-left-radius:0;border-top-right-radius:0}.select2-container--classic.select2-container--open.select2-container--below .select2-selection--multiple{border-bottom:none;border-bottom-left-radius:0;border-bottom-right-radius:0}.select2-container--classic .select2-search--dropdown .select2-search__field{border:1px solid #aaa;outline:0}.select2-container--classic .select2-search--inline .select2-search__field{outline:0;box-shadow:none}.select2-container--classic .select2-dropdown{background-color:#fff;border:1px solid transparent}.select2-container--classic .select2-dropdown--above{border-bottom:none}.select2-container--classic .select2-dropdown--below{border-top:none}.select2-container--classic .select2-results>.select2-results__options{max-height:200px;overflow-y:auto}.select2-container--classic .select2-results__option[role=group]{padding:0}.select2-container--classic .select2-results__option[aria-disabled=true]{color:grey}.select2-container--classic .select2-results__option--highlighted[aria-selected]{background-color:#3875d7;color:#fff}.select2-container--classic .select2-results__group{cursor:default;display:block;padding:6px}.select2-container--classic.select2-container--open .select2-dropdown{border-color:#5897fb}
 /* twine-user-stylesheet #19: "links.css" */
@@ -3394,6 +3429,11 @@ url("fonts/rpgawesome-webfont.svg?v=0.1.0#rpg-awesome") format("svg");
     --link-color: var(--green);
     --link-color-hover: var(--green-t6);
     --link-bg: var(--black);
+}
+
+.link-contents {
+    position: relative;
+	display: inline-block;
 }
 
 .link-icon {
@@ -3405,7 +3445,6 @@ url("fonts/rpgawesome-webfont.svg?v=0.1.0#rpg-awesome") format("svg");
     color: var(--green);
 	letter-spacing: 0.1em;
 	font-size: 1rem;
-	position: relative;
 }
 
 .link-underline:hover {
@@ -3448,7 +3487,8 @@ url("fonts/rpgawesome-webfont.svg?v=0.1.0#rpg-awesome") format("svg");
 	width: fit-content;
 }
 
-.link-content-wrapper {
+.link-icon .link-content-wrapper {
+
     margin-top: -20px;
     margin-bottom: -18px;
     margin-left: -16px;
@@ -3459,13 +3499,13 @@ url("fonts/rpgawesome-webfont.svg?v=0.1.0#rpg-awesome") format("svg");
     padding-right: 16px;
 
     margin-top: calc(-5*var(--link-width));
-    margin-bottom: calc(-2px - 4*var(--link-width));;
-    margin-left: calc(-5*var(--link-width));;
-    margin-right: calc(2px + -5*var(--link-width));;
-    padding-top: calc(4*var(--link-width));;
-    padding-bottom: calc(2px + 3*var(--link-width));;
-    padding-left: calc(5*var(--link-width));;
-    padding-right: calc(5*var(--link-width));;
+    margin-bottom: calc(-2px - 4*var(--link-width));
+    margin-left: calc(-5*var(--link-width));
+    margin-right: calc(2px + -5*var(--link-width));
+    padding-top: calc(4*var(--link-width));
+    padding-bottom: calc(2px + 3*var(--link-width));
+    padding-left: calc(5*var(--link-width));
+    padding-right: calc(5*var(--link-width));
 
     
 }
@@ -3522,6 +3562,53 @@ url("fonts/rpgawesome-webfont.svg?v=0.1.0#rpg-awesome") format("svg");
         0 calc(0px - 2*var(--link-width)) 0 calc(2*var(--link-width)) var(--link-color-hover),
         calc(2*var(--link-width)) 0 0 calc(2*var(--link-width)) var(--link-color-hover),
         calc(0px - 2*var(--link-width)) 0 0 calc(2*var(--link-width)) var(--link-color-hover);
+}
+
+
+.task-link {
+    display: inline-flex;
+}
+
+.link-icon:last-of-type {
+    margin-bottom: 50px;
+}
+
+
+
+
+ /* Workaround for _content in 'passage' widget*/
+
+.link-content-wrapper * {
+    pointer-events: none;
+}
+
+.link-contents .macro-linkreplace {
+    position: absolute;
+    opacity:0;
+}
+
+.link-icon .macro-linkreplace {
+    min-width: 100px;
+    right: -2px;
+    top: 0px;
+
+    margin-top: -20px;
+    margin-bottom: -18px;
+    margin-left: -16px;
+    margin-right: -14px;
+    padding-top: 16px;
+    padding-bottom: 18px;
+    padding-left: 16px;
+    padding-right: 16px;
+
+    margin-top: calc(-5*var(--link-width));
+    margin-bottom: calc(-2px - 4*var(--link-width));
+    margin-left: calc(-5*var(--link-width));
+    margin-right: calc(2px + -5*var(--link-width));
+    padding-top: calc(4*var(--link-width));
+    padding-bottom: calc(2px + 3*var(--link-width));
+    padding-left: calc(5*var(--link-width));
+    padding-right: calc(5*var(--link-width));
 }
 /* twine-user-stylesheet #20: "macro_notify.css" */
 #notify {
@@ -3916,18 +4003,18 @@ label.toggle-button span {
     background-color: #fff;
     border: 4px solid transparent;
     border-radius: 1px;
-    color: black;
+    color: #263238;
     display: flex;
     font-size: 16px;
     font-weight: bold;
     height: var(--popupHeight);
     justify-content: flex-start;
-    gap: 0 8px;
+    gap: 0 6px;
     letter-spacing: -1px;
     line-height: 16px;
     margin-bottom: 15px;
     outline: 4px solid #fff;
-    padding: 6px 12px 4px 4px;
+    padding: 6px 4px 4px 4px;
     position: relative;
     right: calc(-10px - var(--popupWidth));
     transition-property: right;
@@ -3958,11 +4045,11 @@ label.toggle-button span {
     border-color: dodgerblue;
 }
 
-.quest_next_state {
+.popup--quest_next_state {
     border-color: lightblue;
 }
 
-.popup--quest_fail {
+.popup--task_fail {
     border-color: red;
 }
 
@@ -4101,15 +4188,16 @@ label.toggle-button span {
 }
 
 .sketch__image {
-    width: 300px;
+    display: flex;
+    width: 360px;
     height: 240px;
-    margin-left: calc(50% - 300px/2);
+    margin: auto;
 }
 
 .sketch__video {
     width: 360px;
     height: 300px;
-    margin-left: calc(50% - 360px/2);
+    /* margin-left: calc(50% - 360px/2); */
 }
 
 .sketch__image-files {
@@ -4121,6 +4209,7 @@ label.toggle-button span {
     min-width: 280px;
     padding: 10px;
     border: 1px solid #fff;
+    margin-top: 15px;
 }
 
 #constructor .sketch-page .remove_sketch-page {
@@ -4143,11 +4232,11 @@ label.toggle-button span {
 }
 
 .sketch-element-up {
-    top: 26px;
+    top: 8px;
 }
 
 .sketch-element-down { 
-    top: 48px;
+    top: 30px;
 }
 
 #constructor .sketch-element:first-of-type .sketch-element-up,
@@ -4155,6 +4244,109 @@ label.toggle-button span {
     display: none;    
 }
 
+
+
+
+.text-block {
+    display: inline-flex;
+    padding-left: 8%;
+}
+
+.gesture-block {
+    position: relative;
+    border: 2px solid #20b2aa66;
+    border-radius: 15px;
+    gap: 0 8px;
+    align-items: center;
+    padding: 6px 20px;
+    width: fit-content;
+}
+
+.gesture-block_img {
+    position: absolute;
+    width: 40px;
+    top: -18px;
+    left: -14px;
+    padding-left: 10px;
+    padding-right: 8px;
+    margin: 0;
+    background-color: var(--black);
+    border-radius: 50px;
+    z-index: 2;
+}
+
+.gesture-block_text {
+    font-size: 20px;
+    padding-left: 18px;
+    color: #9bb4b3;
+    text-shadow: 2px 2px 10px #dadadacc;
+}
+
+
+.thought-block {
+    position: relative;
+    border: 1px solid #5D435D99;
+    border-radius: 15px;
+    gap: 0 8px;
+    align-items: baseline;
+    padding: 6px 10px;
+}
+
+.thought-block_img {
+    position: absolute;
+    width: 34px;
+    top: -18px;
+    left: -8px;
+    padding-bottom: 2px;
+    padding-left: 10px;
+    padding-right: 8px;
+    background-color: var(--black);
+    border-radius: 50px;
+    border-bottom-left-radius: 0px;
+    margin: 0;
+    z-index: 2;
+}
+
+.thought-block_text {
+    padding-left: 10px;
+    padding-right: 20px;
+    color: #b4aab4;
+    text-shadow: 2px 2px 10px #dadadacc;
+}
+
+
+.narration-block {
+    position: relative;
+    border: 1px solid #dadada;
+    border-radius: 15px;
+    gap: 0 8px;
+    align-items: baseline;
+    padding: 6px 10px;
+}
+
+.narration-block_img {
+    position: absolute;
+    width: 30px;
+    top: -20px;
+    left: -6px;
+    padding-bottom: 2px;
+    padding-left: 10px;
+    padding-right: 8px;
+    background-color: var(--black);
+    border-radius: 50px;
+    border-bottom-left-radius: 0px;
+    margin: 0;
+    z-index: 2;
+}
+
+.narration-text {
+    font-style: italic;
+    font-size: 22px;
+    color: #a4a4a4;
+    padding-left: 10px;
+    padding-right: 20px;
+    text-shadow: 2px 2px 10px #dadada;
+}
 /* twine-user-stylesheet #31: "store.css" */
 .store-item__image {
     width: 80px;
@@ -4337,11 +4529,10 @@ $(document).on('change', '.language-select select', function() {
     changeLanguage();   
 });
 /* twine-user-script #2: "content_en.js" */
-
 localization_text['en'] = 
 {
-  'index_debug_mode_text': 'Hello, I haven`t seen you for a while. Will you help out in the pastures?',
-
+  "sk_sketch_warning_p_1_el_1_text": "Certain issues appeared. You should not see it.",
+  "index_debug_mode_text": "Hello, I haven`t seen you for a while. Will you help out in the pastures?",
   "initial_1": "Good Morning!",
   "initial_2": "hm.. morning..",
   "test_quest_01": "Let`s start quest!",
@@ -4474,14 +4665,72 @@ localization_text['en'] =
   "items_test_quest_item_1_name": "Test Key",
   "items_test_quest_item_1_description": "",
   "items_test_weapon_1_name": "Test stiletto 1",
-  "items_test_weapon_1_description": ""
+  "items_test_weapon_1_description": "",
+  "sk_prologue_loc_1_p_1_el_1_text": " When you wake up, you see your sister sitting on her bed and staring at you. ",
+  "sk_prologue_loc_1_p_1_el_2_text": "It is already clear that she needs something and she really wants to ask you about it.",
+  "sk_prologue_loc_1_p_1_el_4_text": "Talk to sister",
+  "sk_prologue_sk_1_p_1_el_1_text": "Good Morning.",
+  "sk_prologue_sk_1_p_1_el_2_text": "Hm.. morning..",
+  "sk_prologue_sk_1_p_1_el_3_text": "In your eyes I can see that you can't wait to ask for something.",
+  "sk_prologue_sk_1_p_1_el_4_text": "As expected of my brother, the level of your insight is high as ever!",
+  "sk_prologue_sk_1_p_1_el_5_text": "Her facial expression changed to a more energized.",
+  "sk_prologue_sk_1_p_1_el_7_text": "Stop fawning. Come on already spill the beans.",
+  "sk_prologue_sk_1_p_1_el_8_text": "I woke up early in the morning, took mother's expensive brooch, a pair of good-looking capes and went for a walk by the lake ...",
+  "sk_prologue_sk_1_p_1_el_9_text": "Well .. so .. I dropped the brooch into the lake.",
+  "sk_prologue_sk_1_p_1_el_10_text": "...",
+  "sk_prologue_sk_1_p_1_el_11_text": "You're both stay quite for few seconds.",
+  "sk_prologue_sk_1_p_1_el_12_text": "Why did you take all this in the first place?",
+  "sk_prologue_sk_1_p_1_el_13_text": "Well .. it's a bit embarrassing",
+  "sk_prologue_sk_1_p_1_el_14_text": "You keep staring at her, expecting for continuation.",
+  "sk_prologue_sk_1_p_1_el_15_text": "Ah, sometimes early in the morning I take my mother's most beautiful things and go out to the lake to show off in them. ",
+  "sk_prologue_sk_1_p_1_el_16_text": "While looking at the water surface I portray myself as a popular girl at a ball.",
+  "sk_prologue_sk_1_p_1_el_17_text": "Isn't it too early for you to think about this?",
+  "sk_prologue_sk_1_p_1_el_18_text": "No! It is not!",
+  "sk_prologue_sk_1_p_1_el_19_text": "She started to look quite offended.",
+  "sk_prologue_sk_1_p_1_el_20_text": "Ugh, fine, I'll find this brooch.",
+  "sk_prologue_sk_1_p_1_el_21_text": "Thank you, thank you!",
+  "sk_prologue_sk_1_p_1_el_22_text": "She nearly jumps on you and then hug.",
+  "sk_prologue_sk_1_p_1_el_24_text": "Try to do it faster please, I've been worried sick. ",
+  "sk_prologue_sk_1_p_1_el_25_text": "I'll stay here and think of something if someone ask where you are.",
+  "sk_prologue_sk_1_p_1_el_26_text": "Go to the lake",
+  "quests_prologue_q_1_name": "Prologue",
+  "quests_prologue_q_1_description": "Need to help my sister.",
+  "quests_prologue_q_1_start_text": "Get Prologue Quest",
+  "tasks_prologue_search_name": "Search for the brooch",
+  "tasks_prologue_search_description": "Need to find the brooch that Melissa lost.",
+  "tasks_prologue_search_2_name": "Search again",
+  "tasks_prologue_search_2_description": "Need to find the brooch that Melissa lost.",
+  "tasks_prologue_gather_name": "Grab the brooch",
+  "tasks_prologue_gather_description": "A shinny object I saw could be a brooch I'm looking for.",
+  "sk_prologue_loc_2_p_1_el_2_text": "You came to the lake. \n It's very quiet and calm here. ",
+  "sk_prologue_loc_2_p_1_el_3_text": "It's very quiet and calm here.",
+  "sk_prologue_loc_2_p_1_el_4_text": "Need to come here more often.",
+  "sk_prologue_loc_2_p_1_el_5_text": "You're seaching for anything that looks like the brooch your sister discribed.",
+  "sk_prologue_loc_3_p_1_el_1_text": "I'm too tired. I have to have a rest before I can continue.",  
+  "sk_prologue_loc_3_p_1_el_2_text": "I should teach <<getName 'melissa'>> how to swim. So next time she could do it herself.",
+  "sk_prologue_loc_4_p_1_el_1_text": "Need to continue searching for brooch.",
+  "sk_prologue_loc_5_p_1_el_1_text": "The last time I dived, I saw something glowing to my left.",
+  "sk_prologue_loc_5_p_1_el_2_text": "Need to dive to that place again and grab whenever this is,",
+  "sk_prologue_loc_5_p_1_el_3_text": "Even if it's not a brooch, this could be something valuable.\nPerhaps this is a jewelry and I could sell it or gift someone.",
+  "sk_prologue_sk_2_p_1_el_1_text": "As soon as you touch the artefact, your body becomes paralyzed. ",
+  "sk_prologue_sk_2_p_1_el_2_text": "A multicolored canvas appeared before you ",
+  "sk_prologue_sk_2_p_1_el_4_text": "Your chest squeezes and you automatically open your mouth to inhale, but you are under water at the moment. You start chooking and losing your consciousness.",
+  "sk_prologue_sk_3_p_1_el_1_text": "  You see some strange images.\n",
+  "sk_prologue_sk_3_p_1_el_5_text": "And then you wake up\n\n",
+  "sk_prologue_sk_2_p_1_el_5_text": "Black out",
+  "sk_prologue_sk_4_p_1_el_1_text": "Your openening your eyes and discover that your are in uknnow place.",
+  "sk_prologue_sk_4_p_1_el_3_text": " You see a woman near you. ",
+  "sk_prologue_sk_4_p_1_el_4_text": "She sees that you get consciousness and have a worried look.",
+  "sk_prologue_sk_4_p_1_el_5_text": "Hello, my dear.",
+  "sk_prologue_sk_4_p_1_el_6_text": "I've felt vibrance in magic through my appliances. And hurried to take a look",
+  "sk_prologue_sk_4_p_1_el_7_text": "There I've found you at the bottom of the lake.",
+  "sk_prologue_sk_4_p_1_el_8_text": "You almost died, I put you out coma with special potion(because we need to cure you faster"
 }
 /* twine-user-script #3: "content_fr.js" */
-
 localization_text['fr'] = 
 {
-  'index_debug_mode_text': 'Bonjour, je ne vous ai pas vu depuis un moment. Allez-vous aider dans les pâturages?',
-
+  "sk_sketch_warning_p_1_el_1_text": "Certain issues appeared. You should not see it.",
+  "index_debug_mode_text": "Bonjour, je ne vous ai pas vu depuis un moment. Allez-vous aider dans les pâturages?",
   "initial_1": "Bone matan!",
   "characters_mc_name": "Agnès",
   "tasks_quest_tzmplate_1_description": "",
@@ -4586,14 +4835,52 @@ localization_text['fr'] =
   "items_test_quest_item_1_name": "Test Key",
   "items_test_quest_item_1_description": "",
   "items_test_weapon_1_name": "Test stiletto 1",
-  "items_test_weapon_1_description": ""
+  "items_test_weapon_1_description": "",
+  "sk_prologue_loc_1_p_1_el_1_text": "When you wake up, you see your sister sitting on her bed and staring at you. ",
+  "sk_prologue_loc_1_p_1_el_2_text": "It is already clear that she needs something and she really wants to ask you about it.",
+  "sk_prologue_loc_1_p_1_el_4_text": "Talk to sister",
+  "sk_prologue_sk_1_p_1_el_1_text": "Good Morning.",
+  "sk_prologue_sk_1_p_1_el_2_text": "Hm.. morning..",
+  "sk_prologue_sk_1_p_1_el_3_text": "In your eyes I can see that you can't wait to ask for something.",
+  "sk_prologue_sk_1_p_1_el_4_text": "As expected of my brother, the level of your insight is high as ever!",
+  "sk_prologue_sk_1_p_1_el_5_text": "Her facial expression changed to a more energized.",
+  "sk_prologue_sk_1_p_1_el_7_text": "Stop fawning. Come on already spill the beans.",
+  "sk_prologue_sk_1_p_1_el_8_text": "I woke up early in the morning, took mother's expensive brooch, a pair of good-looking capes and went for a walk by the lake ...",
+  "sk_prologue_sk_1_p_1_el_9_text": "Well .. so .. I dropped the brooch into the lake.",
+  "sk_prologue_sk_1_p_1_el_10_text": "...",
+  "sk_prologue_sk_1_p_1_el_11_text": "You're both stay quite for few seconds.",
+  "sk_prologue_sk_1_p_1_el_12_text": "Why did you take all this in the first place?",
+  "sk_prologue_sk_1_p_1_el_13_text": "Well .. it's a bit embarrassing",
+  "sk_prologue_sk_1_p_1_el_14_text": "You keep staring at her, expecting for continuation.",
+  "sk_prologue_sk_1_p_1_el_15_text": "Ah, sometimes early in the morning I take my mother's most beautiful things and go out to the lake to show off in them. ",
+  "sk_prologue_sk_1_p_1_el_16_text": "While looking at the water surface I portray myself as a popular girl at a ball.",
+  "sk_prologue_sk_1_p_1_el_17_text": "Isn't it too early for you to think about this?",
+  "sk_prologue_sk_1_p_1_el_18_text": "No! It is not!",
+  "sk_prologue_sk_1_p_1_el_19_text": "She started to look quite offended.",
+  "sk_prologue_sk_1_p_1_el_20_text": "Ugh, fine, I'll find this brooch.",
+  "sk_prologue_sk_1_p_1_el_21_text": "Thank you, thank you!",
+  "sk_prologue_sk_1_p_1_el_22_text": "She nearly jumps on you and then hug.",
+  "sk_prologue_sk_1_p_1_el_24_text": "Try to do it faster please, I've been worried sick. ",
+  "sk_prologue_sk_1_p_1_el_25_text": "I'll stay here and think of something if someone ask where you are.",
+  "sk_prologue_sk_1_p_1_el_26_text": "Go to the lake",
+  "quests_prologue_q_1_name": "Prologue",
+  "quests_prologue_q_1_description": "Need to help my sister.",
+  "quests_prologue_q_1_start_text": "Get Prologue Quest",
+  "tasks_prologue_search_name": "Search for the brooch",
+  "tasks_prologue_search_description": "Need to find the brooch that Melissa lost.",
+  "tasks_prologue_gather_name": "Grab the brooch",
+  "tasks_prologue_gather_description": "A shinny object I saw could be a brooch I'm looking for.",
+  "sk_prologue_loc_2_p_1_el_1_text": "You came to the lake.",
+  "sk_prologue_loc_2_p_1_el_2_text": "It's very quiet and calm here.",
+  "sk_prologue_loc_2_p_1_el_3_text": "Need to come here more often.",
+  "sk_prologue_loc_2_p_1_el_5_text": "You're seaching for anything that looks like the brooch your sister discribed.",
+  "sk_prologue_loc_2_p_1_el_6_text": "I'm too tired. I have to have a rest before I can continue."
 }
 /* twine-user-script #4: "content_ru.js" */
-
 localization_text['ru'] = 
 {
-  'index_debug_mode_text': 'Привет, давно не виделись. Не поможешь на пастбищах?',
-  
+  "sk_sketch_warning_p_1_el_1_text": "Certain issues appeared. You should not see it.",
+  "index_debug_mode_text": "Привет, давно не виделись. Не поможешь на пастбищах?",
   "initial_1": "Доброе утро!",
   "initial_2": "мм.. доброе..",
   "characters_mc_name": "Агнесс",
@@ -4718,7 +5005,46 @@ localization_text['ru'] =
   "items_test_quest_item_1_name": "Test Key",
   "items_test_quest_item_1_description": "",
   "items_test_weapon_1_name": "Test stiletto 1",
-  "items_test_weapon_1_description": ""
+  "items_test_weapon_1_description": "",
+  "sk_prologue_loc_1_p_1_el_1_text": "When you wake up, you see your sister sitting on her bed and staring at you. ",
+  "sk_prologue_loc_1_p_1_el_2_text": "It is already clear that she needs something and she really wants to ask you about it.",
+  "sk_prologue_loc_1_p_1_el_4_text": "Talk to sister",
+  "sk_prologue_sk_1_p_1_el_1_text": "Good Morning.",
+  "sk_prologue_sk_1_p_1_el_2_text": "Hm.. morning..",
+  "sk_prologue_sk_1_p_1_el_3_text": "In your eyes I can see that you can't wait to ask for something.",
+  "sk_prologue_sk_1_p_1_el_4_text": "As expected of my brother, the level of your insight is high as ever!",
+  "sk_prologue_sk_1_p_1_el_5_text": "Her facial expression changed to a more energized.",
+  "sk_prologue_sk_1_p_1_el_7_text": "Stop fawning. Come on already spill the beans.",
+  "sk_prologue_sk_1_p_1_el_8_text": "I woke up early in the morning, took mother's expensive brooch, a pair of good-looking capes and went for a walk by the lake ...",
+  "sk_prologue_sk_1_p_1_el_9_text": "Well .. so .. I dropped the brooch into the lake.",
+  "sk_prologue_sk_1_p_1_el_10_text": "...",
+  "sk_prologue_sk_1_p_1_el_11_text": "You're both stay quite for few seconds.",
+  "sk_prologue_sk_1_p_1_el_12_text": "Why did you take all this in the first place?",
+  "sk_prologue_sk_1_p_1_el_13_text": "Well .. it's a bit embarrassing",
+  "sk_prologue_sk_1_p_1_el_14_text": "You keep staring at her, expecting for continuation.",
+  "sk_prologue_sk_1_p_1_el_15_text": "Ah, sometimes early in the morning I take my mother's most beautiful things and go out to the lake to show off in them. ",
+  "sk_prologue_sk_1_p_1_el_16_text": "While looking at the water surface I portray myself as a popular girl at a ball.",
+  "sk_prologue_sk_1_p_1_el_17_text": "Isn't it too early for you to think about this?",
+  "sk_prologue_sk_1_p_1_el_18_text": "No! It is not!",
+  "sk_prologue_sk_1_p_1_el_19_text": "She started to look quite offended.",
+  "sk_prologue_sk_1_p_1_el_20_text": "Ugh, fine, I'll find this brooch.",
+  "sk_prologue_sk_1_p_1_el_21_text": "Thank you, thank you!",
+  "sk_prologue_sk_1_p_1_el_22_text": "She nearly jumps on you and then hug.",
+  "sk_prologue_sk_1_p_1_el_24_text": "Try to do it faster please, I've been worried sick. ",
+  "sk_prologue_sk_1_p_1_el_25_text": "I'll stay here and think of something if someone ask where you are.",
+  "sk_prologue_sk_1_p_1_el_26_text": "Go to the lake",
+  "quests_prologue_q_1_name": "Prologue",
+  "quests_prologue_q_1_description": "Need to help my sister.",
+  "quests_prologue_q_1_start_text": "Get Prologue Quest",
+  "tasks_prologue_search_name": "Search for the brooch",
+  "tasks_prologue_search_description": "Need to find the brooch that Melissa lost.",
+  "tasks_prologue_gather_name": "Grab the brooch",
+  "tasks_prologue_gather_description": "A shinny object I saw could be a brooch I'm looking for.",
+  "sk_prologue_loc_2_p_1_el_1_text": "You came to the lake.",
+  "sk_prologue_loc_2_p_1_el_2_text": "It's very quiet and calm here.",
+  "sk_prologue_loc_2_p_1_el_3_text": "Need to come here more often.",
+  "sk_prologue_loc_2_p_1_el_5_text": "You're seaching for anything that looks like the brooch your sister discribed.",
+  "sk_prologue_loc_2_p_1_el_6_text": "I'm too tired. I have to have a rest before I can continue."
 }
 /* twine-user-script #5: "l10nString_en.js" */
 
@@ -5155,6 +5481,21 @@ localization_system_text['en'] = {
         join_escort: 'Get in \'escort\'',
         leave_escort_not_finish: 'Leave \'escort\' (Will not finish task)',
         leave_escort_finish: 'Leave \'escort\' (Will finish \'escort\' task)'
+    },
+    activities: {
+        'rest': 'Rest',
+        'nap': 'Nap',
+        'sleep': 'Sleep',
+        'wait': 'Wait',
+        'eat': 'Eat',
+        'drink': 'Drink',
+        'bath': 'Bath',
+        'swim': 'Swim',
+        'gather': 'Gather',
+        'fight': 'Fight',
+        'work': 'Work',
+        'clean': 'Clean'
+
     }
     
 }
@@ -5947,6 +6288,16 @@ const character_list = {
 /* twine-user-script #14: "json_image.js" */
 const image_list = 
 {
+    "prologue": [
+        'melissa_anticipation.jpg',
+        'melissa_hug.gif',
+        'melissa_sparkling_eyes.jpg',
+        'lake_1.gif',
+        'lake_2.webp',
+        'lake_3.gif',
+        'lake_4.jpg',
+        'lake_5.jpg'
+    ],
     "forest_events": [           
         'forest_event_1.jpg',
         'forest_event_2.jpg'
@@ -5986,6 +6337,31 @@ const item_list = {
 /* twine-user-script #16: "json_locations.js" */
 
 const custom_location_list = {
+    prologue_1: {
+        id_name: 'prologue_1',
+        name: 'Prologue 1',
+        sketch: 'prologue_loc_1'
+    },
+    prologue_2: {
+        id_name: 'prologue_2',
+        name: 'Prologue 2',
+        sketch: 'prologue_loc_2'
+    },
+    prologue_3: {
+        id_name: 'prologue_3',
+        name: 'Prologue 3',
+        sketch: 'prologue_loc_3'
+    },
+    prologue_4: {
+        id_name: 'prologue_4',
+        name: 'Prologue 4',
+        sketch: 'prologue_loc_4'
+    },
+    prologue_5: {
+        id_name: 'prologue_5',
+        name: 'Prologue 5',
+        sketch: 'prologue_loc_5'
+    },
     test_1: {
         id_name: 'test_1',
         name: 'Test 1',
@@ -6029,297 +6405,351 @@ const party_list = {
   }
 /* twine-user-script #18: "json_quests.js" */
 
-const quest_list =
+const quest_list = 
 {
-    "quest_tzmplate": {
-      "id_name": "quest_tzmplate",
-      "type": "main",
-      "activation_flag": {
-        "location": "Dream"
-      },
-      "states": {
-        "1": [
-          {
-            "id_name": "quest_tzmplate_1",
-            "type": "distribute",
-            "subject": "dagger",
-            "amount": "1",
-            "location": "Talk_Menu",
-            "location_character": "melissa"
-          }
-        ],
-        "2": [
-          {
-            "id_name": "quest_tzmplate_2",
-            "type": "sketch",
-            "subject": "sketch_demo_1",
-            "location": "Talk_Menu",
-            "location_character": "melissa"
-          }
-        ]
-      }
+  "quest_tzmplate": {
+    "id_name": "quest_tzmplate",
+    "type": "main",
+    "activation_flag": {
+      "location": "Dream"
     },
-    "initial": {
-      "id_name": "initial",
-      "type": "main",
-      "activation_flag": {
-        "location": "Dream"
-      },
-      "states": {
-        "1": [
-          {
-            "id_name": "quest_initial",
-            "type": "sketch",
-            "subject": "sketch_demo_2",
-            "location": "Talk_Menu",
-            "location_character": "melissa"
-          }
-        ]
-      }
-    },
-    "fight_test": {
-      "id_name": "fight_test",
-      "type": "main",
-      "activation_flag": {
-        "id_name": "initial",
-        "value": "2",
-        "location": "Home_Corridor"
-      },
-      "states": {
-        "1": [
-          {
-            "id_name": "quest_fight_test_1",
-            "type": "fight",
-            "subject": "goblins_3",
-            "location": "Home_Corridor"
-          }
-        ],
-        "2": [
-            {
-            "id_name": "quest_fight_test_2",
-            "type": "sketch",
-            "subject": "sketch_demo_1",
-            "location": "Home_Parents_Room"
-            }
-        ]
-      }
-    },
-    "sketch_test": {
-      "id_name": "sketch_test",
-      "type": "main",
-      "activation_flag": {
-        "id_name": "initial",
-        "value": "2",
-        "location": "Home_Corridor"
-      },
-      "states": {
-        "1": [
-          {
-            "id_name": "sketch_task",
-            "type": "sketch",
-            "subject": "sketch_demo_1",
-            "location": "Home_Parents_Room"
-          }
-        ]
-      }
-    },
-    "eliminate_test": {
-      "id_name": "eliminate_test",
-      "type": "main",
-      "activation_flag": {
-        "id_name": "initial",
-        "value": "2",
-        "location": "Home_Corridor"
-      },
-      "states": {
-        "1": [
-          {
-            "id_name": "quest_eliminate_test_1",
-            "type": "eliminate",
-            "subject": "goblin",
-            "amount": "3",
-            "location": "Home_Corridor"
-          },
-          {
-            "id_name": "quest_eliminate_test_2",
-            "type": "eliminate",
-            "subject": "wolf",
-            "amount": "2",
-            "location": "Home_Corridor"
-          }
-        ]
-      }
-    },
-    "search_test": {
-      "id_name": "search_test",
-      "type": "main",
-      "activation_flag": {
-        "id_name": "initial",
-        "value": "2",
-        "location": "Home_Corridor"
-      },
-      "states": {
-        "1": [
-          {
-            "id_name": "quest_search_test_1",
-            "type": "search",
-            "amount": "2",
-            "location": "Home_Corridor"
-          },
-          {
-            "id_name": "quest_search_test_2",
-            "type": "search",
-            "amount": "1",
-            "location": "Home_Corridor"
-          }
-        ],
-        "2": [
-          {
-            "id_name": "quest_search_test_3",
-            "type": "sketch",
-            "subject": "test_quest_1",
-            "location": "Talk_Menu",
-            "location_character": "melissa"
-          }
-        ]
-      }
-    },
-    "escort_test": {
-      "id_name": "escort_test",
-      "type": "main",
-      "activation_flag": {
-        "id_name": "initial",
-        "value": "2",
-        "location": "Home_Corridor"
-      },
-      "states": {
-        "1": [
-          {
-            "id_name": "quest_escort_test_1",
-            "type": "escort",
-            "subject": "melissa",
-            "location": "Home_Corridor"
-          },
-          {
-            "id_name": "escort_gather_socks",
-            "is_optional": "1",
-            "type": "gather",
-            "subject": "socks",
-            "amount": "6",
-            "location": "Home_Corridor"
-          }
-        ]
-      }
-    },
-    "escort_test_2": {
-      "id_name": "escort_test_2",
-      "type": "main",
-      "activation_flag": {
-        "id_name": "initial",
-        "value": "2",
-        "location": "Home_Corridor"
-      },
-      "states": {
-        "1": [
-          {
-            "id_name": "escort_test_2",
-            "type": "escort",
-            "subject": "alura",
-            "location": "Home_Corridor"
-          }
-        ]
-      }
-    },
-    "gather_test": {
-      "id_name": "gather_test",
-      "type": "main",
-      "activation_flag": {
-        "id_name": "initial",
-        "value": "2",
-        "location": "Home_Corridor"
-      },
-      "states": {
-        "1": [
-          {
-            "id_name": "gather_socks",
-            "is_optional": "1",
-            "type": "gather",
-            "subject": "socks",
-            "amount": "3",
-            "location": "Home_Corridor"
-          },
-          {
-            "id_name": "gather_keys",
-            "is_optional": "1",
-            "type": "gather",
-            "subject": "key",
-            "amount": "2",
-            "location": "Home_Corridor"
-          }
-        ],
-        "2": [
-          {
-            "id_name": "gather_stage_2",
-            "type": "sketch",
-            "subject": "sketch_demo_1",
-            "location": "Talk_Menu",
-            "location_character": "melissa"
-          }
-        ]
-      }
-    },
-    "distribute_test": {
-      "id_name": "distribute_test",
-      "type": "main",
-      "activation_flag": {
-        "id_name": "initial",
-        "value": "2",
-        "location": "Home_Corridor"
-      },
-      "states": {
-        "1": [
-          {
-            "id_name": "distribute_gather_socks",
-            "type": "gather",
-            "subject": "socks",
-            "amount": "6",
-            "location": "Home_Corridor"
-          },
-          {
-            "id_name": "distribute_gather_keys",
-            "type": "gather",
-            "subject": "key",
-            "amount": "3",
-            "location": "Home_Corridor"
-          }
-        ],
-        "2": [
-          {
-            "id_name": "distribute_socks",
-            "type": "distribute",
-            "subject": "socks",
-            "amount": "6",
-            "location": "Home_Corridor"
-          },
-          {
-            "id_name": "distribute_keys",
-            "type": "distribute",
-            "subject": "key",
-            "amount": "3",
-            "location": "Home_Corridor"
-          }
-        ],
-        "3": [
-          {
-            "id_name": "distribute_dagger",
-            "type": "distribute",
-            "subject": "dagger",
-            "amount": "2",
-            "location": "Home_Corridor"
-          }
-        ]
-      }
+    "states": {
+      "1": [
+        {
+          "id_name": "quest_tzmplate_1",
+          "type": "distribute",
+          "subject": "dagger",
+          "amount": "1",
+          "location": "Talk_Menu",
+          "location_character": "melissa"
+        }
+      ],
+      "2": [
+        {
+          "id_name": "quest_tzmplate_2",
+          "type": "sketch",
+          "subject": "sketch_demo_1",
+          "location": "Talk_Menu",
+          "location_character": "melissa"
+        }
+      ]
     }
+  },
+  "initial": {
+    "id_name": "initial",
+    "type": "main",
+    "activation_flag": {
+      "location": "Dream"
+    },
+    "states": {
+      "1": [
+        {
+          "id_name": "quest_initial",
+          "type": "sketch",
+          "subject": "sketch_demo_2",
+          "location": "Talk_Menu",
+          "location_character": "melissa"
+        }
+      ]
+    }
+  },
+  "fight_test": {
+    "id_name": "fight_test",
+    "type": "main",
+    "activation_flag": {
+      "id_name": "initial",
+      "value": "2",
+      "location": "Home_Corridor"
+    },
+    "states": {
+      "1": [
+        {
+          "id_name": "quest_fight_test_1",
+          "type": "fight",
+          "subject": "goblins_3",
+          "location": "Home_Corridor"
+        }
+      ],
+      "2": [
+        {
+          "id_name": "quest_fight_test_2",
+          "type": "sketch",
+          "subject": "sketch_demo_1",
+          "location": "Home_Parents_Room"
+        }
+      ]
+    }
+  },
+  "sketch_test": {
+    "id_name": "sketch_test",
+    "type": "main",
+    "activation_flag": {
+      "id_name": "initial",
+      "value": "2",
+      "location": "Home_Corridor"
+    },
+    "states": {
+      "1": [
+        {
+          "id_name": "sketch_task",
+          "type": "sketch",
+          "subject": "sketch_demo_1",
+          "location": "Home_Parents_Room"
+        }
+      ]
+    }
+  },
+  "eliminate_test": {
+    "id_name": "eliminate_test",
+    "type": "main",
+    "activation_flag": {
+      "id_name": "initial",
+      "value": "2",
+      "location": "Home_Corridor"
+    },
+    "states": {
+      "1": [
+        {
+          "id_name": "quest_eliminate_test_1",
+          "type": "eliminate",
+          "subject": "goblin",
+          "amount": "3",
+          "location": "Home_Corridor"
+        },
+        {
+          "id_name": "quest_eliminate_test_2",
+          "type": "eliminate",
+          "subject": "wolf",
+          "amount": "2",
+          "location": "Home_Corridor"
+        }
+      ]
+    }
+  },
+  "search_test": {
+    "id_name": "search_test",
+    "type": "main",
+    "activation_flag": {
+      "id_name": "initial",
+      "value": "2",
+      "location": "Home_Corridor"
+    },
+    "states": {
+      "1": [
+        {
+          "id_name": "quest_search_test_1",
+          "type": "search",
+          "amount": "2",
+          "location": "Home_Corridor"
+        },
+        {
+          "id_name": "quest_search_test_2",
+          "type": "search",
+          "amount": "1",
+          "location": "Home_Corridor"
+        }
+      ],
+      "2": [
+        {
+          "id_name": "quest_search_test_3",
+          "type": "sketch",
+          "subject": "test_quest_1",
+          "location": "Talk_Menu",
+          "location_character": "melissa"
+        }
+      ]
+    }
+  },
+  "escort_test": {
+    "id_name": "escort_test",
+    "type": "main",
+    "activation_flag": {
+      "id_name": "initial",
+      "value": "2",
+      "location": "Home_Corridor"
+    },
+    "states": {
+      "1": [
+        {
+          "id_name": "quest_escort_test_1",
+          "type": "escort",
+          "subject": "melissa",
+          "location": "Home_Corridor"
+        },
+        {
+          "id_name": "escort_gather_socks",
+          "is_optional": "1",
+          "type": "gather",
+          "subject": "socks",
+          "amount": "6",
+          "location": "Home_Corridor"
+        }
+      ]
+    }
+  },
+  "escort_test_2": {
+    "id_name": "escort_test_2",
+    "type": "main",
+    "activation_flag": {
+      "id_name": "initial",
+      "value": "2",
+      "location": "Home_Corridor"
+    },
+    "states": {
+      "1": [
+        {
+          "id_name": "escort_test_2",
+          "type": "escort",
+          "subject": "alura",
+          "location": "Home_Corridor"
+        }
+      ]
+    }
+  },
+  "gather_test": {
+    "id_name": "gather_test",
+    "type": "main",
+    "activation_flag": {
+      "id_name": "initial",
+      "value": "2",
+      "location": "Home_Corridor"
+    },
+    "states": {
+      "1": [
+        {
+          "id_name": "gather_socks",
+          "is_optional": "1",
+          "type": "gather",
+          "subject": "socks",
+          "amount": "3",
+          "location": "Home_Corridor"
+        },
+        {
+          "id_name": "gather_keys",
+          "is_optional": "1",
+          "type": "gather",
+          "subject": "key",
+          "amount": "2",
+          "location": "Home_Corridor"
+        }
+      ],
+      "2": [
+        {
+          "id_name": "gather_stage_2",
+          "type": "sketch",
+          "subject": "sketch_demo_1",
+          "location": "Talk_Menu",
+          "location_character": "melissa"
+        }
+      ]
+    }
+  },
+  "distribute_test": {
+    "id_name": "distribute_test",
+    "type": "main",
+    "activation_flag": {
+      "id_name": "initial",
+      "value": "2",
+      "location": "Home_Corridor"
+    },
+    "states": {
+      "1": [
+        {
+          "id_name": "distribute_gather_socks",
+          "type": "gather",
+          "subject": "socks",
+          "amount": "6",
+          "location": "Home_Corridor"
+        },
+        {
+          "id_name": "distribute_gather_keys",
+          "type": "gather",
+          "subject": "key",
+          "amount": "3",
+          "location": "Home_Corridor"
+        }
+      ],
+      "2": [
+        {
+          "id_name": "distribute_socks",
+          "type": "distribute",
+          "subject": "socks",
+          "amount": "6",
+          "location": "Home_Corridor"
+        },
+        {
+          "id_name": "distribute_keys",
+          "type": "distribute",
+          "subject": "key",
+          "amount": "3",
+          "location": "Home_Corridor"
+        }
+      ],
+      "3": [
+        {
+          "id_name": "distribute_dagger",
+          "type": "distribute",
+          "subject": "dagger",
+          "amount": "2",
+          "location": "Home_Corridor"
+        }
+      ]
+    }
+  },
+  "prologue_q_1": {
+    "id_name": "prologue_q_1",
+    "type": "main",
+    "activation_flag": {
+      "id_name": "initial",
+      "value": "2",
+      "location": "prologue_loc_1"
+    },
+    "states": {
+      "1": [
+        {
+          "id_name": "prologue_search",
+          "type": "search",
+          "amount": "1",
+          "location": "prologue_2",
+          "actions": [
+            {
+              "type": "injection",
+              "injection": "<<set $temp.custom_location = 'prologue_3'; Engine.play('Uni_Location', true)>>",
+            }
+          ]
+        }
+      ],
+      "2": [
+        {
+          "id_name": "prologue_search_2",
+          "type": "search",
+          "amount": "1",
+          "location": "prologue_4",
+          "actions": [
+            {
+              "type": "injection",
+              "injection": "<<set $temp.custom_location = 'prologue_5'; Engine.play('Uni_Location', true)>>",
+            }
+          ]
+        }
+      ],
+      "3": [
+        {
+          "id_name": "prologue_gather",
+          "type": "gather",
+          "subject": "key",
+          "amount": "1",
+          "location": "prologue_5",
+          "actions": [
+            {
+              "type": "injection",
+              "injection": "<<set $temp.cur_sketch = 'prologue_sk_2'; Engine.play('Uni_Sketch', true)>>",
+            }
+          ]
+        }
+      ]
+    }
+  }
 }
 /* twine-user-script #19: "json_schedules.js" */
 
@@ -6440,8 +6870,19 @@ const schedule_list = {
     ],
 }
 /* twine-user-script #20: "json_sketches.js" */
-const sketch_list =
+const sketch_list = 
 {
+  "sketch_warning": {
+    "id_name": "sketch_warning",
+    "pages": {
+      "page_1": {
+        "el_1": {
+          "type": "text",
+          "text_type": "default"
+        }
+      }
+    }
+  },
   "sketch_demo_1": {
     "id_name": "sketch_demo_1",
     "pages": {
@@ -6491,7 +6932,7 @@ const sketch_list =
         },
         "el_2": {
           "type": "injection",
-          "injection": " sketch_el_2   \n<<text 'index_warning_1'>>\n <p style=\"font-size: 10px;\">sddd</p> \n    d\n <p style=\"font-size: 10px;\">sddd</p> \n    <<fadein 3s .5s>>\n <<fadeout 2s 6s>>\n   Your were ovehelmed with agony and despair.\n  <</fadeout>>\n <</fadein>>"
+          "injection": " sketch_el_2   \n<<text_system 'index_warning_1'>>\n <p style=\"font-size: 10px;\">sddd</p> \n    d\n <p style=\"font-size: 10px;\">sddd</p> \n    <<fadein 3s .5s>>\n <<fadeout 2s 6s>>\n   Your were ovehelmed with agony and despair.\n  <</fadeout>>\n <</fadein>>"
         },
         "el_3": {
           "type": "text",
@@ -6606,7 +7047,7 @@ const sketch_list =
               "type": "add_inventory_class",
               "character": "player",
               "item_class": "dagger"
-            },
+            }
           ]
         },
         "el_10": {
@@ -6726,6 +7167,360 @@ const sketch_list =
               "task": "quest_fight_test_2"
             }
           ]
+        }
+      }
+    }
+  },
+  "prologue_loc_1": {
+    "id_name": "prologue_loc_1",
+    "pages": {
+      "page_1": {
+        "el_1": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_2": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_3": {
+          "type": "image",
+          "media_folder": "prologue",
+          "media_file": "melissa_anticipation.jpg"
+        },
+        "el_4": {
+          "type": "choice",
+          "passage": "Home_Bedroom",
+          "move_to": "sketch",
+          "sketch_idn": "prologue_sk_1",
+          "link_type": "default"
+        }
+      }
+    }
+  },
+  "prologue_sk_1": {
+    "id_name": "prologue_sk_1",
+    "pages": {
+      "page_1": {
+        "el_1": {
+          "type": "speech",
+          "character": "mc",
+          "posture": "default"
+        },
+        "el_2": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_3": {
+          "type": "speech",
+          "character": "mc",
+          "posture": "default"
+        },
+        "el_4": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_5": {
+          "type": "text",
+          "text_type": "gesture"
+        },
+        "el_6": {
+          "type": "image",
+          "media_folder": "prologue",
+          "media_file": "melissa_sparkling_eyes.jpg"
+        },
+        "el_7": {
+          "type": "speech",
+          "character": "mc",
+          "posture": "default"
+        },
+        "el_8": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_9": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_10": {
+          "type": "speech",
+          "character": "mc",
+          "posture": "default"
+        },
+        "el_11": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_12": {
+          "type": "speech",
+          "character": "mc",
+          "posture": "default"
+        },
+        "el_13": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_14": {
+          "type": "text",
+          "text_type": "gesture"
+        },
+        "el_15": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_16": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_17": {
+          "type": "speech",
+          "character": "mc",
+          "posture": "default"
+        },
+        "el_18": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_19": {
+          "type": "text",
+          "text_type": "gesture"
+        },
+        "el_20": {
+          "type": "speech",
+          "character": "mc",
+          "posture": "default"
+        },
+        "el_21": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_22": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_23": {
+          "type": "image",
+          "media_folder": "prologue",
+          "media_file": "melissa_hug.gif"
+        },
+        "el_24": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_25": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_26": {
+          "type": "choice",
+          "move_to": "passage",
+          "passage": "prologue_2",
+          "sketch_idn": "sketch_warning",
+          "link_type": "default",
+          "actions": [
+            {
+              "type": "start_quest",
+              "quest": "prologue_q_1"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "prologue_loc_2": {
+    "id_name": "prologue_loc_2",
+    "pages": {
+      "page_1": {
+        "el_1": {
+          "type": "image",
+          "media_folder": "prologue",
+          "media_file": "lake_1.gif",
+          "width": "580",
+          "height": "320"
+        },
+        "el_2": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_3": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_4": {
+          "type": "text",
+          "text_type": "thought"
+        },
+        "el_5": {
+          "type": "text",
+          "text_type": "gesture"
+        }
+      }
+    }
+  },
+  "prologue_loc_3": {
+    "id_name": "prologue_loc_3",
+    "pages": {
+      "page_1": {
+        "el_1": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_2": {
+          "type": "text",
+          "text_type": "thought"
+        },
+        "el_3": {
+          "type": "injection",
+          "injection": "<<activity 'rest' 'Uni_Location' 'none'>> \n    <<set $temp.custom_location = 'prologue_4'>>\n    <<set $player.stamina +=80>>\n<</activity>>"
+        }
+      }
+    }
+  },
+  "prologue_loc_4": {
+    "id_name": "prologue_loc_4",
+    "pages": {
+      "page_1": {
+        "el_1": {
+          "type": "text",
+          "text_type": "default"
+        }
+      }
+    }
+  },
+  "prologue_loc_5": {
+    "id_name": "prologue_loc_5",
+    "pages": {
+      "page_1": {
+        "el_1": {
+          "type": "text",
+          "text_type": "thought"
+        },
+        "el_2": {
+          "type": "text",
+          "text_type": "thought"
+        },
+        "el_3": {
+          "type": "text",
+          "text_type": "thought"
+        }
+      }
+    }
+  },
+  "prologue_sk_2": {
+    "id_name": "prologue_sk_2",
+    "pages": {
+      "page_1": {
+        "el_1": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_2": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_3": {
+          "type": "image",
+          "media_folder": "prologue",
+          "media_file": "lake_5.jpg"
+        },
+        "el_4": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_5": {
+          "type": "choice",
+          "passage": "pre_sketch_passage",
+          "move_to": "sketch",
+          "sketch_idn": "prologue_sk_3",
+          "link_type": "default"
+        }
+      }
+    }
+  },
+  "prologue_sk_3": {
+    "id_name": "prologue_sk_3",
+    "pages": {
+      "page_1": {
+        "el_1": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_2": {
+          "type": "video",
+          "media_folder": "forest_events",
+          "media_file": "forest_event_2.mp4"
+        },
+        "el_3": {
+          "type": "image",
+          "media_folder": "forest_events",
+          "media_file": "forest_event_1.jpg"
+        },
+        "el_4": {
+          "type": "video",
+          "media_folder": "forest_events",
+          "media_file": "forest_event_2.mp4"
+        },
+        "el_5": {
+          "type": "choice",
+          "passage": "pre_sketch_passage",
+          "move_to": "sketch",
+          "sketch_idn": "prologue_sk_2",
+          "link_type": "default"
+        }
+      }
+    }
+  },
+  "prologue_sk_4": {
+    "id_name": "prologue_sk_4",
+    "pages": {
+      "page_1": {
+        "el_1": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_2": {
+          "type": "image",
+          "media_folder": "prologue",
+          "media_file": "melissa_sparkling_eyes.jpg"
+        },
+        "el_3": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_4": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_5": {
+          "type": "speech",
+          "character": "witch",
+          "posture": "default"
+        },
+        "el_6": {
+          "type": "speech",
+          "character": "witch",
+          "posture": "default"
+        },
+        "el_7": {
+          "type": "speech",
+          "character": "witch",
+          "posture": "default"
+        },
+        "el_8": {
+          "type": "speech",
+          "character": "witch",
+          "posture": "default"
         }
       }
     }
@@ -7514,6 +8309,8 @@ class Task {
         this.is_optional = task_params.is_optional;    
         this.no_start_link = (this.type == 'escort' || this.type == 'eliminate') ? 1 : 0;
         if (task_params.location_character) this.location_character = task_params.location_character;
+        if (task_params.conditions)  this.conditions = task_params.conditions; 
+        if (task_params.actions)  this.actions = task_params.actions; 
 
 
         // Autoset correct amount
@@ -7815,12 +8612,14 @@ function getQuestTaskList(quest_idn) {
 
 
 
-function getTaskByIdn(task_idn) {
+function getTaskByIdn(task_idn, active_quest=false) {
     const task_quest = getTaskQuest(task_idn);
     const is_task_exists = (!$.isEmptyObject(task_quest));
     
     if (is_task_exists) {
-        const task = State.variables.quest_list[task_quest.id_name].states[task_quest.state][task_quest.state_task_index];
+        const task = (active_quest) ? 
+        State.variables.quests[task_quest.id_name].states[task_quest.state][task_quest.state_task_index]:
+        State.variables.quest_list[task_quest.id_name].states[task_quest.state][task_quest.state_task_index];
         
         return task;
     } else {
@@ -9830,8 +10629,8 @@ function sketchConstructor () {
             remove_inventory_idn: 'Remove item',
             add_to_party: 'Add to party',
             remove_from_party: 'Remove from party',
-            start_quest: 'Start quest (WIP)', 
-            fail_task: 'Fail task (WIP)',
+            start_quest: 'Start quest', 
+            fail_task: 'Fail task',
             time_countdown: 'Time countdown',
             custom: 'Custom (N/A)'
         };
@@ -9996,10 +10795,7 @@ function sketchConstructor () {
                                 </select>
                             </div>
 
-                            <div class="form-blocks-row">
-                                <div class="form-block sketch-element-type__container"></div>
-                            </div>
-                    
+                            <div class="form-block sketch-element-type__container"></div>
                     
                         </div>
 
@@ -10755,9 +11551,9 @@ function getSketchElementTypeFields(type) {
     const 
     speech_options = [
         'element_type_condition',
-        'element_type_text_idn',
         'element_type_character',
-        'element_type_posture'
+        'element_type_posture',
+        'element_type_text',
     ],
     injection_options = [
         'element_type_condition',
@@ -10765,8 +11561,8 @@ function getSketchElementTypeFields(type) {
     ],
     text_options = [
         'element_type_condition',
-        'element_type_text_type',
-        'element_type_text_idn'
+        'element_type_text_model',
+        'element_type_text'
     ],
     image_options = [
         'element_type_condition',
@@ -10778,7 +11574,7 @@ function getSketchElementTypeFields(type) {
     ],
     choice_options = [
         'element_type_condition',
-        'element_type_text_idn',
+        'element_type_text',
         'element_type_passage',
         'element_type_link_type',
         'element_type_actions'
@@ -10944,55 +11740,6 @@ function getElementTypeOptionContent(option, spid, seid, sketch_element={}) {
 
         return content;
     };
-
-    const content_element_type_text_idn = () => {         
-        const sketch_id_name = $('#id_name').val();         
-        const sketch_entity_list = 'sk';
-        const text = getLocalizedText(`${sketch_entity_list}_${sketch_id_name}_p_${spid}_el_${seid}_text`);
-
-        const content = `
-            <div class="form-block">
-                <label> Text (EN)</label>                
-                <textarea 
-                    data-prop="text" 
-                    data-page="${spid}" 
-                    data-el="${seid}" 
-                    class="localized-text"
-                >${text}</textarea>
-            </div>  
-        `;
-
-        return content;
-    };
-
-    const content_element_type_text_type = () => {       
-        const text_types = [
-            'default',
-            'thought',
-            'gesture'
-        ];
-
-        const content = `
-            <div class="form-block">
-                <label> Text Type </label>
-                <select 
-                    class="select2" 
-                    name="pages[page_${spid}][el_${seid}][text_type]"
-                >                             
-                    ${Object.values(text_types).map((value) => (                        
-                        `<option 
-                            ${(value == sketch_element.text_type) ? 'selected' : ''}
-                            value="${value}"
-                        >
-                            ${value}
-                        </option>`
-                    )).join('')}
-                </select>
-            </div> 
-        `;
-
-        return content;
-    };
     
     const content_element_type_character = () => { 
         const characters = State.variables.characters;
@@ -11044,6 +11791,55 @@ function getElementTypeOptionContent(option, spid, seid, sketch_element={}) {
 
         return content;
     };
+
+    const content_element_type_text_model = () => {       
+        const text_types = [
+            'default',
+            'thought',
+            'gesture'
+        ];
+
+        const content = `
+            <div class="form-block">
+                <label> Text Type </label>
+                <select 
+                    class="select2" 
+                    name="pages[page_${spid}][el_${seid}][text_type]"
+                >                             
+                    ${Object.values(text_types).map((value) => (                        
+                        `<option 
+                            ${(value == sketch_element.text_type) ? 'selected' : ''}
+                            value="${value}"
+                        >
+                            ${value}
+                        </option>`
+                    )).join('')}
+                </select>
+            </div> 
+        `;
+
+        return content;
+    };
+
+    const content_element_type_text = () => {         
+        const sketch_id_name = $('#id_name').val();         
+        const sketch_entity_list = 'sk';
+        const text = getLocalizedText(`${sketch_entity_list}_${sketch_id_name}_p_${spid}_el_${seid}_text`);
+
+        const content = `
+            <div class="form-block">
+                <label> Text (EN)</label>                
+                <textarea 
+                    data-prop="text" 
+                    data-page="${spid}" 
+                    data-el="${seid}" 
+                    class="localized-text"
+                >${text}</textarea>
+            </div>  
+        `;
+
+        return content;
+    };
                                     
     const content_element_type_injection = () => { 
         const content = `
@@ -11062,37 +11858,60 @@ function getElementTypeOptionContent(option, spid, seid, sketch_element={}) {
         const sketch_images = State.variables.lists.image_list;  
 
         const content = `        
-            <div class="form-blocks-row">   
-                <div class="form-block">
-                    <label> Image Folder </label>
-                    <select 
-                        class="select2 sketch__media-files-folder" 
-                        name="pages[page_${spid}][el_${seid}][media_folder]"
-                        data-type="image" 
-                    >
-                        <option disabled selected value="-1">-- select --</option>
-                        ${Object.keys(sketch_images).map((value, index) => (
-                            `<option 
-                                ${(value == sketch_element.media_folder) ? 'selected' : ''}
-                                value="${value}"
-                            >
-                                ${value}
-                            </option>`
-                        )).join('')}
-                    </select>
-                </div>   
+            <div class="form-block">
+                <div class="form-blocks-row">   
+                    <div class="form-block">
+                        <label> Image Folder </label>
+                        <select 
+                            class="select2 sketch__media-files-folder" 
+                            name="pages[page_${spid}][el_${seid}][media_folder]"
+                            data-type="image" 
+                        >
+                            <option disabled selected value="-1">-- select --</option>
+                            ${Object.keys(sketch_images).map((value, index) => (
+                                `<option 
+                                    ${(value == sketch_element.media_folder) ? 'selected' : ''}
+                                    value="${value}"
+                                >
+                                    ${value}
+                                </option>`
+                            )).join('')}
+                        </select>
+                    </div>   
 
-                <div class="form-block">
-                    <label> Image Name </label>
-                    <select 
-                        class="select2 sketch__media-files-name" 
-                        name="pages[page_${spid}][el_${seid}][media_file]"
-                    >
-                        <option disabled selected value="-1">-- select --</option>
-                    </select>
-                </div>   
+                    <div class="form-block">
+                        <label> Image Name </label>
+                        <select 
+                            class="select2 sketch__media-files-name" 
+                            name="pages[page_${spid}][el_${seid}][media_file]"
+                        >
+                            <option disabled selected value="-1">-- select --</option>
+                        </select>
+                    </div>   
+                </div>
 
                 <img class="sketch__media-files-demo" src="#" alt="" />
+
+                
+                <div class="form-blocks-row">  
+                    <div class="form-block">
+                        <label> Width[px] </label>                                        
+                        <input 
+                            class="form-block__input--small"
+                            name="pages[page_${spid}][el_${seid}][width]"
+                            value="${(sketch_element.width) ? sketch_element.width : ''}"
+                        ></input>
+                    </div>   
+
+                    <div class="form-block">
+                        <label> Height[px] </label>                                        
+                        <input 
+                            class="form-block__input--small"
+                            name="pages[page_${spid}][el_${seid}][height]"
+                            value="${(sketch_element.height) ? sketch_element.height : ''}"
+                        ></input>
+                    </div> 
+                </div> 
             </div>
         `;
 
@@ -11134,6 +11953,26 @@ function getElementTypeOptionContent(option, spid, seid, sketch_element={}) {
                 </div>   
 
                 <video class="sketch__media-files-demo" src="#" autoplay loop controls alt="" />
+
+                <div class="form-blocks-row">  
+                    <div class="form-block">
+                        <label> Width[px] </label>                                        
+                        <input 
+                            class="form-block__input--small"
+                            name="pages[page_${spid}][el_${seid}][width]"
+                            value="${(sketch_element.width) ? sketch_element.width : ''}"
+                        ></input>
+                    </div>   
+
+                    <div class="form-block">
+                        <label> Height[px] </label>                                        
+                        <input 
+                            class="form-block__input--small"
+                            name="pages[page_${spid}][el_${seid}][height]"
+                            value="${(sketch_element.height) ? sketch_element.height : ''}"
+                        ></input>
+                    </div> 
+                </div> 
             </div>
         `;
 
@@ -11142,6 +11981,7 @@ function getElementTypeOptionContent(option, spid, seid, sketch_element={}) {
 
     const content_element_type_passage = () => { 
         const passages = State.variables.lists.location_list_expanded;
+        const sketches = Object.keys(State.variables.sketches);
         const pre_sketch_passage = 'pre_sketch_passage';
         const pages = getSketchPagesList();
 
@@ -11155,13 +11995,13 @@ function getElementTypeOptionContent(option, spid, seid, sketch_element={}) {
                             type="radio" 
                             name="pages[page_${spid}][el_${seid}][move_to]" 
                             value="passage"                         
-                            ${('page' == sketch_element.move_to) ? '' : 'checked'}
+                            ${('passage' == sketch_element.move_to) ? 'checked' : ''}
                         >
-                        <label for="subject_characters">Location</label>                                        
+                        <label>Location</label>                                        
                     </div>
 
                     <select 
-                        class="select2"
+                        class="select2 select2--large"
                         name="pages[page_${spid}][el_${seid}][passage]"
                     >
                         <option selected value="${pre_sketch_passage}">Current location [${pre_sketch_passage}]</option>
@@ -11185,7 +12025,7 @@ function getElementTypeOptionContent(option, spid, seid, sketch_element={}) {
                             class="sketch-page__radio" 
                             ${('page' == sketch_element.move_to) ? 'checked' : ''}                            
                         >
-                        <label for="subject_characters">Page</label>
+                        <label>Page</label>
                     </div>
                 
                     <select 
@@ -11203,6 +12043,32 @@ function getElementTypeOptionContent(option, spid, seid, sketch_element={}) {
                         )).join('')}
                     </select>
                 </div>  
+
+                <div class="form-blocks-row">
+                <div>
+                    <input 
+                        type="radio" 
+                        name="pages[page_${spid}][el_${seid}][move_to]" 
+                        value="sketch"                         
+                        ${('sketch' == sketch_element.move_to) ? 'checked' : ''}
+                    >
+                    <label>Sketch IDN</label>                                        
+                </div>
+
+                <select 
+                    class="select2 select2--large"
+                    name="pages[page_${spid}][el_${seid}][sketch_idn]"
+                >
+                    ${sketches.map((value) => (
+                        `<option 
+                            ${(value == sketch_element.sketch_id) ? 'selected' : ''}
+                            value="${value}"
+                        >
+                            ${value}
+                        </option>`
+                    )).join('')}
+                </select>
+            </div>
 
             </div>  
         `;
@@ -11255,10 +12121,10 @@ function getElementTypeOptionContent(option, spid, seid, sketch_element={}) {
 
     return {
         element_type_condition: content_element_type_condition,
-        element_type_text_idn:content_element_type_text_idn,
-        element_type_text_type: content_element_type_text_type,
         element_type_character: content_element_type_character,
         element_type_posture: content_element_type_posture,
+        element_type_text_model: content_element_type_text_model,
+        element_type_text: content_element_type_text,
         element_type_injection: content_element_type_injection,
         element_type_image: content_element_type_image,
         element_type_video: content_element_type_video,
@@ -12209,6 +13075,9 @@ function taskConstructor() {
         const task_type_select_class = '.task-type__select';
         const select_class_task_item_type = '.task__item-type';
         const select_class_task_item_class = '.task__item-class';    
+
+        
+        const add_button_action = '.add_task-action';
         
         
 
@@ -12371,6 +13240,22 @@ function taskConstructor() {
             `;
 
             if (this.value == 'Talk_Menu') $(this).closest('.form-block').append(location_character_block);
+        });
+
+
+
+
+
+        $constructor_block.on('click', add_button_action, function() {
+            // const cur_button_action = this;
+            // const last_element_action = $(cur_button_action).prev('.sketch-action')[0];  
+            // const last_element_action_id = (typeof last_element_action !== "undefined") ? $(last_element_action).data('action') : 0;  // get last existing action id
+            // const new_last_element_action_id = last_element_action_id + 1; // create new action id
+            // const said = new_last_element_action_id; 
+            
+            // addSketchActionContent(said, cur_button_action);
+            
+            // $(this).closest('.sketch-element-type__container').find(".select2").select2();
         });
         
 
@@ -13980,7 +14865,7 @@ const barGradient = function (current, max, saturation, lightness) {
 
 
 
-setup.updateCharacterByPlayer = function() {
+function updateCharacterByPlayer() {
     const cur_player = State.variables.player.id_name;
     State.variables.characters[cur_player] = State.variables.player;
 }
@@ -14075,6 +14960,10 @@ function getPartyByMemberIdn(member_idn) {
 }
 
 
+function getCurrentLocation() {
+    const location = (passage() == 'Uni_Location') ? State.variables.temp.custom_location : passage();
+    return location;
+}
 
 function moveToLocation(location) { 
     const isPassageLocation = State.variables.lists.location_list.includes(location) || location == "Uni_Sketch" || location == "Talk_Menu";
@@ -14094,8 +14983,7 @@ function moveToLocation(location) {
 
 
 function isPlayerOnLocation(destination_location) {
-    const custom_location = State.variables.temp.custom_location;
-    return ((destination_location == passage()) || (destination_location == custom_location));
+    return (destination_location == getCurrentLocation());
 }
 
 function getPlayerLocation() {
@@ -14130,7 +15018,7 @@ function nobr(content) {
 
 
 function refreshSketches() {
-    State.variables.sketches = sketch_list; // Probably rework to injection with button, like Update Sketches data !!!
+   State.variables.sketches = sketch_list; // Probably rework to injection with button, like Update Sketches data !!!
 }
 
 function refreshSchedules() {
@@ -14352,6 +15240,13 @@ function getPropSum(items, prop) {
 function sumObjectValues (obj) {
    return  Object.values(obj).reduce((a, b) => a + b, 0);  
 }
+
+
+
+setup.getNameSC = function (character_idn) {
+    const name = getLocalizedText(`characters_${character_idn}_name`);
+    return (!!name) ? name : `Error: character '${character_idn}' undefined` ;
+};
 /* twine-user-script #55: "global_variables.js" */
 function getAjaxGlobal() {
     $.ajax({
@@ -14360,10 +15255,10 @@ function getAjaxGlobal() {
         method: 'GET',
         dataType: 'json' 
     }).done(function(data) {
-        // console.log('data', data);
         updateGlobalVariables(data);
-    }).fail(function() {
-        console.error("Server error, cannot get data results");
+    }).fail(function() {        
+        console.warn("If you see error 'Access to XMLHttpRequest at...' running the game locally on computer, then it's okay.");
+        console.warn("If you this error on a game server, please contact developer.");
     });
 };
 
@@ -16203,7 +17098,7 @@ function drawPageText() {
         const text_idn = $(text_block).data('string');     
         const text = getLocalizedText(text_idn);
 
-        $(text_block).html(text);
+        $(text_block).wiki(text);
     });
 };
 
@@ -16227,7 +17122,7 @@ State.variables.flags = {
 };
 
 
-State.variables.temp.cur_sketch = 'sketch_demo_1';
+State.variables.temp.cur_sketch = 'sketch_warning';
 
 $(document).on(":passagedisplay", function () {
     const custom_location = State.variables.temp.custom_location;
@@ -16235,14 +17130,16 @@ $(document).on(":passagedisplay", function () {
         setPreSketchPassage(); 
         displaySketch();
     } else if (custom_location) {
+        setPreSketchPassage(); 
         displaySketch(custom_location);
     }
 }); 
 
 function setPreSketchPassage() {    
-    const location_passages = Story.lookupWith(pas  => { if (!pas.tags.includes("noreturn")) return pas.tags; });       
-    const location_list = location_passages.map(passage => passage.title);   
-    const passage_list_unskatched = State.passages.filter(passage => (location_list.includes(passage) && passage !== 'Uni_Sketch') ); 
+    const location_passages = Story.lookupWith(pas  => { if (!pas.tags.includes("noreturn")) return pas.tags; });    
+    const location_list = location_passages.map(passage => passage.title);     
+    const restricted_passages = ["Uni_Location", 'Uni_Sketch'];
+    const passage_list_unskatched = State.passages.filter(passage => (location_list.includes(passage) && !restricted_passages.includes(passage)) ); 
 
     State.variables.temp.pre_sketch_passage = passage_list_unskatched.at(-1);
 }
@@ -16252,8 +17149,8 @@ function displaySketch(custom_location=false) {
     refreshSketches(); 
     refreshSchedules();
     
+    const sketch_idn = (custom_location) ? State.variables.custom_locations[custom_location]['sketch'] : State.variables.temp.cur_sketch;
     try {    
-        const sketch_idn = (custom_location) ? State.variables.custom_locations[custom_location]['sketch'] : State.variables.temp.cur_sketch;
         const cur_sketch = State.variables.sketches[sketch_idn];   
         const cur_page_idn = State.variables.temp.cur_page ?? Object.keys(cur_sketch.pages)[0]; // get neccessary page id_name
         const cur_page_id = cur_page_idn.split("_").pop();
@@ -16279,7 +17176,7 @@ function displaySketch(custom_location=false) {
 function addSketchParams(sketch_page, sketch_idn, page_id) {  
     const $sketch_container = $('#sketch_container');
 
-    $.each(sketch_page, function(element_key, element) {            
+    $.each(sketch_page, function(element_key, element) {    
         const cur_element_block = getSketchHtmlBlockByType(element, sketch_idn, page_id, element_key) + '<<br>>';        
         if (isConditionsPassed(element.conditions) ) $sketch_container.wiki(cur_element_block);
     });
@@ -16296,27 +17193,48 @@ function getSketchHtmlBlockByType(element, sketch_idn, page_id, element_key) {
 
     const text_block = () => { return  `<<text '${element_text}' '${element.text_type}' >>`};    
     
-    const image_block = () => { return  `<img class="sketch__image" src="media/sketches/${element.media_folder}/${element.media_file}" alt="${element.media_file}" />`};     
-    
-    const video_block = () => { return  `<video class="sketch__video" autoplay loop muted src="media/sketches/${element.media_folder}/${element.media_file}" alt="${element.media_file}" />`};     
-    
-    
-    function choice_block() { 
-        const actions_json = JSON.stringify(element.actions) ?? '';     // to avoid undefined type errors
-        let next_location = (element.move_to == 'passage') ? element.passage : "Uni_Sketch";
-        next_location = (next_location == 'pre_sketch_passage') ? State.variables.temp.pre_sketch_passage : next_location;
-        const next_page = (element.move_to == 'page') ? element.page_link : '';
-        const localized_text = getLocalizedText(element_text);
+    const image_block = () => {   
+        const image = `
+            <img 
+                style="width: ${(!!element.width) ? element.width : 360}px; height: ${(!!element.height) ? element.height : 240}px" 
+                class="sketch__image" 
+                src="media/sketches/${element.media_folder}/${element.media_file}" 
+                alt="${element.media_file}" 
+                title="${element.media_file}"
+            />
+        `;
 
+        return nobr(image);
+    };     
+
+    const video_block = () => { 
+        const video = `
+            <video 
+                style="width: ${(!!element.width) ? element.width : 360}px; height: ${(!!element.height) ? element.height : 300}px" 
+                class="sketch__video" 
+                src="media/sketches/${element.media_folder}/${element.media_file}" 
+                alt="${element.media_file}" 
+                autoplay loop muted
+            />
+        `;
         
-        if (element.move_to == 'page') {
-            // 
-        } else if (element.move_to == 'passage') {                  
-            // if (State.variables.temp.cur_page) delete State.variables.temp.cur_page;
-        } else {
-            alert(`Error in 'move_to' field, '${element.move_to}' is uknown !`); 
-            console.error( `Error in 'move_to' field, '${element.move_to}' is uknown !`);
-        }        
+        return nobr(video);
+    };     
+    
+    
+    function choice_block() {         
+        const actions_json = JSON.stringify(element.actions) ?? '';     // to avoid undefined type errors
+
+        let next_location = ''
+        if (element.move_to == 'passage') next_location = element.passage;
+        if (element.move_to == 'page') next_location = "Uni_Sketch";
+        if (element.move_to == 'sketch') next_location = "Uni_Sketch";
+        if (next_location == 'pre_sketch_passage') next_location = State.variables.temp.pre_sketch_passage;
+
+        const next_page = (element.move_to == 'page') ? element.page_link : '';
+        const next_sketch = (element.move_to == 'sketch') ? element.sketch_idn : '';
+        const localized_text = getLocalizedText(element_text);
+    
 
         return  `
             <a 
@@ -16324,6 +17242,7 @@ function getSketchHtmlBlockByType(element, sketch_idn, page_id, element_key) {
                 class="link-internal choice-link link-${element.link_type}" 
                 data-actions='${actions_json}'
                 data-page="${next_page}"
+                data-sketch="${next_sketch}"
                 tabindex="0"
             >\
                 ${localized_text}
@@ -16358,23 +17277,30 @@ function addChoiceLinkListener() {
         const location = $(this).data('location');
         const actions = $(this).data('actions');
         const page = $(this).data('page');
+        const next_sketch = $(this).data('sketch');
         const custom_location = State.variables.temp.custom_location;
         const sketch_dialog = State.variables.temp.sketch_dialog; // for dialogs in Talk_Menu and test
-        
+
+
         if (actions) $.each(actions, function(index, action) {  executeActionByType(action) }); 
 
+        if (next_sketch) State.variables.temp.cur_sketch = next_sketch; 
+            
         if (!custom_location) {    
             if (page) State.variables.temp.cur_page = page; 
 
-            if (!page && !sketch_dialog) {
-                const task_idn = State.variables.temp.cur_task_sketch;
-                const cur_task = getTaskByIdn(task_idn);
+            if (!page && !sketch_dialog && !next_sketch) {
+                if (State.variables.temp.cur_task_sketch) {
 
-                try {     
-                    setup.tasks_broadcast[cur_task.id_name](cur_task); 
-                } catch (err) {
-                    alert(`Error has occurred during addChoiceLinkListener broadcasing`); 
-                    console.error(err);
+                    const task_idn = State.variables.temp.cur_task_sketch;
+                    const cur_task = getTaskByIdn(task_idn);
+
+                    try {     
+                        setup.tasks_broadcast[cur_task.id_name](cur_task); 
+                    } catch (err) {
+                        alert(`Error has occurred during addChoiceLinkListener broadcasing`); 
+                        console.error(err);
+                    }
                 }
             } 
         }
@@ -16423,7 +17349,7 @@ function checkCondition(condition) {
         let param_value = State.variables.characters[character_idn][condition.param];
         if (condition.relation) param_value = State.variables.characters[character_idn]['relations'][condition.relation];
         if (condition.battle) param_value = State.variables.characters[character_idn]['battle'][condition.battle];
-        
+
         return {
             greater:        param_value > condition.value,
             less:           param_value < condition.value,
@@ -16526,7 +17452,7 @@ function isInInventoryClass(item_class, character_idn='player') {
 
 
 
-function executeActionByType(action) {      
+function executeActionByType(action) {  
 
     switch (action.type) {
         case 'change_param':
@@ -16568,12 +17494,16 @@ function executeActionByType(action) {
         case 'time_countdown': 
             executeActionTimeCountdown(action);
             break;
+        case 'injection':    
+            executeActionInjection(action);
+            break;
         case 'custom':  
             // return executeActionCustom();
             console.error(`No Functionality for this Yet!`);
+            break;
         default:
-            console.error(`No Condition Type Match!!! [${condition.type}]`);
-            alert(`No Condition Type Match!!! [${condition.type}]`);
+            console.error(`No Action Type Match!!! [${action.type}]`);
+            alert(`No Action Type Match!!! [${action.type}]`);
     }
 
     
@@ -16760,6 +17690,10 @@ function executeActionByType(action) {
     function executeActionTimeCountdown(action) {
         State.variables.temp.countdowns[action.input] = action.value;        
     }
+
+    function executeActionInjection(action) {
+        $('#passages').wiki(action.injection);
+    }    
 }
 
 function addInventoryItemByIdn(character_idn="player", item_idn) {
@@ -16850,7 +17784,7 @@ $(document).one(':passageinit', function (ev) {
 
 
 
-$(document).on(":passagedone", function () {
+$(document).on(":passagedisplay", function () {
     updateCharacterByPlayer();
 });
 
@@ -16908,10 +17842,9 @@ function getCharacterCurrentScheduledLocation(character_idn) {
 
 
 
-
 $(document).on(":passagedisplay", function () {
-    const cur_passage = passage();
     const cur_speaker = State.variables.temp.cur_speaker;
+    const cur_passage = getCurrentLocation();
     let passage_tasks = [];
     
     $.each(State.variables.quests, function (index, quest) {   
@@ -16951,26 +17884,10 @@ $(document).on(":passagedisplay", function () {
 
 
 
-
-// Check escortFailQuest
-$(document).on(":passagedisplay", function () {
-    const escort_tasks = State.variables.temp.cur_tasks_escort;
-    $.each(escort_tasks, function (index, escort_task) {        
-        const cur_task = getTaskByIdn(escort_task);
-        const task_character = State.variables.characters[cur_task.subject];
-
-        if (task_character.health <= 0) {
-            failTask(cur_task.id_name);
-        }
-    })
-})
-
-
-
 // Add Links to Start Quests
 $(document).on(":passagedisplay", function () {
     const cur_speaker = State.variables.temp.cur_speaker;
-    const cur_passage = passage();
+    const cur_passage = getCurrentLocation();
 
     $.each(State.variables.quest_list, function (index, quest) { 
         const quest_start_location = quest.activation_flag.location;   
@@ -16993,6 +17910,24 @@ $(document).on(":passagedisplay", function () {
     });
     
 });
+
+
+
+
+
+// Check escortFailQuest
+$(document).on(":passagedisplay", function () {
+    const escort_tasks = State.variables.temp.cur_tasks_escort;
+    $.each(escort_tasks, function (index, escort_task) {        
+        const cur_task = getTaskByIdn(escort_task);
+        const task_character = State.variables.characters[cur_task.subject];
+
+        if (task_character.health <= 0) {
+            failTask(cur_task.id_name);
+        }
+    })
+})
+
 
 
 // Update Classes inner functions. Eg., static_counter. (Otherwise they are refreshed on page reload).
@@ -17026,6 +17961,10 @@ $(document).on(":passagedisplay", function () {
 
     if (passage() != "Talk_Menu") { 
         if (State.variables.temp.cur_speaker)  delete State.variables.temp.cur_speaker;
+    } 
+
+    if (passage() != "Uni_Location") { 
+        if (State.variables.temp.custom_location)  delete State.variables.temp.custom_location;
     } 
 });
 /* twine-user-script #70: "passage_store.js" */
@@ -17575,14 +18514,16 @@ setup.activateQuest = function (quest_idn) {
 
 
 setup.activateTask = function (task_json) {
+
+    
+    // Conditions
+    // const cur_element_block = getSketchHtmlBlockByType(element, sketch_idn, page_id, element_key) + '<<br>>';        
+    // if (isConditionsPassed(element.conditions) ) $sketch_container.wiki(cur_element_block);
+
     // replacing task of json format to full task instance inside the quest
     const task = new Task(task_json);
     const cur_quest_data = getTaskQuest(task_json.id_name);  
-    const cur_quest = State.variables.quests[cur_quest_data.id_name];   
-    // cur_quest.states[cur_quest_data.state][cur_quest_data.state_task_index] = new_task;
-
-    // get task instance from quest
-    // const task = getTaskByIdn(task_json.id_name);
+    const cur_quest = State.variables.quests[cur_quest_data.id_name]; 
     task.status = 1;
 
     const update_task = {
@@ -17612,11 +18553,18 @@ const tasks_observers = {};
 
 for (const type of tasks_types) {
     const observer = `${type}Observer`;
-    const func = `${type}ObsFunc`;
 
     tasks_observers[observer] = new EventObserver();
-    tasks_observers[observer].subscribe(eval(func));
+    tasks_observers[observer].subscribe(eval('ObsEventGeneral'));
 }
+
+
+
+function ObsEventGeneral(task) {
+    const observer_event_function = `${task.type}ObsEventFunc`;
+    eval(observer_event_function)(task);
+}
+
 
 // Generate functions to put broadcast calls on global functions using 'setup' storage        
 setup.updateBroadcastTask = function(task) {
@@ -17645,55 +18593,55 @@ function reUpdateBroadcastTask(temp_cur_tasks) {
 
 
 // Subscribe functions that executes on calling broadcast
-function sketchObsFunc(task) {
+function sketchObsEventFunc(task) {
     console.log(`Sketch has been finished ${task.subject}`); 
     delete State.variables.temp.cur_sketch;
     finishTask(task.id_name);
 }
 
-// function interactObsFunc(task) {
+// function interactObsEventFunc(task) {
 //     console.log(`Interacted with ${task.subject}`);
 //     finishTask(task.id_name);
 // }
 
-function gatherObsFunc(task) {
+function gatherObsEventFunc(task) {
     console.log(`Gathered ${task.counter} out of ${task.amount} of ${task.subject}`);
     if (task.counter >= task.amount) {
         finishTask(task.id_name);
     }
 }
 
-function distributeObsFunc(task) {
+function distributeObsEventFunc(task) {
     console.log(`Distributed ${task.subject}`);
     finishTask(task.id_name);
 }
 
-function fightObsFunc(task) {
+function fightObsEventFunc(task) {
     console.log(`Fight with ${task.subject} ${task.counter} out of ${task.amount}`);
     if (task.counter >= task.amount) {
-        console.log('Finished fightObsFunc', task.counter, task.amount);
+        console.log('Finished fightObsEventFunc', task.counter, task.amount);
         clearTempTask(task, 'cur_tasks_fight');
         finishTask(task.id_name);
     }
 }
 
-function eliminateObsFunc(task) {
+function eliminateObsEventFunc(task) {
     console.log(`Eliminate ${task.subject} ${task.counter} out of ${task.amount} `);
     if (task.counter >= task.amount) {
-        console.log('Finished eliminateObsFunc', task.counter, task.amount);
+        console.log('Finished eliminateObsEventFunc', task.counter, task.amount);
         clearTempTask(task, 'cur_tasks_fight');
         finishTask(task.id_name);
     }
 }
 
-function searchObsFunc(task) {
+function searchObsEventFunc(task) {
     console.log(`Searched ${task.location} ${task.counter} out of ${task.amount}`);
     if (task.counter >= task.amount) {
         finishTask(task.id_name);
     }
 }
 
-function escortObsFunc(task) {
+function escortObsEventFunc(task) {
     console.log(`Escorted ${task.subject} to ${task.location}`);
 
     showPopup('task_escort_finished', {task_idn: task.id_name});
@@ -17744,6 +18692,10 @@ function finishTask(task_idn) {
     const cur_quest = State.variables.quests[quest_data.id_name]; 
     const cur_task = cur_quest.states[quest_data.state][quest_data.state_task_index];
 
+    // Actions 
+    const actions = cur_task.actions;
+    if (actions) $.each(actions, function(index, action) {  executeActionByType(action) });
+
     cur_task.status = 2;
     delete setup.tasks_broadcast[cur_task.id_name];    
        
@@ -17767,6 +18719,7 @@ function finishTask(task_idn) {
         }
     }
 
+    State.variables.quests[quest_data.id_name] = cur_quest;
 }
 
 function finishQuest(quest) {
@@ -17907,9 +18860,10 @@ function eliminateTaskFunc(cur_task) {
 
 
 function searchTaskFunc(cur_task) {    
-    const search_stamina = (random(2,4) * 10); 
-    const search_time = (random(2,4) * 30);
+    const search_stamina = (random(15,18) * 10/2); // 75-90 stamina
+    const search_time = (random(6,8) * 60/2); // 3-4 hours 
 
+    console.log(cur_task)
     if (State.variables.player.stamina > search_stamina) {
         cur_task.increaseCount();
         State.variables.player.stamina -= search_stamina;
@@ -17963,7 +18917,7 @@ function getTaskLink(cur_task) {
             data-task="${cur_task.id_name}" 
             tabindex="0"
         >\
-            Gather <span></span> ${cur_task.subject}\
+            Gather ${cur_task.subject}\
         </a>\
     `;
 
@@ -17996,7 +18950,7 @@ function getTaskLink(cur_task) {
             data-task="${cur_task.id_name}" 
             tabindex="0"
         >\
-            Search ${cur_task.location}\
+            Search \
         </a>\
     `;
 
@@ -18026,9 +18980,9 @@ function runTask(cur_task) {
 // Add task`s link to certain locations on task start
 function addTaskLink(cur_task) {
     const $link_parent = $('.passage-list__tasks'); // html element where the link will be appended to
-    const link = getTaskLink(cur_task);
+    const link_content = getTaskLink(cur_task);
 
-    $link_parent.append(link);
+    $link_parent.append(link_content);
 }
 
 
@@ -18037,7 +18991,9 @@ function addTaskLinkListener() {
     $('.task-link').on('click', function () {
         const location = $(this).data('location');
         const task_idn = $(this).data('task');
-        const cur_task = getTaskByIdn(task_idn);
+        const cur_task = getTaskByIdn(task_idn, true);
+
+        console.log('cur_task', cur_task)
             
         if (cur_task.type == 'sketch') {
             sketchTaskFunc(cur_task);
@@ -18461,7 +19417,7 @@ function drawInvenoryLinks() {
     
     $(container).wiki( nobr(content) );
 }
-</script><tw-tag name="Sandbox" color="green"></tw-tag><tw-tag name="Script" color="blue"></tw-tag><tw-tag name="System" color="red"></tw-tag><tw-tag name="dialog" color="gray"></tw-tag><tw-tag name="Dialog" color="purple"></tw-tag><tw-tag name="NPC" color="yellow"></tw-tag><tw-tag name="Options" color="red"></tw-tag><tw-tag name="Story" color="blue"></tw-tag><tw-tag name="option" color="red"></tw-tag><tw-tag name="DeadEnd" color="orange"></tw-tag><tw-tag name="Location" color="orange"></tw-tag><tw-tag name="NeedCheck" color="green"></tw-tag><tw-passagedata pid="1" name="City" tags="questionable" position="2400,1350" size="100,100">[[Return|Ferryman]]</tw-passagedata><tw-passagedata pid="2" name="Dream" tags="Location autosave nobr noreturn" position="1600,450" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_dream_out&#39; $return_passage&gt;&gt;
+</script><tw-tag name="NeedCheck" color="green"></tw-tag><tw-tag name="Options" color="red"></tw-tag><tw-tag name="Sandbox" color="green"></tw-tag><tw-tag name="Script" color="blue"></tw-tag><tw-tag name="DeadEnd" color="orange"></tw-tag><tw-tag name="Dialog" color="purple"></tw-tag><tw-tag name="Location" color="orange"></tw-tag><tw-tag name="NPC" color="yellow"></tw-tag><tw-tag name="Story" color="blue"></tw-tag><tw-tag name="System" color="red"></tw-tag><tw-tag name="dialog" color="gray"></tw-tag><tw-tag name="option" color="red"></tw-tag><tw-passagedata pid="1" name="City" tags="questionable" position="2400,1350" size="100,100">[[Return|Ferryman]]</tw-passagedata><tw-passagedata pid="2" name="Dream" tags="Location autosave nobr noreturn" position="1600,450" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_dream_out&#39; $return_passage&gt;&gt;
     &lt;&lt;set $player.health += 10;&gt;&gt;
     &lt;&lt;set $player.stamina=$player.stamina_max;&gt;&gt;
 &lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Elf_House_Bloodhound" tags="Location nobr" position="3101,1898" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_village&#39; &#39;Elf_Village&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="Elf_House_Elder" tags="Location nobr" position="3101,1898" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_village&#39; &#39;Elf_Village&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="Elf_House_Herb" tags="Location nobr" position="2968,2099" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_store_herb&#39; &#39;Uni_Store&#39; &#39;gem&#39;&gt;&gt;
@@ -18912,6 +19868,18 @@ She nearly jumps on you and &lt;&lt;link &quot;hug&quot;&gt;&gt;&lt;&lt;replace 
 	@@
 
 &lt;&lt;/nobr&gt;&gt;
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   _______
   1)
   - It&#39;s appeared that you found an artifact from the old legend.
@@ -19675,11 +20643,11 @@ Add switcher to change between numbers or progress bars?
 
 /* &lt;&lt;run setup.checkLanguageChange()&gt;&gt; */
 
-&lt;&lt;set $player.money = Math.round($player.money)&gt;&gt;</tw-passagedata><tw-passagedata pid="50" name="PassageFooter" tags="System nobr" position="0,0" size="100,100">&lt;div class=&quot;passage-list passage-list__event&quot;&gt;&lt;/div&gt; 
-
-&lt;div class=&quot;passage-list passage-list__tasks&quot;&gt;&lt;/div&gt; 
+&lt;&lt;set $player.money = Math.round($player.money)&gt;&gt;</tw-passagedata><tw-passagedata pid="50" name="PassageFooter" tags="System nobr" position="0,0" size="100,100">&lt;div class=&quot;passage-list passage-list__events&quot;&gt;&lt;/div&gt; 
 
 &lt;div class=&quot;passage-list passage-list__quests&quot;&gt;&lt;/div&gt; 
+
+&lt;div class=&quot;passage-list passage-list__tasks&quot;&gt;&lt;/div&gt; 
 
 &lt;div class=&quot;passage-list passage-list__map&quot;&gt;&lt;/div&gt; 
 
@@ -19698,7 +20666,11 @@ Add switcher to change between numbers or progress bars?
 
 &lt;div class=&quot;passage-list passage-list__talk&quot;&gt;&lt;/div&gt; 
 
-&lt;div class=&quot;passage-list passage-list__activity&quot;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="52" name="StartDescription" tags="System nobr" position="1325,250" size="100,100">&lt;&lt;text_system &#39;index&#39; &#39;index_desc_01&#39;&gt;&gt;&lt;&lt;br&gt;&gt;
+&lt;div class=&quot;passage-list passage-list__activity&quot;&gt;&lt;/div&gt;
+
+/* &lt;div class=&quot;passage-list passage-list__narration&quot;&gt;&lt;/div&gt; */
+
+/* &lt;div class=&quot;passage-list passage-list__locations&quot;&gt;&lt;/div&gt; */</tw-passagedata><tw-passagedata pid="52" name="StartDescription" tags="System nobr" position="1325,250" size="100,100">&lt;&lt;text_system &#39;index&#39; &#39;index_desc_01&#39;&gt;&gt;&lt;&lt;br&gt;&gt;
 &lt;&lt;text_system &#39;index&#39; &#39;index_desc_02&#39;&gt;&gt; &lt;span class=&quot;mc&quot;&gt; &lt;&lt;= $misc.player_name&gt;&gt;. &lt;/span&gt; &lt;&lt;text_system &#39;index&#39; &#39;index_desc_03&#39;&gt;&gt;&lt;&lt;br&gt;&gt;
 
 &lt;&lt;br 2&gt;&gt;
@@ -19706,9 +20678,12 @@ Add switcher to change between numbers or progress bars?
 
 &lt;&lt;br 4&gt;&gt;
 
-&lt;&lt;text_system &#39;index&#39; &#39;index_desc_end&#39;&gt;&gt; 
+&lt;&lt;text_system &#39;index&#39; &#39;index_desc_end&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
 
-&lt;&lt;passage &#39;passages&#39; &#39;passage_start_description_wake_up&#39; &#39;InitialDream2&#39; &#39;none&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="53" name="StoryBanner" tags="System questionable" position="25,125" size="100,100">&lt;img src=&quot;https://twinery.org/icons/twine.svg&quot; style=&quot;width: 64px; height: 64px;&quot;&gt;</tw-passagedata><tw-passagedata pid="54" name="StoryCaption" tags="System nobr" position="650,125" size="100,100">&lt;&lt;if $settings.debug == 1&gt;&gt;
+
+&lt;&lt;passage &#39;passages&#39; &#39;passage_start_description_wake_up&#39; &#39;Uni_Location&#39; &#39;none&#39;&gt;&gt;
+    &lt;&lt;set $temp.custom_location = &#39;prologue_1&#39;&gt;&gt;
+&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="53" name="StoryBanner" tags="System questionable" position="25,125" size="100,100">&lt;img src=&quot;https://twinery.org/icons/twine.svg&quot; style=&quot;width: 64px; height: 64px;&quot;&gt;</tw-passagedata><tw-passagedata pid="54" name="StoryCaption" tags="System nobr" position="650,125" size="100,100">&lt;&lt;if $settings.debug == 1&gt;&gt;
 	&lt;span&gt;&lt;&lt;print passage()&gt;&gt;&lt;/span&gt;:
 	&lt;&lt;link &quot;refresh&quot;&gt;&gt;&lt;&lt;goto `passage()`&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;&lt;br&gt;&gt;
 	
@@ -20045,10 +21020,7 @@ Add switcher to change between numbers or progress bars?
 
 &lt;form id=&quot;constructor&quot;&gt;&lt;/form&gt;</tw-passagedata><tw-passagedata pid="63" name="Uni_Constructor_Table" tags="constructor noreturn" position="0,500" size="100,100">[[Menu_Debug]]
 
-&lt;div id=&quot;constructor-table__container&quot;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="64" name="Uni_Location" tags="System nobr" position="3800,1700" size="100,100">Unified passage for locations
-&lt;&lt;br 2&gt;&gt;
-
-&lt;div id=&quot;sketch_container&quot;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="65" name="Uni_Sketch" tags="System nobr" position="3800,1500" size="100,100">&lt;div id=&quot;sketch_container&quot;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="66" name="Uni_Store" tags="System Store" position="550,1400" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;div id=&quot;constructor-table__container&quot;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="64" name="Uni_Location" tags="System nobr" position="3800,1700" size="100,100">&lt;div id=&quot;sketch_container&quot;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="65" name="Uni_Sketch" tags="System nobr" position="3800,1500" size="100,100">&lt;div id=&quot;sketch_container&quot;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="66" name="Uni_Store" tags="System Store" position="550,1400" size="100,100">&lt;&lt;nobr&gt;&gt;
     
     
     /* ------------------------------------------------  Store initialization ------------------------------------------------------------- */
@@ -20559,18 +21531,52 @@ Add switcher to change between numbers or progress bars?
 	&lt;&lt;/widget&gt;&gt;
 
 	&lt;&lt;widget &quot;text&quot;&gt;&gt;
-		&lt;&lt;set _text = $args[0]&gt;&gt;
-		&lt;&lt;set _text_type = $args[1] ?? &#39;default&#39;&gt;&gt;
-		&lt;&lt;set _text_class = &quot;text--&quot;+_text_type&gt;&gt;
+		&lt;&lt;set _text = _args[0]&gt;&gt;
+		&lt;&lt;set _text_type = _args[1] ?? &#39;default&#39;&gt;&gt;
 
-		&lt;span @class=&quot;`text ${_text_class}`&quot; @data-string=_text&gt;&lt;/span&gt;
+		&lt;&lt;if _text_type == &#39;default&#39;&gt;&gt;
+			&lt;div class=&quot;text-block&quot;&gt;			
+				&lt;div class=&quot;narration-block&quot;&gt;
+					&lt;img class=&quot;narration-block_img&quot; src=&quot;media/icons/narration.png&quot; alt=&quot;narration&quot; title=&quot;narration&quot; /&gt;
+					&lt;span class=&quot;text narration-text&quot; @data-string=_text&gt;&lt;/span&gt;
+				&lt;/div&gt;
+			&lt;/div&gt; &lt;br&gt;
+		&lt;&lt;/if&gt;&gt;
+
+		&lt;&lt;if _text_type == &#39;gesture&#39;&gt;&gt;
+			&lt;div class=&quot;text-block&quot;&gt;
+				&lt;div class=&quot;gesture-block&quot;&gt;
+					&lt;img class=&quot;gesture-block_img&quot; src=&quot;media/icons/gesture.png&quot; alt=&quot;gesture&quot; title=&quot;gesture&quot; /&gt;
+					&lt;span class=&quot;text gesture-block_text&quot; @data-string=_text&gt;&lt;/span&gt;
+				&lt;/div&gt;
+			&lt;/div&gt; &lt;br&gt;
+		&lt;&lt;/if&gt;&gt;
+
+		&lt;&lt;if _text_type == &#39;thought&#39;&gt;&gt;
+			&lt;div class=&quot;text-block&quot;&gt;
+				&lt;div class=&quot;thought-block&quot;&gt;
+					&lt;img class=&quot;thought-block_img&quot; src=&quot;media/icons/thought.png&quot; alt=&quot;thought&quot; title=&quot;thought&quot; /&gt;
+					&lt;span class=&quot;text thought-block_text&quot; @data-string=_text&gt;&lt;/span&gt;
+				&lt;/div&gt;
+			&lt;/div&gt; &lt;br&gt;
+		&lt;&lt;/if&gt;&gt;
+
 	&lt;&lt;/widget&gt;&gt;
+
+	
+	&lt;&lt;widget &#39;getName&#39;&gt;&gt;
+		&lt;&lt;set _character = _args[0]&gt;&gt;
+		&lt;&lt;set _result = setup.getNameSC(_character)&gt;&gt;
+
+		&lt;&lt;= _result&gt;&gt;	
+	&lt;&lt;/widget&gt;&gt;
+
 	
 	/* Extra spaces otherwise */
 	&lt;&lt;widget &quot;text_system&quot;&gt;&gt;&lt;&lt;set _text_list = $args[0]&gt;&gt;&lt;&lt;set _text = $args[1]&gt;&gt;&lt;&lt;set _text_class = &quot;text--&quot;+_text_list&gt;&gt;&lt;span @class=&quot;`passage-text-system ${_text_class}`&quot; @data-list=_text_list @data-string=_text&gt;&lt;/span&gt;&lt;&lt;/widget&gt;&gt;
 
 	&lt;&lt;widget &quot;name&quot;&gt;&gt;
-		&lt;&lt;set _character = $args[0]&gt;&gt;
+		&lt;&lt;set _character = _args[0]&gt;&gt;
 
 		&lt;&lt;= `&lt;span class=${_character.id_name}&gt;${_character.name}&lt;/span&gt;`&gt;&gt;
 	&lt;&lt;/widget&gt;&gt;
@@ -20590,10 +21596,11 @@ Add switcher to change between numbers or progress bars?
 		&lt;&lt;set _passage = _args[2]&gt;&gt;
 		&lt;&lt;set _icon_class = _args[3] ?? &#39;location&#39;&gt;&gt;
 		&lt;&lt;set _is_br = _args[4] ?? true&gt;&gt;
+		
+		&lt;a data-passage=_passage class=&quot;link-icon link-contents link-pixel-border link-underline link-internal macro-link&quot; tabindex=&quot;0&quot;&gt;
+			
+			&lt;&lt;linkreplace &#39;&lt;&lt;text_system _text_list _text&gt;&gt;&#39;&gt;&gt;	_contents &lt;&lt;/linkreplace &gt;&gt; /* Workaround to run command written in widget body */
 
-		_contents /* To run command written in widget body*/
-
-		&lt;a data-passage=_passage class=&quot;link-icon link-pixel-border link-underline link-internal macro-link&quot; tabindex=&quot;0&quot;&gt;
 			&lt;div class=&quot;link-content-wrapper&quot;&gt;
 				&lt;div class=&quot;link-content-container link-underline-container&quot;&gt;
 					&lt;&lt;if _icon_class != &#39;none&#39;&gt;&gt;
@@ -20611,32 +21618,32 @@ Add switcher to change between numbers or progress bars?
 
 
 
-	/* &lt;&lt;widget &#39;quest_call&#39; &gt;&gt;	
-		&lt;&lt;set _quest_name = $args[0]&gt;&gt;
-		&lt;&lt;set _quest_call_text = $args[1]&gt;&gt;
-		&lt;&lt;set _passage = $args[2] ?? passage()&gt;&gt;
+	&lt;&lt;widget &#39;activity&#39; container&gt;&gt;	
+		&lt;&lt;set _text = _args[0]&gt;&gt;
+		&lt;&lt;set _passage = _args[1]&gt;&gt;
+		&lt;&lt;set _icon_class = _args[2] ?? &#39;default&#39;&gt;&gt;
+		&lt;&lt;set _is_br = _args[3] ?? true&gt;&gt;
 
+		/* value for activity (stamina recoveruy for rest, money for work, health for bath) */
+		
+		&lt;a data-passage=_passage class=&quot;link-activity link-contents link-internal macro-link&quot; tabindex=&quot;0&quot;&gt;
+			
+			&lt;&lt;linkreplace &#39;&lt;&lt;text_system &quot;activities&quot; _text&gt;&gt;&#39;&gt;&gt;	_contents &lt;&lt;/linkreplace &gt;&gt; /* Workaround to run command written in widget body */
 
-	    &lt;button class=&quot;button-action button-quest&quot;&gt;	
-			&lt;div class=&quot;icon-action&quot; data-state=&quot;QUEST&quot;&gt;
-				&lt;svg viewBox=&quot;0 0 100 100&quot; class=&quot;icon-action__file&quot;&gt;
-					&lt;path d=&quot;M0, 20 Q50, 20 100, 20&quot;&gt;&lt;/path&gt;
-					&lt;path d=&quot;M0, 40 Q50, 40 100, 40&quot;&gt;&lt;/path&gt;
-					&lt;path d=&quot;M0, 60 Q50, 60 100, 60&quot;&gt;&lt;/path&gt;
-					&lt;path d=&quot;M0, 80 Q50, 80 100, 80&quot;&gt;&lt;/path&gt;
-				&lt;/svg&gt;
+			&lt;div class=&quot;link-content-wrapper&quot;&gt;
+				&lt;div class=&quot;link-content-container link-underline-container&quot;&gt;
+					&lt;&lt;if _icon_class != &#39;none&#39;&gt;&gt;
+						&lt;i @class=&quot;`ra ra-${_icon_class}`&quot;&gt;&lt;/i&gt;
+					&lt;&lt;/if&gt;&gt;
+					
+					&lt;&lt;text_system &#39;activities&#39; _text&gt;&gt;
+				&lt;/div&gt;
 			&lt;/div&gt;
+		&lt;/a&gt;
 
-			&lt;&lt;link &quot;&lt;&lt;text _quest_call_text&gt;&gt;&quot; _passage &gt;&gt; 
-				&lt;&lt;run setup.activateQuest(_quest_name)&gt;&gt;
-				&lt;&lt;set $dialog = &quot;quest&quot;&gt;&gt;
-			&lt;&lt;/link&gt;&gt;
-		&lt;/button&gt;	
-	&lt;&lt;/widget&gt;&gt; */
+		&lt;&lt;if _is_br &gt;&gt; &lt;&lt;br&gt;&gt; &lt;&lt;/if&gt;&gt;
 
-	/* &lt;&lt;widget &quot;location_img&quot;&gt;&gt;		
-		&lt;&lt;= `&lt;div class=&quot;location-container&quot;&gt;&lt;/div&gt;`&gt;&gt;
-	&lt;&lt;/widget&gt;&gt; */
+	&lt;&lt;/widget&gt;&gt;
 
 
 &lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="93" name="Work_Log" tags="noreturn questionable" position="200,1100" size="100,100">This is the log of my work on the game. (*NOT the log of functionality released)
@@ -20644,6 +21651,68 @@ Add switcher to change between numbers or progress bars?
 
 &lt;strong&gt;Latest:&lt;/strong&gt;
 
+01.05.2023
+- Added width and height params for &#39;image&#39; sketch element type in sketch constuctor.
+- Added width and height params for &#39;video&#39; sketch element type in sketch constuctor.
+- Added width and height changing for &#39;image&#39; sketch element type for sketch passage functions.
+- Added width and height changing for &#39;video&#39; sketch element type for sketch passage functions.
+- Updated text widget functionailty.
+- Reworked styles for different text types.
+- Corrected task link block width.
+- Updated localied string displaying funcionality, so now it can pass SugarCube insertetions.
+- Added widget &#39;getName&#39; to get and insert names into localized strings.
+- Created and added icons for text types.
+- Continued work on prologue:
+ - Updated sketch json.
+ - Updated localization json.
+
+
+29.04.2023
+- Added injection action type.
+- Added demo functionality to execute actions for tasks.
+- Updated &#39;activity&#39; widget.
+- Updated &#39;passage&#39; widget.
+- Fixed gettin correct task info issue.
+- Continued work on prologue:
+ - Updated sketch json.
+ - Updated quest json.
+ - Updated localization json.
+
+
+23.04.2023
+- Corrected onhover displaying of characters icons in dialogs.
+- Updated constructor styles to minimize indents and to shorten elements size.
+- Updated sketch element types naming and ordering in sketch constructor.
+- Removed ability to use pages for custom locations sketches.
+- Added option to start sketches in &#39;choice&#39; type of element of sketch in &#39;sketch constructor&#39;.
+- Added functionlity to start sketches in &#39;choice&#39; type of element of sketch on sketch uni page.
+- Corrected location condition checking for task and quests.
+- Fixed issue with updating characters parametrs from player`s parametrs.
+- Added demo prototype for &#39;activity&#39; widget.
+- Continued work on prologue:
+ - Updated sketch json.
+ - Updated quest json.
+ - Updated localization json.
+
+
+22.04.2023
+- Added autoclearing for custom location.
+- Made location list select in sketch constructor for &#39;choice&#39; element type wider.
+- Added ability to use SugarCube code inside &#39;passage&#39; widget.
+- Updated sketch image styling.
+- Updated &#39;custom location&#39; functionality.
+- Started work on prologue:
+ - Updated sketch json.
+ - Updated quest json.
+ - Updated localization json.
+ - Updated images json.
+
+
+17.04.2023
+- Designed and created icons for different types of popups.
+- Updated popup styling.
+- Updated start quest links styling.
+- Correted indents for different blocks in passage-list.
 
 16.04.2023
 - Cleared console.logs
