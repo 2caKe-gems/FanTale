@@ -372,14 +372,12 @@ tw-link:after {
 /* twine-user-stylesheet #5: "button_quest.css" */
 
 
-.button-action {
+.button-quest {
     align-items: center;
     background-color: transparent;
-    border: 2px solid #000;
     cursor: pointer;
     display: flex;
     font-family: 'VT323', monospace;    
-    /* font-size: 16px; */
     font-weight: 500;
     gap: 12px;
     height: 40px;
@@ -387,34 +385,29 @@ tw-link:after {
     padding: 4px 12px;
     position: relative;
     text-transform: uppercase;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease;    
+    border: 1px solid var(--yellow);
+    border-radius: 4px;
+    margin-bottom: 15px;
 }
 
-.button-action:hover {
+.button-quest:hover {
+    border: 2px solid darkorange;
     background-color: #000;
     text-decoration: none;
-    transform: scale(1.2);
+    padding-right: 40px;
+    padding-left: 20px;
+    /* transform: scaleX(1.2); */
 }
 
-.button-action:hover * {
+.button-quest:hover * {
     color: #fff;
     font-size: 20px;
     text-decoration: none;
 }
 
-.button-quest {
-    border: 1px solid var(--yellow);
-    border-radius: 4px;
-    margin-bottom: 15px;
-    transition: .5s ease;
-}
-
 .button-quest a {
     color: var(--yellow);
-}
-
-.button-quest:hover {
-    border: 2px solid darkorange;
 }
 
 .button-quest:hover a {
@@ -507,7 +500,7 @@ tw-link:after {
 }
 
 .barret {
-    color: #e6ccb3;
+    color: #002bffd6;
 }
 
 .savia {
@@ -527,7 +520,7 @@ tw-link:after {
 }
 
 .sekhmau {
-    color: mediumblue;
+    color: #e6ccb3;
 }
 
 .lazar {
@@ -3502,7 +3495,7 @@ url("fonts/rpgawesome-webfont.svg?v=0.1.0#rpg-awesome") format("svg");
     margin-bottom: calc(-2px - 4*var(--link-width));
     margin-left: calc(-5*var(--link-width));
     margin-right: calc(2px + -5*var(--link-width));
-    padding-top: calc(4*var(--link-width));
+    padding-top: calc(4*var(--link-width) + 2px);
     padding-bottom: calc(2px + 3*var(--link-width));
     padding-left: calc(5*var(--link-width));
     padding-right: calc(5*var(--link-width));
@@ -3566,8 +3559,50 @@ url("fonts/rpgawesome-webfont.svg?v=0.1.0#rpg-awesome") format("svg");
 
 
 .task-link {
-    display: inline-flex;
+    align-items: center;
+    color: #009CCF;
+    display: flex;
+    gap: 8px;
+    border: 1px solid #009CCF;
+    border-radius: 4px;
+    padding-left: 6px;
+    padding-right: 12px;
+    transition: none;
+    min-height: 34px;
+    width: fit-content;
+    min-width: 124px;
+    margin-bottom: 12px;
+    transition: all 0.3s ease;
 }
+
+.task-link:hover {
+    color: #1ec8ff;
+    border: 1px solid #1ec8ff;
+    text-decoration: none;
+    padding-right: 40px;
+    padding-left: 20px;
+    transition: .5s ease;
+}
+
+.task-link__icon {
+    width: 28px;
+    height: 28px;
+}
+
+.task-link:hover .task-link__icon {
+    display: none;
+}
+
+.task-link:hover .task-link__icon--hover {
+    display: block;
+}
+
+.task-link__icon--hover {
+    width: 28px;
+    height: 28px;
+    display: none;
+}
+
 
 .link-icon:last-of-type {
     margin-bottom: 50px;
@@ -3605,10 +3640,64 @@ url("fonts/rpgawesome-webfont.svg?v=0.1.0#rpg-awesome") format("svg");
     margin-bottom: calc(-2px - 4*var(--link-width));
     margin-left: calc(-5*var(--link-width));
     margin-right: calc(2px + -5*var(--link-width));
-    padding-top: calc(4*var(--link-width));
+    padding-top: calc(4*var(--link-width) + 2px);
     padding-bottom: calc(2px + 3*var(--link-width));
     padding-left: calc(5*var(--link-width));
     padding-right: calc(5*var(--link-width));
+}
+
+
+.link-activity {
+    color: #aec0b4;
+    border: 1px solid #aec0b4;
+    padding: 0px 18px;
+    transition: all 0.3s ease;
+}
+
+
+.link-activity:hover {
+    color: #c1d8c9;
+    border-color: #c1d8c9;
+    padding-right: 40px;
+    padding-left: 20px;
+    transition: .5s ease;
+}
+
+.link-activity--fake {
+    /* pointer-events: none; */
+    
+    color: #aec0b480;
+    border: 1px solid #aec0b480;
+    cursor: not-allowed;
+    /* opacity: 0.5; */
+}
+
+.link-activity--fake:hover {
+    padding: 0px 18px;
+    color: #aec0b480;
+    border: 1px solid #aec0b480;
+}
+
+.link-activity--fake *{
+    cursor: not-allowed;
+}
+
+.link-fake__text {
+    display: none;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    min-width: 300px;
+    top: -36px;
+    left: 46px;
+    z-index: 5;
+    background-color: var(--black);
+    padding-left: 10px;
+}
+
+.link-activity--fake:hover .link-fake__text {
+    display: block;
+    position: absolute;
 }
 /* twine-user-stylesheet #20: "macro_notify.css" */
 #notify {
@@ -4042,7 +4131,7 @@ label.toggle-button span {
 }
 
 .popup--task_created {
-    border-color: dodgerblue;
+    border-color: #1e58ff;
 }
 
 .popup--quest_next_state {
@@ -4168,7 +4257,40 @@ label.toggle-button span {
     color: red;
 }
 
-/* twine-user-stylesheet #30: "sketch.css" */
+/* twine-user-stylesheet #30: "scrolls.css" */
+::-webkit-scrollbar {
+    width: 12px;
+}
+  
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px whitesmoke;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #a9a9a9;
+    outline: 1px solid slategrey;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #c3c3c3; 
+}
+  
+
+
+#ui-bar-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+#ui-bar-body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #cfcfcf;
+}
+/* twine-user-stylesheet #31: "sketch.css" */
 
 .text {
     font-weight: 400;
@@ -4191,13 +4313,20 @@ label.toggle-button span {
     display: flex;
     width: 360px;
     height: 240px;
-    margin: auto;
+    margin: auto; 
+    border-radius: 10px;
+    padding: 3px;
+    border: 1px solid #303030;
+    background-color: #ddd;
+}
+
+.sketch__image:hover {
+    box-shadow: 1px 1px 10px 4px rgb(232 232 232 / 30%);
 }
 
 .sketch__video {
     width: 360px;
     height: 300px;
-    /* margin-left: calc(50% - 360px/2); */
 }
 
 .sketch__image-files {
@@ -4295,8 +4424,8 @@ label.toggle-button span {
 .thought-block_img {
     position: absolute;
     width: 34px;
-    top: -18px;
-    left: -8px;
+    top: -20px;
+    left: -10px;
     padding-bottom: 2px;
     padding-left: 10px;
     padding-right: 8px;
@@ -4347,7 +4476,7 @@ label.toggle-button span {
     padding-right: 20px;
     text-shadow: 2px 2px 10px #dadada;
 }
-/* twine-user-stylesheet #31: "store.css" */
+/* twine-user-stylesheet #32: "store.css" */
 .store-item__image {
     width: 80px;
     height: 80px;
@@ -4363,7 +4492,7 @@ label.toggle-button span {
     color: red;
     font-weight: bold;
 }
-/* twine-user-stylesheet #32: "talk_menu.css" */
+/* twine-user-stylesheet #33: "talk_menu.css" */
 .talk-menu__item {
     margin-bottom: 30px;
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "_func_localization.js" */
@@ -4705,21 +4834,21 @@ localization_text['en'] =
   "sk_prologue_loc_2_p_1_el_2_text": "You came to the lake. \n It's very quiet and calm here. ",
   "sk_prologue_loc_2_p_1_el_3_text": "It's very quiet and calm here.",
   "sk_prologue_loc_2_p_1_el_4_text": "Need to come here more often.",
-  "sk_prologue_loc_2_p_1_el_5_text": "You're seaching for anything that looks like the brooch your sister discribed.",
-  "sk_prologue_loc_3_p_1_el_1_text": "I'm too tired. I have to have a rest before I can continue.",  
-  "sk_prologue_loc_3_p_1_el_2_text": "I should teach <<getName 'melissa'>> how to swim. So next time she could do it herself.",
-  "sk_prologue_loc_4_p_1_el_1_text": "Need to continue searching for brooch.",
-  "sk_prologue_loc_5_p_1_el_1_text": "The last time I dived, I saw something glowing to my left.",
-  "sk_prologue_loc_5_p_1_el_2_text": "Need to dive to that place again and grab whenever this is,",
-  "sk_prologue_loc_5_p_1_el_3_text": "Even if it's not a brooch, this could be something valuable.\nPerhaps this is a jewelry and I could sell it or gift someone.",
+  "sk_prologue_loc_2_p_1_el_5_text": "You're searching  for anything that looks like the brooch your sister discribed.",
+  "sk_prologue_loc_2_p_1_el_6_text": "I'm too tired. I have to have a rest before I can continue.",  
+  "sk_prologue_loc_2_p_1_el_7_text": "I should teach <<getName 'melissa'>> how to swim. So next time she could do it herself.",
+  "sk_prologue_loc_2_p_1_el_8_text": "Need to continue searching for brooch.",
+  "sk_prologue_loc_3_p_1_el_2_text": "The last time I dived, I saw something glowing to my left.",
+  "sk_prologue_loc_3_p_1_el_3_text": "Need to dive to that place again and grab whenever this is.",
+  "sk_prologue_loc_3_p_1_el_4_text": "Even if it's not a brooch, this could be something valuable.\nPerhaps this is a jewelry and I could sell it or gift someone.",
   "sk_prologue_sk_2_p_1_el_1_text": "As soon as you touch the artefact, your body becomes paralyzed. ",
   "sk_prologue_sk_2_p_1_el_2_text": "A multicolored canvas appeared before you ",
   "sk_prologue_sk_2_p_1_el_4_text": "Your chest squeezes and you automatically open your mouth to inhale, but you are under water at the moment. You start chooking and losing your consciousness.",
-  "sk_prologue_sk_3_p_1_el_1_text": "  You see some strange images.\n",
+  "sk_prologue_sk_3_p_1_el_1_text": "You see some strange images.\n",
   "sk_prologue_sk_3_p_1_el_5_text": "And then you wake up\n\n",
   "sk_prologue_sk_2_p_1_el_5_text": "Black out",
   "sk_prologue_sk_4_p_1_el_1_text": "Your openening your eyes and discover that your are in uknnow place.",
-  "sk_prologue_sk_4_p_1_el_3_text": " You see a woman near you. ",
+  "sk_prologue_sk_4_p_1_el_3_text": "You see a woman near you. ",
   "sk_prologue_sk_4_p_1_el_4_text": "She sees that you get consciousness and have a worried look.",
   "sk_prologue_sk_4_p_1_el_5_text": "Hello, my dear.",
   "sk_prologue_sk_4_p_1_el_6_text": "I've felt vibrance in magic through my appliances. And hurried to take a look",
@@ -4873,7 +5002,7 @@ localization_text['fr'] =
   "sk_prologue_loc_2_p_1_el_1_text": "You came to the lake.",
   "sk_prologue_loc_2_p_1_el_2_text": "It's very quiet and calm here.",
   "sk_prologue_loc_2_p_1_el_3_text": "Need to come here more often.",
-  "sk_prologue_loc_2_p_1_el_5_text": "You're seaching for anything that looks like the brooch your sister discribed.",
+  "sk_prologue_loc_2_p_1_el_5_text": "You're searching  for anything that looks like the brooch your sister discribed.",
   "sk_prologue_loc_2_p_1_el_6_text": "I'm too tired. I have to have a rest before I can continue."
 }
 /* twine-user-script #4: "content_ru.js" */
@@ -5043,7 +5172,7 @@ localization_text['ru'] =
   "sk_prologue_loc_2_p_1_el_1_text": "You came to the lake.",
   "sk_prologue_loc_2_p_1_el_2_text": "It's very quiet and calm here.",
   "sk_prologue_loc_2_p_1_el_3_text": "Need to come here more often.",
-  "sk_prologue_loc_2_p_1_el_5_text": "You're seaching for anything that looks like the brooch your sister discribed.",
+  "sk_prologue_loc_2_p_1_el_5_text": "You're searching  for anything that looks like the brooch your sister discribed.",
   "sk_prologue_loc_2_p_1_el_6_text": "I'm too tired. I have to have a rest before I can continue."
 }
 /* twine-user-script #5: "l10nString_en.js" */
@@ -5365,6 +5494,7 @@ localization_system_text['en'] = {
         helmet: 'Helmet',
         sabatons: 'Sabatons',
 
+        brooch: 'Brooch',
         socks: 'Socks',
         key: 'Key'
     },
@@ -5496,6 +5626,16 @@ localization_system_text['en'] = {
         'work': 'Work',
         'clean': 'Clean'
 
+    },
+    activity_conditions: {        
+        'rest': 'You are not tired to have a rest',
+    },
+    tasks: {
+        'interact': 'Interact',
+        'gather': 'Gather',
+        'distribute': 'Distribute',
+        'fight': 'Fight',
+        'search': 'Search',
     }
     
 }
@@ -5553,6 +5693,7 @@ localization_system_text['fr'] = {
         helmet: 'Casque',
         sabatons: 'Sabatons',
 
+        brooch: 'Broche',
         socks: 'Chaussettes',
         key: 'Clé'
     },
@@ -5669,6 +5810,31 @@ localization_system_text['fr'] = {
         join_escort: 'Rejoindre \'escorte\'',
         leave_escort_not_finish: 'Laisser \'escorter\' (ne finira pas la tâche)',
         leave_escort_finish: 'Quittez \'escorte\' (Terminera la tâche \'escorte\')'
+    },
+    activities: {
+        'rest': 'Rest',
+        'nap': 'Lainer',
+        'sleep': 'Dormir',
+        'wait': 'Attendre',
+        'eat': 'Manger',
+        'drink': 'Boire',
+        'bath': 'Prendre un bain',
+        'swim': 'Nager',
+        'gather': 'Rassembler',
+        'fight': 'Combattre',
+        'work': 'Travailler',
+        'clean': 'Nettoyer'
+
+    },
+    activity_conditions: {        
+        'rest': 'You not tired to have a rest',
+    },
+    tasks: {
+        'interact': 'Interagir',
+        'gather': 'Rassembler',
+        'distribute': 'Distribuer',
+        'fight': 'Combattre',
+        'search': 'Rechercher',
     }
     
 }
@@ -5726,6 +5892,7 @@ localization_system_text['ru'] = {
         helmet: 'Шлем',
         sabatons: 'Сабатоны',
 
+        brooch: 'Брошь',
         socks: 'Носки',
         key: 'Ключ'
     },
@@ -5842,6 +6009,31 @@ localization_system_text['ru'] = {
         join_escort: 'Присоеденить в \'сопровождение\'',
         leave_escort_not_finish: 'Покинуть \'сопровождение\' (не завершит задание \'сопровождение\')',
         leave_escort_finish: 'Покинуть \'сопровождение\' (завершит задание \'сопровождение\')'
+    },
+    activities: {
+        'rest': 'Отдыхать',
+        'nap': 'Вздремнуть',
+        'sleep': 'Спать',
+        'wait': 'Ждать',
+        'eat': 'Есть',
+        'drink': 'Пить',
+        'bath': 'Купаться',
+        'swim': 'Плавать',
+        'gather': 'Собирать',
+        'fight': 'Сражаться',
+        'work': 'Работать',
+        'clean': 'Убирать'
+
+    },
+    activity_conditions: {        
+        'rest': 'You not tired to have a rest',
+    },
+    tasks: {
+        'interact': 'Взаимодействовать',
+        'gather': 'Собирать',
+        'distribute': 'Доставить',
+        'fight': 'Сражаться',
+        'search': 'Искать',
     }
     
 }
@@ -6113,6 +6305,7 @@ State.variables.lists.items.special_items = [
 ];
 
 State.variables.lists.items.quest_items = [
+    'brooch',
     'key',
     'socks'
 ];
@@ -6351,16 +6544,6 @@ const custom_location_list = {
         id_name: 'prologue_3',
         name: 'Prologue 3',
         sketch: 'prologue_loc_3'
-    },
-    prologue_4: {
-        id_name: 'prologue_4',
-        name: 'Prologue 4',
-        sketch: 'prologue_loc_4'
-    },
-    prologue_5: {
-        id_name: 'prologue_5',
-        name: 'Prologue 5',
-        sketch: 'prologue_loc_5'
     },
     test_1: {
         id_name: 'test_1',
@@ -6621,7 +6804,7 @@ const quest_list =
           "is_optional": "1",
           "type": "gather",
           "subject": "socks",
-          "amount": "3",
+          "amount": "7",
           "location": "Home_Corridor"
         },
         {
@@ -6629,7 +6812,7 @@ const quest_list =
           "is_optional": "1",
           "type": "gather",
           "subject": "key",
-          "amount": "2",
+          "amount": "4",
           "location": "Home_Corridor"
         }
       ],
@@ -6709,7 +6892,7 @@ const quest_list =
         {
           "id_name": "prologue_search",
           "type": "search",
-          "amount": "1",
+          "amount": "2",
           "location": "prologue_2",
           "actions": [
             {
@@ -6721,29 +6904,15 @@ const quest_list =
       ],
       "2": [
         {
-          "id_name": "prologue_search_2",
-          "type": "search",
-          "amount": "1",
-          "location": "prologue_4",
-          "actions": [
-            {
-              "type": "injection",
-              "injection": "<<set $temp.custom_location = 'prologue_5'; Engine.play('Uni_Location', true)>>",
-            }
-          ]
-        }
-      ],
-      "3": [
-        {
           "id_name": "prologue_gather",
           "type": "gather",
-          "subject": "key",
+          "subject": "brooch",
           "amount": "1",
-          "location": "prologue_5",
+          "location": "prologue_3",
           "actions": [
             {
               "type": "injection",
-              "injection": "<<set $temp.cur_sketch = 'prologue_sk_2'; Engine.play('Uni_Sketch', true)>>",
+              "injection": "<<set $player.stamina +=$player.stamina_max>> <<set $temp.cur_sketch = 'prologue_sk_2'>> <<run Engine.play('Uni_Sketch')>>",
             }
           ]
         }
@@ -7344,26 +7513,85 @@ const sketch_list =
       "page_1": {
         "el_1": {
           "type": "image",
+          "conditions": [
+            {
+              "type": "check_param",
+              "character": "player",
+              "param": "stamina",
+              "comparatives": "greater",
+              "value": "80"
+            }
+          ],
           "media_folder": "prologue",
           "media_file": "lake_1.gif",
           "width": "580",
           "height": "320"
         },
+        "el_10": {
+          "type": "image",
+          "media_folder": "prologue",
+          "media_file": "lake_2.webp",
+          "width": "",
+          "height": ""
+        },
         "el_2": {
           "type": "text",
+          "conditions": [
+            {
+              "type": "check_param",
+              "character": "player",
+              "param": "stamina",
+              "comparatives": "greater",
+              "value": "80"
+            }
+          ],
           "text_type": "default"
         },
         "el_3": {
           "type": "text",
+          "conditions": [
+            {
+              "type": "check_param",
+              "character": "player",
+              "param": "stamina",
+              "comparatives": "greater",
+              "value": "80"
+            }
+          ],
           "text_type": "default"
         },
         "el_4": {
           "type": "text",
+          "conditions": [
+            {
+              "type": "check_param",
+              "character": "player",
+              "param": "stamina",
+              "comparatives": "greater",
+              "value": "80"
+            }
+          ],
           "text_type": "thought"
         },
         "el_5": {
           "type": "text",
           "text_type": "gesture"
+        },
+        "el_6": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_7": {
+          "type": "text",
+          "text_type": "thought"
+        },
+        "el_8": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_9": {
+          "type": "injection",
+          "injection": "<<activity 'rest' 'Uni_Location' 'none'>> \n     <<set $flags.prologue_lake_step = 2>>\n    <<set $player.stamina +=$player.stamina_max>>\n<</activity>>"
         }
       }
     }
@@ -7373,44 +7601,21 @@ const sketch_list =
     "pages": {
       "page_1": {
         "el_1": {
-          "type": "text",
-          "text_type": "default"
+          "type": "image",
+          "media_folder": "prologue",
+          "media_file": "lake_4.jpg",
+          "width": "500",
+          "height": "320"
         },
         "el_2": {
           "type": "text",
           "text_type": "thought"
         },
         "el_3": {
-          "type": "injection",
-          "injection": "<<activity 'rest' 'Uni_Location' 'none'>> \n    <<set $temp.custom_location = 'prologue_4'>>\n    <<set $player.stamina +=80>>\n<</activity>>"
-        }
-      }
-    }
-  },
-  "prologue_loc_4": {
-    "id_name": "prologue_loc_4",
-    "pages": {
-      "page_1": {
-        "el_1": {
-          "type": "text",
-          "text_type": "default"
-        }
-      }
-    }
-  },
-  "prologue_loc_5": {
-    "id_name": "prologue_loc_5",
-    "pages": {
-      "page_1": {
-        "el_1": {
           "type": "text",
           "text_type": "thought"
         },
-        "el_2": {
-          "type": "text",
-          "text_type": "thought"
-        },
-        "el_3": {
+        "el_4": {
           "type": "text",
           "text_type": "thought"
         }
@@ -7457,25 +7662,25 @@ const sketch_list =
           "text_type": "default"
         },
         "el_2": {
-          "type": "video",
-          "media_folder": "forest_events",
-          "media_file": "forest_event_2.mp4"
+          "type": "image",
+          "media_folder": "prologue",
+          "media_file": "depth.gif"
         },
         "el_3": {
-          "type": "image",
-          "media_folder": "forest_events",
-          "media_file": "forest_event_1.jpg"
-        },
-        "el_4": {
           "type": "video",
           "media_folder": "forest_events",
           "media_file": "forest_event_2.mp4"
+        },        
+        "el_4": {
+          "type": "image",
+          "media_folder": "prologue",
+          "media_file": "depth.gif"
         },
         "el_5": {
           "type": "choice",
           "passage": "pre_sketch_passage",
           "move_to": "sketch",
-          "sketch_idn": "prologue_sk_2",
+          "sketch_idn": "prologue_sk_4",
           "link_type": "default"
         }
       }
@@ -7492,7 +7697,9 @@ const sketch_list =
         "el_2": {
           "type": "image",
           "media_folder": "prologue",
-          "media_file": "melissa_sparkling_eyes.jpg"
+          "media_file": "witch_first_contact.png",
+          "width": "256",
+          "height": "300"
         },
         "el_3": {
           "type": "text",
@@ -8203,6 +8410,21 @@ class QuestItems {
 }
 window.QuestItems = QuestItems; // attach to the global scope
 
+    class Brooch extends QuestItems {
+        constructor (config) {
+            super();
+
+            this.category = 'brooch';
+            
+            const defaultConfig = {
+            };
+            
+            if (!config.id_name) generateItemIdName(this, config);  
+            assignClassValues(this, config, defaultConfig);  
+        }
+    }
+    window.Brooch = Brooch; // attach to the global scope
+
 
     class Key extends QuestItems {
         constructor (config) {
@@ -8302,7 +8524,7 @@ class Task {
         this.id_name = task_params.id_name ?? 'No task.id_name',
         this.type = task_params.type ?? 'No task.type',
         this.location = task_params.location ?? 'Menu_Debug',
-        this.subject = task_params.subject ?? {},
+        this.subject = task_params.subject ?? '',
         this.amount = task_params.amount ?? 1,
         this.status = task_params.status ?? 0;
         this.activation_flag = task_params.activation_flag ?? {};
@@ -8504,10 +8726,19 @@ setup.initOnce = function() {
 		State.variables.parties[character.id_name] = Reflect.construct(Party, [new_party]);
 	});
 
+	
+	const flag_list  = [
+		'prologue_lake_step',
+		'prologue_witch_trust'
+	]
+
+	State.variables.flags = flag_list.reduce((ac,a) => ({...ac,[a]:0}),{});
+
+
 	// NEED REWORK !!!!!!!!!!!!!!!!!!!!!!!
 	// Probably move this out to quest class 
 	$.each(State.variables.quest_list, function (index, quest) { 
-		State.variables.flags[quest.id_name] = quest.status;
+		State.variables.flags[`q_${quest.id_name}`] = 0;
 	});
 
 
@@ -12045,30 +12276,49 @@ function getElementTypeOptionContent(option, spid, seid, sketch_element={}) {
                 </div>  
 
                 <div class="form-blocks-row">
-                <div>
-                    <input 
-                        type="radio" 
-                        name="pages[page_${spid}][el_${seid}][move_to]" 
-                        value="sketch"                         
-                        ${('sketch' == sketch_element.move_to) ? 'checked' : ''}
+                    <div>
+                        <input 
+                            type="radio" 
+                            name="pages[page_${spid}][el_${seid}][move_to]" 
+                            value="sketch"                         
+                            ${('sketch' == sketch_element.move_to) ? 'checked' : ''}
+                        >
+                        <label>Sketch IDN</label>                                        
+                    </div>
+
+                    <select 
+                        class="select2 select2--large"
+                        name="pages[page_${spid}][el_${seid}][sketch_idn]"
                     >
-                    <label>Sketch IDN</label>                                        
+                        ${sketches.map((value) => (
+                            `<option 
+                                ${(value == sketch_element.sketch_id) ? 'selected' : ''}
+                                value="${value}"
+                            >
+                                ${value}
+                            </option>`
+                        )).join('')}
+                    </select>
                 </div>
 
-                <select 
-                    class="select2 select2--large"
-                    name="pages[page_${spid}][el_${seid}][sketch_idn]"
-                >
-                    ${sketches.map((value) => (
-                        `<option 
-                            ${(value == sketch_element.sketch_id) ? 'selected' : ''}
-                            value="${value}"
+                
+                <div class="form-blocks-row">
+                    <div>
+                        <input 
+                            type="radio" 
+                            name="pages[page_${spid}][el_${seid}][move_to]" 
+                            value="fake"                         
+                            ${('fake' == sketch_element.move_to) ? 'checked' : ''}
                         >
-                            ${value}
-                        </option>`
-                    )).join('')}
-                </select>
-            </div>
+                        <label>Fake</label>                                        
+                    </div>
+
+                    <input 
+                        type="text" 
+                        name="pages[page_${spid}][el_${seid}][fake]
+                        value="${(sketch_element.fake) ? sketch_element.fake : ''}"
+                    >  
+                </div>
 
             </div>  
         `;
@@ -13846,7 +14096,7 @@ function finishCountdown() {
 //         [[Look by the shore|InitialQuest3][$player.stamina -= 10;]]
         
 //     <<then>>
-//         You're seaching for anything that looks like the brooch your sister discribed.
+//         You're searching  for anything that looks like the brooch your sister discribed.
 
 //         <center>
 //             <img style="width:85%; height:auto;" src='media/quests/initial/lake/shore.gif' >
@@ -15247,6 +15497,28 @@ setup.getNameSC = function (character_idn) {
     const name = getLocalizedText(`characters_${character_idn}_name`);
     return (!!name) ? name : `Error: character '${character_idn}' undefined` ;
 };
+
+
+
+setup.showDateSidebar = function () {
+    const lists = State.variables.lists;
+    const time = State.variables.time;
+    const cur_week_day = lists.day_of_week_list[time.day_of_week_id];
+    const cur_month = lists.month_list[time.month_id];
+
+    const caption_today = getLocalizedSystemText('sidebar', 'caption_today');
+
+    const time_hour = (time.hour < 10) ? `0${time.hour}` : time.hour;
+    const time_minute = (time.minute < 10) ? `0${time.minute}` : time.minute;
+
+    const content = `
+        <span>${caption_today} </span> : <span>${cur_week_day}</span>
+        <span> ${cur_month}</span>, <span> ${time.month_day}</span>
+        <span> ${time_hour}</span>:<span>${time_minute}</span>
+    `;
+
+    return content;
+}
 /* twine-user-script #55: "global_variables.js" */
 function getAjaxGlobal() {
     $.ajax({
@@ -17115,11 +17387,6 @@ function drawPageSystemText() {
 
 /* twine-user-script #68: "passage_sketch.js" */
 
-State.variables.flags = {
-    test_1: 1,
-    test_2: 1,
-    test_3: 2
-};
 
 
 State.variables.temp.cur_sketch = 'sketch_warning';
@@ -17452,7 +17719,7 @@ function isInInventoryClass(item_class, character_idn='player') {
 
 
 
-function executeActionByType(action) {  
+function executeActionByType(action) { 
 
     switch (action.type) {
         case 'change_param':
@@ -17692,6 +17959,7 @@ function executeActionByType(action) {
     }
 
     function executeActionInjection(action) {
+        console.log(action.injection)
         $('#passages').wiki(action.injection);
     }    
 }
@@ -17754,7 +18022,7 @@ $(document).one(':passageinit', function (ev) {
     const sidebar_body = $('#ui-bar-body');
     const company_name = `2caKe gems`;
     const version_string = getLocalizedSystemText('sidebar', 'caption_version');
-    const version_number = '0.1.001';
+    const version_number = '0.1.005';
 
     const content = `
         <div class='sidebar-signature'>
@@ -18515,7 +18783,6 @@ setup.activateQuest = function (quest_idn) {
 
 setup.activateTask = function (task_json) {
 
-    
     // Conditions
     // const cur_element_block = getSketchHtmlBlockByType(element, sketch_idn, page_id, element_key) + '<<br>>';        
     // if (isConditionsPassed(element.conditions) ) $sketch_container.wiki(cur_element_block);
@@ -18719,7 +18986,7 @@ function finishTask(task_idn) {
         }
     }
 
-    State.variables.quests[quest_data.id_name] = cur_quest;
+    // State.variables.quests[quest_data.id_name] = cur_quest;
 }
 
 function finishQuest(quest) {
@@ -18764,11 +19031,46 @@ function getWeightedRandom(weights) {
 }
 
 function gatherTaskFunc(cur_task) {    
-    const weights = { 
-        0: 0.1,
-        1: 0.7, 
-        2: 0.2, 
-    };
+    if (cur_task.amount == 0) {
+        cur_task.amount = 1;
+        console.error(`For "${cur_task.type}" type of tasks 0 is not allowed!`)
+        console.warn(`Amount has been set to 1`);
+    }
+
+    const weight_amount = (cur_task.counter) ? cur_task.amount - cur_task.counter : cur_task.amount;
+    const weight_matrix = {
+        1: { 
+            1: 1.0 
+        },
+        2: {
+            1: 1.0
+        },
+        3: {
+            1: 0.9,
+            2: 0.1
+        },
+        4: {
+            1: 0.85,
+            2: 0.1,
+            3: 0.05
+        },
+        5: {
+            1: 0.75,
+            2: 0.15,
+            3: 0.05,
+            4: 0.05
+        },
+        6: {
+            1: 0.65,
+            2: 2,
+            3: 1,
+            4: 0.05
+        }
+    }
+    const weight_matrix_amount_index = (weight_amount <= 6) ? weight_amount : Object.keys(weight_matrix).length;
+    console.log('weight_matrix_amount_index', weight_matrix_amount_index, cur_task)
+
+    const weights = weight_matrix[weight_matrix_amount_index];
     let gather_amount = getWeightedRandom(weights);
 
     if ((cur_task.counter + gather_amount) > Number(cur_task.amount)) {
@@ -18847,7 +19149,6 @@ function fightTaskFunc(cur_task) {
     State.variables.party_enemy.id_name = subject_party.id_name;
     State.variables.party_enemy.description = subject_party.description;
 
-    console.log('subject_partys', subject_party)
     State.variables.temp.cur_tasks_fight.push(cur_task.id_name);   
 }
 
@@ -18886,83 +19187,72 @@ function escortTaskFunc(cur_task) {
 
 
 function getTaskLink(cur_task) {
-    const goto_passage = passage();   
+    const goto_passage = passage();       
+    const task_link_text = getTaskLinkText(cur_task);
+
+    const link_conent = `
+        <a 
+            data-location="${goto_passage}" 
+            class="link-internal task-link task-link--${cur_task.type}" 
+            data-task="${cur_task.id_name}" 
+            tabindex="0"
+        >\
+            <img class="task-link__icon" src="media/icons/task/${cur_task.type}.png" title="${cur_task.type}" alt="${cur_task.type}">
+            <img class="task-link__icon--hover" src="media/icons/task/${cur_task.type}_hover.png" title="${cur_task.type}" alt="${cur_task.type}">
+
+            <p class="task-link__text">${task_link_text}</p>
+        </a>\
+    `;
+
+    return link_conent;
+}
+
+function getTaskLinkText(cur_task) {
     
-    const sketch_link = `
-        <a 
-            data-location="${goto_passage}" 
-            class="link-internal task-link" 
-            data-task="${cur_task.id_name}" 
-            tabindex="0"
-        >\
-            Interact [sketch - '${cur_task.subject}']\
-        </a>\
-    `;
+    const sketch_link_text = () => {        
+        const interact = getLocalizedSystemText('tasks', 'interact');
+        const result = `${interact} [sketch - '${cur_task.subject}']`;
+        return result;
+    } 
 
-    // const interact_link = `
-    //     <a 
-    //         data-location="${goto_passage}" 
-    //         class="link-internal task-link" 
-    //         data-task="${cur_task.id_name}" 
-    //         tabindex="0"
-    //     >\
-    //         Interact with ${cur_task.subject}\
-    //     </a>\
-    // `;
+    // const interact_link_text = () => {
+    //     const interact = getLocalizedSystemText('tasks', 'interact');
+    //     const result = `${interact}`;
+    //     return result;
+    // } 
 
-    const gather_link = `
-        <a 
-            data-location="${goto_passage}" 
-            class="link-internal task-link" 
-            data-task="${cur_task.id_name}" 
-            tabindex="0"
-        >\
-            Gather ${cur_task.subject}\
-        </a>\
-    `;
+    const gather_link_text = () => {
+        const gather = getLocalizedSystemText('tasks', 'gather');
+        const item = getLocalizedSystemText('item_list', cur_task.subject);
+        const result = `${gather} ${item}`;
+        return result;
+    } 
 
-    const distribute_link = `
-        <a 
-            data-location="${goto_passage}" 
-            class="link-internal task-link" 
-            data-task="${cur_task.id_name}" 
-            tabindex="0"
-        >\
-            Distribute ${cur_task.subject}\
-        </a>\
-    `;
+    const distribute_link_text = () => {
+        const distribute = getLocalizedSystemText('tasks', 'distribute');
+        const item = getLocalizedSystemText('item_list', cur_task.subject);
+        const result = `${distribute} ${item}`;
+        return result;
+    } 
+    
+    const fight_link_text = () => {
+        const fight = getLocalizedSystemText('tasks', 'fight');
+        const result = `${fight} ${cur_task.amount} ${cur_task.subject}`;
+        return result;
+    } 
 
-    const fight_link = `
-        <a 
-            data-location="Fight" 
-            class="link-internal task-link" 
-            data-task="${cur_task.id_name}" 
-            tabindex="0"
-        >\
-            Fight ${cur_task.amount} ${cur_task.subject}\
-        </a>\
-    `;
-
-    const search_link = `
-        <a 
-            data-location="${goto_passage}" 
-            class="link-internal task-link" 
-            data-task="${cur_task.id_name}" 
-            tabindex="0"
-        >\
-            Search \
-        </a>\
-    `;
-
-
+    const search_link_text = () => {
+        const result = `Search`;
+        return result;
+    } 
     
     return {
-        sketch: sketch_link,
-        // interact: interact_link,
-        gather: gather_link,
-        distribute: distribute_link,
-        fight: fight_link,
-        search: search_link,
+        sketch: sketch_link_text(),
+        // interact: interact_link_text,
+        gather: gather_link_text(),
+        distribute: distribute_link_text(),
+        fight: fight_link_text(),
+        search: search_link_text(),
     }[cur_task.type]
 }
 
@@ -18992,33 +19282,35 @@ function addTaskLinkListener() {
         const location = $(this).data('location');
         const task_idn = $(this).data('task');
         const cur_task = getTaskByIdn(task_idn, true);
-
-        console.log('cur_task', cur_task)
+        const passage_on_call_start = passage(); // set passage location on start of task link call
+         
             
         if (cur_task.type == 'sketch') {
             sketchTaskFunc(cur_task);
             moveToLocation('Uni_Sketch');
-        } else if (cur_task.type == 'text') {
-            textTaskFunc(cur_task);
-            Engine.play(location);
         } else if (cur_task.type == 'interact') {
             interactTaskFunc(cur_task);
-            Engine.play(location);       
+            updateTaskPassage(location, passage_on_call_start)
         } else if (cur_task.type == 'gather') {
-            gatherTaskFunc(cur_task);
-            Engine.play(location);
+            gatherTaskFunc(cur_task); 
+            updateTaskPassage(location, passage_on_call_start)
         } else if (cur_task.type == 'distribute') {
             distributeTaskFunc(cur_task);    
-            Engine.play(location, true);
+            updateTaskPassage(location, passage_on_call_start, true)
         } else if (cur_task.type == 'fight') {
             fightTaskFunc(cur_task);
-            Engine.play(location);
+            updateTaskPassage(location, passage_on_call_start)
         } else if (cur_task.type == 'search') {
             searchTaskFunc(cur_task);
-            Engine.play(location);
+            updateTaskPassage(location, passage_on_call_start)
         }
 
     });
+}
+
+function updateTaskPassage(location, passage_on_call_start, noHistory=false) {
+    const passage_on_call_end = passage(); // set passage location after task excecution, before final task redirect.    
+    if (passage_on_call_start == passage_on_call_end) Engine.play(location, noHistory);  
 }
 
 
@@ -19026,7 +19318,7 @@ function addTaskLinkListener() {
 function addQuestLink(quest_id_name, location, btn_text) {
     const $link_parent = $('.passage-list__quests');     // html element where the link will be appended to
     const quest_link = `
-        <button class="button-action button-quest">	
+        <button class="button-quest button-quest">	
             <div class="icon-action" data-state="QUEST">
                 <svg viewBox="0 0 100 100" class="icon-action__file">
                     <path d="M0, 20 Q50, 20 100, 20"></path>
@@ -19417,7 +19709,7 @@ function drawInvenoryLinks() {
     
     $(container).wiki( nobr(content) );
 }
-</script><tw-tag name="NeedCheck" color="green"></tw-tag><tw-tag name="Options" color="red"></tw-tag><tw-tag name="Sandbox" color="green"></tw-tag><tw-tag name="Script" color="blue"></tw-tag><tw-tag name="DeadEnd" color="orange"></tw-tag><tw-tag name="Dialog" color="purple"></tw-tag><tw-tag name="Location" color="orange"></tw-tag><tw-tag name="NPC" color="yellow"></tw-tag><tw-tag name="Story" color="blue"></tw-tag><tw-tag name="System" color="red"></tw-tag><tw-tag name="dialog" color="gray"></tw-tag><tw-tag name="option" color="red"></tw-tag><tw-passagedata pid="1" name="City" tags="questionable" position="2400,1350" size="100,100">[[Return|Ferryman]]</tw-passagedata><tw-passagedata pid="2" name="Dream" tags="Location autosave nobr noreturn" position="1600,450" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_dream_out&#39; $return_passage&gt;&gt;
+</script><tw-tag name="Location" color="orange"></tw-tag><tw-tag name="NPC" color="yellow"></tw-tag><tw-tag name="NeedCheck" color="green"></tw-tag><tw-tag name="Story" color="blue"></tw-tag><tw-tag name="dialog" color="gray"></tw-tag><tw-tag name="DeadEnd" color="orange"></tw-tag><tw-tag name="Dialog" color="purple"></tw-tag><tw-tag name="Options" color="red"></tw-tag><tw-tag name="Sandbox" color="green"></tw-tag><tw-tag name="Script" color="blue"></tw-tag><tw-tag name="System" color="red"></tw-tag><tw-tag name="option" color="red"></tw-tag><tw-passagedata pid="1" name="City" tags="questionable" position="2400,1350" size="100,100">[[Return|Ferryman]]</tw-passagedata><tw-passagedata pid="2" name="Dream" tags="Location autosave nobr noreturn" position="1600,450" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_dream_out&#39; $return_passage&gt;&gt;
     &lt;&lt;set $player.health += 10;&gt;&gt;
     &lt;&lt;set $player.stamina=$player.stamina_max;&gt;&gt;
 &lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Elf_House_Bloodhound" tags="Location nobr" position="3101,1898" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_village&#39; &#39;Elf_Village&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="Elf_House_Elder" tags="Location nobr" position="3101,1898" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_village&#39; &#39;Elf_Village&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="Elf_House_Herb" tags="Location nobr" position="2968,2099" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_store_herb&#39; &#39;Uni_Store&#39; &#39;gem&#39;&gt;&gt;
@@ -19721,7 +20013,7 @@ She nearly jumps on you and &lt;&lt;link &quot;hug&quot;&gt;&gt;&lt;&lt;replace 
 	[[Look by the shore|InitialQuest3][$player.stamina -= 10;]]
 	
 &lt;&lt;then&gt;&gt;\
-    You&#39;re seaching for anything that looks like the brooch your sister discribed.
+    You&#39;re searching  for anything that looks like the brooch your sister discribed.
 
 	&lt;center&gt;
 		&lt;img style=&quot;width:85%; height:auto;&quot; src=&#39;media\quests\initial\lake\shore.gif&#39; &gt;
@@ -20691,21 +20983,11 @@ Add switcher to change between numbers or progress bars?
 	&lt;&lt;text_system &#39;sidebar&#39; &quot;caption_name&quot;&gt;&gt;: &lt;span&gt;&lt;&lt;print $misc.player_name&gt;&gt;&lt;/span&gt; &lt;&lt;br&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-/*  Rework to function that returns html blocks here */
 
-&lt;&lt;set _cur_week_day = $lists.day_of_week_list[$time.day_of_week_id]&gt;&gt;
-&lt;&lt;set _cur_month = $lists.month_list[$time.month_id]&gt;&gt; &lt;&lt;br&gt;&gt;
-
-&lt;&lt;text_system &#39;sidebar&#39; &quot;caption_today&quot;&gt;&gt;: &lt;span id=&quot;dayOfWeek&quot;&gt;&lt;&lt;print _cur_week_day&gt;&gt;&lt;/span&gt; &lt;&lt;br&gt;&gt;
-
-&lt;span id=&quot;month&quot;&gt;&lt;&lt;print _cur_month&gt;&gt;&lt;/span&gt;, &lt;span id=&quot;day&quot;&gt;&lt;&lt;print $time.month_day&gt;&gt;&lt;/span&gt; &lt;&lt;br&gt;&gt;
-&lt;span id=&quot;hour&quot;&gt;&lt;&lt;print $time.hour&gt;&gt;&lt;/span&gt;:&lt;span id=&quot;minute&quot;&gt;&lt;&lt;print $time.minute&gt;&gt;&lt;/span&gt; &lt;&lt;br&gt;&gt;&lt;&lt;br&gt;&gt;
+&lt;&lt;= setup.showDateSidebar()&gt;&gt; &lt;&lt;br&gt;&gt;
 
 &lt;&lt;text_system &#39;sidebar&#39; &quot;caption_money&quot;&gt;&gt;: &lt;span&gt;&lt;&lt;print $player.money&gt;&gt;&lt;/span&gt; &lt;&lt;text_system &#39;sidebar&#39; &quot;caption_coins&quot;&gt;&gt;&lt;&lt;br&gt;&gt;
 &lt;&lt;br 2&gt;&gt;
-
-
-
 
 
 
@@ -21624,24 +21906,56 @@ Add switcher to change between numbers or progress bars?
 		&lt;&lt;set _icon_class = _args[2] ?? &#39;default&#39;&gt;&gt;
 		&lt;&lt;set _is_br = _args[3] ?? true&gt;&gt;
 
+		&lt;&lt;set _conditions_met = true&gt;&gt;
+		&lt;&lt;if _text == &#39;rest&#39;&gt;&gt;
+			&lt;&lt;if ($player.stamina &gt;= ($player.stamina_max - $player.stamina_max/10))&gt;&gt;
+				&lt;&lt;set _conditions_met = false &gt;&gt;				
+			&lt;&lt;/if &gt;&gt;
+		&lt;&lt;/if &gt;&gt;
+
+		&lt;&lt;set _conditions_class = (_conditions_met) ? &#39;&#39; : &#39;link-activity--fake&#39;&gt;&gt;
+
+
 		/* value for activity (stamina recoveruy for rest, money for work, health for bath) */
 		
-		&lt;a data-passage=_passage class=&quot;link-activity link-contents link-internal macro-link&quot; tabindex=&quot;0&quot;&gt;
-			
-			&lt;&lt;linkreplace &#39;&lt;&lt;text_system &quot;activities&quot; _text&gt;&gt;&#39;&gt;&gt;	_contents &lt;&lt;/linkreplace &gt;&gt; /* Workaround to run command written in widget body */
+		&lt;&lt;if _conditions_met&gt;&gt;
+			&lt;a data-passage=_passage class=&quot;link-activity link-contents link-internal macro-link&quot; tabindex=&quot;0&quot;&gt;
+				
+				&lt;&lt;linkreplace &#39;&lt;&lt;text_system &quot;activities&quot; _text&gt;&gt;&#39;&gt;&gt;	_contents &lt;&lt;/linkreplace &gt;&gt; /* Workaround to run command written in widget body */
 
-			&lt;div class=&quot;link-content-wrapper&quot;&gt;
-				&lt;div class=&quot;link-content-container link-underline-container&quot;&gt;
-					&lt;&lt;if _icon_class != &#39;none&#39;&gt;&gt;
-						&lt;i @class=&quot;`ra ra-${_icon_class}`&quot;&gt;&lt;/i&gt;
-					&lt;&lt;/if&gt;&gt;
-					
-					&lt;&lt;text_system &#39;activities&#39; _text&gt;&gt;
+				&lt;div class=&quot;link-content-wrapper&quot;&gt;
+					&lt;div class=&quot;link-content-container link-underline-container&quot;&gt;
+						&lt;&lt;if _icon_class != &#39;none&#39;&gt;&gt;
+							&lt;i @class=&quot;`ra ra-${_icon_class}`&quot;&gt;&lt;/i&gt;
+						&lt;&lt;/if&gt;&gt;
+						
+						&lt;&lt;text_system &#39;activities&#39; _text&gt;&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/a&gt;
+
+			&lt;&lt;if _is_br &gt;&gt; &lt;&lt;br&gt;&gt; &lt;&lt;/if&gt;&gt;
+		&lt;&lt;/if&gt;&gt;
+
+		
+		&lt;&lt;if !_conditions_met&gt;&gt;
+			&lt;div class=&quot;link-activity link-contents link-activity--fake&quot;&gt;
+				&lt;p class=&quot;link-fake__text&quot;&gt;&lt;&lt;text_system &quot;activity_conditions&quot; _text&gt;&gt;&lt;/p&gt;
+
+				&lt;div class=&quot;link-content-wrapper&quot;&gt;
+					&lt;div class=&quot;link-content-container link-underline-container&quot;&gt;
+						&lt;&lt;if _icon_class != &#39;none&#39;&gt;&gt;
+							&lt;i @class=&quot;`ra ra-${_icon_class}`&quot;&gt;&lt;/i&gt;
+						&lt;&lt;/if&gt;&gt;
+						
+						&lt;&lt;text_system &#39;activities&#39; _text&gt;&gt;
+					&lt;/div&gt;
 				&lt;/div&gt;
 			&lt;/div&gt;
-		&lt;/a&gt;
 
-		&lt;&lt;if _is_br &gt;&gt; &lt;&lt;br&gt;&gt; &lt;&lt;/if&gt;&gt;
+			&lt;&lt;if _is_br &gt;&gt; &lt;&lt;br&gt;&gt; &lt;&lt;/if&gt;&gt;
+		&lt;&lt;/if&gt;&gt;
+
 
 	&lt;&lt;/widget&gt;&gt;
 
@@ -21650,6 +21964,43 @@ Add switcher to change between numbers or progress bars?
 
 
 &lt;strong&gt;Latest:&lt;/strong&gt;
+
+14.05.2023
+- Reworked sidebar date block to js.
+- Styled scrollbars.
+- Updated task link styles.
+- Updated quest link styles.
+- Updated location link styles.
+- Created and added witch image for prologue.
+- Updated weight factor in &#39;gather&#39; task type. (now it uses more complex matrix calculattion)
+
+13.05.2023
+- Updated icons for task.
+- Updated task link styles.
+- Updated flags initialising.
+- Corrected task links passage redirects. 
+- Added demo version of fake activity link in &#39;activity&#39; widget.
+- Added fake links code to sketch constructor.
+- Continued work on prologue:
+ - Updated sketch json.
+ - Updated quest json.
+ - Updated localization json.
+
+
+07.05.2023
+- Rechecked prologue details and userflow.
+- Wrote down notions for updates.
+
+06.05.2023
+- Updated styles for sketch images.
+- Reworked tasks links.
+- Added localization for activities link text.
+- Added localization for tasks links text.
+- Added icons for items: socks, brooch, key.
+- Added brooch as quest item.
+- Changed icon for task_gather.
+- Added icons for all current task types.
+- Added onhover icons variant for all current task types.
 
 01.05.2023
 - Added width and height params for &#39;image&#39; sketch element type in sketch constuctor.
