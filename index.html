@@ -98,7 +98,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 		<div id="init-lacking"><p>Browser lacks capabilities required to play.</p><p>Upgrade or switch to another browser.</p></div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<!-- UUID://68BE25DE-5D15-41E0-9742-697E02B66E82// --><tw-storydata name="Fanthira Tales: wRight on cue" startnode="88" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="68BE25DE-5D15-41E0-9742-697E02B66E82" zoom="0.6" format="SugarCube" format-version="2.36.1" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* twine-user-stylesheet #1: "_fonts.css" */
+	<!-- UUID://68BE25DE-5D15-41E0-9742-697E02B66E82// --><tw-storydata name="Fanthira Tales: wRight on cue" startnode="86" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="68BE25DE-5D15-41E0-9742-697E02B66E82" zoom="0.6" format="SugarCube" format-version="2.36.1" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* twine-user-stylesheet #1: "_fonts.css" */
 @font-face {
 	font-family: VT323;
   	src: url("fonts/VT323-Regular.ttf");
@@ -255,18 +255,43 @@ tw-link:after {
     content: «]»;
 } */
 /* twine-user-stylesheet #3: "bars.css" */
-.bar {
+.progress-bar {
     width: 100%;
-  	background-color: black;
+  	background-color: #000;
   	height: 8px;
-    border-radius: 5px;
+    border-radius: 3px;
 }
 
-.bar-line {
+.progress-bar-line {
   	display: block;
   	height: 8px;
-    border-radius: 5px;
+    border-radius: 3px;
   	z-index: 1;
+}
+
+.progress-bar-container {
+	display: block;
+	position: relative;
+    padding-bottom: 16px;
+	padding-top: 20px;
+	margin-bottom: 4px;
+}
+
+
+.progress-bar-container .sidebar__numbers {
+	position: absolute;
+    bottom: 0px;
+    right: 2px;
+    font-size: 0.4rem;
+}
+
+
+.progress-bar-container .sidebar__text {
+	position: absolute;
+    top: -6px;
+    left: 42px;
+	color: #ccc;
+	font-size: 1rem;
 }
 /* twine-user-stylesheet #4: "button_apply.css" */
 
@@ -614,6 +639,10 @@ th.localization-table__header-idn {
     margin-top: 20px;
 }
 /* twine-user-stylesheet #8: "dialog.css" */
+
+.speech__character-image:hover {
+    z-index: 44;
+}
 
 .speech__container.speech-mode--0 {
     display: block;
@@ -1117,7 +1146,7 @@ th.localization-table__header-idn {
     max-width: 80%;
     max-height: 360px;
     border-radius: 2px;
-    border: 1px solid #444;
+    border: 2px solid #444;
 }
 /* twine-user-stylesheet #13: "index.css" */
 .disclaimer-header *{
@@ -1191,14 +1220,20 @@ th.localization-table__header-idn {
 }
 
 .level-info {
-    font-size: 18px;
-    margin-bottom: 2px;
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
 }
 
 .level-info-next {
     position: absolute;
-  	top: 40px;
-    right: 0px;
+    top: 36px;
+    right: -4px;
+    display: flex;
+    gap: 6px;
+    align-items: center;
 }
 
 .level-round {
@@ -3965,12 +4000,15 @@ url("fonts/rpgawesome-webfont.svg?v=0.1.0#rpg-awesome") format("svg");
     vertical-align: text-bottom;
     transition: all 0.5s;
     padding-left: 5px;
-    margin-right: -20px;
+    margin-right: -20px;    
+    transition: opacity .3s;  /* on unhover */
+    
 }
 
 .deadend-link:hover img {
     opacity: 1;
     margin-right: 0;
+    transition: opacity 0.7s;  /* on hover */
 }
 /* twine-user-stylesheet #22: "macro_notify.css" */
 #notify {
@@ -4093,7 +4131,11 @@ label.toggle-button span {
     font-style: 12px;
 }
 /* twine-user-stylesheet #26: "menu.css" */
-#menu-story > li > a:before{
+#menu {
+  display: none;
+}
+
+/* #menu-story > li > a:before{
   font-family: tme-fa-icons;
 }
 
@@ -4119,7 +4161,7 @@ label.toggle-button span {
 
 #menu-story > li:nth-child(6) > a:before{
   content: "\e838\00a0";
-}
+} */
 
 #menu li a {
   display: flex;
@@ -4132,9 +4174,65 @@ label.toggle-button span {
   gap: 2px;
 }
 
+/* #menu li:not(:first-child) {
+  border-top: none;
+}
+
+#menu li:not(:first-child) a {
+  border-top: 1px solid #444;
+}
+
+#menu li:not(:first-child) a:hover {
+  border-top: 1px solid #eee;
+} */
+
 
 .language-select {
   display: inline-block;
+}
+
+  
+
+/* #menu a {
+    -webkit-user-select: auto !important;
+    -moz-user-select: auto !important;
+    -ms-user-select: auto !important;
+    user-select: auto !important;
+}
+   */
+
+
+.menu-story {  
+  margin: 1em 0 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid #444;
+}   
+
+.menu-story__link {
+  display: flex;
+  padding: 0.3em 0.75em;
+  align-items: center;
+  border: 1px solid #444;
+  justify-content: center;
+  color: #eee;
+  text-transform: uppercase;
+  gap: 6px;
+}
+
+.menu-story__link:hover {
+  background-color: #444;
+  color: #fff;
+  border: 1px solid #eee;
+}
+
+.menu-story__icon {
+  width: 18px;
+}
+
+.menu-core {
+  margin-top: 24px;
+  margin-bottom: 12px;
 }
 /* twine-user-stylesheet #27: "modal.css" */
 .modal {
@@ -4375,7 +4473,7 @@ label.toggle-button span {
     right: 0px;
     top: 15px;
     width: var(--popupWidth);
-    z-index: 1;
+    z-index: 33;
 }
 
 .popup {
@@ -4398,7 +4496,7 @@ label.toggle-button span {
     position: relative;
     right: calc(-10px - var(--popupWidth));
     transition-property: right;
-    z-index: 1;
+    z-index: 33;
     box-shadow: 2px 4px 20px 5px #fff;
 }
 
@@ -4617,7 +4715,63 @@ label.toggle-button span {
     object-fit: cover;
     z-index: 6;
 }
-/* twine-user-stylesheet #34: "sketch.css" */
+/* twine-user-stylesheet #34: "sidebar.css" */
+.sidebar-icon {
+    width: 24px;
+    height: auto;
+    vertical-align: sub;
+    margin-right: 2px;
+}
+
+.sidebar__time-hours  {
+    margin-top: 10px;
+}
+
+.sidebar_xp-text {
+    margin-bottom: -2px;
+}
+
+.sidebar__stats-money-text {
+    font-family: 'Stgotic';
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    color: #F3E7A7;
+    cursor: default;
+}
+
+.sidebar__text {
+    display: inline-block;
+    font-family: 'SUPERSCR';
+    letter-spacing: 2px;
+    height: auto;
+	transform: scaleY(1.25);
+    vertical-align: bottom;
+    font-size: 1rem;
+    color: #ccc;
+    cursor: default;
+}
+
+.sidebar__text--small {
+    font-size: 0.75rem;
+}
+
+.sidebar__numbers {
+    display: inline-block;
+    font-family: 'Stgotic';
+    font-size: 0.65rem;
+    height: auto;
+    color: #eee;
+    cursor: default;
+}
+
+.sidebar__numbers--small {
+    font-size: 0.45rem;
+}
+
+.sidebar__stats-container {
+    display: block;
+}
+/* twine-user-stylesheet #35: "sketch.css" */
 
 .text {
     font-weight: 400;
@@ -4639,8 +4793,10 @@ label.toggle-button span {
 .sketch__image {
     display: flex;
     position: relative;
-    width: 360px;
-    height: 240px;
+    max-width: 300px;
+    max-height: 300px;
+    min-height: 212px;
+    min-width: 212px;
     margin: auto; 
     border-radius: 10px;
     padding: 3px;
@@ -4655,8 +4811,10 @@ label.toggle-button span {
 }
 
 .sketch__video {
-    width: 360px;
-    height: 240px;
+    max-width: 300px;
+    max-height: 300px;
+    min-height: 212px;
+    min-width: 212px;
     display: flex;
     margin: auto; 
     border-radius: 10px;
@@ -4821,7 +4979,7 @@ label.toggle-button span {
     padding-right: 20px;
     text-shadow: 2px 2px 10px #dadada;
 }
-/* twine-user-stylesheet #35: "store.css" */
+/* twine-user-stylesheet #36: "store.css" */
 .store-item__image {
     width: 80px;
     height: 80px;
@@ -4837,9 +4995,9 @@ label.toggle-button span {
     color: red;
     font-weight: bold;
 }
-/* twine-user-stylesheet #36: "tabs.css" */
-.stats-menu {
-    overflow: hidden;
+/* twine-user-stylesheet #37: "tabs.css" */
+.menu-tabs {
+    overflow-x: auto;
     border: 1px solid #ccc;
     background-color: #222;
     width: fit-content;
@@ -4847,9 +5005,10 @@ label.toggle-button span {
     display: flex;
     justify-content: start;
     margin: 0;
+    border-radius: 2px;
 }
 
-.stats-menu a {
+.menu-tabs a {
     background-color: inherit;
     float: left;
     border: none;
@@ -4860,23 +5019,33 @@ label.toggle-button span {
     font-size: 20px;
     margin: 0;
     min-width: 70px;
+    max-width: 100px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
-.stats-menu :not(a:last-child) {
+.menu-tabs a:not(:last-child) {
     border-right: 1px solid #444;
     
 }
 
-.stats-menu a:hover {
+.menu-tabs a:hover {
     background-color: #444;
     border-color: #eee;
 }
+
+.menu-tabs .menu-tabs__item--active {
+    background-color: #666;
+    color: #eee;
+    text-decoration: underline;
+}
   
-/* twine-user-stylesheet #37: "talk_menu.css" */
+/* twine-user-stylesheet #38: "talk_menu.css" */
 .talk-menu__item {
     margin-bottom: 30px;
 }
-/* twine-user-stylesheet #38: "tips.css" */
+/* twine-user-stylesheet #39: "tips.css" */
 
 
 .tip_gen {
@@ -4898,6 +5067,7 @@ label.toggle-button span {
     margin-left: 8px;
     box-shadow: 0px 0px 8px #eeeeee66;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .info_tip-text {
@@ -5310,14 +5480,14 @@ localization_text['en'] = {
   "sk_prologue_loc_3_p_1_el_2_text": "The last time I dived, I caught a glimpse of something glowing off to my left.",
   "sk_prologue_loc_3_p_1_el_3_text": "I should dive over there again and get whatever it is.",
   "sk_prologue_loc_3_p_1_el_4_text": "Even if it's not the brooch, it might still be something valuable.\n It could be a piece of jewelry that I could sell or give as a gift.",
-  "sk_prologue_sk_2_p_1_el_2_text": "Diving near that spot, you found out that it is indeed the brooch.",
+  "sk_prologue_sk_2_p_1_el_1_text": "Diving near that spot, you found out that it is indeed the brooch.",
   "sk_prologue_sk_2_p_1_el_3_text": "However, there is something else present as well.",
   "sk_prologue_sk_2_p_1_el_4_text": "You attempt to grasp it too.",
-  "sk_prologue_sk_2_p_1_el_5_text": "The moment you lay hands on the artifact, your body becomes paralyzed.",
+  "sk_prologue_sk_2_p_1_el_6_text": "The moment you lay hands on that object, your body becomes paralyzed.",
   "sk_prologue_sk_2_p_1_el_7_text": "A vivid, multicolored canvas unfolds before your eyes.",
-  "sk_prologue_sk_2_p_1_el_8_text": "Your chest tightens, and instinctively, you open your mouth as if to take a breath, forgetting you're underwater.", 
-  "sk_prologue_sk_2_p_1_el_9_text": "Choking and losing consciousness, you start to fade.",
-  "sk_prologue_sk_2_p_1_el_10_text": "Black out",
+  "sk_prologue_sk_2_p_1_el_9_text": "Your chest tightens, and instinctively, you open your mouth as if to take a breath, forgetting you're underwater.", 
+  "sk_prologue_sk_2_p_1_el_10_text": "Choking and losing consciousness, you start to fade.",
+  "sk_prologue_sk_2_p_1_el_11_text": "Black out",
   "sk_prologue_sk_3_p_1_el_1_text": "During this uncertain state, you see some odd images.",
   "sk_prologue_sk_3_p_1_el_2_text": "...",
   "sk_prologue_sk_3_p_1_el_4_text": "Somehow I feel like I know her...",
@@ -5341,72 +5511,202 @@ localization_text['en'] = {
   "sk_prologue_sk_4_p_1_el_14_text": "Was that object something of such value that it had its own protection?",
   "sk_prologue_sk_4_p_1_el_15_text": "Did I inflicted a curse or something like that by touching the item from the bottom of the lake?",
   "sk_prologue_sk_4_p_2_el_1_text": "Yes, you're right. That object is the reason.",
-  "sk_prologue_sk_4_p_2_el_2_text": "It's appeared that you found an artifact from the old legend.",
+  "sk_prologue_sk_4_p_2_el_2_text": "It looks like you've discovered an object from the ancient tale.",
   "sk_prologue_sk_4_p_2_el_3_text": "According to it you supposed to be a hero that find this mythical item, gain big power and lead nations to a new age.",
-  "sk_prologue_sk_4_p_2_el_4_text": "But as you could see, it's not that anyone can easilt accure it.",
-  "sk_prologue_sk_4_p_2_el_5_text": "We need to perform ritual to activate the abilities and adapt your body to it, otherwise it could became a huge problem to your health and life. So better to act quickly.\n",
-  "sk_prologue_sk_4_p_2_el_6_text": "But why the artifact would kill his hero?",
-  "sk_prologue_sk_4_p_2_el_7_text": "That only worthy could gain that strength.",
-  "sk_prologue_sk_4_p_2_el_8_text": "Also you know as they say: big power, big consequnces.",
+  "sk_prologue_sk_4_p_2_el_4_text": "However, as you can see, it's not something anyone can easily obtain.",
+  "sk_prologue_sk_4_p_2_el_5_text": "We need to perform a ritual to activate the abilities and adapt your body to it, otherwise it could became a huge problem for your health and life. So it's better to act quickly.\n",
+  "sk_prologue_sk_4_p_2_el_6_text": "But why the artifact would kill its hero?",
+  "sk_prologue_sk_4_p_2_el_7_text": "Only those worthy can obtain such strength.",
+  "sk_prologue_sk_4_p_2_el_8_text": "Also, you know what they say: great power, great consequences.",
   "sk_prologue_sk_4_p_2_el_9_text": "So what should we do?",
   "sk_prologue_sk_4_p_3_el_1_text": "Yes, you're right. That object is the reason.",
-  "sk_prologue_sk_4_p_3_el_2_text": "It's appeared that you found an cursed artifact and quite a powerfull one.",
-  "sk_prologue_sk_4_p_3_el_3_text": "It makes you seak and ill and will lead to your doom if we don't do something about it.",
-  "sk_prologue_sk_4_p_3_el_4_text": "We have small amount of time to remove it from your body, so you would be alive and without irreversible damage.",
+  "sk_prologue_sk_4_p_3_el_2_text": "It seems that you've discovered a cursed artifact, and it's quite powerful.",
+  "sk_prologue_sk_4_p_3_el_3_text": "It makes you seak and ill, and if we don't take action, it will ultimately lead to your doom.",
+  "sk_prologue_sk_4_p_3_el_4_text": "We only have a limited amount of time to extract it from your body to ensure you stay alive and avoid permanent damage.",
   "sk_prologue_sk_4_p_3_el_5_text": "What the hell did I get myself into?",
   "sk_prologue_sk_4_p_3_el_6_text": "What can we do?",
-  "sk_prologue_sk_4_p_4_el_1_text": "I've prepared necessary equipment and spell before you woke up.",
-  "sk_prologue_sk_4_p_4_el_2_text": "Drink this potions. Then lay down, relax and do not resist.",
-  "sk_prologue_sk_4_p_4_el_3_text": "It would be painfull but you need to overcame it.",
-  "sk_prologue_sk_4_p_4_el_4_text": "All of this rush so quiclky.",
-  "sk_prologue_sk_4_p_4_el_5_text": "You can call it your first task as a hero!",
-  "sk_prologue_sk_4_p_4_el_6_text": "It will be much more worse if we do not do it now, so please bear with it for some time!",
-  "sk_prologue_sk_4_p_4_el_7_text": "Trust",
-  "sk_prologue_sk_4_p_4_el_8_text": "Refuse",
-  "sk_prologue_sk_4_p_5_el_1_text": "Her face started to have some features of annoyance.",
-  "sk_prologue_sk_4_p_5_el_2_text": "But she continued with calm and questionable voice. ",
-  "sk_prologue_sk_4_p_5_el_3_text": "We need to save you.",
-  "sk_prologue_sk_4_p_5_el_4_text": "If you didn't cath up something, I can repeat it to you later. ",
-  "sk_prologue_sk_4_p_5_el_5_text": "But time is the prioritized recource now.",
-  "sk_prologue_sk_4_p_5_el_6_text": "Agree to her propose",
+  "sk_prologue_sk_4_p_4_el_1_text": "I've prepared all the necessary equipment and got the spell ready before you woke up.",
+  "sk_prologue_sk_4_p_4_el_2_text": "Drink these potions first. ",
+  "sk_prologue_sk_4_p_4_el_3_text": "Then lie down, relax and do not resist.",
+  "sk_prologue_sk_4_p_4_el_4_text": "It would be painfull, but you need to overcame it.",
+  "sk_prologue_sk_4_p_4_el_5_text": "All of this rush so quiclky.",
+  "sk_prologue_sk_4_p_4_el_6_text": "You can call it your first task as a hero!",
+  "sk_prologue_sk_4_p_4_el_7_text": "If we don't do this now, it's gonna get a lot worse. You must endure it for a short while!",
+  "sk_prologue_sk_4_p_4_el_8_text": "Trust",
+  "sk_prologue_sk_4_p_4_el_9_text": "Refuse",
+  "sk_prologue_sk_4_p_5_el_1_text": "Her face began to show signs of annoyance",
+  "sk_prologue_sk_4_p_5_el_2_text": "But she continued with composed and inquisitive tone. ",
+  "sk_prologue_sk_4_p_5_el_3_text": "We have to rescue you.",
+  "sk_prologue_sk_4_p_5_el_4_text": "If you didn't catch something, I can explain it again later. ",
+  "sk_prologue_sk_4_p_5_el_5_text": "But right now, time is our most prioritized resource.",
+  "sk_prologue_sk_4_p_5_el_6_text": "Agree to her proposal",
   "sk_prologue_sk_4_p_5_el_7_text": "Refuse",
-  "sk_prologue_sk_4_p_6_el_1_text": "It's so painful! Please stop!",
-  "sk_prologue_sk_4_p_6_el_2_text": "We can't! It will be even worse if we pause this now.\n",
-  "sk_prologue_sk_4_p_6_el_3_text": " I feel like my life is being sucked out of you!",
-  "sk_prologue_sk_4_p_6_el_4_text": "It just means that it works! You replace our current peasant soucre with a heroic one.\n",
-  "sk_prologue_sk_4_p_6_el_5_text": "Try you best to suppress you inner contrmeasure. It would end faster.\n",
-  "sk_prologue_sk_4_p_6_el_6_text": "Trust anyway\n",
-  "sk_prologue_sk_4_p_6_el_7_text": "Stop this torture ",
-  "sk_prologue_sk_4_p_7_el_1_text": "You feel like you're on the verge of death, she repeats it's necessary. \n",
-  "sk_prologue_sk_4_p_7_el_2_text": "Stop I can't take it anymore.\n\t",
-  "sk_prologue_sk_4_p_7_el_3_text": "You must overcome it! Embrace the feel! Don't struggle!\n",
-  "sk_prologue_sk_4_p_7_el_4_text": "Ahhh! I feel like dying.\n\t",
-  "sk_prologue_sk_4_p_7_el_5_text": "You will feel like that, but then you'll reborn!\n\n\t  ",
-  "sk_prologue_sk_4_p_7_el_6_text": "Now you can only emit gagging sounds\n",
+  "sk_prologue_sk_4_p_6_el_1_text": "It hurts so much! Please stop!",
+  "sk_prologue_sk_4_p_6_el_2_text": "We can't! It will be even worse if we pause this now.",
+  "sk_prologue_sk_4_p_6_el_3_text": "I feel like my life is getting drained!",
+  "sk_prologue_sk_4_p_6_el_4_text": "That just means it's working!",
+  "sk_prologue_sk_4_p_6_el_5_text": "You're replacing your current peasant life source with a heroic one.",
+  "sk_prologue_sk_4_p_6_el_6_text": "Try you best to suppress you inner resistance! It'll be over faster then.",
+  "sk_prologue_sk_4_p_6_el_7_text": "Trust anyway",
+  "sk_prologue_sk_4_p_6_el_8_text": "Stop this torture ",
+  "sk_prologue_sk_4_p_7_el_1_text": "You feel like you're on the verge of death.",
+  "sk_prologue_sk_4_p_7_el_2_text": "Stop! I can't bear it anymore.",
+  "sk_prologue_sk_4_p_7_el_3_text": "You must overcome it! Embrace the feeling! Do not struggle!",
+  "sk_prologue_sk_4_p_7_el_4_text": "Ahhh! I feel like dying!",
+  "sk_prologue_sk_4_p_7_el_5_text": "You will feel that way, but then you'll reborn!  ",
+  "sk_prologue_sk_4_p_7_el_6_text": "Now, all you can do is emit gagging sounds.",
   "sk_prologue_sk_4_p_7_el_7_text": "Just a little left!",
   "sk_prologue_sk_4_p_7_el_8_text": "Give up to the feeling of death",
   "sk_prologue_sk_4_p_7_el_9_text": "Take all your will and stop it",
   "sk_prologue_sk_de_1_p_1_el_2_text": "Your were ovehelmed with agony and despair.",
-  "sk_prologue_sk_de_1_p_1_el_5_text": "Barely discernible you heard:\n",
-  "sk_prologue_sk_de_1_p_1_el_8_text": "Ah! Yes!     \n",
-  "sk_prologue_sk_de_1_p_1_el_11_text": "... \n",
-  "sk_prologue_sk_de_1_p_1_el_14_text": "..rked!          \n",
+  "sk_prologue_sk_de_1_p_1_el_5_text": "Barely able to recongize anything, you heard:",
+  "sk_prologue_sk_de_1_p_1_el_8_text": "Ah! Yes!",
+  "sk_prologue_sk_de_1_p_1_el_11_text": "... ",
+  "sk_prologue_sk_de_1_p_1_el_14_text": "..orked!",
   "sk_prologue_sk_de_1_p_1_el_17_text": " ... ",
   "sk_prologue_sk_de_1_p_1_el_20_text": "..nally got the first one!",
-  "sk_prologue_sk_de_1_p_1_el_23_text": "It were the last words your here before your life was swallowed up by the abyss of the darkness.\n",
+  "sk_prologue_sk_de_1_p_1_el_23_text": "Those were the last words your heard before your life was swallowed by the darkness.",
   "sk_prologue_sk_de_1_p_1_el_26_text": "...",
-  "sk_prologue_sk_5_p_1_el_1_text": "You said that you don't trust her",
-  "sk_prologue_sk_5_p_1_el_2_text": "(if (witch_trust>1) remember about pain you haid.)",
-  "sk_prologue_sk_5_p_1_el_3_text": "You appretiate her hellp but you will look of how deals will go first.",
-  "sk_prologue_sk_5_p_1_el_4_text": "The witch cuss you out.",
-  "sk_prologue_sk_5_p_1_el_5_text": "And tries the to perform the ritual without your consent, but the spell don't works as she want, you only feel a bit more tired and siffed.",
-  "sk_prologue_sk_5_p_1_el_6_text": "Then in rage, she casts a some spell on you.",
-  "sk_prologue_sk_5_p_1_el_7_text": "You're consumed by darkness for a moment and then you feel like you fell from a small height.",
-  "sk_prologue_sk_5_p_1_el_8_text": "You look around and find yourself in the forest.",
-  "sk_prologue_sk_5_p_1_el_9_text": "Go to village",
-  "sk_prologue_sk_5_p_2_el_2_text": "You wade through the forest and see the beginning of your village.",
-  "sk_prologue_sk_5_p_2_el_3_text": "You are incredibly tired, but you are gathering with the rest of your strength to get home.",
-  "sk_prologue_sk_5_p_2_el_4_text": "Find last forces in you and return home"
+  "sk_prologue_sk_5_p_1_el_1_text": "With great effort you stand up, breaking the current spell.",
+  "sk_prologue_sk_5_p_1_el_2_text": "This is too much!",
+  "sk_prologue_sk_5_p_1_el_3_text": "The witch is clearly furious.",
+  "sk_prologue_sk_5_p_1_el_4_text": "I appreciate your help, but this seems way over the top.",
+  "sk_prologue_sk_5_p_1_el_5_text": "I'll better see of how things will play out first.",
+  "sk_prologue_sk_5_p_1_el_6_text": "You ungrateful fool!",
+  "sk_prologue_sk_5_p_1_el_7_text": "You didn't even tried, you little shrimp!",
+  "sk_prologue_sk_5_p_1_el_8_text": "You should've just endure it a little longer, you little shrimp!",
+  "sk_prologue_sk_5_p_1_el_9_text": "The witch casts a restriction spell on you.",
+  "sk_prologue_sk_5_p_1_el_10_text": "What the hell?",
+  "sk_prologue_sk_5_p_1_el_11_text": "The witch attempts to perform the ritual without your consent. ",
+  "sk_prologue_sk_5_p_1_el_12_text": "I've got my doubts whether she really intended to help me the artifact, if this even was an artifact at all.",
+  "sk_prologue_sk_5_p_1_el_13_text": "I doubt she ever really tried to lift the curse, if there even was one.",
+  "sk_prologue_sk_5_p_1_el_14_text": "You only feel a bit more tired and dizzy.",
+  "sk_prologue_sk_5_p_1_el_15_text": "It seems like without my consent, it's not going to work.",
+  "sk_prologue_sk_5_p_1_el_16_text": "Shut your damn mouth!",
+  "sk_prologue_sk_5_p_1_el_17_text": "In a fit of rage, she tries to cast something else. <br> But the energy around becomes unstable and then... ",
+  "sk_prologue_sk_5_p_1_el_18_text": "...you're consumed by the void...",
+  "sk_prologue_sk_5_p_1_el_19_text": "...",
+  "sk_prologue_sk_5_p_1_el_20_text": "Suddenly, you feel like you've fallen from a small height.",
+  "sk_prologue_sk_5_p_1_el_21_text": "Ouch!",
+  "sk_prologue_sk_5_p_1_el_22_text": "As your vision clears, you take a look around and realize that you're somewhere in the middle of a dense forest.",
+  "sk_prologue_sk_5_p_1_el_23_text": "Go to village",
+  "sk_prologue_sk_5_p_2_el_2_text": "You wade through the forest until the outskirts of your village come into view.",
+  "sk_prologue_sk_5_p_2_el_3_text": "As you look at the village, you lean against a nearby tree. <br> The events of the recent past swirl in your mind.",
+  "sk_prologue_sk_5_p_2_el_4_text": "Was all of that even real?",
+  "sk_prologue_sk_5_p_2_el_5_text": "Your knees start trembling, and your head begins to spin.",
+  "sk_prologue_sk_5_p_2_el_6_text": "Never mind, I have to make it home while I still have some power left.",
+  "sk_prologue_sk_5_p_2_el_7_text": "Gathering the last of your strength and consciousness, you direct your movements towards home.",
+  "sk_prologue_sk_5_p_2_el_8_text": "...",
+  "sk_prologue_sk_6_p_1_el_1_text": "Filling that you in already familiar void again, you start to regain consciousness.",
+  "sk_prologue_sk_6_p_1_el_2_text": "Huh? What happened?",
+  "sk_prologue_sk_6_p_1_el_3_text": "The last thing I remember I made up to return home.",
+  "sk_prologue_sk_6_p_1_el_4_text": "...",
+  "sk_prologue_sk_6_p_1_el_5_text": "Hm, this feels similar as when I was drowning. ",
+  "sk_prologue_sk_6_p_1_el_6_text": "But now my mind is less vague.",
+  "sk_prologue_sk_6_p_1_el_7_text": "You start to see glimss of some scene.",
+  "sk_prologue_sk_6_p_1_el_8_text": "I feel like I can consentrate to make it more clear.",
+  "sk_prologue_sk_6_p_1_el_9_text": "You spend some time concentraiting on a feeling of control.",
+  "sk_prologue_sk_6_p_1_el_10_text": "A few minute after you feel like you not can only make it clear but get into it.",
+  "sk_prologue_sk_6_p_1_el_11_text": "Maybe this will help me to return back to wherever I am now in reality.",
+  "sk_prologue_sk_6_p_1_el_12_text": "You focus on the image you encountered and ...",
+  "sk_prologue_sk_6_p_1_el_13_text": "... dive into it.",
+  "sk_prologue_sk_6_p_2_el_1_text": "After few second of complete darkness, you see the woman from your previous void experience.",
+  "sk_prologue_sk_6_p_2_el_3_text": "But now you see though her eyes he own reflection in the mirror.",
+  "sk_prologue_sk_6_p_2_el_5_text": "Would you please stop looking at yourself ? (Uknown woman voice)\n",
+  "sk_prologue_sk_6_p_2_el_6_text": "You know how I'm keen on viewing beautiful things? (woman voice)",
+  "sk_prologue_sk_6_p_2_el_7_text": "Woman, in the head that you are now, turns to the woman who asked her before.",
+  "sk_prologue_sk_6_p_2_el_13_text": "It's that damn witch, even though she looks younger",
+  "sk_prologue_sk_6_p_2_el_9_text": "Witch (but younger)\nNow it's not the time for jokes, Kalithara! \n",
+  "sk_prologue_sk_6_p_2_el_10_text": "You called me by the name, then it have to be serious!",
+  "sk_prologue_sk_6_p_2_el_11_text": "Yes, it will be god damn serious, if we're going to start it!",
+  "sk_prologue_sk_6_p_2_el_12_text": "You clearly know how difficult it would be, how many dangers will lie ahead and how many actually low our chances are!",
+  "sk_prologue_sk_6_p_2_el_14_text": "Having second thougth!",
+  "sk_prologue_sk_6_p_2_el_15_text": "It's not that, I'm devoted for what we should achieve.",
+  "sk_prologue_sk_6_p_2_el_16_text": "But you feel too much at ease for the thing of such scale that we should put in motion next week already! ",
+  "sk_prologue_sk_6_p_2_el_17_text": "It's looks like you do not take it serious enough, while I can't stop being on edge and that's what piss me off so much!",
+  "sk_prologue_sk_6_p_2_el_18_text": "For me it's just inevitable. We'll persevere for as long as it takes and \nwipe out anyone or anything on our way.  As for the rest, what should happen will just happen!",
+  "sk_prologue_sk_6_p_2_el_19_text": "Thus, I do not feel overwhelmed by it!",
+  "sk_prologue_sk_6_p_2_el_21_text": "If it put you on ease, just remember I'll be in that path with you all the way through and we will gain that power that could end this world as we know it.",
+  "sk_prologue_sk_6_p_2_el_20_text": "Witch looks a bit calmer and relaxed after those words.",
+  "sk_prologue_sk_6_p_2_el_22_text": "Yeah, I guess you right. Uh, I still have a lot to learn from you.",
+  "sk_prologue_sk_6_p_2_el_23_text": "You see Kalithara return hew view to the mirror. ",
+  "sk_prologue_sk_6_p_2_el_24_text": "A subtle mischieves smile appeared on her lips as she look directly in her own eyes.",
+  "sk_prologue_sk_6_p_2_el_25_text": "And then sudenlly huge force throw you out of that place.",
+  "sk_prologue_sk_6_p_2_el_26_text": "...",
+  "sk_prologue_loc_4_p_1_el_1_text": "You wake up abruptly, automatically lifting your upper body while still lying down.",
+  "sk_prologue_loc_4_p_1_el_2_text": "Did she saw me? Did she knew I was watching?",
+  "sk_prologue_loc_4_p_1_el_3_text": "You feel your sweat all ower body.",
+  "sk_prologue_loc_4_p_1_el_4_text": "Wait, my usual feeling is back. I'm no longer in that void.",
+  "sk_prologue_loc_4_p_1_el_5_text": "After rubbing your eyes, you look around.",
+  "sk_prologue_loc_4_p_1_el_6_text": "You find yourself in your room.",
+  "sk_prologue_loc_4_p_1_el_7_text": "And you see your sister sleeing by your bed.",
+  "sk_prologue_loc_4_p_1_el_8_text": "I don't know what happened yesterday, but at least I'm home. \n",
+  "sk_prologue_loc_4_p_1_el_9_text": "You look out at a window and see that it's already a day.",
+  "sk_prologue_loc_4_p_1_el_10_text": "I need to wake her out and figure out what happened.",
+  "sk_prologue_loc_4_p_1_el_11_text": "Awake her.",
+  "sk_prologue_loc_4_p_2_el_1_text": "You gently start to shake her shoulder.",
+  "sk_prologue_loc_4_p_2_el_2_text": "You her start to open sleepy eyes, while looking through you.\n",
+  "sk_prologue_loc_4_p_2_el_4_text": "Then she aknoledge that you look at her.",
+  "sk_prologue_loc_4_p_2_el_5_text": "She jumps to hug you and start crying.",
+  "sk_prologue_loc_4_p_2_el_6_text": "Thanks god you okay!",
+  "sk_prologue_loc_4_p_2_el_7_text": "I was so scared you wouldn't wake up (sobbing)",
+  "sk_prologue_loc_4_p_2_el_9_text": "Hey, hey, you'll choke me like that.",
+  "sk_prologue_loc_4_p_2_el_10_text": "She releases you. ",
+  "sk_prologue_loc_4_p_2_el_11_text": "Her face still shows concern.",
+  "sk_prologue_loc_4_p_2_el_12_text": "What happened with you?",
+  "sk_prologue_loc_4_p_2_el_13_text": "I want to ask the same thing. I don't remember how I got here.",
+  "sk_prologue_loc_4_p_2_el_14_text": "Yesterday, you disappeared for the whole day.",
+  "sk_prologue_loc_4_p_2_el_15_text": "In the evening I've became to worry and asked few people who come across if they see you that day, but none one them did.",
+  "sk_prologue_loc_4_p_2_el_16_text": "I wanted to go the lake myself, but it was already getting too dark and you know how clumsy I can be in the dark. And parents could find out something is wrong.",
+  "sk_prologue_loc_4_p_2_el_17_text": "Now that I see it, I should've go there anyway and shouldn't wait that much.",
+  "sk_prologue_loc_4_p_2_el_18_text": "She starts sobbing.",
+  "sk_prologue_loc_4_p_2_el_19_text": "I've waited for your whole night.",
+  "sk_prologue_loc_4_p_2_el_20_text": "And after you come back early at the morning, you looked like a deadman with a lifeless gaze.",
+  "sk_prologue_loc_4_p_2_el_21_text": "Completely ignoring me and surroding you hobbled to the bed and passed out.",
+  "sk_prologue_loc_4_p_2_el_22_text": "In your sleep, you tossed and turned a lot, sweated, and had weak breathing.",
+  "sk_prologue_loc_4_p_2_el_23_text": "She starts crying again.",
+  "sk_prologue_loc_4_p_2_el_24_text": "I.. I.. I didn't know what happened to you! I.. I thought you're going to die!",
+  "sk_prologue_loc_4_p_2_el_25_text": "I wiped you with a w-wet towel, c-checked your breath and changed your p-pillows that became wet.",
+  "sk_prologue_loc_4_p_2_el_26_text": "Then you s-stabialized and I r-relaxed a bit and fell asleep.",
+  "sk_prologue_loc_4_p_2_el_27_text": "Don't worry, it's alright now.",
+  "sk_prologue_loc_4_p_2_el_28_text": "Now it's now you fell ill because of me! Because of stupid brooch!\n",
+  "sk_prologue_loc_4_p_2_el_29_text": "She became to look more angry, then crying.",
+  "sk_prologue_loc_4_p_2_el_30_text": "I could stop parents from leaving to the city before you've returned!  Calling a doctor just slept out my mind from! And I just fall asleep when you became a little bit better!",
+  "sk_prologue_loc_4_p_2_el_31_text": "You feel she's on edge and bluntly moved to hug her tightly.",
+  "sk_prologue_loc_4_p_2_el_32_text": "She started to break out, but you hold your effert to keep het embraced and she gave up.",
+  "sk_prologue_loc_4_p_2_el_33_text": "Listen, I'm fine now. ",
+  "sk_prologue_loc_4_p_2_el_34_text": "I'll be more carefull from now on.",
+  "sk_prologue_loc_4_p_2_el_35_text": "I'm just never been s-so scared in my life.",
+  "sk_prologue_loc_4_p_2_el_36_text": "She almost calm down.",
+  "sk_prologue_loc_4_p_2_el_37_text": "But now it's over. Please return to cheerful bratty sister I know of.",
+  "sk_prologue_loc_4_p_2_el_38_text": "Heh.. Am I that bratty?",
+  "sk_prologue_loc_4_p_2_el_39_text": "She asks with small innocent smile.",
+  "sk_prologue_loc_4_p_2_el_40_text": "Sometime you are.",
+  "sk_prologue_loc_4_p_2_el_41_text": "You answer while patting her haid.",
+  "sk_prologue_loc_4_p_2_el_42_text": "You both distant yourselves a bit. ",
+  "sk_prologue_loc_4_p_2_el_43_text": "But what the hell had happened to you?",
+  "sk_prologue_loc_4_p_2_el_44_text": "Well, I've dived by the shore untill I had to have a rest. And then repeated, untill I find some shinning item. ",
+  "sk_prologue_loc_4_p_2_el_45_text": "I grabbed it and afther that everythin is blury. Only some fragments with some dreams, images and my thouths about returning home. ",
+  "sk_prologue_loc_4_p_2_el_46_text": "Sounds fishy, are you sure that is all?",
+  "sk_prologue_loc_4_p_2_el_47_text": "And did you expect me to go through big quest like heroes of those adventure tales? ",
+  "sk_prologue_loc_4_p_2_el_48_text": "Well, I expected something more then concussion after diving, counting all that emotional stress and your late condition.",
+  "sk_prologue_loc_4_p_2_el_49_text": "As i've said fragments of images and fuzzy images took consisent amount of time, I was out there.",
+  "sk_prologue_loc_4_p_2_el_50_text": "Hmm, fine.Let's finish at that. ",
+  "sk_prologue_loc_4_p_2_el_51_text": "But if you remembe anything you better tell me.",
+  "sk_prologue_loc_4_p_2_el_52_text": "I guess she not completely bought my half-truth.",
+  "sk_prologue_loc_4_p_2_el_53_text": "But it better be that way, she's already overstressed to listen about strange visions, dangerous artifact and wicked witch.",
+  "sk_prologue_loc_4_p_2_el_54_text": "Try to stend up",
+  "sk_prologue_loc_4_p_3_el_1_text": "You tried to stand up but shaked and almost fall.",
+  "sk_prologue_loc_4_p_3_el_2_text": "<<getName 'melissa'>> looked at you with worry. ",
+  "sk_prologue_loc_4_p_3_el_3_text": "How are you? Can you move?",
+  "sk_prologue_loc_4_p_3_el_4_text": "I feel a bit weeker and lighter.",
+  "sk_prologue_loc_4_p_3_el_5_text": "Not that I needed a diet before.",
+  "sk_prologue_loc_4_p_3_el_6_text": "Do you need help?",
+  "sk_prologue_loc_4_p_3_el_7_text": "No, no. I will be fine in a minute.",
+  "sk_prologue_loc_4_p_3_el_8_text": "Wanna grab something in the kitchen and plan the day.",
+  "sk_prologue_loc_4_p_3_el_9_text": "Ah, almost forgot. <<getName 'barret'>> came in yesterday, he wanted to find you and talk about something.",
+  "sk_prologue_loc_4_p_3_el_10_text": "..."
+  
 }
 /* twine-user-script #3: "content_fr.js" */
 localization_text['fr'] = {
@@ -6197,23 +6497,125 @@ localization_system_text['en'] = {
         'index_disclaimer_assets_2': 'The game is provided on an "as is" basis.',
         'index_disclaimer_assets_3': 'The game developers make no representations or warranties of any kind, express or implied, regarding the accuracy, reliability, or completeness of the content within the game.',
         'index_disclaimer_assets_4': 'The developers disclaim any responsibility for errors or omissions in the game\'s content.',
+        'index_disclaimer_assets_5': 'If you find content that violates legally registered rights, please contact us.',
         'index_disclaimer_commercial_title': 'Non-Commercial Basis',
         'index_disclaimer_commercial_1': 'This game is offered free of charge and has a non-commercial basis. ',
         'index_disclaimer_commercial_2': 'Any donations made and participation in beta testing, whether paid or unpaid, are strictly voluntary.',
         
         'index_setting_text': 'Please check settings to setup main character name and setup game interface. ',
         'index_setting_link': 'Settings',
-        'index_info_interface_text': 'You can check game interface description.',
+        'index_info_interface_text': 'You can become familiar with the details of the game\'s gameplay and interface.',
         'index_info_interface_link': 'Interface description',
 
         'index_disclaimer_end_1': 'By clicking "Start the game," you confirm that you acknowledge and agree to the terms and conditions set forth in this disclaimer.',
         'index_disclaimer_end_2': 'You understand that the game contains adult themes and may not be suitable for all audiences. ',
         'index_disclaimer_end_3': 'If you do not agree with any part of this disclaimer or are not of legal age in your country, please refrain from playing the game.',        
-        'index_story_start': 'Start the game',
-
+        'index_story_start': 'Start the game'
+    },
+    info_interface: {
+        'info_menu_item_1': 'Main Info',
+        'info_menu_item_2': 'Location details',
+        'info_menu_item_3': 'Quest & Tasks',
+        'info_menu_item_4': 'Sketch system',
+        'info_menu_item_5': 'Tips, popups and modal windows',
+        'info_menu_item_6': 'Sidebar Info',
+        'info_main_list_1': 'Game Systems',
+        'info_main_list_2': 'The game uses several various systems.',
+        'info_main_list_3': 'That systems are:',
+        'info_main_list_item_1': 'quest&tasks',
+        'info_main_list_item_2': 'location scheduling',
+        'info_main_list_item_3': 'activities',
+        'info_main_list_item_4': 'sketches(dialogs and narration)',
+        'info_main_list_item_5': 'inventory',
+        'info_main_list_item_6': 'fighting',
+        'info_main_list_item_7': 'events',
+        'info_main_list_item_8': 'tryouts (mini-games)',
+        'info_main_list_item_9': 'system localization',
+        'info_main_list_item_10': 'tips, popups and modal windows',
+        'info_main_list_item_11': 'sidebar info',
+        'info_main_list_item_status_1': '[will be updated]',
+        'info_main_list_item_status_2': '[basically done]',
+        'info_main_list_item_status_3': '[in future]',
+        'info_main_list_item_status_4': '[will be reworked]',
+        'info_main_list_item_status_5': '[need global testing]',
+        'info_location_1': 'Location-Specific Details',
+        'info_location_2': 'In the game, the player navigates through various locations.',
+        'info_location_3': 'Each location is associated with its own image.',
+        'info_location_4': 'Directly beneath the location images, player can find green buttons featuring a "pin" icon. <br> These buttons act as links connecting different locations.',
+        'info_location_5': 'Based on the scheduling system, certain characters may be present in specific locations.',
+        'info_location_6': 'If a character isn\'t currently in the player\'s party or is engaged in a talk with the player, then character is occupied with their own activities.',
+        'info_location_7': 'Some activities cannot be interrupted. In such cases the player needs to wait until the character finishes the activity and becomes available for interaction.',
+        'info_location_8': 'Specific locations may offer a distinct set of activities, such as "Wait" or "Sleep."',
+        'info_location_9': 'Activities primarily serve to enhance played character stats.',
+        'info_location_10': '(Eg., choosing to "rest" increases the "stamina" parameter value, but also consumes some time.)',
+        'info_location_11': 'Activities have availablility conditions.',
+        'info_location_12': '(Eg., if character "stamina" value is already high, player cannot choose to "take a nap.")',
+        'info_location_13': 'As the storyline progresses, new activities may become available within certain locations.',
+        'info_qt_1': 'Quests and tasks',
+        'info_qt_2': 'Quest can be activated by clicking on the quest button.',
+        'info_qt_3': 'After activating a quest a set of tasks are being activated.',
+        'info_qt_4': 'A quest can consist of multiple sets of tasks, presented one after another.',
+        'info_qt_5': '(Eg., the first set - talk to the alchemist and request a special power potion [1 task],',
+        'info_qt_6': 'the second set - the player needs to collect green and collect red flowers [2 tasks],',
+        'info_qt_7': 'the third set - the player should talk to the alchemist, who will then give a special potion [1 task],',
+        'info_qt_8': 'the fourth set - defeat the hobgoblin in the forest cave [1 task].)',
+        'info_qt_9': 'Certain types of tasks ',
+        'info_qt_9_2': '["fight", "search", "distribute", "gather", "sketch"]',
+        'info_qt_9_3': 'can be carried out in specific task-related locations.',
+        'info_qt_10': 'Task can be activated by clicking on the task button.',
+        'info_qt_11': 'Some tasks could have conditions to be done.',
+        'info_qt_12': 'Certain tasks may require multiple actions to be completed.',
+        'info_qt_13': '(Eg., to search three times on a specific location) ',
+        'info_qt_14': 'Other task types like ',
+        'info_qt_14_2': '(["eliminate", "escort"]) ',
+        'info_qt_14_3': 'are completed through player actions.',
+        'info_qt_15': '(Eg., an "eliminate 3 goblins" task can be completed by encountering goblins in their usual locations and defeating them or by defeating them during other tasks that involve fighting goblins. ) ',
+        'info_qt_16': 'Player can find details about the current quests and tasks in the questlog. (After it will be implemened).',
+        'info_sketch_1': 'Sketch system',
+        'info_sketch_2': 'A "Sketch" serves as a unit to include dialogs, narrative content, associated media and selectable choices that fit the context of the page.',
+        'info_sketch_3': 'These sketches can vary in size, the number of pages they contain, and the quantity of available choices.',
+        'info_sketch_4': 'Sketch could have components like narration, dialogues, media elements and blocks for player choices.',
+        'info_sketch_5': 'Some of those blocks could be hidden based on current player\'s stats, story progression, previos player choices and actions taken.',
+        'info_sketch_6': '(Eg., during a specific quest\'s sketch dialogue, if the player has a character named Smith in their party, ',
+        'info_sketch_6_1': 'then blocks of dialogue featuring Smith\'s perspective on the situation might appear, along with a new choice offering ways to resolve that situation using Smith\'s unique abilities.  ',
+        'info_sketch_6_2': 'If the player doesn\'t have Smith in their party, those blocks would be hidden.)',
+        'info_sketch_7': 'Narration text block types examples:',
+        'info_sketch_text_narration': 'The story narration text provides a description of the unfolding events.',
+        'info_sketch_text_thought': 'The inner thoughts and reflections of the character currently being played.',
+        'info_sketch_text_gesture': 'Describes the emotions and gestures displayed by other characters in the scene.',
+        'info_sketch_8': 'Dialog block example:',
+        'info_sketch_9': 'Choice blocks examples:',
+        'info_sketch_10': 'There are few types of choice blocks available when the player is engaged in a sketch. ',
+        'info_sketch_11': 'Player can click on these buttons to choose between different options or simply proceed further in the story.',
+        'info_sketch_12': 'Such links will lead to a dead-end sequence with game over at the end of it.',
+        'info_sketch_13': 'However, an autosave will be triggered upon clicking the dead-end link, allowing players to load the choice page again.',
+        'info_sketch_14': 'Dead-ends often provide more insights into the game\'s lore, characters\' personalities and their goals.',
+        'info_sketch_15': 'Exploring them is recommended.',
+        'info_sketch_16': 'Location link displays that by clicking it, player will move to a different in-game location.',
+        'info_sketch_17': 'Quest links during sketch display quests that can only be started from within the sketch.',
+        'info_sketch_18': 'Be aware that some sketches are one-time only and cannot be initiated again.',
+        'info_tips_1': 'Tips, popups and modal windows.',
+        'info_tips_2': 'Within the game, player may encounter various information popups triggered by in-game actions.',
+        'info_tips_3': 'These popups typically fall into two categories: quest-specific and task-specific.',
+        'info_tips_4': '(Eg., when player initiats a quest).',
+        'info_tips_5': 'In addition to textual information about triggered actions, the popups also feature categorized icons.',
+        'info_tips_6': 'These icons are unique and visually indicate the type of action that has been initiated.',
+        'info_tips_7': 'Over time, these icons will become familiar, helping player to quickly identify the nature of the action with less effort.',
+        'info_tips_8': 'Additionally, the game features modal windows, which are primarily used for two purposes: <br> to confirm specific one-time actions or to provide additional details and confirmations.',
+        'info_tips_9': 'Lastly, player may see a "system tip" represented by an icon.',
+        'info_tips_10': 'Player can access detailed information by hovering their mouse cursor over this icon.',
+        'info_tips_11': 'These tips offer valuable insights and guidance to enhance gameplay experience.',
+        'info_sidebar_1': 'Sidebar Info',
+        'info_sidebar_2': 'This block displays the title and logo of the game.',
+        'info_sidebar_3': 'A bit lower, there is a block that shows in-game time values.',
+        'info_sidebar_4': 'These bars represent the main stats of playing character.',
+        'info_sidebar_5': 'This bar tracks the playing character\'s experience and it\'s progress.',
+        'info_sidebar_6': 'Towards the bottom of the sidebar, there is the game author\'s signature and the current game version.'
+    },
+    info_story: {
         'info_story_1': 'This is fantasy world with magic, demons, elves and other sufficient items of fantasy world.',
-        'info_story_2': 'You are ',
-        'info_story_4': 'Just a young villager.',
+        'info_story_2': 'His name is ',
+        'info_story_4': 'Main character is just a young villager boy from a family of carpenters which is called Wright.',
         'info_story_5': 'It\'s time to wake up in' ,
 
         'info_story_wake_up': 'Your bedroom',
@@ -6226,12 +6628,10 @@ localization_system_text['en'] = {
     sidebar: {
         'caption_lang': 'Current language',
         'caption_version': 'Version',
-        'caption_today': 'Today is',
         'caption_name': 'Name',
-        'caption_money': 'Money',
-        'caption_coins': 'Coins',
         'caption_health': 'Health',
         'caption_stamina': 'Stamina',
+        'caption_mana': 'Mana'
     },
     passages: {
         passage_menu_inventory: 'Inventory',
@@ -6240,7 +6640,6 @@ localization_system_text['en'] = {
         passage_menu_info: 'Info',
         passage_menu_help: 'Help',
         passage_menu_debug: 'Debug',
-        passage_menu_avatar: 'Avatar',
 
         passage_home_bedroom: 'Bedroom',
         passage_Home_Hallway: 'Hallway',
@@ -6371,7 +6770,7 @@ localization_system_text['en'] = {
         'search': 'Stamina is not enough!',
     },
     tips: {
-        tip_name: 'You can change name anytime in the settings menu.',
+        tip_name: 'You can change main character`s name anytime in the settings menu.',
         tip_example: 'You can see usefull and explanational info.'
     }    
     
@@ -6473,7 +6872,6 @@ localization_system_text['fr'] = {
         passage_menu_info: 'Info',
         passage_menu_help: 'Aide',
         passage_menu_debug: 'Déboguer',
-        passage_menu_avatar: 'Avatar',
         passage_start_description: 'Commencer le jeu',
         passage_start_description_wake_up: 'Réveillez-vous',
 
@@ -6690,7 +7088,6 @@ localization_system_text['ru'] = {
         passage_menu_info: 'Инфо',
         passage_menu_help: 'Помощь',
         passage_menu_debug: 'Дебаг',
-        passage_menu_avatar: 'Аватар',
         passage_start_description: 'Начать игру',
         passage_start_description_wake_up: 'Просыпаться',
 
@@ -6895,6 +7292,7 @@ setup.tasks_broadcast = {};                           // to store tasks function
 
 
 State.variables.temp = {};
+State.variables.temp.menu_tab = 1;
 State.variables.temp.localization_text = {en:{}, ru:{}, fr:{}}
 
 State.variables.temp.cur_tasks_fight = [];
@@ -6909,6 +7307,45 @@ State.variables.misc = {};
 State.variables.misc.static_counter = {};
 State.variables.misc.player_name = localization_text['en']['characters_mc_name'];
 
+State.variables.settings.interface = {
+    time: {
+        day_of_week: 0,
+        month: 0,
+        hours: 0
+    },
+    stats: {
+        money: 0
+    },
+    bars: {
+        health: 0,
+        stamina: 0,
+        mana: 0
+    },
+    exp: {
+        level: 0,
+    },
+    menu_story: {
+        inventory: 0,
+        questlog: 0,
+        party: 0,
+        help: 0,
+        info: 0
+    },
+    menu_core: {
+        saves: 1,
+        settings: 1,
+        restart: 1,
+        share: 1
+    },
+    sign: {
+        author: 1,
+        version: 1,
+    },
+    history: {
+        backward: 1,
+        forward: 1
+    }
+}
 
 State.variables.lists = {};
 
@@ -7381,7 +7818,7 @@ const character_list =
     "magic_attack": "20",
     "magic_defence": "20"
     },
-    "lvl": "60",
+    "lvl": "30",
     "health_max": "900",
     "stamina_max": "300",
     "mana_max": "900",
@@ -7390,6 +7827,24 @@ const character_list =
     "health": "900",
     "stamina": "300",
     "mana": "900"
+},
+"kalithara": {
+    "id_name": "kalithara",
+    "battle": {
+    "attack": "1",
+    "defence": "1",
+    "magic_attack": "20",
+    "magic_defence": "20"
+    },
+    "lvl": "220",
+    "health_max": "10000",
+    "stamina_max": "6500",
+    "mana_max": "18000",
+    "money": "0",
+    "exp": "10",
+    "health": "10000",
+    "stamina": "6500",
+    "mana": "18000"
 },
 "sekhmau": {
     "id_name": "sekhmau",
@@ -7442,7 +7897,7 @@ const image_list =
         'lake_3.gif',
         'lake_4.jpg',
         'lake_5.jpg',
-        'artifact_first_piece.jpg',
+        'artifact_1.png',
         'kalithara.png',
         'global_catastrophe.png',
         'witch_samples.webp',
@@ -9121,13 +9576,15 @@ const sketch_list = {
     "pages": {
       "page_1": {
         "el_1": {
-          "type": "image",
-          "media_folder": "prologue",
-          "media_file": "lake_5.jpg"
-        },
-        "el_2": {
           "type": "text",
           "text_type": "default"
+        },
+        "el_2": {
+          "type": "image",
+          "media_folder": "prologue",
+          "media_file": "brooch.png",
+          "width": "256",
+          "height": "256"
         },
         "el_3": {
           "type": "text",
@@ -9138,27 +9595,34 @@ const sketch_list = {
           "text_type": "default"
         },
         "el_5": {
-          "type": "text",
-          "text_type": "default"
-        },
-        "el_6": {
           "type": "image",
           "media_folder": "prologue",
-          "media_file": "artifact_first_piece.jpg"
+          "media_file": "artifact_1.png",          
+          "width": "256",
+          "height": "300",
+        },
+        "el_6": {
+          "type": "text",
+          "text_type": "default"
         },
         "el_7": {
           "type": "text",
           "text_type": "default"
         },
         "el_8": {
-          "type": "text",
-          "text_type": "default"
+          "type": "image",
+          "media_folder": "prologue",
+          "media_file": "depth.gif"
         },
         "el_9": {
           "type": "text",
           "text_type": "default"
         },
         "el_10": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_11": {
           "type": "choice",
           "passage": "pre_sketch_passage",
           "move_to": "sketch",
@@ -9355,7 +9819,7 @@ const sketch_list = {
           "type": "choice",
           "passage": "pre_sketch_passage",
           "move_to": "page",
-          "page_link": "page_2",
+          "page_link": "page_3",
           "sketch_idn": "sketch_warning",
           "fake": "",
           "link_type": "default",
@@ -9471,10 +9935,15 @@ const sketch_list = {
           "posture": "default"
         },
         "el_4": {
+          "type": "speech",
+          "character": "witch",
+          "posture": "default"
+        },
+        "el_5": {
           "type": "text",
           "text_type": "thought"
         },
-        "el_5": {
+        "el_6": {
           "type": "speech",
           "conditions": [
             {
@@ -9487,7 +9956,7 @@ const sketch_list = {
           "character": "witch",
           "posture": "default"
         },
-        "el_6": {
+        "el_7": {
           "type": "speech",
           "conditions": [
             {
@@ -9500,7 +9969,7 @@ const sketch_list = {
           "character": "witch",
           "posture": "default"
         },
-        "el_7": {
+        "el_8": {
           "type": "choice",
           "passage": "pre_sketch_passage",
           "move_to": "page",
@@ -9516,7 +9985,7 @@ const sketch_list = {
             }
           ]
         },
-        "el_8": {
+        "el_9": {
           "type": "choice",
           "passage": "pre_sketch_passage",
           "move_to": "page",
@@ -9603,6 +10072,11 @@ const sketch_list = {
           "posture": "default"
         },
         "el_6": {
+          "type": "speech",
+          "character": "witch",
+          "posture": "default"
+        },
+        "el_7": {
           "type": "choice",
           "passage": "pre_sketch_passage",
           "move_to": "page",
@@ -9618,7 +10092,7 @@ const sketch_list = {
             }
           ]
         },
-        "el_7": {
+        "el_8": {
           "type": "choice",
           "passage": "Forest",
           "page_link": "page_1",
@@ -9650,7 +10124,7 @@ const sketch_list = {
         },
         "el_5": {
           "type": "speech",
-          "character": "player",
+          "character": "witch",
           "posture": "default"
         },
         "el_6": {
@@ -9689,7 +10163,7 @@ const sketch_list = {
       "page_1": {
         "el_1": {
           "type": "injection",
-          "injection": "<<fadein 3s .5s>> <<fadeout 2s 6s>>\n"
+          "injection": "<<fadein 2s >> <<fadeout 1.5s 4s>>\n"
         },
         "el_2": {
           "type": "text",
@@ -9701,7 +10175,7 @@ const sketch_list = {
         },
         "el_4": {
           "type": "injection",
-          "injection": "<<fadein 3s 8s>><<fadeout 2s 12s>> \n"
+          "injection": "<<fadein 2s 6s>><<fadeout 1.5s 10s>> \n"
         },
         "el_5": {
           "type": "text",
@@ -9713,7 +10187,7 @@ const sketch_list = {
         },
         "el_7": {
           "type": "injection",
-          "injection": "<<fadein 2s 14s>><<fadeout 2s 16s>> "
+          "injection": "<<fadein 2s 12s>><<fadeout 1.5s 14s>> "
         },
         "el_8": {
           "type": "speech",
@@ -9726,7 +10200,7 @@ const sketch_list = {
         },
         "el_10": {
           "type": "injection",
-          "injection": "<<fadein 2s 18s>><<fadeout 2s 20s>> \n"
+          "injection": "<<fadein 2s 16s>><<fadeout 1.5s 18s>> \n"
         },
         "el_11": {
           "type": "text",
@@ -9738,11 +10212,12 @@ const sketch_list = {
         },
         "el_13": {
           "type": "injection",
-          "injection": "<<fadein 2s 22s>><<fadeout 2s 24s>> \n"
+          "injection": "<<fadein 2s 20s>><<fadeout 1.5s 22s>> \n"
         },
         "el_14": {
-          "type": "text",
-          "text_type": "default"
+          "type": "speech",
+          "character": "witch",
+          "posture": "default"
         },
         "el_15": {
           "type": "injection",
@@ -9750,7 +10225,7 @@ const sketch_list = {
         },
         "el_16": {
           "type": "injection",
-          "injection": "<<fadein 2s 26s>><<fadeout 2s 28s>> "
+          "injection": "<<fadein 2s 24s>><<fadeout 1.5s 26s>> "
         },
         "el_17": {
           "type": "text",
@@ -9762,7 +10237,7 @@ const sketch_list = {
         },
         "el_19": {
           "type": "injection",
-          "injection": "<<fadein 2s 30s>><<fadeout 2s 34s>> \n  "
+          "injection": "<<fadein 2s 28s>><<fadeout 1.5s 32s>> \n  "
         },
         "el_20": {
           "type": "speech",
@@ -9775,7 +10250,7 @@ const sketch_list = {
         },
         "el_22": {
           "type": "injection",
-          "injection": "<<fadein 3s 37s>>  \n"
+          "injection": "<<fadein 2s 34s>>  \n"
         },
         "el_23": {
           "type": "text",
@@ -9787,7 +10262,7 @@ const sketch_list = {
         },
         "el_25": {
           "type": "injection",
-          "injection": "<<fadein 3s 39s>>\n"
+          "injection": "<<fadein 2s 36s>>\n"
         },
         "el_26": {
           "type": "choice",
@@ -9813,34 +10288,123 @@ const sketch_list = {
           "text_type": "default"
         },
         "el_2": {
-          "type": "text",
-          "text_type": "default"
+          "type": "speech",
+          "character": "mc",
+          "posture": "default"
         },
         "el_3": {
           "type": "text",
-          "text_type": "default"
+          "text_type": "gesture"
         },
         "el_4": {
-          "type": "text",
-          "text_type": "default"
+          "type": "speech",
+          "character": "player",
+          "posture": "default"
         },
         "el_5": {
-          "type": "text",
-          "text_type": "default"
+          "type": "speech",
+          "character": "player",
+          "posture": "default"
         },
         "el_6": {
-          "type": "text",
-          "text_type": "default"
+          "type": "speech",
+          "character": "witch",
+          "posture": "default"
         },
         "el_7": {
-          "type": "text",
-          "text_type": "default"
+          "type": "speech",
+          "conditions": [
+            {
+              "type": "check_flag",
+              "flag": "witch_prologue_trust",
+              "comparatives": "less",
+              "value": "1"
+            }
+          ],
+          "character": "witch",
+          "posture": "default"
         },
         "el_8": {
+          "type": "speech",
+          "character": "witch",
+          "posture": "default"
+        },
+        "el_9": {
           "type": "text",
           "text_type": "default"
         },
-        "el_9": {
+        "el_10": {
+          "type": "speech",
+          "character": "mc",
+          "posture": "default"
+        },
+        "el_11": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_12": {
+          "type": "text",
+          "conditions": [
+            {
+              "type": "check_flag",
+              "flag": "witch_prologue_behaviour",
+              "comparatives": "equal",
+              "value": "1"
+            }
+          ],
+          "text_type": "thought"
+        },
+        "el_13": {
+          "type": "text",
+          "conditions": [
+            {
+              "type": "check_flag",
+              "flag": "witch_prologue_behaviour",
+              "comparatives": "equal",
+              "value": "2"
+            }
+          ],
+          "text_type": "thought"
+        },
+        "el_14": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_15": {
+          "type": "speech",
+          "character": "mc",
+          "posture": "default"
+        },
+        "el_16": {
+          "type": "speech",
+          "character": "witch",
+          "posture": "default"
+        },
+        "el_17": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_18": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_19": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_20": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_21": {
+          "type": "text",
+          "text_type": "thought"
+        },
+        "el_22": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_23": {
           "type": "choice",
           "passage": "pre_sketch_passage",
           "move_to": "page",
@@ -9855,7 +10419,7 @@ const sketch_list = {
               "param": "stamina",
               "change_type": "set",
               "value": "10"
-            },
+            }
           ]
         }
       },
@@ -9877,17 +10441,606 @@ const sketch_list = {
           "text_type": "default"
         },
         "el_4": {
+          "type": "text",
+          "text_type": "thought"
+        },
+        "el_5": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_6": {
+          "type": "text",
+          "text_type": "thought"
+        },
+        "el_7": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_8": {
+          "type": "choice",
+          "move_to": "sketch",
+          "passage": "Home_Bedroom",
+          "page_link": "page_1",
+          "sketch_idn": "prologue_sk_6",
+          "fake": "",
+          "link_type": "default"
+        }
+      }
+    }
+  },
+  "prologue_sk_6": {
+    "id_name": "prologue_sk_6",
+    "pages": {
+      "page_1": {
+        "el_1": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_2": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_3": {
+          "type": "text",
+          "text_type": "thought"
+        },
+        "el_4": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_5": {
+          "type": "text",
+          "text_type": "thought"
+        },
+        "el_6": {
+          "type": "text",
+          "text_type": "thought"
+        },
+        "el_7": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_8": {
+          "type": "text",
+          "text_type": "thought"
+        },
+        "el_9": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_10": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_11": {
+          "type": "text",
+          "text_type": "thought"
+        },
+        "el_12": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_13": {
+          "type": "choice",
+          "passage": "pre_sketch_passage",
+          "move_to": "page",
+          "page_link": "page_2",
+          "sketch_idn": "sketch_warning",
+          "fake": "",
+          "link_type": "default"
+        }
+      },
+      "page_2": {
+        "el_1": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_2": {
+          "type": "image",
+          "media_folder": "prologue",
+          "media_file": "kalithara.png",
+          "width": "",
+          "height": "",
+          "img_style": "default"
+        },
+        "el_3": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_4": {
+          "type": "injection",
+          "injection": "<<set $player = $characters.kalithara;>>"
+        },
+        "el_5": {
+          "type": "speech",
+          "character": "witch",
+          "posture": "default"
+        },
+        "el_6": {
+          "type": "speech",
+          "character": "player",
+          "posture": "default"
+        },
+        "el_7": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_8": {
+          "type": "image",
+          "media_folder": "prologue",
+          "media_file": "witch_first_contact.png",
+          "width": "",
+          "height": "",
+          "img_style": "default"
+        },
+        "el_13": {
+          "type": "text",
+          "text_type": "thought"
+        },
+        "el_9": {
+          "type": "speech",
+          "character": "witch",
+          "posture": "default"
+        },
+        "el_10": {
+          "type": "speech",
+          "character": "player",
+          "posture": "default"
+        },
+        "el_11": {
+          "type": "speech",
+          "character": "witch",
+          "posture": "default"
+        },
+        "el_12": {
+          "type": "speech",
+          "character": "witch",
+          "posture": "default"
+        },
+        "el_14": {
+          "type": "speech",
+          "character": "player",
+          "posture": "default"
+        },
+        "el_15": {
+          "type": "speech",
+          "character": "witch",
+          "posture": "default"
+        },
+        "el_16": {
+          "type": "speech",
+          "character": "witch",
+          "posture": "default"
+        },
+        "el_17": {
+          "type": "speech",
+          "character": "player",
+          "posture": "default"
+        },
+        "el_18": {
+          "type": "speech",
+          "character": "player",
+          "posture": "default"
+        },
+        "el_19": {
+          "type": "speech",
+          "character": "player",
+          "posture": "default"
+        },
+        "el_21": {
+          "type": "speech",
+          "character": "player",
+          "posture": "default"
+        },
+        "el_20": {
+          "type": "text",
+          "text_type": "gesture"
+        },
+        "el_22": {
+          "type": "speech",
+          "character": "player",
+          "posture": "default"
+        },
+        "el_23": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_24": {
+          "type": "text",
+          "text_type": "gesture"
+        },
+        "el_25": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_26": {
+          "type": "choice",
+          "passage": "Home_Bedroom",
+          "page_link": "page_1",
+          "move_to": "sketch",
+          "sketch_idn": "prologue_loc_4",
+          "fake": "",
+          "link_type": "default"
+        }
+      }
+    }
+  },
+  "prologue_loc_4": {
+    "id_name": "prologue_loc_4",
+    "pages": {
+      "page_1": {
+        "el_1": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_2": {
+          "type": "text",
+          "text_type": "thought"
+        },
+        "el_3": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_4": {
+          "type": "text",
+          "text_type": "thought"
+        },
+        "el_5": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_6": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_7": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_8": {
+          "type": "text",
+          "text_type": "thought"
+        },
+        "el_9": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_10": {
+          "type": "text",
+          "text_type": "thought"
+        },
+        "el_11": {
+          "type": "choice",
+          "passage": "Home_Bedroom",
+          "move_to": "page",
+          "page_link": "page_2",
+          "sketch_idn": "sketch_warning",
+          "fake": "",
+          "link_type": "default"
+        }
+      },
+      "page_2": {
+        "el_1": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_2": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_3": {
+          "type": "image",
+          "media_folder": "prologue",
+          "media_file": "melissa_anticipation.jpg",
+          "width": "",
+          "height": "",
+          "img_style": "default"
+        },
+        "el_4": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_5": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_6": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_7": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_8": {
+          "type": "image",
+          "media_folder": "prologue",
+          "media_file": "melissa_anticipation.jpg",
+          "width": "",
+          "height": "",
+          "img_style": "default"
+        },
+        "el_9": {
+          "type": "speech",
+          "character": "mc",
+          "posture": "default"
+        },
+        "el_10": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_11": {
+          "type": "text",
+          "text_type": "gesture"
+        },
+        "el_12": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_13": {
+          "type": "speech",
+          "character": "mc",
+          "posture": "default"
+        },
+        "el_14": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_15": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_16": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_17": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_18": {
+          "type": "text",
+          "text_type": "gesture"
+        },
+        "el_19": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_20": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_21": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_22": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_23": {
+          "type": "text",
+          "text_type": "gesture"
+        },
+        "el_24": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_25": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_26": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_27": {
+          "type": "speech",
+          "character": "mc",
+          "posture": "default"
+        },
+        "el_28": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_29": {
+          "type": "text",
+          "text_type": "gesture"
+        },
+        "el_30": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_31": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_32": {
+          "type": "speech",
+          "character": "mc",
+          "posture": "default"
+        },
+        "el_33": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_34": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_35": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_36": {
+          "type": "text",
+          "text_type": "gesture"
+        },
+        "el_37": {
+          "type": "speech",
+          "character": "mc",
+          "posture": "default"
+        },
+        "el_38": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_39": {
+          "type": "text",
+          "text_type": "gesture"
+        },
+        "el_40": {
+          "type": "speech",
+          "character": "mc",
+          "posture": "default"
+        },
+        "el_41": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_42": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_43": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_44": {
+          "type": "speech",
+          "character": "mc",
+          "posture": "default"
+        },
+        "el_45": {
+          "type": "speech",
+          "character": "mc",
+          "posture": "default"
+        },
+        "el_46": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_47": {
+          "type": "speech",
+          "character": "mc",
+          "posture": "default"
+        },
+        "el_48": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_49": {
+          "type": "speech",
+          "character": "mc",
+          "posture": "default"
+        },
+        "el_50": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_51": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_52": {
+          "type": "text",
+          "text_type": "thought"
+        },
+        "el_53": {
+          "type": "text",
+          "text_type": "thought"
+        },
+        "el_54": {
+          "type": "choice",
+          "passage": "pre_sketch_passage",
+          "move_to": "page",
+          "page_link": "page_3",
+          "sketch_idn": "sketch_warning",
+          "fake": "",
+          "link_type": "default"
+        }
+      },
+      "page_3": {
+        "el_1": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_2": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_3": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_4": {
+          "type": "speech",
+          "character": "mc",
+          "posture": "default"
+        },
+        "el_5": {
+          "type": "text",
+          "text_type": "thought"
+        },
+        "el_6": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_7": {
+          "type": "speech",
+          "character": "mc",
+          "posture": "default"
+        },
+        "el_8": {
+          "type": "speech",
+          "character": "mc",
+          "posture": "default"
+        },
+        "el_9": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_10": {
           "type": "choice",
           "move_to": "passage",
           "passage": "Home_Bedroom",
           "page_link": "page_1",
           "sketch_idn": "sketch_warning",
           "fake": "",
-          "link_type": "location"
+          "link_type": "default"
         }
       }
     }
   }
+
 }
 /* twine-user-script #23: "json_tasks.js" */
 const task_list = 
@@ -10892,9 +12045,10 @@ setup.initOnce = function() {
 	const flag_list  = [
 		'witch_prologue_trust',
 		'witch_prologue_behaviour',
-	]
+	];
 
 	State.variables.flags = flag_list.reduce((ac,a) => ({...ac,[a]:0}),{});
+
 
 
 	// NEED REWORK !!!!!!!!!!!!!!!!!!!!!!!
@@ -17293,8 +18447,8 @@ function createParticipantBlock(party_participant, party_id_name) {
     `;
 
     
-	setup.drawBar(party_participant.health, party_participant.health_max, stat_health, 90, 45);
-    setup.drawBar(party_participant.stamina, party_participant.stamina_max, stat_stamina, 60, 35);
+	// setup.drawBar(party_participant.health, party_participant.health_max, stat_health, 90, 45);
+    // setup.drawBar(party_participant.stamina, party_participant.stamina_max, stat_stamina, 60, 35);
 
     return participant_block;
 
@@ -17749,37 +18903,37 @@ function classnaming(string) {
 
 
 // --- BARS ---
-setup.drawBar = function (cur_stat, max_stat, stat_name, saturation, lightness) {
-    $(document).ready(function(){
-        const percent_stat = (cur_stat/max_stat) * 100;
-        const $bar_block = $(`.bar-line[data-stat='${stat_name}']`);
+// setup.drawBar = function (cur_stat, max_stat, stat_name, saturation, lightness) {
+//     $(document).ready(function(){
+//         const percent_stat = (cur_stat/max_stat) * 100;
+//         const $bar_block = $(`.bar-line[data-stat='${stat_name}']`);
 
-        const new_color = barGradient(cur_stat, max_stat, saturation, lightness);
+//         const new_color = barGradient(cur_stat, max_stat, saturation, lightness);
 
-        $bar_block.css({"background-color": `${new_color}`, "width": `${percent_stat}%`});
-    });
-};
+//         $bar_block.css({"background-color": `${new_color}`, "width": `${percent_stat}%`});
+//     });
+// };
 
-const
-    red = 0,
-    yellow = 60,
-    green = 120,
-    turquoise = 180,
-    blue = 240,
-    pink = 300;
+// const
+//     red = 0,
+//     yellow = 60,
+//     green = 120,
+//     turquoise = 180,
+//     blue = 240,
+//     pink = 300;
 
-const hsl_col_perc = function (current, start, end, max, saturation, lightness) {
-    const percent = current / max,
-        temp = (end - start) * percent,
-        hue = temp + start;
+// const hsl_col_perc = function (current, start, end, max, saturation, lightness) {
+//     const percent = current / max,
+//         temp = (end - start) * percent,
+//         hue = temp + start;
 
-    return 'hsl('+hue+', '+saturation+'%, '+lightness+'%)';
-}
+//     return 'hsl('+hue+', '+saturation+'%, '+lightness+'%)';
+// }
 
-const barGradient = function (current, max, saturation, lightness) {
-    const color = hsl_col_perc(current, red, green, max, saturation, lightness);
-    return color;
-}
+// const barGradient = function (current, max, saturation, lightness) {
+//     const color = hsl_col_perc(current, red, green, max, saturation, lightness);
+//     return color;
+// }
 
 
 
@@ -18153,30 +19307,211 @@ setup.showDateSidebar = function () {
     const cur_week_day = lists.day_of_week_list[time.day_of_week_id];
     const cur_month = lists.month_list[time.month_id];
 
-    const caption_today = getLocalizedSystemText('sidebar', 'caption_today');
-
     const time_hour = (time.hour < 10) ? `0${time.hour}` : time.hour;
     const time_minute = (time.minute < 10) ? `0${time.minute}` : time.minute;
 
     const content = `
-        <span>${caption_today} </span> : <span>${cur_week_day}</span>
-        <span> ${cur_month}</span>, <span> ${time.month_day}</span>
-        <span> ${time_hour}</span>:<span>${time_minute}</span>
+        <div id="sidebar__time-container">
+            <span id="day_of_week" class="sidebar__text" title="Current day of week">${cur_week_day},</span> <br>
+            <span id="month" class="sidebar__text" title="Current month"> ${cur_month}</span>, <span class="sidebar__text" title="Current day of month"> ${time.month_day}</span><br>
+            <span id="hours" class="sidebar__numbers sidebar__time-hours" title="Current time"> ${time_hour}:${time_minute}</span>
+        </div>
     `;
 
+    return nobr(content);
+}
+
+
+
+setup.showStatsValues = function () {
+    const money = State.variables.player.money;
+
+    const content = `
+        <div id="money" class="sidebar__stats-container">
+            <img class="sidebar-icon" src="media/icons/coin.png" alt="Money" title="Money">             
+            <span class="sidebar__stats-money-text">${money}</span> 
+        </div>
+    `;
+
+    return nobr(content);
+}
+
+
+setup.showStatsBar = function () { 
+
+    const health_obj = {
+        localization_item: 'caption_health',
+        prop: 'health',
+        prop_max: 'health_max',
+        bar_bg_color: '#660000',
+        bar_line_color: '#FF3333'
+    }
+
+    const stamina_obj = {
+        localization_item: 'caption_stamina',
+        prop: 'stamina',
+        prop_max: 'stamina_max',
+        bar_bg_color: '#006600',
+        bar_line_color: '#66FF66'
+    }
+
+    const mana_obj = {
+        localization_item: 'caption_mana',
+        prop: 'mana',
+        prop_max: 'mana_max',
+        bar_bg_color: '#000044',
+        bar_line_color: '#3366FF'
+    }
+
+    const content = getBarContent(health_obj) + getBarContent(stamina_obj) + getBarContent(mana_obj);
     return content;
 }
 
 
 
-function showDeadendInteface() {
-    $('#ui-bar-history').hide();
-    $('#menu-story').hide();
+function getBarContent(stat_obj) {
+    const player = State.variables.player;
+    const localization_list = 'sidebar';   
+
+    const cur_stat = player[stat_obj.prop];
+    const cur_stat_max = player[[stat_obj.prop_max]];
+    const bar_text = getLocalizedSystemText(localization_list, stat_obj.localization_item);    
+    const stat_percent = (!!cur_stat || !!cur_stat_max) ? (cur_stat/cur_stat_max) * 100 : 0;
+
+    const content = `
+        <div id="${stat_obj.prop}" class="progress-bar-container">
+            <span class="sidebar__text">${bar_text}</span> <span class="sidebar__numbers">${cur_stat}/${cur_stat_max}</span>
+            <div class="progress-bar" style="background-color: ${stat_obj.bar_bg_color};"> 	
+                <span class="progress-bar-line" data-stat="health" style="background-color: ${stat_obj.bar_line_color}; width: ${stat_percent}%;"></span> 
+            </div>
+        </div>
+    `;
+
+    return nobr(content);
 }
 
-function hideDeadendInteface() {
-    $('#ui-bar-history').show();
-    $('#menu-story').show();
+
+
+setup.showMenuStory = function () {
+    const localization_list = 'passages';   
+    const parent = $('<div class="menu-story"></div>');
+    const menu_list = {
+        inventory: {
+            text: 'passage_menu_inventory',
+            passage: 'Menu_Inventory',
+            icon: 'inventory',
+        },
+        questlog: {
+            text: 'passage_menu_questlog',
+            passage: 'Menu_Questlog',
+            icon: 'questlog',
+        },
+        party: {
+            text: 'passage_menu_party',
+            passage: 'Menu_Party',
+            icon: 'party',
+        },
+        info: {
+            text: 'passage_menu_info',
+            passage: 'Menu_Info',
+            icon: 'info',
+        }, 
+        help: {
+            text: 'passage_menu_help',
+            passage: 'Menu_Help',
+            icon: 'help',
+        },
+        debug: {
+            text: 'passage_menu_debug',
+            passage: 'Menu_Debug',
+            icon: 'debug',
+        }
+    }
+
+    if (!State.variables.settings.debug) delete menu_list.debug;
+
+    $.each(menu_list, function (menu_list_item_index, menu_list_item) {
+        const menu_item_text = getLocalizedSystemText(localization_list, menu_list_item.text);    
+        const content = `
+            <a data-passage="${menu_list_item.passage}" class="link-internal macro-link menu-story__link" role="link" tabindex="0">
+                <img class="menu-story__icon" src="media/icons/menu/${menu_list_item.icon}.png">
+                <span> ${menu_item_text} </span>
+            </a>
+        `;
+
+        parent.append(content);
+    });
+
+    const parent_html = nobr(parent.prop('outerHTML'));
+  
+    return parent_html;
+}
+
+
+setup.showMenuCore = function () {
+    const parent = $('<div class="menu-core"></div>');
+    
+    const menu_list = {
+        saves: {
+            text: 'savesTitle',
+            icon: 'saves'
+        },
+        settings: {
+            text: 'settingsTitle',
+            icon: 'settings'
+        },
+        restart: {
+            text: 'restartTitle',
+            icon: 'restart'
+        },
+        share: {
+            text: 'shareTitle',
+            icon: 'share'
+        },
+    }
+
+    $.each(menu_list, function (menu_list_item_index, menu_list_item) {
+        const menu_item_text = L10n.get(menu_list_item.text);
+        const content = `
+            <a data-func="${menu_list_item_index}" class="link-internal macro-link menu-story__link menu-core__link" role="link" tabindex="0">
+                <img class="menu-story__icon" src="media/icons/menu/${menu_list_item.icon}.png">
+                <span> ${menu_item_text} </span>
+            </a>
+        `;
+        parent.append(content);
+    });
+    
+
+    const parent_html = nobr(parent.prop('outerHTML'));
+    
+    return parent_html;
+}
+
+
+$('#ui-bar-body').on('click', '.menu-core__link', function () {
+    const func = $(this).data('func');
+    const settings_passage = 'Menu_Settings';
+
+    if (func == 'saves') UI.saves();
+    if (func == 'settings') Engine.play(settings_passage);
+    if (func == 'restart') UI.restart();
+    if (func == 'share') UI.share();
+});
+
+
+setup.showSignature = function () {
+    const company_name = `2caKe gems`;
+    const version_string = getLocalizedSystemText('sidebar', 'caption_version');
+    const version_number = '0.1.019';
+
+    const content = `
+        <div class='sidebar-signature'>
+            <p id="company_name">[${company_name}]</p>
+            <p id="game_version">${version_string}: ${version_number}</p>
+        </div>
+    `;
+    
+    return nobr(content);
 }
 
 
@@ -18185,6 +19520,102 @@ function getRandomAssignmentOfValueFormArray(Array) {
     return Array[random_index];
 }
   
+
+setup.addMenuTabs = function(amount, category, key) {
+    $(document).ready(function() {
+        const parent = $('.menu-tabs'); 
+        const cur_tab_menu_index = State.variables.temp.menu_tab;
+
+        for (let i = 1; i <= amount; i++) {
+            const content = `
+                <a 
+                    data-passage=passage() 
+                    data-setter="$temp.menu_tab to ${i}" 
+                    ${cur_tab_menu_index == i ? 'class="menu-tabs__item--active"' : ""}
+                > 
+                    <<text_system '${category}' '${key}_${i}'>> 
+                </a>
+            `;
+
+            parent.wiki(nobr(content));
+        }
+
+    });
+}
+
+
+
+function updateInterfaceDisplay() {
+    const interface_settings = State.variables.settings.interface;
+
+    for (const interface_block in interface_settings) {
+        const interface_block_obj = interface_settings[interface_block];
+        let at_least_one_block_element_visible = false;
+
+        for (const interface_element in interface_block_obj) {
+            if (interface_block_obj[interface_element] !== 0) {
+                at_least_one_block_element_visible = true;
+                break;
+            }
+        }
+
+        if (!at_least_one_block_element_visible) {
+            hideInterfacePart(interface_block); 
+        } else {
+            for (const interface_element in interface_block_obj) {
+                if (interface_block_obj[interface_element] === 0) {
+                    hideInterfacePart(interface_element); 
+                }
+            }
+        }
+    }
+}
+
+
+function hideInterfacePart(part) {
+    const part_list = {
+        time: '#sidebar__time-container',
+        day_of_week: '#day_of_week',
+        month: '#month',
+        hours: '#hours',
+        stats: '.sidebar__stats-container',
+        money: '#money',
+        bars: '.progress-bar-container',
+        health: '#health',
+        stamina: '#stamina',
+        mana: '#mana',
+        exp: '.level-container',
+        level: '.level-container',
+        menu_story: '.menu-story',
+        inventory: '.menu-story a[data-passage="Menu_Inventory"]',
+        questlog: '.menu-story a[data-passage="Menu_Questlog"]',
+        party: '.menu-story a[data-passage="Menu_Party"]',
+        help: '.menu-story a[data-passage="Menu_Help"]',
+        info: '.menu-story a[data-passage="Menu_Info"]',      
+        menu_core: '.menu-core',
+        saves: '#menu-item-saves',
+        settings: '#menu-item-settings',
+        restart: '#menu-item-restart',
+        share: '#menu-item-share',
+        sign: '.sidebar-signature',
+        author: '#company_name',
+        version: '#game_version',
+        history: '#ui-bar-history',
+        backward: '#history-backward',
+        forward: '#history-forward'
+    }
+
+    $(document).ready(() => { 
+        const elem = part_list[part];
+        $(`${elem}`).hide();
+
+        
+        if ($('.menu-story').css('display') === 'none')  $('.menu-core').prepend(`<br></br>`);  // for better looking positioning of core-menu at the index page. 
+        // setTimeout(() => {  if ( $(`${elem}`).css('display') != 'none' ) $(`${elem}`).hide() }, 50); // check because SugarCube rewrite menu links to display: list-item; in ~ 40 milisecond
+    });
+
+    
+}
 /* twine-user-script #58: "global_variables.js" */
 function getAjaxGlobal() {
     $.ajax({
@@ -19278,8 +20709,9 @@ setup.showParty = function (party_list) {
     $(document).ready(function() {
         const player = State.variables.player;
         const $party_container = $('#party-container');
+        const head_text = `Your current party consists of:`;
     
-        let party_info = `<h2>Party consists of:</h2>`;
+        let party_info = `<h2>${head_text}</h2>`;
     
         party_list.forEach((character) => {
             const characterName = getCharacterName(character.id_name);
@@ -19988,8 +21420,8 @@ function drawPageDialog() {
                 </div>
             `;
 
-            if (dialog_mode == 0) $(speech_block).append(speech_inner_0);
-            if (dialog_mode == 1) $(speech_block).append(speech_inner_1);
+            if (dialog_mode == 0) $(speech_block).wiki( nobr(speech_inner_0));
+            if (dialog_mode == 1) $(speech_block).wiki( nobr(speech_inner_1));
         }
 
         function checkPicture(path, arrayFormat) {                     
@@ -20139,7 +21571,7 @@ function getSketchHtmlBlockByType(element, sketch_idn, page_id, element_key) {
 
         const image = `
             <img 
-                style="width: ${(!!element.width) ? element.width : 360}px; height: ${(!!element.height) ? element.height : 240}px" 
+                style="width: ${(!!element.width) ? `${element.width}px` : 'auto'}; height: ${(!!element.height) ? `${element.height}px` : 'auto'}" 
                 class="${imgClass}" 
                 src="media/sketches/${element.media_folder}/${element.media_file}" 
                 alt="${element.media_file}" 
@@ -20153,7 +21585,7 @@ function getSketchHtmlBlockByType(element, sketch_idn, page_id, element_key) {
     const video_block = () => { 
         const video = `
             <video 
-                style="width: ${(!!element.width) ? element.width : 360}px; height: ${(!!element.height) ? element.height : 300}px" 
+                style="width: ${(!!element.width) ? `${element.width}px` : 'auto'}; height: ${(!!element.height) ? `${element.height}px` : 'auto'}" 
                 class="sketch__video" 
                 src="media/sketches/${element.media_folder}/${element.media_file}" 
                 alt="${element.media_file}" 
@@ -20739,9 +22171,29 @@ $(document).on(":passagestart", function (event) {
 });
 
 
-$(document).on(":passagestart", function (event) {
+$(document).on(":passagestart", function () {
     const is_deadend = State.variables.temp.dead_end;
-    (is_deadend) ? showDeadendInteface() : hideDeadendInteface() ;
+    const deadend_interface = {
+        menu_story: {
+            inventory: 0,
+            questlog: 0,
+            party: 0,
+            help: 1,
+            info: 1
+        },
+        menu_core: {
+            saves: 1,
+            settings: 0,
+            restart: 1,
+            share: 1
+        },
+        history: {
+            backward: 0,
+            forward: 0
+        }
+    }
+
+    if (is_deadend) State.variables.settings.interface = { ...State.variables.settings.interface, ...deadend_interface }; 
 });
 
  
@@ -20761,36 +22213,42 @@ $(document).on(":passagestart", function (event) {
 });
 
 
-$(document).one(':passageinit', function (ev) {
-    const sidebar_body = $('#ui-bar-body');
-    const company_name = `2caKe gems`;
-    const version_string = getLocalizedSystemText('sidebar', 'caption_version');
-    const version_number = '0.1.015';
+// $(document).one(':passageinit', function (ev) {
+//     const sidebar_body = $('#ui-bar-body');
+//     const company_name = `2caKe gems`;
+//     const version_string = getLocalizedSystemText('sidebar', 'caption_version');
+//     const version_number = '0.1.018';
 
-    const content = `
-        <div class='sidebar-signature'>
-            <p>[${company_name}]</p>
-            <p>${version_string}: ${version_number}</p>
-        </div>
-    `;
+//     const content = `
+//         <div class='sidebar-signature'>
+//             <p id="company_name">[${company_name}]</p>
+//             <p id="game_version">${version_string}: ${version_number}</p>
+//         </div>
+//     `;
 
-    sidebar_body.append(content);
+//     sidebar_body.append(content);
 
-});
+// });
 
 
 // Add Setting page to System Menu
-$(document).one(':passageinit', function (ev) {
-	const $link = $(`<a tabindex="0">${ L10n.get('settingsTitle') }</a>`);
+// $(document).one(':passageinit', function (ev) {
+// 	const $link = $(`<a tabindex="0">${ L10n.get('settingsTitle') }</a>`);
 
-    $link.ariaClick(function (ev) {
-        ev.preventDefault();
-        Engine.play('Menu_Settings');
-    });
+//     $link.ariaClick(function (ev) {
+//         ev.preventDefault();
+//         Engine.play('Menu_Settings');
+//     });
 
-    const $li = $(`<li id="menu-item-settings"></li>`);
-    $li.append($link);
-    $li.insertBefore('#menu-item-restart');
+//     const $li = $(`<li id="menu-item-settings"></li>`);
+//     $li.append($link);
+//     $li.insertBefore('#menu-item-restart');
+// });
+
+
+
+$(document).on(":passagedisplay", function () {    
+    updateInterfaceDisplay();
 });
 
 
@@ -20798,7 +22256,6 @@ $(document).one(':passageinit', function (ev) {
 $(document).on(":passagedisplay", function () {
     updateCharacterByPlayer();
 });
-
 
 
 $(document).on(":passagedisplay", function () {
@@ -22612,7 +24069,7 @@ function addTalkMenuLink(character_idn) {
 
     const $link_parent = $('.passage-list__talk');
     $link_parent.wiki( nobr(talk_link) );
-}</script><tw-tag name="Script" color="blue"></tw-tag><tw-tag name="System" color="red"></tw-tag><tw-tag name="Dialog" color="purple"></tw-tag><tw-tag name="Sandbox" color="green"></tw-tag><tw-tag name="NPC" color="yellow"></tw-tag><tw-tag name="NeedCheck" color="green"></tw-tag><tw-tag name="Options" color="red"></tw-tag><tw-tag name="Story" color="blue"></tw-tag><tw-tag name="dialog" color="gray"></tw-tag><tw-tag name="option" color="red"></tw-tag><tw-tag name="DeadEnd" color="orange"></tw-tag><tw-tag name="Location" color="orange"></tw-tag><tw-passagedata pid="1" name="City" tags="questionable" position="2400,1350" size="100,100">[[Return|Ferryman]]</tw-passagedata><tw-passagedata pid="2" name="Dream" tags="Location autosave nobr noreturn" position="1600,450" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_dream_out&#39; $return_passage&gt;&gt;
+}</script><tw-tag name="dialog" color="gray"></tw-tag><tw-tag name="DeadEnd" color="orange"></tw-tag><tw-tag name="Dialog" color="purple"></tw-tag><tw-tag name="Location" color="orange"></tw-tag><tw-tag name="Options" color="red"></tw-tag><tw-tag name="Story" color="blue"></tw-tag><tw-tag name="System" color="red"></tw-tag><tw-tag name="NPC" color="yellow"></tw-tag><tw-tag name="NeedCheck" color="green"></tw-tag><tw-tag name="Sandbox" color="green"></tw-tag><tw-tag name="Script" color="blue"></tw-tag><tw-tag name="option" color="red"></tw-tag><tw-passagedata pid="1" name="City" tags="questionable" position="2400,1350" size="100,100">[[Return|Ferryman]]</tw-passagedata><tw-passagedata pid="2" name="Dream" tags="Location autosave nobr noreturn" position="1600,450" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_dream_out&#39; $return_passage&gt;&gt;
     &lt;&lt;set $player.health += 10;&gt;&gt;
     &lt;&lt;set $player.stamina=$player.stamina_max;&gt;&gt;
 &lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Elf_House_Bloodhound" tags="Location nobr" position="3101,1898" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_village&#39; &#39;Elf_Village&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="Elf_House_Elder" tags="Location nobr" position="3101,1898" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_village&#39; &#39;Elf_Village&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="Elf_House_Herb" tags="Location nobr" position="2968,2099" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_store_herb&#39; &#39;Uni_Store&#39; &#39;gem&#39;&gt;&gt;
@@ -22798,296 +24255,390 @@ function addTalkMenuLink(character_idn) {
     &lt;&lt;set $temp.cur_store = &#39;village_smith&#39;&gt;&gt;
 &lt;&lt;/passage&gt;&gt;&lt;&lt;br&gt;&gt;
 
-&lt;&lt;passage &#39;passages&#39; &#39;passage_village_west&#39; &#39;Village_West&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="28" name="House_Steward" tags="Location nobr" position="1800,1198" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_center&#39; &#39;Village_Center&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="29" name="House_Taylor" tags="Location nobr" position="1100,1200" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_west&#39; &#39;Village_West&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="30" name="House_Wizard" tags="Location nobr" position="2150,1198" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_east&#39; &#39;Village_East&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="31" name="Info_Interface" tags="System nobr noreturn" position="1325,250" size="100,100">-- THIS PAGE IS IN DEVELOPMENT  -- &lt;&lt;br 2&gt;&gt;
+&lt;&lt;passage &#39;passages&#39; &#39;passage_village_west&#39; &#39;Village_West&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="28" name="House_Steward" tags="Location nobr" position="1800,1198" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_center&#39; &#39;Village_Center&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="29" name="House_Taylor" tags="Location nobr" position="1100,1200" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_west&#39; &#39;Village_West&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="30" name="House_Wizard" tags="Location nobr" position="2150,1198" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_east&#39; &#39;Village_East&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="31" name="Info_Interface" tags="System nobr noreturn" position="1325,250" size="100,100">&lt;&lt;menu_tabs 6 &#39;info_interface&#39; &#39;info_menu_item&#39;&gt;&gt;
 
-&lt;div class=&quot;stats-menu&quot;&gt;
-    &lt;a data-passage=&quot;Info_Interface&quot; data-setter=&quot;$temp.menu_stats to 1&quot;&gt;Main Info&lt;/a&gt;
-    &lt;a data-passage=&quot;Info_Interface&quot; data-setter=&quot;$temp.menu_stats to 2&quot;&gt;Body Details&lt;/a&gt;
-    /* &lt;a data-passage=&quot;Menu_Stats&quot; data-setter=&quot;$pages.menu_stats to 3&quot;&gt;Clothes&lt;/a&gt; */
-&lt;/div&gt;
 
-&lt;&lt;if $temp.menu_stats == 1 &gt;&gt;
-123
+
+&lt;&lt;if $temp.menu_tab == 1 &gt;&gt;
+
+    &lt;div class=&quot;disclaimer-title&quot;&gt;
+        &lt;&lt;text_system &#39;info_interface&#39; &#39;info_main_list_1&#39;&gt;&gt; 
+    &lt;/div&gt; &lt;&lt;br&gt;&gt;
+
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_main_list_2&#39;&gt;&gt;&lt;&lt;br 2&gt;&gt;
+
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_main_list_3&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    -  &lt;a data-passage=&quot;Info_Interface&quot; data-setter=&quot;$temp.menu_tab to 4&quot;&gt;
+        &lt;&lt;text_system &#39;info_interface&#39; &#39;info_main_list_item_1&#39;&gt;&gt;&lt;/a&gt; &lt;&lt;text_system &#39;info_interface&#39; &#39;info_main_list_item_status_1&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    -  &lt;a data-passage=&quot;Info_Interface&quot; data-setter=&quot;$temp.menu_tab to 2&quot;&gt;
+        &lt;&lt;text_system &#39;info_interface&#39; &#39;info_main_list_item_2&#39;&gt;&gt;&lt;/a&gt; &lt;&lt;text_system &#39;info_interface&#39; &#39;info_main_list_item_status_2&#39;&gt;&gt;&lt;&lt;br&gt;&gt;
+    -  &lt;a data-passage=&quot;Info_Interface&quot; data-setter=&quot;$temp.menu_tab to 2&quot;&gt;
+        &lt;&lt;text_system &#39;info_interface&#39; &#39;info_main_list_item_3&#39;&gt;&gt;&lt;/a&gt; &lt;&lt;text_system &#39;info_interface&#39; &#39;info_main_list_item_status_2&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    -  &lt;a data-passage=&quot;Info_Interface&quot; data-setter=&quot;$temp.menu_tab to 4&quot;&gt;&lt;&lt;text_system &#39;info_interface&#39; &#39;info_main_list_item_4&#39;&gt;&gt;&lt;/a&gt; 
+        &lt;&lt;text_system &#39;info_interface&#39; &#39;info_main_list_item_status_2&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    -  &lt;&lt;text_system &#39;info_interface&#39; &#39;info_main_list_item_5&#39;&gt;&gt; &lt;&lt;text_system &#39;info_interface&#39; &#39;info_main_list_item_status_4&#39;&gt;&gt; &lt;&lt;br&gt;&gt; 
+    -  &lt;&lt;text_system &#39;info_interface&#39; &#39;info_main_list_item_6&#39;&gt;&gt; &lt;&lt;text_system &#39;info_interface&#39; &#39;info_main_list_item_status_4&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    -  &lt;&lt;text_system &#39;info_interface&#39; &#39;info_main_list_item_7&#39;&gt;&gt; &lt;&lt;text_system &#39;info_interface&#39; &#39;info_main_list_item_status_3&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    -  &lt;&lt;text_system &#39;info_interface&#39; &#39;info_main_list_item_8&#39;&gt;&gt; &lt;&lt;text_system &#39;info_interface&#39; &#39;info_main_list_item_status_3&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    -  &lt;&lt;text_system &#39;info_interface&#39; &#39;info_main_list_item_9&#39;&gt;&gt; &lt;&lt;text_system &#39;info_interface&#39; &#39;info_main_list_item_status_5&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    -  &lt;a data-passage=&quot;Info_Interface&quot; data-setter=&quot;$temp.menu_tab to 5&quot;&gt;
+        &lt;&lt;text_system &#39;info_interface&#39; &#39;info_main_list_item_10&#39;&gt;&gt;&lt;/a&gt;  &lt;&lt;text_system &#39;info_interface&#39; &#39;info_main_list_item_status_1&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    -  &lt;a data-passage=&quot;Info_Interface&quot; data-setter=&quot;$temp.menu_tab to 6&quot;&gt;
+        &lt;&lt;text_system &#39;info_interface&#39; &#39;info_main_list_item_11&#39;&gt;&gt;&lt;/a&gt;  &lt;&lt;text_system &#39;info_interface&#39; &#39;info_main_list_item_status_1&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;if $temp.menu_stats == 2&gt;&gt;
-DDDD
+
+
+&lt;&lt;if $temp.menu_tab == 2&gt;&gt;
+
+    &lt;div class=&quot;disclaimer-title&quot;&gt;
+        &lt;&lt;text_system &#39;info_interface&#39; &#39;info_location_1&#39;&gt;&gt; 
+    &lt;/div&gt; &lt;&lt;br&gt;&gt;
+
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_location_2&#39;&gt;&gt;  &lt;&lt;br&gt;&gt;
+    &lt;img class=&quot;interface-desc__image&quot; src=&quot;media/misc/location.png&quot;&gt; &lt;&lt;br&gt;&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_location_3&#39;&gt;&gt;  &lt;&lt;br&gt;&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_location_4&#39;&gt;&gt;  &lt;&lt;br&gt;&gt;
+
+    &lt;&lt;br&gt;&gt;
+    
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_location_5&#39;&gt;&gt;  &lt;&lt;br&gt;&gt;
+    &lt;img class=&quot;interface-desc__image&quot; src=&quot;media/misc/location_characters.png&quot;&gt; &lt;&lt;br&gt;&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_location_6&#39;&gt;&gt;  &lt;&lt;br&gt;&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_location_7&#39;&gt;&gt;  &lt;&lt;br&gt;&gt;
+
+    &lt;&lt;br&gt;&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_location_8&#39;&gt;&gt;  &lt;&lt;br&gt;&gt;
+
+    &lt;a class=&quot;link-internal link-contents link-activity&quot; tabindex=&quot;0&quot;&gt;     
+        &lt;span&gt; Wait &lt;/span&gt;  
+    &lt;/a&gt;&lt;&lt;br&gt;&gt;
+
+    &lt;div class=&quot;link-activity link-contents link-activity--fake&quot;&gt;             
+        &lt;p class=&quot;link-fake__tip-text tip_gen&quot;&gt; It`s to early to sleep. &lt;/p&gt;             
+        &lt;div class=&quot;link-content-wrapper&quot;&gt;                 
+            &lt;div class=&quot;link-content-container link-underline-container&quot;&gt;                               
+                &lt;span&gt; Sleep &lt;/span&gt;                  
+            &lt;/div&gt;             
+        &lt;/div&gt;         
+    &lt;/div&gt;&lt;&lt;br&gt;&gt;
+
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_location_9&#39;&gt;&gt;  &lt;&lt;br&gt;&gt;
+    &lt;i&gt;&lt;&lt;text_system &#39;info_interface&#39; &#39;info_location_10&#39;&gt;&gt;&lt;/i&gt; &lt;&lt;br&gt;&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_location_11&#39;&gt;&gt;  &lt;&lt;br&gt;&gt;
+    &lt;i&gt;&lt;&lt;text_system &#39;info_interface&#39; &#39;info_location_12&#39;&gt;&gt; &lt;/i&gt;&lt;&lt;br&gt;&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_location_13&#39;&gt;&gt;  &lt;&lt;br&gt;&gt;
+
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;br&gt;&gt;&lt;&lt;br&gt;&gt;
-
-The game has bunch of systems it&#39;s use. &lt;&lt;br&gt;&gt;
-The systems are &lt;&lt;br&gt;&gt;
-  -  quest&amp;tasks [will be updated], &lt;&lt;br&gt;&gt;
-  -  sketches(dialogs and narration) [basically done], &lt;&lt;br&gt;&gt;
-  -  characters scheduling [basically done], &lt;&lt;br&gt;&gt;
-  -  activities [basically done] &lt;&lt;br&gt;&gt;
-  -  inventory [will be reworked], &lt;&lt;br&gt;&gt; 
-  -  fighting [will be reworked from zero], &lt;&lt;br&gt;&gt;
-  -  events [in future], &lt;&lt;br&gt;&gt;
-  -  tryouts (mini-games) [in future], &lt;&lt;br&gt;&gt;
-  -  whole system localization [], &lt;&lt;br&gt;&gt;
-  -  tips, popups and modal windows [will be updated] &lt;&lt;br&gt;&gt;
-
-&lt;&lt;br 2&gt;&gt;
-&lt;div class=&quot;disclaimer-title&quot;&gt;
-    &lt;span&gt; Location specific details. &lt;/span&gt;
-&lt;/div&gt; &lt;&lt;br&gt;&gt;
-
-In the game player moves through locations. &lt;&lt;br&gt;&gt;
-&lt;img class=&quot;interface-desc__image&quot; src=&quot;media/misc/location.png&quot;&gt; &lt;&lt;br&gt;&gt;
-Location has it&#39;s image. &lt;&lt;br&gt;&gt;
-Right below the location images there are buttons that are green and with &#39;pin&#39; icon. Those buttons are links between locations. &lt;&lt;br&gt;&gt;
-
-&lt;&lt;br&gt;&gt;
-Based on scheduling system some characters could be present in this locations. &lt;&lt;br&gt;&gt;
-&lt;img class=&quot;interface-desc__image&quot; src=&quot;media/misc/location_characters.png&quot;&gt; &lt;&lt;br&gt;&gt;
-If character is not in the party with player or is talking to the player right now, then character is busy with their own activities. &lt;&lt;br&gt;&gt;
-Some activities cannot be disturbed. In that cases player should wait till character will change activity and be available for interaction.  &lt;&lt;br&gt;&gt;
-
-&lt;&lt;br&gt;&gt;
-Certain locations can have certain set of activities in it. &lt;&lt;br&gt;&gt;
-
-&lt;a class=&quot;link-internal link-contents link-activity&quot; tabindex=&quot;0&quot;&gt;     
-    &lt;span&gt; Wait &lt;/span&gt;  
-&lt;/a&gt;&lt;&lt;br&gt;&gt;
-
-&lt;div class=&quot;link-activity link-contents link-activity--fake&quot;&gt;             
-    &lt;p class=&quot;link-fake__tip-text tip_gen&quot;&gt; It`s to early to sleep. &lt;/p&gt;             
-    &lt;div class=&quot;link-content-wrapper&quot;&gt;                 
-        &lt;div class=&quot;link-content-container link-underline-container&quot;&gt;                               
-            &lt;span&gt; Sleep &lt;/span&gt;                  
-        &lt;/div&gt;             
-    &lt;/div&gt;         
-&lt;/div&gt;&lt;&lt;br&gt;&gt;
-Activties are mainly used to raise character stats. &lt;&lt;br&gt;&gt;  
-&lt;i&gt;(Eg., if you &#39;have a rest&#39;, &#39;stamina&#39; parametr increases, but some time is spent)&lt;/i&gt; &lt;&lt;br&gt;&gt;
-Activities have availablility conditions.  &lt;&lt;br&gt;&gt;
-&lt;i&gt;(Eg., if your &#39;stamina&#39; value is high you cannot &#39;take a nap&#39;) &lt;/i&gt;&lt;&lt;br&gt;&gt;
-With the story progresssion new activities could be appeared in the location.  &lt;&lt;br&gt;&gt;
 
 
-&lt;&lt;br 3&gt;&gt;
-&lt;div class=&quot;disclaimer-title&quot;&gt;
-   &lt;span&gt; Quests and tasks &lt;/span&gt;    
-&lt;/div&gt; &lt;&lt;br&gt;&gt;
+&lt;&lt;if $temp.menu_tab == 3&gt;&gt;
 
-Quest can be activated either by clicking on the quest button. (Non-active on this page) &lt;&lt;br 2&gt;&gt;
+    &lt;div class=&quot;disclaimer-title&quot;&gt;    
+        &lt;&lt;text_system &#39;info_interface&#39; &#39;info_qt_1&#39;&gt;&gt; 
+    &lt;/div&gt; &lt;&lt;br&gt;&gt;
 
-&lt;a 
-    class=&quot;button-quest link-internal&quot;
-&gt;	
-    &lt;div class=&quot;icon-action&quot; data-state=&quot;QUEST&quot;&gt;
-        &lt;svg viewBox=&quot;0 0 100 100&quot; class=&quot;icon-action__file&quot;&gt;
-            &lt;path d=&quot;M0, 20 Q50, 20 100, 20&quot;&gt;&lt;/path&gt;
-            &lt;path d=&quot;M0, 40 Q50, 40 100, 40&quot;&gt;&lt;/path&gt;
-            &lt;path d=&quot;M0, 60 Q50, 60 100, 60&quot;&gt;&lt;/path&gt;
-            &lt;path d=&quot;M0, 80 Q50, 80 100, 80&quot;&gt;&lt;/path&gt;
-        &lt;/svg&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_qt_2&#39;&gt;&gt; &lt;&lt;br 2&gt;&gt;
+
+    &lt;a 
+        class=&quot;button-quest link-internal&quot;
+    &gt;	
+        &lt;div class=&quot;icon-action&quot; data-state=&quot;QUEST&quot;&gt;
+            &lt;svg viewBox=&quot;0 0 100 100&quot; class=&quot;icon-action__file&quot;&gt;
+                &lt;path d=&quot;M0, 20 Q50, 20 100, 20&quot;&gt;&lt;/path&gt;
+                &lt;path d=&quot;M0, 40 Q50, 40 100, 40&quot;&gt;&lt;/path&gt;
+                &lt;path d=&quot;M0, 60 Q50, 60 100, 60&quot;&gt;&lt;/path&gt;
+                &lt;path d=&quot;M0, 80 Q50, 80 100, 80&quot;&gt;&lt;/path&gt;
+            &lt;/svg&gt;
+        &lt;/div&gt;
+
+        &lt;span&gt; Quest Title &lt;/span&gt;
+    &lt;/a&gt;
+    &lt;&lt;br&gt;&gt;
+
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_qt_3&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_qt_4&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    &lt;i&gt; &lt;&lt;text_system &#39;info_interface&#39; &#39;info_qt_5&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_qt_6&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_qt_7&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_qt_8&#39;&gt;&gt; &lt;&lt;br&gt;&gt; &lt;/i&gt; 
+
+    &lt;&lt;br&gt;&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_qt_9&#39;&gt;&gt;  &lt;i&gt;(&lt;&lt;text_system &#39;info_interface&#39; &#39;info_qt_9_2&#39;&gt;&gt;)&lt;/i&gt;  &lt;&lt;text_system &#39;info_interface&#39; &#39;info_qt_9_3&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_qt_10&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    &lt;a class=&quot;link-internal task-link&quot; tabindex=&quot;0&quot;&gt;            
+        &lt;img class=&quot;task-link__icon&quot; src=&quot;media/icons/task/fight.png&quot; title=&quot;fight&quot; alt=&quot;fight&quot;&gt;
+        &lt;img class=&quot;task-link__icon--hover&quot; src=&quot;media/icons/task/fight_hover.png&quot; title=&quot;fight&quot; alt=&quot;fight&quot;&gt;
+        &lt;p class=&quot;task-link__text&quot;&gt;Fight goblins&lt;/p&gt;
+    &lt;/a&gt; 
+
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_qt_11&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+
+    &lt;div class=&quot;task-link task-link--search task-link--fake&quot;&gt;
+        &lt;p class=&quot;link-fake__tip-text tip_gen&quot;&gt; Stamina is not enough! &lt;/p&gt;
+        &lt;img class=&quot;task-link__icon&quot; src=&quot;media/icons/task/search.png&quot; title=&quot;search&quot; alt=&quot;search&quot;&gt;
+        &lt;p class=&quot;task-link__text&quot;&gt;Search&lt;/p&gt;
     &lt;/div&gt;
+    &lt;&lt;br&gt;&gt;
 
-    &lt;span&gt; Quest Title &lt;/span&gt;
-&lt;/a&gt;
-.. or as a result of specific dialog. &lt;&lt;br&gt;&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_qt_12&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    &lt;i&gt;&lt;&lt;text_system &#39;info_interface&#39; &#39;info_qt_13&#39;&gt;&gt; &lt;&lt;br&gt;&gt;&lt;/i&gt;
 
-&lt;&lt;br&gt;&gt;
-After activating a quest a set of tasks are being activated. &lt;&lt;br&gt;&gt;
-Quest can have few set a tasks, followed set by set. &lt;&lt;br&gt;&gt;
-&lt;i&gt;(Eg., first set - talk to alchemist and ask for a special powering potion [1 task], &lt;&lt;br&gt;&gt;
-senond set - player should collect green flowers and red flowers [2 tasks],  &lt;&lt;br&gt;&gt;
-third set - player should talk to alchemist and alchemist will give you special potion [1 task], &lt;&lt;br&gt;&gt;
-forth set - defeat hopgoblin in the cave near in the forest. [1 task] )&lt;/i&gt; &lt;&lt;br&gt;&gt;
+    &lt;&lt;br&gt;&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_qt_14&#39;&gt;&gt; &lt;&lt;text_system &#39;info_interface&#39; &#39;info_qt_14_2&#39;&gt;&gt; &lt;&lt;text_system &#39;info_interface&#39; &#39;info_qt_14_3&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    
+    &lt;i&gt;&lt;&lt;text_system &#39;info_interface&#39; &#39;info_qt_15&#39;&gt;&gt; &lt;&lt;br&gt;&gt; &lt;/i&gt; &lt;&lt;br&gt;&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_qt_16&#39;&gt;&gt; &lt;&lt;br&gt;&gt;  
 
-&lt;&lt;br&gt;&gt;
-Ceratin types of tasks &lt;i&gt;[&#39;fight&#39;, &#39;search&#39;, &#39;distribute&#39;, &#39;gather&#39;, &#39;sketch&#39;]&lt;/i&gt; could be found on task-specific locations. &lt;&lt;br&gt;&gt;
-Task can be activated by clicking on the task button. (Non-active on this page) &lt;&lt;br&gt;&gt;
-&lt;a class=&quot;link-internal task-link&quot; tabindex=&quot;0&quot;&gt;            
-    &lt;img class=&quot;task-link__icon&quot; src=&quot;media/icons/task/fight.png&quot; title=&quot;fight&quot; alt=&quot;fight&quot;&gt;
-    &lt;img class=&quot;task-link__icon--hover&quot; src=&quot;media/icons/task/fight_hover.png&quot; title=&quot;fight&quot; alt=&quot;fight&quot;&gt;
-    &lt;p class=&quot;task-link__text&quot;&gt;Fight goblins&lt;/p&gt;
-&lt;/a&gt; 
-
-Some tasks could have conditions to be done. &lt;&lt;br&gt;&gt;
-
-&lt;div class=&quot;task-link task-link--search task-link--fake&quot;&gt;
-    &lt;p class=&quot;link-fake__tip-text tip_gen&quot;&gt; Stamina is not enough! &lt;/p&gt;
-    &lt;img class=&quot;task-link__icon&quot; src=&quot;media/icons/task/search.png&quot; title=&quot;search&quot; alt=&quot;search&quot;&gt;
-    &lt;p class=&quot;task-link__text&quot;&gt;Search&lt;/p&gt;
-&lt;/div&gt;
-
-
-Certain tasks requires multiple actions to be completed. &lt;&lt;br&gt;&gt;
-&lt;i&gt;(Eg., to search three times on a specific location) &lt;/i&gt;&lt;&lt;br 2&gt;&gt;
-
-Other types of tasks &lt;i&gt;[&#39;eliminate&#39;, &#39;escort&#39;]&lt;/i&gt; are completed by player&#39;s actions. &lt;&lt;br&gt;&gt;
-&lt;i&gt;(Eg., &#39;elimanate 3 goblins&#39; task can be completed by finding goblins in locations where they usually leave and defeating them 
-or if you defeat them during other tasks that invlove fighting goblins. ) &lt;/i&gt; &lt;&lt;br 2&gt;&gt;
-
-Details of current quest and tasks player could be able to read at the questlog. (After it will be finished) 
-
-
-&lt;&lt;br 3&gt;&gt;
-&lt;div class=&quot;disclaimer-title&quot;&gt;
-   &lt;span&gt; Sketches system &lt;/span&gt;
-&lt;/div&gt; &lt;&lt;br&gt;&gt;
-
-Sketch is a unit to describe dialogs, narration, media applied to it and available choices based on page content. 
-Sketches could have different size, number of pages and amount of choices. &lt;&lt;br 2&gt;&gt;
-
-Sketch could have narration, dialog, media and choice blocks. &lt;&lt;br&gt;&gt;
-Some of those blocks could be hidden based on current player&#39;s stats, story progression, previos player choices and actions.  &lt;&lt;br&gt;&gt;
-&lt;i&gt;(Eg., during certain quest&#39;s sketch dialog if player have smith in the party, &lt;&lt;br&gt;&gt;
-then blocks of dialog with smith&#39;s thougths on situation and new choice of how to resolve that situation with smith&#39;s uniques abilities will appear, &lt;&lt;br&gt;&gt;
-if player will not have smith, then those blocks would be hidden.  ) &lt;/i&gt; &lt;&lt;br 2&gt;&gt;
-
-
-Narration text block types examples.&lt;&lt;br 2&gt;&gt;
-
-&lt;div class=&quot;text-block&quot;&gt;
-    &lt;div class=&quot;narration-block&quot;&gt; 					
-        &lt;img class=&quot;narration-block_img&quot; src=&quot;media/icons/narration.png&quot; alt=&quot;narration&quot; title=&quot;narration&quot;&gt; 					
-        &lt;span class=&quot;text narration-block_text&quot;&gt;Story narration text.&lt;br&gt;&lt;/span&gt; 				
-    &lt;/div&gt; 
-&lt;/div&gt; &lt;&lt;br 2&gt;&gt;
-
-&lt;div class=&quot;text-block&quot;&gt;
-    &lt;div class=&quot;thought-block&quot;&gt; 					
-        &lt;img class=&quot;thought-block_img&quot; src=&quot;media/icons/thought.png&quot; alt=&quot;thought&quot; title=&quot;thought&quot;&gt; 					
-        &lt;span class=&quot;text thought-block_text&quot;&gt;The thoughts of the character being played as now.&lt;br&gt;&lt;/span&gt; 				
-    &lt;/div&gt;
-&lt;/div&gt;  &lt;&lt;br 2&gt;&gt;
-
-&lt;div class=&quot;text-block&quot;&gt;
-    &lt;div class=&quot;gesture-block&quot;&gt; 					
-        &lt;img class=&quot;gesture-block_img&quot; src=&quot;media/icons/gesture.png&quot; alt=&quot;gesture&quot; title=&quot;gesture&quot;&gt; 					
-        &lt;span class=&quot;text gesture-block_text&quot;&gt;Emotions and gestures that other characters shows.&lt;br&gt;&lt;/span&gt; 				
-    &lt;/div&gt; 
-&lt;/div&gt; &lt;&lt;br 2&gt;&gt;
-
-Dialog block example. &lt;&lt;br 2&gt;&gt;
-&lt;div class=&quot;speech&quot; data-character=&quot;barret&quot; data-text=&quot;setting_debug_mode_text&quot; data-posture=&quot;default&quot;&gt;&lt;/div&gt;
-
-
-&lt;&lt;br 2&gt;&gt;
-There are few types of choice blocks available when the player is on the sketch. &lt;&lt;br 2&gt;&gt;
-&lt;a data-location=&quot;Uni_Sketch&quot; class=&quot;link-internal choice-link--default&quot; tabindex=&quot;0&quot;&gt;            
-    Default continue link         
-&lt;/a&gt; &lt;&lt;br&gt;&gt;
-Player can click on that buttons to choose between choices or simply progress futher. &lt;&lt;br 2&gt;&gt;
-
-&lt;a class=&quot;link-internal deadend-link&quot;  tabindex=&quot;0&quot; title=&quot;Dead-end&quot;&gt;            
-    Dead-end continue link          
-    &lt;img src=&quot;media/icons/deadend.png&quot;&gt;         
-&lt;/a&gt; &lt;&lt;br&gt;&gt;
-Such links will lead to dead-end sequence with game over at the end of it. &lt;&lt;br&gt;&gt;
-Autosave will be activated on dead-end link clicking, so player could safely load the choice page after reaching game over.&lt;&lt;br&gt;&gt;
-Dead-ends could tell more of a game lore, character`s nature and aims. 
-It is advisable to see it. &lt;&lt;br 2&gt;&gt;
-
-&lt;a style=&quot;margin-bottom: 20px&quot; class=&quot;link-icon link-contents link-pixel-border link-underline link-internal&quot; tabindex=&quot;0&quot;&gt; 
-    &lt;div class=&quot;link-content-wrapper&quot;&gt;                 
-        &lt;div class=&quot;link-content-container link-underline-container&quot;&gt;                        
-            &lt;i class=&quot;ra ra-location&quot;&gt;&lt;/i&gt;                                      
-            &lt;span&gt;Location continue link&lt;/span&gt;                 
-        &lt;/div&gt;             
-    &lt;/div&gt;
-&lt;/a&gt;&lt;&lt;br&gt;&gt;
-Location link displays that by choosing this choice player will be transfered to another location.&lt;&lt;br 2&gt;&gt;
-
-&lt;a 
-    class=&quot;button-quest link-internal&quot;
-&gt;	
-    &lt;div class=&quot;icon-action&quot; data-state=&quot;QUEST&quot;&gt;
-        &lt;svg viewBox=&quot;0 0 100 100&quot; class=&quot;icon-action__file&quot;&gt;
-            &lt;path d=&quot;M0, 20 Q50, 20 100, 20&quot;&gt;&lt;/path&gt;
-            &lt;path d=&quot;M0, 40 Q50, 40 100, 40&quot;&gt;&lt;/path&gt;
-            &lt;path d=&quot;M0, 60 Q50, 60 100, 60&quot;&gt;&lt;/path&gt;
-            &lt;path d=&quot;M0, 80 Q50, 80 100, 80&quot;&gt;&lt;/path&gt;
-        &lt;/svg&gt;
-    &lt;/div&gt;
-
-    &lt;span&gt; Quest Title &lt;/span&gt;
-&lt;/a&gt;
-Quest link shows quests that can be taken only from sketch.&lt;&lt;br&gt;&gt; 
-Be aware that some sketches are one-time only! &lt;&lt;br&gt;&gt;
-
-
-&lt;&lt;br 3&gt;&gt;
-&lt;div class=&quot;disclaimer-title&quot;&gt;
-   &lt;span&gt; Sidebar Info &lt;/span&gt;
-&lt;/div&gt; &lt;&lt;br&gt;&gt;
-
-Here you can see game&#39;s title and logo. &lt;&lt;br&gt;&gt;
-&lt;img class=&quot;interface-desc__image&quot; src=&quot;media/misc/title_n_logo.png&quot;&gt; &lt;&lt;br 2&gt;&gt;
-
-Also there in-game time values. &lt;&lt;br&gt;&gt;
-&lt;img class=&quot;interface-desc__image&quot; src=&quot;media/misc/timing.png&quot;&gt; &lt;&lt;br 2&gt;&gt;
-
-Main playing character stats bars. &lt;&lt;br&gt;&gt;
-&lt;img class=&quot;interface-desc__image&quot; src=&quot;media/misc/main_stats_bars.png&quot;&gt; &lt;&lt;br 2&gt;&gt;
-
-Experience progress bar. &lt;&lt;br&gt;&gt;
-&lt;img class=&quot;interface-desc__image&quot; src=&quot;media/misc/expirience_bar.png&quot;&gt; &lt;&lt;br 2&gt;&gt;
-
-In the bottom of the sidebar there are game&#39;s author sign and current game version. &lt;&lt;br&gt;&gt;
-&lt;img class=&quot;interface-desc__image&quot; src=&quot;media/misc/author_n_version.png&quot;&gt; &lt;&lt;br 2&gt;&gt;
+&lt;&lt;/if&gt;&gt;
 
 
 
-&lt;&lt;br 3&gt;&gt;
-&lt;div class=&quot;disclaimer-title&quot;&gt;
-   &lt;span&gt; Tips, popups and modal windows. &lt;/span&gt;
-&lt;/div&gt; &lt;&lt;br&gt;&gt;
+&lt;&lt;if $temp.menu_tab == 4&gt;&gt;
+
+    &lt;div class=&quot;disclaimer-title&quot;&gt;
+        &lt;&lt;text_system &#39;info_interface&#39; &#39;info_sketch_1&#39;&gt;&gt; 
+    &lt;/div&gt; &lt;&lt;br&gt;&gt;
+
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_sketch_2&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_sketch_3&#39;&gt;&gt; &lt;&lt;br 2&gt;&gt;
+
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_sketch_4&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_sketch_5&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    &lt;i&gt;&lt;&lt;text_system &#39;info_interface&#39; &#39;info_sketch_6&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_sketch_6_1&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_sketch_6_2&#39;&gt;&gt; &lt;&lt;br&gt;&gt; &lt;/i&gt; &lt;&lt;br&gt;&gt;
 
 
-Doing certain in-game actions you can trigger popups with info. &lt;&lt;br&gt;&gt;
-&lt;img class=&quot;interface-desc__image&quot; src=&quot;media/misc/popup.png&quot;&gt; &lt;&lt;br 2&gt;&gt;
-Most common types of popups are quest-specific and task-specific. &lt;&lt;br&gt;&gt;
-&lt;i&gt;(Eg., player started a quest).&lt;&lt;br&gt;&gt; &lt;/i&gt;
-Except text information about action that had been triggered, poopups also have categorized icons.&lt;&lt;br&gt;&gt;
-Such icons are unique for each time of triggered action.&lt;&lt;br&gt;&gt;
-With time it should help player to understand what action was triggered paying less focused attenion.&lt;&lt;br 2&gt;&gt;
+    &lt;u&gt;&lt;&lt;text_system &#39;info_interface&#39; &#39;info_sketch_7&#39;&gt;&gt; &lt;&lt;br 2&gt;&gt;&lt;/u&gt;
 
-Modal windows are mostly used for additional confirmation or specific one-time actions. &lt;&lt;br&gt;&gt;
-&lt;img class=&quot;interface-desc__image&quot; src=&quot;media/misc/modal.png&quot;&gt; &lt;&lt;br 2&gt;&gt;
+    &lt;div class=&quot;text-block&quot;&gt;
+        &lt;div class=&quot;narration-block&quot;&gt; 					
+            &lt;img class=&quot;narration-block_img&quot; src=&quot;media/icons/narration.png&quot; alt=&quot;narration&quot; title=&quot;narration&quot;&gt; 					
+            &lt;span class=&quot;text narration-block_text&quot;&gt; &lt;&lt;text_system &#39;info_interface&#39; &#39;info_sketch_text_narration&#39;&gt;&gt; &lt;&lt;br&gt;&gt; &lt;/span&gt; 				
+        &lt;/div&gt; 
+    &lt;/div&gt; &lt;&lt;br 2&gt;&gt;
 
-Sometimes you can see system tips icon. &lt;&lt;br&gt;&gt;
-Hover it with a mouse cursor to open up dedicated info.  &lt;&lt;br&gt;&gt;
-&lt;&lt;info_tip &#39;tip_example&#39;&gt;&gt;&lt;&lt;br&gt;&gt;
+    &lt;div class=&quot;text-block&quot;&gt;
+        &lt;div class=&quot;thought-block&quot;&gt; 					
+            &lt;img class=&quot;thought-block_img&quot; src=&quot;media/icons/thought.png&quot; alt=&quot;thought&quot; title=&quot;thought&quot;&gt; 					
+            &lt;span class=&quot;text thought-block_text&quot;&gt; &lt;&lt;text_system &#39;info_interface&#39; &#39;info_sketch_text_thought&#39;&gt;&gt; &lt;&lt;br&gt;&gt; &lt;/span&gt; 				
+        &lt;/div&gt;
+    &lt;/div&gt;  &lt;&lt;br 2&gt;&gt;
+
+    &lt;div class=&quot;text-block&quot;&gt;
+        &lt;div class=&quot;gesture-block&quot;&gt; 					
+            &lt;img class=&quot;gesture-block_img&quot; src=&quot;media/icons/gesture.png&quot; alt=&quot;gesture&quot; title=&quot;gesture&quot;&gt; 					
+            &lt;span class=&quot;text gesture-block_text&quot;&gt; &lt;&lt;text_system &#39;info_interface&#39; &#39;info_sketch_text_gesture&#39;&gt;&gt; &lt;&lt;br&gt;&gt; &lt;/span&gt; 				
+        &lt;/div&gt; 
+    &lt;/div&gt; &lt;&lt;br 2&gt;&gt;
+
+    &lt;&lt;br&gt;&gt;
+    &lt;u&gt;&lt;&lt;text_system &#39;info_interface&#39; &#39;info_sketch_8&#39;&gt;&gt; &lt;&lt;br 2&gt;&gt;&lt;/u&gt;
+    &lt;div class=&quot;speech&quot; data-character=&quot;barret&quot; data-text=&quot;setting_debug_mode_text&quot; data-posture=&quot;default&quot;&gt;&lt;/div&gt;
+
+
+    &lt;&lt;br 2&gt;&gt;
+    &lt;u&gt;&lt;&lt;text_system &#39;info_interface&#39; &#39;info_sketch_9&#39;&gt;&gt; &lt;&lt;br&gt;&gt;&lt;/u&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_sketch_10&#39;&gt;&gt; &lt;&lt;br 2&gt;&gt;
+    
+    &lt;a data-location=&quot;Uni_Sketch&quot; class=&quot;link-internal choice-link--default&quot; tabindex=&quot;0&quot;&gt;            
+        Default continue link         
+    &lt;/a&gt; &lt;&lt;br&gt;&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_sketch_11&#39;&gt;&gt; &lt;&lt;br 2&gt;&gt;
+
+    &lt;a class=&quot;link-internal deadend-link&quot;  tabindex=&quot;0&quot; title=&quot;Dead-end&quot;&gt;            
+        Dead-end continue link          
+        &lt;img src=&quot;media/icons/deadend.png&quot;&gt;         
+    &lt;/a&gt; &lt;&lt;br&gt;&gt;
+    
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_sketch_12&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_sketch_13&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_sketch_14&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_sketch_15&#39;&gt;&gt; &lt;&lt;br 2&gt;&gt;
+
+    &lt;a style=&quot;margin-bottom: 20px&quot; class=&quot;link-icon link-contents link-pixel-border link-underline link-internal&quot; tabindex=&quot;0&quot;&gt; 
+        &lt;div class=&quot;link-content-wrapper&quot;&gt;                 
+            &lt;div class=&quot;link-content-container link-underline-container&quot;&gt;                        
+                &lt;i class=&quot;ra ra-location&quot;&gt;&lt;/i&gt;                                      
+                &lt;span&gt;Location continue link&lt;/span&gt;                 
+            &lt;/div&gt;             
+        &lt;/div&gt;
+    &lt;/a&gt;&lt;&lt;br&gt;&gt;
+    
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_sketch_16&#39;&gt;&gt; &lt;&lt;br 2&gt;&gt;
+
+    &lt;a 
+        class=&quot;button-quest link-internal&quot;
+    &gt;	
+        &lt;div class=&quot;icon-action&quot; data-state=&quot;QUEST&quot;&gt;
+            &lt;svg viewBox=&quot;0 0 100 100&quot; class=&quot;icon-action__file&quot;&gt;
+                &lt;path d=&quot;M0, 20 Q50, 20 100, 20&quot;&gt;&lt;/path&gt;
+                &lt;path d=&quot;M0, 40 Q50, 40 100, 40&quot;&gt;&lt;/path&gt;
+                &lt;path d=&quot;M0, 60 Q50, 60 100, 60&quot;&gt;&lt;/path&gt;
+                &lt;path d=&quot;M0, 80 Q50, 80 100, 80&quot;&gt;&lt;/path&gt;
+            &lt;/svg&gt;
+        &lt;/div&gt;
+
+        &lt;span&gt; Quest Title &lt;/span&gt;
+    &lt;/a&gt;
+
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_sketch_17&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_sketch_18&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+
+&lt;&lt;/if&gt;&gt;
+
+
+
+&lt;&lt;if $temp.menu_tab == 5&gt;&gt;
+
+    &lt;div class=&quot;disclaimer-title&quot;&gt;        
+        &lt;&lt;text_system &#39;info_interface&#39; &#39;info_tips_1&#39;&gt;&gt; 
+    &lt;/div&gt; &lt;&lt;br&gt;&gt;
+
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_tips_2&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    &lt;img class=&quot;interface-desc__image&quot; src=&quot;media/misc/popup.png&quot;&gt; &lt;&lt;br 2&gt;&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_tips_3&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    &lt;i&gt;&lt;&lt;text_system &#39;info_interface&#39; &#39;info_tips_4&#39;&gt;&gt; &lt;&lt;br 2&gt;&gt; &lt;/i&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_tips_5&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_tips_6&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_tips_7&#39;&gt;&gt; &lt;&lt;br 2&gt;&gt;
+
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_tips_8&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    &lt;img class=&quot;interface-desc__image&quot; src=&quot;media/misc/modal.png&quot;&gt; &lt;&lt;br 2&gt;&gt;
+
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_tips_9&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_tips_10&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_tips_11&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    &lt;&lt;info_tip &#39;tip_example&#39;&gt;&gt;&lt;&lt;br&gt;&gt;
+
+&lt;&lt;/if&gt;&gt;
+
+
+
+&lt;&lt;if $temp.menu_tab == 6&gt;&gt;
+
+    &lt;div class=&quot;disclaimer-title&quot;&gt;
+        &lt;&lt;text_system &#39;info_interface&#39; &#39;info_sidebar_1&#39;&gt;&gt; 
+    &lt;/div&gt; &lt;&lt;br&gt;&gt;
+
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_sidebar_2&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    &lt;img class=&quot;interface-desc__image&quot; src=&quot;media/misc/title_n_logo.png&quot;&gt; &lt;&lt;br 2&gt;&gt;
+
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_sidebar_3&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    &lt;img class=&quot;interface-desc__image&quot; src=&quot;media/misc/timing.png&quot;&gt; &lt;&lt;br 2&gt;&gt;
+
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_sidebar_4&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    &lt;img class=&quot;interface-desc__image&quot; src=&quot;media/misc/main_stats_bars.png&quot;&gt; &lt;&lt;br 2&gt;&gt;
+
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_sidebar_5&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    &lt;img class=&quot;interface-desc__image&quot; src=&quot;media/misc/expirience_bar.png&quot;&gt; &lt;&lt;br 2&gt;&gt;
+
+    &lt;&lt;text_system &#39;info_interface&#39; &#39;info_sidebar_6&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+    &lt;img class=&quot;interface-desc__image&quot; src=&quot;media/misc/author_n_version.png&quot;&gt; &lt;&lt;br 2&gt;&gt;
+
+&lt;&lt;/if&gt;&gt;
 
 
 
 &lt;&lt;br 3&gt;&gt;
 &lt;&lt;system_return&gt;&gt;</tw-passagedata><tw-passagedata pid="32" name="Info_Story" tags="System nobr" position="1325,250" size="100,100">-- THIS PAGE IS IN DEVELOPMENT  -- &lt;&lt;br 2&gt;&gt;
 
-&lt;&lt;text_system &#39;index&#39; &#39;info_story_1&#39;&gt;&gt;&lt;&lt;br&gt;&gt;
-&lt;&lt;text_system &#39;index&#39; &#39;info_story_2&#39;&gt;&gt; &lt;span class=&quot;mc&quot;&gt; &lt;&lt;= $misc.player_name&gt;&gt;.&lt;/span&gt;&lt;&lt;info_tip &#39;tip_name&#39;&gt;&gt;&lt;&lt;br&gt;&gt;
-&lt;&lt;text_system &#39;index&#39; &#39;info_story_4&#39;&gt;&gt;&lt;&lt;br&gt;&gt;
-Village is placed near the forest that take a lot of space.
-There are stories that once humans made a pact with elves, so the humans won&#39;t disturb deep forest and elves plae of livimg too much.
-And both humans and elves would unite their forces if facing outer enemy.
-In exchange of it ancient magic is used in the light forest around humans, so trees there would grow faster and it would help for wood production.
-Also there is another spell that borders the village and its surroundings from any dreadfull creatures or monsters that could target  it.
+/* &lt;&lt;text_system &#39;info_story&#39; &#39;info_story_1&#39;&gt;&gt;&lt;&lt;br&gt;&gt;
+&lt;&lt;text_system &#39;info_story&#39; &#39;info_story_4&#39;&gt;&gt;&lt;&lt;br&gt;&gt;&lt;&lt;br&gt;&gt;  */
+/* 
+Village called Elmdale and it is placed near the forest that take a lot of space.&lt;&lt;br&gt;&gt;
+There are stories that once humans made a pact with elves, so the humans won&#39;t disturb deep forest and elves plae of livimg too much.&lt;&lt;br&gt;&gt;
+And both humans and elves would unite their forces if facing outer enemy.&lt;&lt;br&gt;&gt;
+In exchange of it ancient magic is used in the light forest around humans, so trees there would grow faster and it would help for wood production.&lt;&lt;br&gt;&gt;
+Also there is another spell that borders the village and its surroundings from any dreadfull creatures or monsters that could target  it.&lt;&lt;br&gt;&gt;
 
-However, locals haven&#39;t seen any elves for centuries, so this story now come as a legend.
+However, locals haven&#39;t seen any elves for centuries, so this story now come as a legend.&lt;&lt;br&gt;&gt; &lt;&lt;br&gt;&gt;
 
-This village is considered to be placed in one of the most peacefull and troublesome regions in all the Alderia realm. 
-And maybe in the whole world of Fanthira.
-At least it was considered to be so untill now.
+Your village is pretty average by it&#39;s size, but quite prosper due to it&#39;s far away from any warlines. &lt;&lt;br&gt;&gt;
+Elmdale is considered to be placed in one of the most peacefull and troublesome regions in all the Alderia realm. &lt;&lt;br&gt;&gt;
+And maybe in the whole world of Fanthira. &lt;&lt;br&gt;&gt;
+At least it was considered to be so untill now. &lt;&lt;br&gt;&gt; &lt;&lt;br&gt;&gt;
 
-As for the whole Fanthira, there are three continent
+As for the whole Fanthira, there are three continents. Two almost equal and near each other that called ... And a third one that is significantly smaller and hard to reach.&lt;&lt;br&gt;&gt;
+You currently leave on ***. The most human=places one.&lt;&lt;br&gt;&gt;
+Alderia is in a state of cold war with neihgborhood country on the East and North-East borders - Imperia of Rakhmor, biggest country on the continent. &lt;&lt;br&gt;&gt;
+Imperia allows slavery, have much more strict laws, racist tendencies and more corruption on different levels. &lt;&lt;br&gt;&gt;
+Other main neihgborhood of yours is an Libarian Coalition - an alliances of a small countries, witch are placed mostly on the South borders. &lt;&lt;br&gt;&gt;
+They have a great variety of differencies between that countries, but they stand together for outer agression, simplfied trade tax and other economical aspects between each other. &lt;&lt;br&gt;&gt; 
+Few of those countries are very small and resemble more of large standalone cities with few layers of defence lines that separate regions of it. &lt;&lt;br&gt;&gt;
 
-She leaves in the average village, which is far away from any warlines. 
-In this realm there is basic comfort available for everyone, like primitive water system, available underwear and basic education (on level of 1-3 grade). 
- Yet she was pampered untill recently
 
+In this world there is basic comfort available for everyone, like primitive water system, commonly available underwear and basic education (on level of 1-3 grade). &lt;&lt;br&gt;&gt;
+** With a bit of differencies, based on each country rules and laws.
+Lot of inovations were developed long time ago by trevellers from another worlds that now are called &quot;trespassers&quot;. &lt;&lt;br&gt;&gt;
+But most of their legacy are buried over the time by a strict anti-tresspasser law. &lt;&lt;br&gt;&gt;
+That law respected by all countries across the Fanthira due to great catastrophes that were called by trespassers and their legacy. Two of them almost destroyed the world and vanished every living being, they were called Interworld Crysis&lt;&lt;br&gt;&gt;
+The main thing of this law is to prohibit any new technologies and control and punishment over it is stronger even than of darkest of magic. &lt;&lt;br&gt;&gt;
+Overtime almost all of changes from &#39;trespassers&#39; dissapeared except modifications (based on old inworld tecknologies and magic) of few ones that are used for common basic comfort. &lt;&lt;br&gt;&gt;
+Infact, tresspassers are rare to occur nowadays. &lt;&lt;br&gt;&gt;
+Only the rumors are that the frequency of their appearence increases compared to what it was a hundread year ago and that the Third Interworld Crysis will appear.&lt;&lt;br&gt;&gt;
+Still this counted as crazy people talking. &lt;&lt;br&gt;&gt; */
+
+
+
+
+
+In a world filled with magic, demons, and elves, our story begins in a quaint village known as Elmdale. &lt;&lt;br&gt;&gt; 
+It&#39;s a peaceful place, nestled near a vast and mysterious forest that stretches far and wide. &lt;&lt;br&gt;&gt; &lt;&lt;br&gt;&gt; 
+
+Legend has it that long ago, humans and elves struck a pact to safeguard the deep woods, their mutual home. &lt;&lt;br&gt;&gt; 
+Together, they vowed to defend against any outside threats. &lt;&lt;br&gt;&gt; 
+In return, ancient magic enveloped the nearby light forest, causing trees to grow swiftly and aiding in wood production.&lt;&lt;br&gt;&gt; &lt;&lt;br&gt;&gt; 
+
+Yet, for centuries, the villagers of Elmdale hadn&#39;t glimpsed an elf. &lt;&lt;br&gt;&gt; 
+Representatives of this race, who concealed themselves with enchantments, remained hidden, leaving their existence to become the stuff of legends.&lt;&lt;br&gt;&gt; &lt;&lt;br&gt;&gt; 
+
+In the broader world of Fanthira, there are three continents. &lt;&lt;br&gt;&gt; 
+Two, similar in size and close to each other, Eldertide and Neuboulan, while the third one Isolara is smaller and remote. &lt;&lt;br&gt;&gt; 
+Our story unfolds in the kingdom of Alderia in the most human-populated of the continents, Neuboulan. &lt;&lt;br&gt;&gt; &lt;&lt;br&gt;&gt; 
+Currently Alderia finds itself in a state of tension, locked in a cold war with its eastern and north-eastern neighbor, 
+the Imperia of Rakhmor — the largest country on the continent.&lt;&lt;br&gt;&gt; 
+To the south, Elmdale&#39;s nearest neighbors belong to the Libarian Coalition, an alliance of small countries with vast differences but a united front against external threats. &lt;&lt;br&gt;&gt; 
+Some of these countries are so diminutive that they resemble large, fortified cities with multiple layers of defense separating their regions.&lt;&lt;br&gt;&gt; &lt;&lt;br&gt;&gt; 
+
+Elmdale, although an average-sized village, flourished thanks to its distance from the any turmoils of war. &lt;&lt;br&gt;&gt; 
+In fact, it is deemed to be one of the most tranquil places in the entire Alderia realm, and then perhaps even in all of Fanthira.&lt;&lt;br&gt;&gt; 
+
+The village was nestled near the western border of the country, and beyond that border lay a vast and ominous forest that gradually transformed into the deep, forbidding woods. &lt;&lt;br&gt;&gt; 
+To the west of the country&#39;s end border, there were only treacherous swamps, perilous magical landscapes, and monstrous creatures lurking within the deep forests. &lt;&lt;br&gt;&gt; 
+The westernmost boundary was marked by the unforgiving ocean shores, devoid of intelligent life — except for a hidden elf village nearby, a secret yet to be unveiled.&lt;&lt;br&gt;&gt; &lt;&lt;br&gt;&gt; 
+
+In this world, there is a basic level of comfort for all, including rudimentary water systems, readily available clothing and the very basic education. &lt;&lt;br&gt;&gt; 
+These conveniences vary slightly based on the rules and laws of each country. &lt;&lt;br&gt;&gt; 
+Many innovations were introduced long ago by travelers from other worlds, now known as &quot;trespassers.&quot; &lt;&lt;br&gt;&gt; 
+However, most of their contributions have been buried over time due to strict anti-trespasser laws. &lt;&lt;br&gt;&gt; 
+These laws, upheld across the whole Fanthira, were enacted to prevent the catastrophes wrought by trespassers and their technological advancements. &lt;&lt;br&gt;&gt; 
+Two such crises nearly obliterated the world and wiped out nearly all life, later named as the Interworld Crises.&lt;&lt;br&gt;&gt; &lt;&lt;br&gt;&gt; 
+
+The basic principle of this law is to prohibit the development of new technologies and enforcement of it is even more stringent than that of the darkest of magics. &lt;&lt;br&gt;&gt; 
+As time passed, the influence of trespassers legacy gradually faded, leaving only a few important basic comforts crafted from ancient inworld technologies or magic.&lt;&lt;br&gt;&gt; 
+Trespassers themselves have become exceedingly rare, but recently rumors suggest their appearances are increasing, hinting at a looming Third Interworld Crisis. &lt;&lt;br&gt;&gt;  
+Yet, such talk is often dismissed as the ramblings of the insane. &lt;&lt;br&gt;&gt; &lt;&lt;br&gt;&gt; 
+
+Our main character is no one of great renown, he&#39;s just a young villager from a family of carpenters, known as the Wrights.&lt;&lt;br&gt;&gt; &lt;&lt;br&gt;&gt; 
+
+And so, our story unfolds with that young boy from Elmdale, as he becomes entangled in a world far more complex and perilous than one could ever have imagined.&lt;&lt;br&gt;&gt; 
+&lt;&lt;text_system &#39;info_story&#39; &#39;info_story_2&#39;&gt;&gt; &lt;span class=&quot;mc&quot;&gt; &lt;&lt;= $misc.player_name&gt;&gt;&lt;/span&gt;.&lt;&lt;info_tip &#39;tip_name&#39;&gt;&gt;&lt;&lt;br&gt;&gt;
 &lt;&lt;br 4&gt;&gt;
 
 
 
-&lt;&lt;text_system &#39;index&#39; &#39;info_story_5&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
-&lt;&lt;passage &#39;index&#39; &#39;info_story_wake_up&#39; &#39;Uni_Location&#39;&gt;&gt;
+&lt;&lt;text_system &#39;info_story&#39; &#39;info_story_5&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
+&lt;&lt;passage &#39;info_story&#39; &#39;info_story_wake_up&#39; &#39;Uni_Location&#39;&gt;&gt;
     &lt;&lt;set $temp.custom_location = &#39;prologue_1&#39;&gt;&gt;
+    &lt;&lt;set $settings.interface.time.day_of_week = 1, $settings.interface.time.month = 1, $settings.interface.time.hours = 1,
+      $settings.interface.bars.health = 1, $settings.interface.bars.stamina = 1,
+      $settings.interface.exp.level = 1,
+      $settings.interface.menu_story.help = 1, $settings.interface.menu_story.info = 1
+    &gt;&gt;
 &lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="33" name="InitialDream" tags="Story" position="1500,250" size="100,100">You wake up in you room. 
 You&#39;ve seen a strange dream it seems like  you have been introduced to this new world. 
 This is a little strange, because although you know little about the variety of things in this world, it is the world where you&#39;ve been living all your life.
@@ -23101,10 +24652,7 @@ Maybe it doesn&#39;t really metter.
  - A dream is just a dream.
 @@\
 
-[[WakeUp|InitialQuest1]]</tw-passagedata><tw-passagedata pid="34" name="InitialQuest6" tags="Story" position="2400,250" size="100,100">Check if can use 
-/* &quot;&lt;&lt;actions linkMarkupList&gt;&gt; */
-
-&lt;&lt;set $toThinkAbout = {
+[[WakeUp|InitialQuest1]]</tw-passagedata><tw-passagedata pid="34" name="InitialQuest6" tags="Story" position="2400,250" size="100,100">&lt;&lt;set $toThinkAbout = {
 	1: &#39;Forest and outskirt&#39;,
 	2: &#39;Changes in you&#39;,
 	3: &#39;Unrelative appearence&#39;,
@@ -23120,7 +24668,6 @@ Maybe it doesn&#39;t really metter.
 &lt;img style=&quot;width:85%; height:auto;&quot; src=&#39;media\backgrounds\homes\mc\bedroom.jpg&#39; &gt;
 &lt;/center&gt;
 
-In the morning, your sister asks you what happened, you disappeared for the whole day yesterday. And after come back, you looked like a deadman and ignored her completely. 
 
 
 [[Tell her everythings in details|InitialQuestDE2][$quest.initial.status = &#39;de2_melissa&#39;;]]
@@ -23128,16 +24675,13 @@ In the morning, your sister asks you what happened, you disappeared for the whol
 &lt;&lt;/if&gt;&gt;
 \
 &lt;&lt;if $quest.initial.status == 5&gt;&gt;\
-You tell her that you did not fully understand what happened, everything as is in a fog.
-
-She try to know more.
-But you says that nothing for now, if there would be smth to tell her you&#39;ll do it.
-She&#39;s not very happy with your answer but let you be.
-She says Barrett also came in, wanted to find you yesterday.
 * new quest to talk to Barrett
 
 * Give the brooch:
-She says that she was worried about you and that she was very scared when she saw you like that, and that some brooches are clearly not worth your well-being
+She says that she was worried about you and that she was very scared when she saw you like that, 
+
+*give her away and bad joke about your efforts to get theat brooch
+*and she says some brooches are clearly not worth your well-being
 
 [[Think about what happened|InitialQuest6][$quest.initial.status += 1;]]
 &lt;&lt;/if&gt;&gt;\
@@ -23314,13 +24858,10 @@ Then grab you by the arm and take with him to the carret.
     &lt;&lt;/link&gt;&gt;
 &lt;&lt;/fadein&gt;&gt;
 
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="36" name="Menu_Avatar" tags="System nobr noreturn questionable" position="0,1675" size="100,100">&lt;center&gt;
-&lt;img style=&quot;width:85%; height:auto;&quot; src=&#39;media\misc\avatar.jpg&#39; &gt;
-&lt;/center&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="36" name="Menu_Debug" tags="System nobr noreturn" position="0,1300" size="100,100">[[Return|$return_passage]]
+&lt;&lt;br 2&gt;&gt; 
 
-
-&lt;&lt;system_return&gt;&gt;</tw-passagedata><tw-passagedata pid="37" name="Menu_Debug" tags="System nobr noreturn" position="0,1300" size="100,100">[[Return|$return_passage]]
-
+Constructors:
 &lt;&lt;br 2&gt;&gt;
 
 [[Constructor_Localization_Table|Uni_Constructor][$temp.constructor_entity = &#39;localization&#39;]]
@@ -23335,18 +24876,26 @@ Then grab you by the arm and take with him to the carret.
 &lt;&lt;br&gt;&gt;
 [[Constructor_Schedule_Table|Uni_Constructor_Table][$temp.constructor_entity = &#39;schedules&#39;]]
 &lt;&lt;br 2&gt;&gt;
-[[Constructor_Task_Table|Uni_Constructor_Table][$temp.constructor_entity = &#39;tasks&#39;]]
+[[Constructor_Task_Table(WIP)|Uni_Constructor_Table][$temp.constructor_entity = &#39;tasks&#39;]]
 &lt;&lt;br&gt;&gt;
-[[Constructor_Quest_Table|Uni_Constructor_Table][$temp.constructor_entity = &#39;quests&#39;]]
+[[Constructor_Quest_Table(WIP)|Uni_Constructor_Table][$temp.constructor_entity = &#39;quests&#39;]]
 &lt;&lt;br 2&gt;&gt;
-&lt;&lt;br&gt;&gt;
-[[Constructor_Location_Table (WIP)|Uni_Constructor_Table][$temp.constructor_entity = &#39;custom_locations&#39;]]
+
+[[Constructor_Location_Table (Need to be redone)|Uni_Constructor_Table][$temp.constructor_entity = &#39;custom_locations&#39;]]
 &lt;&lt;br 3&gt;&gt;
+
+
+For development:
+&lt;&lt;br&gt;&gt;
 
 &lt;a href=&quot;https://nagoshiashumari.github.io/Rpg-Awesome/&quot;&gt;Check icons&lt;/a&gt;&lt;&lt;br&gt;&gt;&lt;&lt;br&gt;&gt;
 
+
+Debug:
+&lt;&lt;br&gt;&gt;
+
 [[Test_Room]]
-&lt;&lt;br 2&gt;&gt;
+&lt;&lt;br&gt;&gt;
 [[Custom location|Uni_Location][$temp.custom_location = &#39;test_1&#39;]]
 &lt;&lt;br&gt;&gt;
 [[Uni_Store|Uni_Store]]
@@ -23365,7 +24914,47 @@ Then grab you by the arm and take with him to the carret.
 
 
 
-If you passed Intro and have passage issue, yo can [[Go to your room|Home_Bedroom]]</tw-passagedata><tw-passagedata pid="38" name="Menu_Help" tags="System nobr noreturn" position="0,1175" size="100,100">Need help? Yeah, me too(
+&lt;&lt;link &#39;Home_Bedroom_Passage&#39; &#39;Home_Bedroom&#39;&gt;&gt;
+    &lt;&lt;set $settings.interface = {    
+        time: {
+            day_of_week: 1,
+            month: 1,
+            hours: 1
+        },
+        stats: {
+            money: 1
+        },
+        bars: {
+            health: 1,
+            stamina: 1,
+            mana: 1
+        },
+        exp: {
+            level: 1,
+        },
+        menu_story: {
+            inventory: 1,
+            questlog: 1,
+            party: 1,
+            help: 1,
+            info: 1
+        },
+        menu_core: {
+            saves: 1,
+            settings: 1,
+            restart: 1,
+            share: 1
+        },
+        sign: {
+            author: 1,
+            version: 1,
+        },
+        history: {
+            backward: 1,
+            forward: 1
+        }
+    }&gt;&gt;
+&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="37" name="Menu_Help" tags="System nobr noreturn" position="0,1175" size="100,100">Need help? Yeah, me too(
 &lt;&lt;br&gt;&gt;
 &lt;&lt;br&gt;&gt;
 
@@ -23400,16 +24989,17 @@ Items rarity:
 &lt;br&gt;
 &lt;br&gt;
 
+If the system doesn&#39;t work as you think it should, please check Interface guide. 
 &lt;div class=&quot;disclaimer-subtitle&quot;&gt; &lt;&lt;text_system &#39;index&#39; &#39;index_info_interface_text&#39;&gt;&gt;&lt;&lt;br&gt;&gt; &lt;/div&gt;
 &lt;button class=&quot;custom-btn btn-apply&quot;&gt;	
 	&lt;&lt;link &quot;&lt;&lt;text_system &#39;index&#39; &#39;index_info_interface_link&#39;&gt;&gt;&quot; &#39;Info_Interface&#39;&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;/button&gt; &lt;&lt;br 3&gt;&gt;
+&lt;/button&gt; &lt;&lt;br 2&gt;&gt;
+If after reading it, there is still an issue that troubles you, please contact me via discord.
 
-[[Work Log|Work_Log]]
 
 &lt;&lt;br 2&gt;&gt;
 
-&lt;&lt;system_return&gt;&gt;</tw-passagedata><tw-passagedata pid="39" name="Menu_Info" tags="System nobr noreturn" position="0,1425" size="100,100">-- THIS PAGE IS IN DEVELOPMENT  -- &lt;&lt;br 2&gt;&gt;
+&lt;&lt;system_return&gt;&gt;</tw-passagedata><tw-passagedata pid="38" name="Menu_Info" tags="System nobr noreturn" position="0,1425" size="100,100">-- THIS PAGE IS IN DEVELOPMENT  -- &lt;&lt;br 2&gt;&gt;
 
 Days in game: &lt;&lt;print $total_day&gt;&gt;&lt;&lt;br&gt;&gt;
 Total expierence: &lt;&lt;print $player.total_exp&gt;&gt;&lt;&lt;br&gt;&gt;
@@ -23435,7 +25025,7 @@ Characters:&lt;&lt;br&gt;&gt;&lt;&lt;br&gt;&gt;
 
 &lt;&lt;br&gt;&gt;
 
-&lt;&lt;system_return&gt;&gt;</tw-passagedata><tw-passagedata pid="40" name="Menu_Inventory" tags="System nobr noreturn" position="0,1675" size="100,100">-- THIS PAGE IS IN DEVELOPMENT  -- &lt;&lt;br 2&gt;&gt;
+&lt;&lt;system_return&gt;&gt;</tw-passagedata><tw-passagedata pid="39" name="Menu_Inventory" tags="System nobr noreturn" position="0,1675" size="100,100">-- THIS PAGE IS IN DEVELOPMENT  -- &lt;&lt;br 2&gt;&gt;
 
 
 Equiped:
@@ -23583,7 +25173,7 @@ Potions:
 &lt;/table&gt; */
 &lt;&lt;br&gt;&gt;&lt;&lt;br&gt;&gt;
 
-&lt;&lt;system_return&gt;&gt;</tw-passagedata><tw-passagedata pid="41" name="Menu_Party" tags="System nobr noreturn" position="0,1675" size="100,100">-- THIS PAGE IS IN DEVELOPMENT  -- &lt;&lt;br 2&gt;&gt;
+&lt;&lt;system_return&gt;&gt;</tw-passagedata><tw-passagedata pid="40" name="Menu_Party" tags="System nobr noreturn" position="0,1675" size="100,100">-- THIS PAGE IS IN DEVELOPMENT  -- &lt;&lt;br 2&gt;&gt;
 
 &lt;&lt;run setup.showParty($party_hero.party)&gt;&gt;
 
@@ -23591,7 +25181,7 @@ Potions:
 
 
 &lt;&lt;br 2&gt;&gt;
-&lt;&lt;system_return&gt;&gt;</tw-passagedata><tw-passagedata pid="42" name="Menu_Questlog" tags="System nobr noreturn" position="0,1550" size="100,100">-- THIS PAGE IS IN DEVELOPMENT  -- &lt;&lt;br 2&gt;&gt;
+&lt;&lt;system_return&gt;&gt;</tw-passagedata><tw-passagedata pid="41" name="Menu_Questlog" tags="System nobr noreturn" position="0,1550" size="100,100">-- THIS PAGE IS IN DEVELOPMENT  -- &lt;&lt;br 2&gt;&gt;
 
 Quest Info:
 
@@ -23620,7 +25210,7 @@ Quest Info:
 
 
 &lt;&lt;br&gt;&gt;&lt;&lt;br&gt;&gt;
-&lt;&lt;system_return&gt;&gt;</tw-passagedata><tw-passagedata pid="43" name="Menu_Settings" tags="System nobr noreturn" position="771,6" size="100,100">&lt;&lt;text_system &#39;setting&#39; &#39;setting_select_name&#39;&gt;&gt;&lt;&lt;br&gt;&gt;
+&lt;&lt;system_return&gt;&gt;</tw-passagedata><tw-passagedata pid="42" name="Menu_Settings" tags="System nobr noreturn" position="771,6" size="100,100">&lt;&lt;text_system &#39;setting&#39; &#39;setting_select_name&#39;&gt;&gt;&lt;&lt;br&gt;&gt;
 &lt;&lt;textbox &quot;$misc.player_name&quot; setup.getPlayerName() autofocus&gt;&gt;
 &lt;&lt;br 2&gt;&gt;
 
@@ -23639,9 +25229,8 @@ Quest Info:
 
 
 
-//Dev note: 
-&lt;&lt;br&gt;&gt;
-Add switcher to change between numbers or progress bars?
+/* //Dev note:  */
+/* Add switcher to change between numbers or progress bars? */
 &lt;&lt;br 4&gt;&gt;
 
 
@@ -23661,7 +25250,7 @@ Add switcher to change between numbers or progress bars?
 		&lt;&lt;run setup.changePlayerName()&gt;&gt;
 		&lt;&lt;script&gt;&gt;window.location.reload();&lt;&lt;/script&gt;&gt;
 	&lt;&lt;/link&gt;&gt;
-&lt;/button&gt;</tw-passagedata><tw-passagedata pid="44" name="PassageDone" tags="System questionable" position="600,0" size="100,100">/* Probably replace all of that with js functions */
+&lt;/button&gt;</tw-passagedata><tw-passagedata pid="43" name="PassageDone" tags="System questionable" position="600,0" size="100,100">/* Probably replace all of that with js functions */
 
 &lt;&lt;if ($player.stamina &gt; $player.stamina_max)&gt;&gt; 
   &lt;&lt;set $player.stamina = $player.stamina_max&gt;&gt;
@@ -23708,7 +25297,7 @@ Add switcher to change between numbers or progress bars?
 
 /* &lt;&lt;run setup.checkLanguageChange()&gt;&gt; */
 
-&lt;&lt;set $player.money = Math.round($player.money)&gt;&gt;</tw-passagedata><tw-passagedata pid="45" name="PassageFooter" tags="System nobr" position="0,0" size="100,100">&lt;div class=&quot;passage-list passage-list__talk&quot;&gt;&lt;/div&gt; &lt;&lt;br&gt;&gt;
+&lt;&lt;set $player.money = Math.round($player.money)&gt;&gt;</tw-passagedata><tw-passagedata pid="44" name="PassageFooter" tags="System nobr" position="0,0" size="100,100">&lt;div class=&quot;passage-list passage-list__talk&quot;&gt;&lt;/div&gt; &lt;&lt;br&gt;&gt;
 
 &lt;div class=&quot;passage-list passage-list__activity&quot;&gt;&lt;/div&gt; &lt;&lt;br&gt;&gt;
 
@@ -23726,7 +25315,7 @@ Add switcher to change between numbers or progress bars?
 /* &lt;&lt;if passage() == &#39;Talk_Menu&#39;&gt;&gt;
     &lt;&lt;br&gt;&gt;
     &lt;&lt;link &quot;Return&quot; $return_passage&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;/if&gt;&gt; */</tw-passagedata><tw-passagedata pid="46" name="PassageHeader" tags="System nobr" position="425,0" size="100,100">&lt;div id=&quot;modal-container&quot; class=&quot;modal&quot;&gt;&lt;/div&gt;
+&lt;&lt;/if&gt;&gt; */</tw-passagedata><tw-passagedata pid="45" name="PassageHeader" tags="System nobr" position="425,0" size="100,100">&lt;div id=&quot;modal-container&quot; class=&quot;modal&quot;&gt;&lt;/div&gt;
 
 
 &lt;div class=&quot;passage-list passage-list__image&quot;&gt;&lt;/div&gt; 
@@ -23735,7 +25324,7 @@ Add switcher to change between numbers or progress bars?
 
 /* &lt;div class=&quot;passage-list passage-list__narration&quot;&gt;&lt;/div&gt; */
 
-/* &lt;div class=&quot;passage-list passage-list__locations&quot;&gt;&lt;/div&gt; */</tw-passagedata><tw-passagedata pid="47" name="StoryBanner" tags="System questionable" position="25,125" size="100,100">&lt;img src=&quot;https://twinery.org/icons/twine.svg&quot; style=&quot;width: 64px; height: 64px;&quot;&gt;</tw-passagedata><tw-passagedata pid="48" name="StoryCaption" tags="System nobr" position="650,125" size="100,100">&lt;&lt;if $settings.debug == 1&gt;&gt;
+/* &lt;div class=&quot;passage-list passage-list__locations&quot;&gt;&lt;/div&gt; */</tw-passagedata><tw-passagedata pid="46" name="StoryBanner" tags="System questionable" position="25,125" size="100,100">&lt;img src=&quot;https://twinery.org/icons/twine.svg&quot; style=&quot;width: 64px; height: 64px;&quot;&gt;</tw-passagedata><tw-passagedata pid="47" name="StoryCaption" tags="System nobr" position="650,125" size="100,100">&lt;&lt;if $settings.debug == 1&gt;&gt;
 	&lt;span&gt;&lt;&lt;print passage()&gt;&gt;&lt;/span&gt;:
 	&lt;&lt;link &quot;refresh&quot;&gt;&gt;&lt;&lt;goto `passage()`&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;&lt;br&gt;&gt;
 	
@@ -23743,41 +25332,19 @@ Add switcher to change between numbers or progress bars?
 	&lt;&lt;if passage() == &#39;Uni_Sketch&#39;&gt;&gt;   &lt;&lt;= $temp.cur_sketch&gt;&gt;	&lt;&lt;br&gt;&gt;	&lt;&lt;/if&gt;&gt;
 
     &lt;&lt;text_system &#39;sidebar&#39; &quot;caption_lang&quot;&gt;&gt;: &quot;&lt;&lt;text_system &#39;lang_list&#39; $settings.lang&gt;&gt;&quot; &lt;&lt;br&gt;&gt;
-	&lt;&lt;text_system &#39;sidebar&#39; &quot;caption_name&quot;&gt;&gt;: &lt;span&gt;&lt;&lt;print $misc.player_name&gt;&gt;&lt;/span&gt; &lt;&lt;br&gt;&gt;
+	&lt;&lt;text_system &#39;sidebar&#39; &quot;caption_name&quot;&gt;&gt;: &lt;span&gt;&lt;&lt;print $misc.player_name&gt;&gt;&lt;/span&gt; &lt;&lt;br 2&gt;&gt;
 
 &lt;&lt;/if&gt;&gt;
 
 
-&lt;&lt;= setup.showDateSidebar()&gt;&gt; &lt;&lt;br&gt;&gt;
-
-&lt;&lt;text_system &#39;sidebar&#39; &quot;caption_money&quot;&gt;&gt;: &lt;span&gt;&lt;&lt;print $player.money&gt;&gt;&lt;/span&gt; &lt;&lt;text_system &#39;sidebar&#39; &quot;caption_coins&quot;&gt;&gt;&lt;&lt;br&gt;&gt;
+&lt;&lt;= setup.showDateSidebar()&gt;&gt; 
 &lt;&lt;br 2&gt;&gt;
 
-
-
-/* ------------------------- Health bar ----------------------------- */
-
-&lt;&lt;text_system &#39;sidebar&#39; &quot;caption_health&quot;&gt;&gt;: &lt;&lt;print $player.health&gt;&gt;/&lt;&lt;print $player.health_max&gt;&gt; &lt;&lt;br&gt;&gt;
-
-&lt;div class=&quot;bar&quot;&gt;
-	&lt;span class=&quot;bar-line&quot; data-stat=&#39;health&#39;/&gt;
-&lt;/div&gt;
-&lt;&lt;run setup.drawBar($player.health, $player.health_max, &#39;health&#39;, $saturation=90, $lightness=45)&gt;&gt; &lt;&lt;br&gt;&gt;
-
-
-
-
-/* ------------------------- Stamina bar ----------------------------- */
-
-&lt;&lt;text_system &#39;sidebar&#39; &quot;caption_stamina&quot;&gt;&gt;: &lt;&lt;print $player.stamina&gt;&gt;/&lt;&lt;print $player.stamina_max&gt;&gt; &lt;&lt;br&gt;&gt;
-
-&lt;div class=&quot;bar&quot;&gt;
-	&lt;span class=&quot;bar-line&quot; data-stat=&#39;stamina&#39;/&gt;
-&lt;/div&gt;
-&lt;&lt;run setup.drawBar($player.stamina, $player.stamina_max, &#39;stamina&#39;, $saturation=60, $lightness=35)&gt;&gt;
+&lt;&lt;= setup.showStatsValues()&gt;&gt; 
 &lt;&lt;br 2&gt;&gt;
 
-
+&lt;&lt;= setup.showStatsBar()&gt;&gt; 
+&lt;&lt;br 2&gt;&gt;
 
 
 /* ------------------------------- EXP bar -------------------------------*/
@@ -23807,10 +25374,12 @@ Add switcher to change between numbers or progress bars?
 	&lt;/div&gt;
 	&lt;div class=&quot;level-line&quot;&gt;			
 		&lt;p class=&quot;level-info&quot;&gt;
-			&lt;span id=&quot;current-exp&quot;&gt;&lt;&lt;print $player.lvl_exp&gt;&gt;&lt;/span&gt; XP
+			&lt;span id=&quot;current-exp&quot; class=&quot;sidebar__numbers sidebar__numbers--small&quot;&gt;&lt;&lt;print $player.lvl_exp&gt;&gt;&lt;/span&gt; 
+			&lt;span class=&quot;sidebar__text sidebar__text--small sidebar_xp-text&quot; &gt; XP&lt;/span&gt; 
 		&lt;/p&gt;	
 		&lt;p class=&quot;level-info-next&quot;&gt;
-			&lt;span id=&quot;left-exp&quot;&gt;&lt;&lt;print _expLeft&gt;&gt;&lt;/span&gt; XP
+			&lt;span id=&quot;left-exp&quot; class=&quot;sidebar__numbers sidebar__numbers--small&quot;&gt;&lt;&lt;print _expLeft&gt;&gt;&lt;/span&gt; 
+			&lt;span class=&quot;sidebar__text sidebar__text--small sidebar_xp-text&quot; &gt; XP&lt;/span&gt; 
 		&lt;/p&gt;	
 
 		/* &lt;div class=&quot;bar&quot;&gt;
@@ -23819,8 +25388,8 @@ Add switcher to change between numbers or progress bars?
 		&lt;&lt;run setup.drawBar($player.lvl_exp, $levels[_nextLevel], &#39;level&#39;, $saturation=60, $lightness=35)&gt;&gt;
 			*/
 		&lt;&lt;print 
-			&#39;&lt;div class=&quot;bar&quot;&gt;
-				&lt;span id=&quot;level-bar&quot; class=&quot;bar-line&quot; style=&quot;width:&#39; + _expPercent + &#39;%;&quot;/&gt;
+			&#39;&lt;div class=&quot;progress-bar&quot;&gt;
+				&lt;span id=&quot;level-bar&quot; class=&quot;progress-bar-line&quot; style=&quot;width:&#39; + _expPercent + &#39;%;&quot;/&gt;
 			&lt;/div&gt;&#39;
 		&gt;&gt;
 	&lt;/div&gt;
@@ -23852,7 +25421,17 @@ Add switcher to change between numbers or progress bars?
 		let expPercent = Math.round($player.lvl_exp/$levels[nextLevel] * 100);
 		$getExp($player.lvl_exp, $levels[nextLevel], _exp_to_next_lvl, expLeft, expPercent);
 	})&gt;&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="49" name="StoryInit" tags="System" position="775,125" size="100,100">&lt;&lt;set $consoleLog = (item, item_2) =&gt; ((item_2) ? console.log(item, item_2) : console.log(item)) ;&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;br 2&gt;&gt;
+
+
+
+&lt;&lt;= setup.showMenuStory()&gt;&gt;
+
+&lt;&lt;= setup.showMenuCore()&gt;&gt;
+
+&lt;&lt;= setup.showSignature()&gt;&gt;</tw-passagedata><tw-passagedata pid="48" name="StoryInit" tags="System" position="775,125" size="100,100">&lt;&lt;set $consoleLog = (item, item_2) =&gt; ((item_2) ? console.log(item, item_2) : console.log(item)) ;&gt;&gt;
 
 /* &lt;&lt;run $consoleLog(&#39;StoryInit&#39;)&gt;&gt; */
 
@@ -23997,18 +25576,12 @@ Add switcher to change between numbers or progress bars?
     });
 }&gt;&gt;
 
-&lt;&lt;run setup.initOnce()&gt;&gt;</tw-passagedata><tw-passagedata pid="50" name="StoryMenu" tags="System" position="525,125" size="100,100">&lt;&lt;link &quot;&lt;&lt;text_system &#39;passages&#39; &#39;passage_menu_inventory&#39;&gt;&gt;&quot; &quot;Menu_Inventory&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;&lt;&lt;text_system &#39;passages&#39; &#39;passage_menu_questlog&#39;&gt;&gt;&quot; &quot;Menu_Questlog&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;&lt;&lt;text_system &#39;passages&#39; &#39;passage_menu_party&#39;&gt;&gt;&quot; &quot;Menu_Party&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;&lt;&lt;text_system &#39;passages&#39; &#39;passage_menu_info&#39;&gt;&gt;&quot; &quot;Menu_Info&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;&lt;&lt;text_system &#39;passages&#39; &#39;passage_menu_help&#39;&gt;&gt;&quot; &quot;Menu_Help&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;&lt;&lt;text_system &#39;passages&#39; &#39;passage_menu_debug&#39;&gt;&gt;&quot; &quot;Menu_Debug&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;&lt;&lt;text_system &#39;passages&#39; &#39;passage_menu_avatar&#39;&gt;&gt;&quot; &quot;Menu_Avatar&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="51" name="StoryShare" tags="System questionable" position="400,125" size="100,100">[[Twinery|https://twinery.org/]]
-[[Icons|http://www.motoslave.net/sugarcube/tmp/tme-fa-icons/]]</tw-passagedata><tw-passagedata pid="52" name="Talk_Generated" tags="Location nobr" position="3600,1200" size="100,100">&lt;&lt;set _phrase_num = random(0,$current_speaker.phrases.length-1)&gt;&gt;
+&lt;&lt;run setup.initOnce()&gt;&gt;</tw-passagedata><tw-passagedata pid="49" name="StoryShare" tags="System questionable" position="400,125" size="100,100">[[Twinery|https://twinery.org/]]
+[[Icons|http://www.motoslave.net/sugarcube/tmp/tme-fa-icons/]]</tw-passagedata><tw-passagedata pid="50" name="Talk_Generated" tags="Location nobr" position="3600,1200" size="100,100">&lt;&lt;set _phrase_num = random(0,$current_speaker.phrases.length-1)&gt;&gt;
 &lt;&lt;print $current_speaker.name&gt;&gt; says to you &lt;strong&gt; &lt;&lt;print $current_speaker.phrases[_phrase_num]&gt;&gt; &lt;/strong&gt;&lt;&lt;br&gt;&gt;
 
 &lt;&lt;br&gt;&gt;
-[[Return|previous()]]</tw-passagedata><tw-passagedata pid="53" name="Talk_Menu" tags="nobr" position="3600,1500" size="100,100">&lt;div class=&quot;talk-menu__item talk-menu__info&quot;&gt;&lt;/div&gt; 
+[[Return|previous()]]</tw-passagedata><tw-passagedata pid="51" name="Talk_Menu" tags="nobr" position="3600,1500" size="100,100">&lt;div class=&quot;talk-menu__item talk-menu__info&quot;&gt;&lt;/div&gt; 
 
 
 &lt;div class=&quot;talk-menu__item talk-menu__chat&quot;&gt;&lt;/div&gt; 
@@ -24028,7 +25601,7 @@ Add switcher to change between numbers or progress bars?
 
 &lt;div class=&quot;talk-menu__item talk-menu__inventory&quot;&gt;&lt;/div&gt;
 
-&lt;&lt;link &quot;Return&quot; $temp.last_location_passage&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="54" name="Test_Fight" tags="System questionable" position="3200,100" size="100,100"></tw-passagedata><tw-passagedata pid="55" name="Test_Room" tags="System" position="1400,0" size="100,100">[[Spend 1 minute|Test_Room][$time.minute += 1]]
+&lt;&lt;link &quot;Return&quot; $temp.last_location_passage&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="52" name="Test_Fight" tags="System questionable" position="3200,100" size="100,100"></tw-passagedata><tw-passagedata pid="53" name="Test_Room" tags="System" position="1400,0" size="100,100">[[Spend 1 minute|Test_Room][$time.minute += 1]]
 [[Spend 5 minutes|Test_Room][$time.minute += 5]]
 [[Spend 20 minutes|Test_Room][$time.minute += 20]]
 [[set to 23 hour|Test_Room][$time.hour = 23]]
@@ -24064,11 +25637,11 @@ Add switcher to change between numbers or progress bars?
 &lt;&lt;/link&gt;&gt;
 
 
-[[Return to Your Room|Home_Bedroom]]</tw-passagedata><tw-passagedata pid="56" name="Uni_Constructor" tags="constructor noreturn" position="0,800" size="100,100">[[Menu_Debug]]
+[[Return to Your Room|Home_Bedroom]]</tw-passagedata><tw-passagedata pid="54" name="Uni_Constructor" tags="constructor noreturn" position="0,800" size="100,100">[[Menu_Debug]]
 
-&lt;form id=&quot;constructor&quot;&gt;&lt;/form&gt;</tw-passagedata><tw-passagedata pid="57" name="Uni_Constructor_Table" tags="constructor noreturn" position="0,500" size="100,100">[[Menu_Debug]]
+&lt;form id=&quot;constructor&quot;&gt;&lt;/form&gt;</tw-passagedata><tw-passagedata pid="55" name="Uni_Constructor_Table" tags="constructor noreturn" position="0,500" size="100,100">[[Menu_Debug]]
 
-&lt;div id=&quot;constructor-table__container&quot;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="58" name="Uni_Deadend" tags="System nobr" position="3800,1700" size="100,100">&lt;div id=&quot;deadend_container&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;constructor-table__container&quot;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="56" name="Uni_Deadend" tags="System nobr" position="3800,1700" size="100,100">&lt;div id=&quot;deadend_container&quot;&gt;&lt;/div&gt;
 
 &lt;&lt;fadein 2s&gt;&gt; 
     &lt;div class=&quot;death&quot;&gt; You died &lt;/div&gt;
@@ -24085,7 +25658,7 @@ Add switcher to change between numbers or progress bars?
     &lt;&lt;link &quot;Restart the game&quot;&gt;&gt;
         &lt;&lt;script&gt;&gt;Engine.restart()&lt;&lt;/script&gt;&gt;
     &lt;&lt;/link&gt;&gt;
-&lt;&lt;/fadein&gt;&gt;</tw-passagedata><tw-passagedata pid="59" name="Uni_Location" tags="System nobr" position="3800,1700" size="100,100">&lt;div id=&quot;sketch_container&quot;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="60" name="Uni_Sketch" tags="nobr" position="3800,1500" size="100,100">&lt;div id=&quot;sketch_container&quot;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="61" name="Uni_Store" tags="System Store" position="550,1400" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;/fadein&gt;&gt;</tw-passagedata><tw-passagedata pid="57" name="Uni_Location" tags="System nobr" position="3800,1700" size="100,100">&lt;div id=&quot;sketch_container&quot;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="58" name="Uni_Sketch" tags="nobr" position="3800,1500" size="100,100">&lt;div id=&quot;sketch_container&quot;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="59" name="Uni_Store" tags="System Store" position="550,1400" size="100,100">&lt;&lt;nobr&gt;&gt;
     
     
     /* ------------------------------------------------  Store initialization ------------------------------------------------------------- */
@@ -24210,7 +25783,7 @@ Add switcher to change between numbers or progress bars?
 [[index]]
 
 
-[[Return|Mercer]]</tw-passagedata><tw-passagedata pid="62" name="Uni_Tryout" tags="System nobr" position="3800,1500" size="100,100">&lt;div id=&quot;play_tryout&quot;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="63" name="Village_Center" tags="Location nobr" position="1600,998" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_house_steward&#39; &#39;House_Steward&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;&lt;&lt;br&gt;&gt;
+[[Return|Mercer]]</tw-passagedata><tw-passagedata pid="60" name="Uni_Tryout" tags="System nobr" position="3800,1500" size="100,100">&lt;div id=&quot;play_tryout&quot;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="61" name="Village_Center" tags="Location nobr" position="1600,998" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_house_steward&#39; &#39;House_Steward&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;&lt;&lt;br&gt;&gt;
 
 &lt;&lt;passage &#39;passages&#39; &#39;passage_house_baxter&#39; &#39;House_Baxter&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;
 &lt;&lt;passage &#39;passages&#39; &#39;passage_village_tavern&#39; &#39;Village_Tavern&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;
@@ -24219,17 +25792,17 @@ Add switcher to change between numbers or progress bars?
 &lt;&lt;passage &#39;passages&#39; &#39;passage_house_mercer&#39; &#39;House_Mercer&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;&lt;&lt;br&gt;&gt;
 
 &lt;&lt;passage &#39;passages&#39; &#39;passage_village_east&#39; &#39;Village_East&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;
-&lt;&lt;passage &#39;passages&#39; &#39;passage_village_west&#39; &#39;Village_West&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="64" name="Village_Church" tags="Location nobr" position="1600,998" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_church_godfrey_room&#39; &#39;Village_Church_Godfrey_Room&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;
+&lt;&lt;passage &#39;passages&#39; &#39;passage_village_west&#39; &#39;Village_West&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="62" name="Village_Church" tags="Location nobr" position="1600,998" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_church_godfrey_room&#39; &#39;Village_Church_Godfrey_Room&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;
 &lt;&lt;passage &#39;passages&#39; &#39;passage_village_church_nun_room&#39; &#39;Village_Church_Nun_Room&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt; &lt;&lt;br&gt;&gt;
 
-&lt;&lt;passage &#39;passages&#39; &#39;passage_village_center&#39; &#39;Village_Center&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="65" name="Village_Church_Godfrey_Room" tags="Location nobr" position="1600,998" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_church&#39; &#39;Village_Church&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="66" name="Village_Church_Nun_Room" tags="Location nobr" position="1600,998" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_church&#39; &#39;Village_Church&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="67" name="Village_East" tags="Location nobr" position="2300,1000" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_warders_entry&#39; &#39;Village_Warders_Entry&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;&lt;&lt;br&gt;&gt;
+&lt;&lt;passage &#39;passages&#39; &#39;passage_village_center&#39; &#39;Village_Center&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="63" name="Village_Church_Godfrey_Room" tags="Location nobr" position="1600,998" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_church&#39; &#39;Village_Church&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="64" name="Village_Church_Nun_Room" tags="Location nobr" position="1600,998" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_church&#39; &#39;Village_Church&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="65" name="Village_East" tags="Location nobr" position="2300,1000" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_warders_entry&#39; &#39;Village_Warders_Entry&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;&lt;&lt;br&gt;&gt;
 
 &lt;&lt;passage &#39;passages&#39; &#39;passage_house_wizard&#39; &#39;House_Wizard&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;
 &lt;&lt;passage &#39;passages&#39; &#39;passage_house_ferryman&#39; &#39;House_Ferryman&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;
 &lt;&lt;passage &#39;passages&#39; &#39;passage_house_ostler&#39; &#39;House_Ostler&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;&lt;&lt;br&gt;&gt;
 
 &lt;&lt;passage &#39;passages&#39; &#39;passage_village_center&#39; &#39;Village_Center&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;
-&lt;&lt;passage &#39;passages&#39; &#39;passage_village_outside&#39; &#39;Village_Outside&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;&lt;&lt;br&gt;&gt;</tw-passagedata><tw-passagedata pid="68" name="Village_Kennels" tags="Location nobr" position="2275,1200" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_house_ferryman&#39; &#39;House_Ferryman&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="69" name="Village_Outside" tags="Location nobr" position="3098,994" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_outside_fields&#39; &#39;Village_Outside_Fields&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;
+&lt;&lt;passage &#39;passages&#39; &#39;passage_village_outside&#39; &#39;Village_Outside&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;&lt;&lt;br&gt;&gt;</tw-passagedata><tw-passagedata pid="66" name="Village_Kennels" tags="Location nobr" position="2275,1200" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_house_ferryman&#39; &#39;House_Ferryman&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="67" name="Village_Outside" tags="Location nobr" position="3098,994" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_outside_fields&#39; &#39;Village_Outside_Fields&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;
 &lt;&lt;passage &#39;passages&#39; &#39;passage_village_outside_river&#39; &#39;Village_Outside_River&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;
 &lt;&lt;passage &#39;passages&#39; &#39;passage_village_outside_meadow&#39; &#39;Village_Outside_Meadow&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt; &lt;&lt;br&gt;&gt;
 
@@ -24237,11 +25810,11 @@ Add switcher to change between numbers or progress bars?
 &lt;&lt;passage &#39;passages&#39; &#39;passage_forest&#39; &#39;Forest&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt; &lt;&lt;br&gt;&gt;
 
 &lt;&lt;passage &#39;passages&#39; &#39;passage_home_yard__straight&#39; &#39;Home_Yard&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt; 
-&lt;&lt;passage &#39;passages&#39; &#39;passage_village_east&#39; &#39;Village_East&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt; &lt;&lt;br&gt;&gt;</tw-passagedata><tw-passagedata pid="70" name="Village_Outside_Fields" tags="Location nobr" position="3600,1198" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_outside_grazing&#39; &#39;Village_Outside_Grazing&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;&lt;&lt;br&gt;&gt;
+&lt;&lt;passage &#39;passages&#39; &#39;passage_village_east&#39; &#39;Village_East&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt; &lt;&lt;br&gt;&gt;</tw-passagedata><tw-passagedata pid="68" name="Village_Outside_Fields" tags="Location nobr" position="3600,1198" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_outside_grazing&#39; &#39;Village_Outside_Grazing&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;&lt;&lt;br&gt;&gt;
 
-&lt;&lt;passage &#39;passages&#39; &#39;passage_village_outside&#39; &#39;Village_Outside&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="71" name="Village_Outside_Grazing" tags="Location nobr" position="3600,1198" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_outside_fields&#39; &#39;Village_Outside_Fields&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="72" name="Village_Outside_House_Fisher" tags="Location nobr" position="3500,1398" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_outside&#39; &#39;Village_Outside&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="73" name="Village_Outside_House_Shikari" tags="Location nobr" position="2791,1191" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_outside&#39; &#39;Village_Outside&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="74" name="Village_Outside_Lake" tags="Location nobr" position="3283,1401" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_forest&#39; &#39;Forest&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="75" name="Village_Outside_Meadow" tags="Location nobr" position="3003,1189" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_outside&#39; &#39;Village_Outside&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="76" name="Village_Outside_River" tags="Location nobr" position="3400,1196" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_outside_house_fisher&#39; &#39;Village_Outside_House_Fisher&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;&lt;&lt;br&gt;&gt;
+&lt;&lt;passage &#39;passages&#39; &#39;passage_village_outside&#39; &#39;Village_Outside&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="69" name="Village_Outside_Grazing" tags="Location nobr" position="3600,1198" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_outside_fields&#39; &#39;Village_Outside_Fields&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="70" name="Village_Outside_House_Fisher" tags="Location nobr" position="3500,1398" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_outside&#39; &#39;Village_Outside&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="71" name="Village_Outside_House_Shikari" tags="Location nobr" position="2791,1191" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_outside&#39; &#39;Village_Outside&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="72" name="Village_Outside_Lake" tags="Location nobr" position="3283,1401" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_forest&#39; &#39;Forest&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="73" name="Village_Outside_Meadow" tags="Location nobr" position="3003,1189" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_outside&#39; &#39;Village_Outside&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="74" name="Village_Outside_River" tags="Location nobr" position="3400,1196" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_outside_house_fisher&#39; &#39;Village_Outside_House_Fisher&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;&lt;&lt;br&gt;&gt;
 
-&lt;&lt;passage &#39;passages&#39; &#39;passage_village_outside&#39; &#39;Village_Outside&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="77" name="Village_Stables" tags="Location nobr" position="2275,1200" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_house_ostler&#39; &#39;House_Ostler&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="78" name="Village_Store_Mercer" tags="Store questionable" position="700,1400" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;passage &#39;passages&#39; &#39;passage_village_outside&#39; &#39;Village_Outside&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="75" name="Village_Stables" tags="Location nobr" position="2275,1200" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_house_ostler&#39; &#39;House_Ostler&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="76" name="Village_Store_Mercer" tags="Store questionable" position="700,1400" size="100,100">&lt;&lt;nobr&gt;&gt;
     
     
     /* ------------------------------------------------  Store initialization ------------------------------------------------------------- */
@@ -24345,7 +25918,7 @@ Add switcher to change between numbers or progress bars?
 [[index]]
 
 
-[[Return|Mercer]]</tw-passagedata><tw-passagedata pid="79" name="Village_Store_Smith" tags="Store questionable" position="850,1400" size="100,100">&lt;&lt;nobr&gt;&gt;
+[[Return|Mercer]]</tw-passagedata><tw-passagedata pid="77" name="Village_Store_Smith" tags="Store questionable" position="850,1400" size="100,100">&lt;&lt;nobr&gt;&gt;
 
     /* all store types 
         weapon 
@@ -24545,20 +26118,20 @@ Add switcher to change between numbers or progress bars?
 
 [[index]]
 
-[[Return|Smith]]</tw-passagedata><tw-passagedata pid="80" name="Village_Tavern" tags="Location nobr" position="1550,1196" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_tavern_bedroom&#39; &#39;Village_Tavern_Bedroom&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt; &lt;&lt;br&gt;&gt;
-&lt;&lt;passage &#39;passages&#39; &#39;passage_village_center&#39; &#39;Village_Center&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="81" name="Village_Tavern_Bedroom" tags="Location nobr" position="1540,1499" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_tavern&#39; &#39;Village_Tavern&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="82" name="Village_Warders_Barracks" tags="Location nobr" position="1699,1495" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_warders_entry&#39; &#39;Village_Warders_Entry&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="83" name="Village_Warders_Entry" tags="Location nobr" position="1699,1495" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_warders_training_field&#39; &#39;Village_Warders_Training_Field&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;
+[[Return|Smith]]</tw-passagedata><tw-passagedata pid="78" name="Village_Tavern" tags="Location nobr" position="1550,1196" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_tavern_bedroom&#39; &#39;Village_Tavern_Bedroom&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt; &lt;&lt;br&gt;&gt;
+&lt;&lt;passage &#39;passages&#39; &#39;passage_village_center&#39; &#39;Village_Center&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="79" name="Village_Tavern_Bedroom" tags="Location nobr" position="1540,1499" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_tavern&#39; &#39;Village_Tavern&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="80" name="Village_Warders_Barracks" tags="Location nobr" position="1699,1495" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_warders_entry&#39; &#39;Village_Warders_Entry&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="81" name="Village_Warders_Entry" tags="Location nobr" position="1699,1495" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_warders_training_field&#39; &#39;Village_Warders_Training_Field&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;
 &lt;&lt;passage &#39;passages&#39; &#39;passage_village_warders_barracks&#39; &#39;Village_Warders_Barracks&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;&lt;&lt;br&gt;&gt;
 
-&lt;&lt;passage &#39;passages&#39; &#39;passage_village_east&#39; &#39;Village_East&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="84" name="Village_Warders_Training_Field" tags="Location nobr" position="1699,1495" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_warders_entry&#39; &#39;Village_Warders_Entry&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="85" name="Village_West" tags="Location nobr" position="1000,1000" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_home_yard__go_home&#39; &#39;Home_Yard&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;
+&lt;&lt;passage &#39;passages&#39; &#39;passage_village_east&#39; &#39;Village_East&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="82" name="Village_Warders_Training_Field" tags="Location nobr" position="1699,1495" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_village_warders_entry&#39; &#39;Village_Warders_Entry&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="83" name="Village_West" tags="Location nobr" position="1000,1000" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_home_yard__go_home&#39; &#39;Home_Yard&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;
 &lt;&lt;passage &#39;passages&#39; &#39;passage_village_shed&#39; &#39;Village_West_Shed&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt; &lt;&lt;br&gt;&gt;
 
 &lt;&lt;passage &#39;passages&#39; &#39;passage_house_alura&#39; &#39;House_Alura&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;
 &lt;&lt;passage &#39;passages&#39; &#39;passage_house_taylor&#39; &#39;House_Taylor&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;
 &lt;&lt;passage &#39;passages&#39; &#39;passage_house_smith&#39; &#39;House_Smith&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt; &lt;&lt;br&gt;&gt;
 
-&lt;&lt;passage &#39;passages&#39; &#39;passage_village_center&#39; &#39;Village_Center&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="86" name="Village_West_Shed" tags="Location nobr" position="1800,850" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_home_yard&#39; &#39;Home_Yard&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt; &lt;&lt;br&gt;&gt;
+&lt;&lt;passage &#39;passages&#39; &#39;passage_village_center&#39; &#39;Village_Center&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="84" name="Village_West_Shed" tags="Location nobr" position="1800,850" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_home_yard&#39; &#39;Home_Yard&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt; &lt;&lt;br&gt;&gt;
 
-&lt;&lt;passage &#39;passages&#39; &#39;passage_village_west&#39; &#39;Village_West&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="87" name="Widgets" tags="System widget" position="300,0" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;passage &#39;passages&#39; &#39;passage_village_west&#39; &#39;Village_West&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="85" name="Widgets" tags="System widget" position="300,0" size="100,100">&lt;&lt;nobr&gt;&gt;
 
 	&lt;&lt;widget &quot;toggle&quot;&gt;&gt;		
 		&lt;&lt;set _text = $args[0]&gt;&gt;		
@@ -24739,7 +26312,9 @@ Add switcher to change between numbers or progress bars?
 
 	&lt;&lt;widget &#39;system_return&#39;&gt;&gt;	
 		&lt;button class=&quot;custom-btn btn-apply&quot;&gt;	
-			&lt;&lt;link &quot;&lt;&lt;text_system &#39;misc&#39; &#39;return&#39;&gt;&gt;&quot; $return_passage&gt;&gt;&lt;&lt;/link&gt;&gt;
+			&lt;&lt;link &quot;&lt;&lt;text_system &#39;misc&#39; &#39;return&#39;&gt;&gt;&quot; $return_passage&gt;&gt;
+				&lt;&lt;if $temp.menu_tab != 1&gt;&gt; &lt;&lt;set $temp.menu_tab = 1&gt;&gt; &lt;&lt;/if&gt;&gt;
+			&lt;&lt;/link&gt;&gt;
 		&lt;/button&gt; &lt;&lt;br 2&gt;&gt;
 	&lt;&lt;/widget&gt;&gt;
 
@@ -24780,9 +26355,18 @@ Add switcher to change between numbers or progress bars?
 	&lt;&lt;/widget&gt;&gt;
 	
 
+	&lt;&lt;widget &#39;menu_tabs&#39;&gt;&gt;
+		&lt;&lt;set _amount = $args[0]&gt;&gt;
+		&lt;&lt;set _category = $args[1]&gt;&gt;
+		&lt;&lt;set _key = $args[2]&gt;&gt;
+
+		&lt;div class=&quot;menu-tabs&quot;&gt;&lt;/div&gt;
+		&lt;&lt;run setup.addMenuTabs(_amount, _category, _key)&gt;&gt;
+		&lt;&lt;br&gt;&gt;
+	&lt;&lt;/widget&gt;&gt;
 	
 
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="88" name="index" tags="System nobr" position="1200,101.66666666666667" size="100,100">&lt;div class=&quot;disclaimer-header&quot;&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="86" name="index" tags="System nobr" position="1200,101.66666666666667" size="100,100">&lt;div class=&quot;disclaimer-header&quot;&gt;
 	&lt;&lt;text_system &#39;index&#39; &#39;index_disclaimer_general_title&#39;&gt;&gt;&lt;&lt;br&gt;&gt;
 &lt;/div&gt;
 
@@ -24819,7 +26403,9 @@ Add switcher to change between numbers or progress bars?
 &lt;/div&gt;
 &lt;&lt;text_system &#39;index&#39; &#39;index_disclaimer_assets_1&#39;&gt;&gt;&lt;&lt;br&gt;&gt;
 &lt;&lt;text_system &#39;index&#39; &#39;index_disclaimer_assets_2&#39;&gt;&gt;&lt;&lt;br&gt;&gt;
-&lt;&lt;text_system &#39;index&#39; &#39;index_disclaimer_assets_3&#39;&gt;&gt;&lt;&lt;br 2&gt;&gt;
+&lt;&lt;text_system &#39;index&#39; &#39;index_disclaimer_assets_3&#39;&gt;&gt;&lt;&lt;br&gt;&gt;
+&lt;&lt;text_system &#39;index&#39; &#39;index_disclaimer_assets_4&#39;&gt;&gt;&lt;&lt;br&gt;&gt;
+&lt;&lt;text_system &#39;index&#39; &#39;index_disclaimer_assets_5&#39;&gt;&gt;&lt;&lt;br 2&gt;&gt;
 
 &lt;div class=&quot;disclaimer-title&quot;&gt;
 	&lt;&lt;text_system &#39;index&#39; &#39;index_disclaimer_commercial_title&#39;&gt;&gt;
