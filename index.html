@@ -417,7 +417,7 @@ tw-link:after {
     transition: all 0.3s ease;    
     border: 1px solid var(--yellow);
     border-radius: 4px;
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; */
     width: fit-content;
     min-width: 160px;
 }
@@ -5705,8 +5705,33 @@ localization_text['en'] = {
   "sk_prologue_loc_4_p_3_el_7_text": "No, no. I will be fine in a minute.",
   "sk_prologue_loc_4_p_3_el_8_text": "Wanna grab something in the kitchen and plan the day.",
   "sk_prologue_loc_4_p_3_el_9_text": "Ah, almost forgot. <<getName 'barret'>> came in yesterday, he wanted to find you and talk about something.",
-  "sk_prologue_loc_4_p_3_el_10_text": "..."
-  
+  "sk_prologue_loc_4_p_3_el_10_text": "About Barret..",
+  "sk_prologue_loc_4_p_3_el_11_text": "About the brouch..",
+  "sk_prologue_loc_5_p_1_el_1_text": "Yeah, almost forgot to give you the brooch",
+  "sk_prologue_loc_5_p_1_el_2_text": "You give it to her (or distribute throught the task)",
+  "sk_prologue_loc_5_p_1_el_3_text": "*give her it and bad joke about your efforts to get theat brooch",
+  "sk_prologue_loc_5_p_1_el_4_text": "She says some brooches are clearly not worth your well-being",
+  "sk_prologue_loc_5_p_1_el_5_text": "If barret quest IS NOT active show barret quest link",
+  "sk_prologue_loc_5_p_1_el_6_text": "If barret quest active show finish dialog",  
+  "sk_prologue_sk_7_p_1_el_1_text": "Did he say anything specific?",
+  "sk_prologue_sk_7_p_1_el_2_text": "Not really, looked liked he wanted to talk about it only with you",
+  "sk_prologue_sk_7_p_1_el_3_text": "Hm, interesting, he always pretty open.",
+  "sk_prologue_sk_7_p_1_el_4_text": "Okay, then I'll go find him.",
+  "sk_prologue_sk_7_p_1_el_5_text": "Are you sure you don't need more rest.",
+  "sk_prologue_sk_7_p_1_el_6_text": "Meliisa looks anxious.",
+  "sk_prologue_sk_7_p_1_el_7_text": "Yeah, I'll manage,thanks.",
+  "sk_prologue_sk_7_p_1_el_8_text": "If brooch quest IS not Active brooch quest link",
+  "sk_prologue_sk_7_p_1_el_9_text": "If brooch quest IS Active 'Get up'",
+  "tasks_prologue_talk_brooch_name": "prologue talk brooch",
+  "tasks_prologue_talk_brooch_description": "Talk to the Melissa and give her the brooch",
+  "quests_prologue_q_2_name": "Return the brooch ",
+  "quests_prologue_q_2_description": "Return ",
+  "quests_prologue_q_2_start_text": "Return thae brooch",
+  "tasks_prologue_talk_barret_name": "prologue talk barret",
+  "tasks_prologue_talk_barret_description": "Talk to barret",
+  "quests_prologue_q_3_name": "Talk with Barret ",
+  "quests_prologue_q_3_description": "Talk to Barret about you missing",
+  "quests_prologue_q_3_start_text": "Talk to barret",
 }
 /* twine-user-script #3: "content_fr.js" */
 localization_text['fr'] = {
@@ -6705,6 +6730,7 @@ localization_system_text['en'] = {
         apply: 'Apply',
         accept: 'Accept & Return', 
         return: 'Return',
+        return_main: 'Main tab',   
         already_chatted: 'You`ve been already chatted enough for now.', 
         talk_to: 'Talk',
         talk_to_cant: 'Cannot interact',
@@ -7810,6 +7836,25 @@ const character_list =
     "mana": "100",
     "is_known": "1"
 },
+"barret": {
+    "id_name": "barret",
+    "battle": {
+    "attack": "0",
+    "defence": "0",
+    "magic_attack": "0",
+    "magic_defence": "0"
+    },
+    "lvl": "0",
+    "health_max": "100",
+    "stamina_max": "100",
+    "mana_max": "0",
+    "money": "0",
+    "exp": "0",
+    "health": "100",
+    "stamina": "100",
+    "mana": "100",
+    "is_known": "1"
+},
 "witch": {
     "id_name": "witch",
     "battle": {
@@ -8331,6 +8376,45 @@ const quest_list =
               "injection": "<<set $player.stamina +=$player.stamina_max>> <<set $temp.cur_sketch = 'prologue_sk_2'>> <<run Engine.play('Uni_Sketch')>>",
             }
           ]
+        }
+      ]
+    }
+  },
+  "prologue_q_2": {
+    "id_name": "prologue_q_2",
+    "type": "main",
+    "activation_flag": {
+      "id_name": "initial",
+      "value": "2",
+      "location": "Home_Bedroom"
+    },
+    "states": {
+      "1": [
+        {
+          "id_name": "prologue_talk_brooch",
+          "type": "sketch",
+          "subject": "prologue_loc_5",
+          "location": "Home_Bedroom"
+        }
+      ]
+    }
+  },
+  "prologue_q_3": {
+    "id_name": "prologue_q_3",
+    "type": "main",
+    "activation_flag": {
+      "id_name": "prologue_q_1",
+      "value": "2",
+      "location": "Talk_Menu"
+    },
+    "states": {
+      "1": [
+        {
+          "id_name": "prologue_talk_barret",
+          "type": "sketch",
+          "subject": "prologue_sk_7",
+          "location": "Talk_Menu",
+          "location_character": "sekhmau"
         }
       ]
     }
@@ -11034,6 +11118,123 @@ const sketch_list = {
           "passage": "Home_Bedroom",
           "page_link": "page_1",
           "sketch_idn": "sketch_warning",
+          "fake": "",
+          "link_type": "quest",
+          "actions": [
+            {
+              "type": "start_quest",
+              "quest": "prologue_q_3"
+            }
+          ]
+        },
+        "el_11": {
+          "type": "choice",
+          "move_to": "passage",
+          "passage": "Home_Bedroom",
+          "page_link": "page_1",
+          "sketch_idn": "sketch_warning",
+          "fake": "",
+          "link_type": "quest",
+          "actions": [
+            {
+              "type": "start_quest",
+              "quest": "prologue_q_2"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "prologue_loc_5":{
+    "id_name": "prologue_loc_5",
+    "pages": {
+      "page_1": {
+        "el_1": {
+          "type": "speech",
+          "character": "mc",
+          "posture": "default"
+        },
+        "el_2": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_3": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_4": {
+          "type": "text",
+          "text_type": "default"
+        },
+        "el_5": {
+          "type": "choice",
+          "passage": "pre_sketch_passage",
+          "move_to": "sketch",
+          "sketch_idn": "sketch_demo_1",
+          "fake": "",
+          "link_type": "quest"
+        },
+        "el_6": {
+          "type": "choice",
+          "passage": "pre_sketch_passage",
+          "move_to": "sketch",
+          "sketch_idn": "sketch_demo_1",
+          "fake": "",
+          "link_type": "default"
+        }
+      }
+    }
+  },
+  "prologue_sk_7": {
+    "id_name": "prologue_sk_7",
+    "pages": {
+      "page_1": {
+        "el_1": {
+          "type": "speech",
+          "character": "mc",
+          "posture": "default"
+        },
+        "el_2": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_3": {
+          "type": "text",
+          "text_type": "thought"
+        },
+        "el_4": {
+          "type": "speech",
+          "character": "mc",
+          "posture": "default"
+        },
+        "el_5": {
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
+        },
+        "el_6": {
+          "type": "text",
+          "text_type": "gesture"
+        },
+        "el_7": {
+          "type": "speech",
+          "character": "mc",
+          "posture": "default"
+        },
+        "el_8": {
+          "type": "choice",
+          "passage": "pre_sketch_passage",
+          "move_to": "sketch",
+          "sketch_idn": "prologue_loc_5",
+          "fake": "",
+          "link_type": "quest"
+        },
+        "el_9": {
+          "type": "choice",
+          "passage": "pre_sketch_passage",
+          "move_to": "sketch",
+          "sketch_idn": "sketch_demo_1",
           "fake": "",
           "link_type": "default"
         }
@@ -24069,7 +24270,7 @@ function addTalkMenuLink(character_idn) {
 
     const $link_parent = $('.passage-list__talk');
     $link_parent.wiki( nobr(talk_link) );
-}</script><tw-tag name="dialog" color="gray"></tw-tag><tw-tag name="DeadEnd" color="orange"></tw-tag><tw-tag name="Dialog" color="purple"></tw-tag><tw-tag name="Location" color="orange"></tw-tag><tw-tag name="Options" color="red"></tw-tag><tw-tag name="Story" color="blue"></tw-tag><tw-tag name="System" color="red"></tw-tag><tw-tag name="NPC" color="yellow"></tw-tag><tw-tag name="NeedCheck" color="green"></tw-tag><tw-tag name="Sandbox" color="green"></tw-tag><tw-tag name="Script" color="blue"></tw-tag><tw-tag name="option" color="red"></tw-tag><tw-passagedata pid="1" name="City" tags="questionable" position="2400,1350" size="100,100">[[Return|Ferryman]]</tw-passagedata><tw-passagedata pid="2" name="Dream" tags="Location autosave nobr noreturn" position="1600,450" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_dream_out&#39; $return_passage&gt;&gt;
+}</script><tw-tag name="Dialog" color="purple"></tw-tag><tw-tag name="NPC" color="yellow"></tw-tag><tw-tag name="Script" color="blue"></tw-tag><tw-tag name="Story" color="blue"></tw-tag><tw-tag name="System" color="red"></tw-tag><tw-tag name="DeadEnd" color="orange"></tw-tag><tw-tag name="Location" color="orange"></tw-tag><tw-tag name="NeedCheck" color="green"></tw-tag><tw-tag name="Options" color="red"></tw-tag><tw-tag name="Sandbox" color="green"></tw-tag><tw-tag name="dialog" color="gray"></tw-tag><tw-tag name="option" color="red"></tw-tag><tw-passagedata pid="1" name="City" tags="questionable" position="2400,1350" size="100,100">[[Return|Ferryman]]</tw-passagedata><tw-passagedata pid="2" name="Dream" tags="Location autosave nobr noreturn" position="1600,450" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_dream_out&#39; $return_passage&gt;&gt;
     &lt;&lt;set $player.health += 10;&gt;&gt;
     &lt;&lt;set $player.stamina=$player.stamina_max;&gt;&gt;
 &lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Elf_House_Bloodhound" tags="Location nobr" position="3101,1898" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_village&#39; &#39;Elf_Village&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="Elf_House_Elder" tags="Location nobr" position="3101,1898" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_village&#39; &#39;Elf_Village&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="Elf_House_Herb" tags="Location nobr" position="2968,2099" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_store_herb&#39; &#39;Uni_Store&#39; &#39;gem&#39;&gt;&gt;
@@ -24268,7 +24469,7 @@ function addTalkMenuLink(character_idn) {
     &lt;&lt;text_system &#39;info_interface&#39; &#39;info_main_list_2&#39;&gt;&gt;&lt;&lt;br 2&gt;&gt;
 
     &lt;&lt;text_system &#39;info_interface&#39; &#39;info_main_list_3&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
-    -  &lt;a data-passage=&quot;Info_Interface&quot; data-setter=&quot;$temp.menu_tab to 4&quot;&gt;
+    -  &lt;a data-passage=&quot;Info_Interface&quot; data-setter=&quot;$temp.menu_tab to 3&quot;&gt;
         &lt;&lt;text_system &#39;info_interface&#39; &#39;info_main_list_item_1&#39;&gt;&gt;&lt;/a&gt; &lt;&lt;text_system &#39;info_interface&#39; &#39;info_main_list_item_status_1&#39;&gt;&gt; &lt;&lt;br&gt;&gt;
     -  &lt;a data-passage=&quot;Info_Interface&quot; data-setter=&quot;$temp.menu_tab to 2&quot;&gt;
         &lt;&lt;text_system &#39;info_interface&#39; &#39;info_main_list_item_2&#39;&gt;&gt;&lt;/a&gt; &lt;&lt;text_system &#39;info_interface&#39; &#39;info_main_list_item_status_2&#39;&gt;&gt;&lt;&lt;br&gt;&gt;
@@ -24546,47 +24747,8 @@ function addTalkMenuLink(character_idn) {
 &lt;&lt;br 3&gt;&gt;
 &lt;&lt;system_return&gt;&gt;</tw-passagedata><tw-passagedata pid="32" name="Info_Story" tags="System nobr" position="1325,250" size="100,100">-- THIS PAGE IS IN DEVELOPMENT  -- &lt;&lt;br 2&gt;&gt;
 
-/* &lt;&lt;text_system &#39;info_story&#39; &#39;info_story_1&#39;&gt;&gt;&lt;&lt;br&gt;&gt;
-&lt;&lt;text_system &#39;info_story&#39; &#39;info_story_4&#39;&gt;&gt;&lt;&lt;br&gt;&gt;&lt;&lt;br&gt;&gt;  */
-/* 
-Village called Elmdale and it is placed near the forest that take a lot of space.&lt;&lt;br&gt;&gt;
-There are stories that once humans made a pact with elves, so the humans won&#39;t disturb deep forest and elves plae of livimg too much.&lt;&lt;br&gt;&gt;
-And both humans and elves would unite their forces if facing outer enemy.&lt;&lt;br&gt;&gt;
-In exchange of it ancient magic is used in the light forest around humans, so trees there would grow faster and it would help for wood production.&lt;&lt;br&gt;&gt;
-Also there is another spell that borders the village and its surroundings from any dreadfull creatures or monsters that could target  it.&lt;&lt;br&gt;&gt;
 
-However, locals haven&#39;t seen any elves for centuries, so this story now come as a legend.&lt;&lt;br&gt;&gt; &lt;&lt;br&gt;&gt;
-
-Your village is pretty average by it&#39;s size, but quite prosper due to it&#39;s far away from any warlines. &lt;&lt;br&gt;&gt;
-Elmdale is considered to be placed in one of the most peacefull and troublesome regions in all the Alderia realm. &lt;&lt;br&gt;&gt;
-And maybe in the whole world of Fanthira. &lt;&lt;br&gt;&gt;
-At least it was considered to be so untill now. &lt;&lt;br&gt;&gt; &lt;&lt;br&gt;&gt;
-
-As for the whole Fanthira, there are three continents. Two almost equal and near each other that called ... And a third one that is significantly smaller and hard to reach.&lt;&lt;br&gt;&gt;
-You currently leave on ***. The most human=places one.&lt;&lt;br&gt;&gt;
-Alderia is in a state of cold war with neihgborhood country on the East and North-East borders - Imperia of Rakhmor, biggest country on the continent. &lt;&lt;br&gt;&gt;
-Imperia allows slavery, have much more strict laws, racist tendencies and more corruption on different levels. &lt;&lt;br&gt;&gt;
-Other main neihgborhood of yours is an Libarian Coalition - an alliances of a small countries, witch are placed mostly on the South borders. &lt;&lt;br&gt;&gt;
-They have a great variety of differencies between that countries, but they stand together for outer agression, simplfied trade tax and other economical aspects between each other. &lt;&lt;br&gt;&gt; 
-Few of those countries are very small and resemble more of large standalone cities with few layers of defence lines that separate regions of it. &lt;&lt;br&gt;&gt;
-
-
-In this world there is basic comfort available for everyone, like primitive water system, commonly available underwear and basic education (on level of 1-3 grade). &lt;&lt;br&gt;&gt;
-** With a bit of differencies, based on each country rules and laws.
-Lot of inovations were developed long time ago by trevellers from another worlds that now are called &quot;trespassers&quot;. &lt;&lt;br&gt;&gt;
-But most of their legacy are buried over the time by a strict anti-tresspasser law. &lt;&lt;br&gt;&gt;
-That law respected by all countries across the Fanthira due to great catastrophes that were called by trespassers and their legacy. Two of them almost destroyed the world and vanished every living being, they were called Interworld Crysis&lt;&lt;br&gt;&gt;
-The main thing of this law is to prohibit any new technologies and control and punishment over it is stronger even than of darkest of magic. &lt;&lt;br&gt;&gt;
-Overtime almost all of changes from &#39;trespassers&#39; dissapeared except modifications (based on old inworld tecknologies and magic) of few ones that are used for common basic comfort. &lt;&lt;br&gt;&gt;
-Infact, tresspassers are rare to occur nowadays. &lt;&lt;br&gt;&gt;
-Only the rumors are that the frequency of their appearence increases compared to what it was a hundread year ago and that the Third Interworld Crysis will appear.&lt;&lt;br&gt;&gt;
-Still this counted as crazy people talking. &lt;&lt;br&gt;&gt; */
-
-
-
-
-
-In a world filled with magic, demons, and elves, our story begins in a quaint village known as Elmdale. &lt;&lt;br&gt;&gt; 
+In a world filled with magic, demons, monsters and elves, our story begins in a quaint village known as Elmdale. &lt;&lt;br&gt;&gt; 
 It&#39;s a peaceful place, nestled near a vast and mysterious forest that stretches far and wide. &lt;&lt;br&gt;&gt; &lt;&lt;br&gt;&gt; 
 
 Legend has it that long ago, humans and elves struck a pact to safeguard the deep woods, their mutual home. &lt;&lt;br&gt;&gt; 
@@ -24596,34 +24758,16 @@ In return, ancient magic enveloped the nearby light forest, causing trees to gro
 Yet, for centuries, the villagers of Elmdale hadn&#39;t glimpsed an elf. &lt;&lt;br&gt;&gt; 
 Representatives of this race, who concealed themselves with enchantments, remained hidden, leaving their existence to become the stuff of legends.&lt;&lt;br&gt;&gt; &lt;&lt;br&gt;&gt; 
 
-In the broader world of Fanthira, there are three continents. &lt;&lt;br&gt;&gt; 
-Two, similar in size and close to each other, Eldertide and Neuboulan, while the third one Isolara is smaller and remote. &lt;&lt;br&gt;&gt; 
-Our story unfolds in the kingdom of Alderia in the most human-populated of the continents, Neuboulan. &lt;&lt;br&gt;&gt; &lt;&lt;br&gt;&gt; 
-Currently Alderia finds itself in a state of tension, locked in a cold war with its eastern and north-eastern neighbor, 
-the Imperia of Rakhmor — the largest country on the continent.&lt;&lt;br&gt;&gt; 
-To the south, Elmdale&#39;s nearest neighbors belong to the Libarian Coalition, an alliance of small countries with vast differences but a united front against external threats. &lt;&lt;br&gt;&gt; 
-Some of these countries are so diminutive that they resemble large, fortified cities with multiple layers of defense separating their regions.&lt;&lt;br&gt;&gt; &lt;&lt;br&gt;&gt; 
-
 Elmdale, although an average-sized village, flourished thanks to its distance from the any turmoils of war. &lt;&lt;br&gt;&gt; 
-In fact, it is deemed to be one of the most tranquil places in the entire Alderia realm, and then perhaps even in all of Fanthira.&lt;&lt;br&gt;&gt; 
+In fact, it was considered to be one of the most tranquil places in the entire Alderia realm, and then perhaps even in whole world of Fanthira.&lt;&lt;br&gt;&gt;  &lt;&lt;br&gt;&gt; 
 
-The village was nestled near the western border of the country, and beyond that border lay a vast and ominous forest that gradually transformed into the deep, forbidding woods. &lt;&lt;br&gt;&gt; 
-To the west of the country&#39;s end border, there were only treacherous swamps, perilous magical landscapes, and monstrous creatures lurking within the deep forests. &lt;&lt;br&gt;&gt; 
-The westernmost boundary was marked by the unforgiving ocean shores, devoid of intelligent life — except for a hidden elf village nearby, a secret yet to be unveiled.&lt;&lt;br&gt;&gt; &lt;&lt;br&gt;&gt; 
+A significant mark on this world was made by travelers from other realms, now referred to as &quot;trespassers.&quot; &lt;&lt;br&gt;&gt; 
+This was primarily due to the two Interworld Crises that resulted from their actions and the subsequent establishment of international anti-trespasser laws. &lt;&lt;br&gt;&gt; 
+These laws not only restrict the advancement of new technologies but also enforce regulations more rigorously than even the most powerful of magical practices. &lt;&lt;br&gt;&gt; 
+Nonetheless, a few essential comforts crafted from ancient technologies and magic, that are an alternative to comforts introduced by trespassers, remain in common use. &lt;&lt;br&gt;&gt;
+Rumors suggest that the appearances of trespassers are increasing, hinting at a looming Third Interworld Crisis. Yet, such talk is often dismissed as the ramblings of the insane.   &lt;&lt;br&gt;&gt;  &lt;&lt;br&gt;&gt; 
 
-In this world, there is a basic level of comfort for all, including rudimentary water systems, readily available clothing and the very basic education. &lt;&lt;br&gt;&gt; 
-These conveniences vary slightly based on the rules and laws of each country. &lt;&lt;br&gt;&gt; 
-Many innovations were introduced long ago by travelers from other worlds, now known as &quot;trespassers.&quot; &lt;&lt;br&gt;&gt; 
-However, most of their contributions have been buried over time due to strict anti-trespasser laws. &lt;&lt;br&gt;&gt; 
-These laws, upheld across the whole Fanthira, were enacted to prevent the catastrophes wrought by trespassers and their technological advancements. &lt;&lt;br&gt;&gt; 
-Two such crises nearly obliterated the world and wiped out nearly all life, later named as the Interworld Crises.&lt;&lt;br&gt;&gt; &lt;&lt;br&gt;&gt; 
-
-The basic principle of this law is to prohibit the development of new technologies and enforcement of it is even more stringent than that of the darkest of magics. &lt;&lt;br&gt;&gt; 
-As time passed, the influence of trespassers legacy gradually faded, leaving only a few important basic comforts crafted from ancient inworld technologies or magic.&lt;&lt;br&gt;&gt; 
-Trespassers themselves have become exceedingly rare, but recently rumors suggest their appearances are increasing, hinting at a looming Third Interworld Crisis. &lt;&lt;br&gt;&gt;  
-Yet, such talk is often dismissed as the ramblings of the insane. &lt;&lt;br&gt;&gt; &lt;&lt;br&gt;&gt; 
-
-Our main character is no one of great renown, he&#39;s just a young villager from a family of carpenters, known as the Wrights.&lt;&lt;br&gt;&gt; &lt;&lt;br&gt;&gt; 
+Our main character is no one of great renown or importance, he&#39;s just a young villager from a family of carpenters, known as the Wrights.&lt;&lt;br&gt;&gt; &lt;&lt;br&gt;&gt; 
 
 And so, our story unfolds with that young boy from Elmdale, as he becomes entangled in a world far more complex and perilous than one could ever have imagined.&lt;&lt;br&gt;&gt; 
 &lt;&lt;text_system &#39;info_story&#39; &#39;info_story_2&#39;&gt;&gt; &lt;span class=&quot;mc&quot;&gt; &lt;&lt;= $misc.player_name&gt;&gt;&lt;/span&gt;.&lt;&lt;info_tip &#39;tip_name&#39;&gt;&gt;&lt;&lt;br&gt;&gt;
@@ -24660,6 +24804,7 @@ Maybe it doesn&#39;t really metter.
 	5: &#39;Learn basics from Guards&#39;,
 	6: &#39;Have ayone notice? (elder)&#39;,
 	7: &#39;Visit friends&amp;relatvies&#39;
+	/* Learn Melissa to swim */
 }&gt;&gt;
 
 
@@ -25025,7 +25170,42 @@ Characters:&lt;&lt;br&gt;&gt;&lt;&lt;br&gt;&gt;
 
 &lt;&lt;br&gt;&gt;
 
-&lt;&lt;system_return&gt;&gt;</tw-passagedata><tw-passagedata pid="39" name="Menu_Inventory" tags="System nobr noreturn" position="0,1675" size="100,100">-- THIS PAGE IS IN DEVELOPMENT  -- &lt;&lt;br 2&gt;&gt;
+&lt;&lt;system_return&gt;&gt;
+
+
+/* FAQ */
+
+/* Trespassers  */
+
+/* In this world, there is a basic level of comfort for all, including rudimentary water systems, readily available clothing and the very basic education. &lt;&lt;br&gt;&gt; 
+These conveniences vary slightly based on the rules and laws of each country. &lt;&lt;br&gt;&gt; 
+Many innovations were introduced long ago by travelers from other worlds, now known as &quot;trespassers.&quot; &lt;&lt;br&gt;&gt; 
+However, most of their contributions have been buried over time due to strict anti-trespasser laws. &lt;&lt;br&gt;&gt; 
+These laws, upheld across the whole Fanthira, were enacted to prevent the catastrophes wrought by trespassers and their technological advancements. &lt;&lt;br&gt;&gt; 
+Two such crises nearly obliterated the world and wiped out nearly all life, later named as the Interworld Crises.&lt;&lt;br&gt;&gt; &lt;&lt;br&gt;&gt;  */
+
+/* The basic principle of this law is to prohibit the development of new technologies and enforcement of it is even more stringent than that of the darkest of magics. &lt;&lt;br&gt;&gt; 
+As time passed, the influence of trespassers legacy gradually faded, leaving only a few important basic comforts crafted from ancient inworld technologies or magic.&lt;&lt;br&gt;&gt; 
+Trespassers themselves have become exceedingly rare, but recently rumors suggest their appearances are increasing, hinting at a looming Third Interworld Crisis. &lt;&lt;br&gt;&gt;  
+Yet, such talk is often dismissed as the ramblings of the insane. &lt;&lt;br&gt;&gt; &lt;&lt;br&gt;&gt;  */
+
+
+/* Village location */
+
+/* The village was nestled near the western border of the country, and beyond that border lay a vast and ominous forest that gradually transformed into the deep, forbidding woods. &lt;&lt;br&gt;&gt; 
+To the west of the country&#39;s end border, there were only treacherous swamps, perilous magical landscapes, and monstrous creatures lurking within the deep forests. &lt;&lt;br&gt;&gt; 
+The westernmost boundary was marked by the unforgiving ocean shores, devoid of intelligent life — except for a hidden elf village nearby, a secret yet to be unveiled.&lt;&lt;br&gt;&gt; &lt;&lt;br&gt;&gt;  */
+
+
+/* World geography */
+
+/* In the broader world of Fanthira, there are three continents. &lt;&lt;br&gt;&gt; 
+Two, similar in size and close to each other, Eldertide and Neuboulan, while the third one Isolara is smaller and remote. &lt;&lt;br&gt;&gt; 
+Our story unfolds in the kingdom of Alderia in the most human-populated of the continents, Neuboulan. &lt;&lt;br&gt;&gt; &lt;&lt;br&gt;&gt; 
+Currently Alderia finds itself in a state of tension, locked in a cold war with its eastern and north-eastern neighbor, 
+the Imperia of Rakhmor — the largest country on the continent.&lt;&lt;br&gt;&gt; 
+To the south, Elmdale&#39;s nearest neighbors belong to the Libarian Coalition, an alliance of small countries with vast differences but a united front against external threats. &lt;&lt;br&gt;&gt; 
+Some of these countries are so diminutive that they resemble large, fortified cities with multiple layers of defense separating their regions.&lt;&lt;br&gt;&gt; &lt;&lt;br&gt;&gt;  */</tw-passagedata><tw-passagedata pid="39" name="Menu_Inventory" tags="System nobr noreturn" position="0,1675" size="100,100">-- THIS PAGE IS IN DEVELOPMENT  -- &lt;&lt;br 2&gt;&gt;
 
 
 Equiped:
@@ -26311,11 +26491,19 @@ Quest Info:
 
 
 	&lt;&lt;widget &#39;system_return&#39;&gt;&gt;	
-		&lt;button class=&quot;custom-btn btn-apply&quot;&gt;	
-			&lt;&lt;link &quot;&lt;&lt;text_system &#39;misc&#39; &#39;return&#39;&gt;&gt;&quot; $return_passage&gt;&gt;
-				&lt;&lt;if $temp.menu_tab != 1&gt;&gt; &lt;&lt;set $temp.menu_tab = 1&gt;&gt; &lt;&lt;/if&gt;&gt;
-			&lt;&lt;/link&gt;&gt;
-		&lt;/button&gt; &lt;&lt;br 2&gt;&gt;
+		&lt;&lt;if !$temp.menu_tab || $temp.menu_tab == 1 &gt;&gt;
+			&lt;button class=&quot;custom-btn btn-apply&quot;&gt;	
+				&lt;&lt;link &quot;&lt;&lt;text_system &#39;misc&#39; &#39;return&#39;&gt;&gt;&quot; $return_passage&gt;&gt;
+					&lt;&lt;if $temp.menu_tab != 1&gt;&gt; &lt;&lt;set $temp.menu_tab = 1&gt;&gt; &lt;&lt;/if&gt;&gt;
+				&lt;&lt;/link&gt;&gt;
+			&lt;/button&gt; &lt;&lt;br 2&gt;&gt;
+		&lt;&lt;else&gt;&gt;
+			&lt;button class=&quot;custom-btn btn-apply&quot;&gt;	
+				&lt;&lt;link &quot;&lt;&lt;text_system &#39;misc&#39; &#39;return_main&#39;&gt;&gt;&quot; `passage()`&gt;&gt;
+					&lt;&lt;if $temp.menu_tab != 1&gt;&gt; &lt;&lt;set $temp.menu_tab = 1&gt;&gt; &lt;&lt;/if&gt;&gt;
+				&lt;&lt;/link&gt;&gt;
+			&lt;/button&gt; &lt;&lt;br 2&gt;&gt;
+		&lt;&lt;/if&gt;&gt;
 	&lt;&lt;/widget&gt;&gt;
 
 
