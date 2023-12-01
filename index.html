@@ -5288,8 +5288,15 @@ label.toggle-button span {
     box-shadow: 0px 0px 15px #eee;
 }
 
+
 .info_tip-container:hover .info_tip-text {
     display: block;
+    z-index: 7;
+}
+
+
+.info_tip-container--large .info_tip-text {
+    max-width: calc(72vw - 320px - 40px);
 }
 
 .info_tip-container:hover .info_tip-icon--hover {
@@ -7147,7 +7154,23 @@ localization_system_text['en'] = {
         tip_example: 'You can see usefull and explanational info.',
         tip_return_notification: 'Once you leave a browser tab with a game, a timer will start on. <br> If timer exceed certain amount of time, notification will be displayed within a tab with a game. ',
         tip_language_change: 'Language can be changed on the Setting page anytime.',
-        tip_character_na: 'This character is currently unavailable.'
+        tip_character_na: 'This character is currently unavailable.',
+        tip_trespassers: `
+        A significant mark on this world was made by travelers from other realms, now referred to as "trespassers." <br>
+        This was primarily due to the two Interworld Crises that resulted from their actions and the subsequent establishment of international anti-trespasser laws. <br>
+        These laws not only restrict the advancement of new technologies but also enforce regulations more rigorously than even the most powerful of magical practices. <br> 
+        Nonetheless, a few essential comforts crafted from ancient technologies and magic, that are an alternative to comforts introduced by trespassers, remain in common use. <br>
+        Rumors suggest that the appearances of trespassers are increasing, hinting at a looming Third Interworld Crisis. Yet, such talk is often dismissed as the ramblings of the insane.
+        `,
+        tip_geoposition: `
+        In the broader world of Fanthira, there are three continents. <br>
+        Two, similar in size and close to each other, Eldertide and Neuboulan, while the third one - Isolara is smaller and remote. <br>
+        The story unfolds in the kingdom of Alderia in the most human-populated of the continents, Neuboulan. <br>
+        Currently Alderia finds itself in a state of tension, locked in a cold war with its eastern and north-eastern neighbor, the Imperia of Rakhmor — the largest country on the continent.<br>
+        To the south, Elmdale's nearest neighbors belong to the Libarian Coalition, an alliance of small countries with vast differences but a united front against external threats.
+        Some of these countries are so diminutive that they resemble large, fortified cities with multiple layers of defense separating their regions.<br>
+        `,
+        
     }    
     
 }
@@ -26039,7 +26062,7 @@ function activateInitialQuestCostyl() {
     quest.status = 2;
 }
 
-</script><tw-tag name="Options" color="red"></tw-tag><tw-tag name="Sandbox" color="green"></tw-tag><tw-tag name="Story" color="blue"></tw-tag><tw-tag name="Dialog" color="purple"></tw-tag><tw-tag name="Location" color="orange"></tw-tag><tw-tag name="NPC" color="yellow"></tw-tag><tw-tag name="NeedCheck" color="green"></tw-tag><tw-tag name="Script" color="blue"></tw-tag><tw-tag name="System" color="red"></tw-tag><tw-tag name="dialog" color="gray"></tw-tag><tw-tag name="option" color="red"></tw-tag><tw-tag name="DeadEnd" color="orange"></tw-tag><tw-passagedata pid="1" name="City" tags="questionable" position="2400,1350" size="100,100">[[Return|Ferryman]]</tw-passagedata><tw-passagedata pid="2" name="Dream" tags="Location autosave nobr noreturn" position="1600,450" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_dream_out&#39; $return_passage&gt;&gt;
+</script><tw-tag name="Options" color="red"></tw-tag><tw-tag name="Sandbox" color="green"></tw-tag><tw-tag name="Story" color="blue"></tw-tag><tw-tag name="DeadEnd" color="orange"></tw-tag><tw-tag name="Location" color="orange"></tw-tag><tw-tag name="NPC" color="yellow"></tw-tag><tw-tag name="NeedCheck" color="green"></tw-tag><tw-tag name="Script" color="blue"></tw-tag><tw-tag name="System" color="red"></tw-tag><tw-tag name="dialog" color="gray"></tw-tag><tw-tag name="option" color="red"></tw-tag><tw-tag name="Dialog" color="purple"></tw-tag><tw-passagedata pid="1" name="City" tags="questionable" position="2400,1350" size="100,100">[[Return|Ferryman]]</tw-passagedata><tw-passagedata pid="2" name="Dream" tags="Location autosave nobr noreturn" position="1600,450" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_dream_out&#39; $return_passage&gt;&gt;
     &lt;&lt;set $player.health += 10;&gt;&gt;
     &lt;&lt;set $player.stamina=$player.stamina_max;&gt;&gt;
 &lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Elf_House_Bloodhound" tags="Location nobr" position="3101,1898" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_village&#39; &#39;Elf_Village&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="Elf_House_Elder" tags="Location nobr" position="3101,1898" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_village&#39; &#39;Elf_Village&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="Elf_House_Herb" tags="Location nobr" position="2968,2099" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_store_herb&#39; &#39;Uni_Store&#39; &#39;gem&#39;&gt;&gt;
@@ -26522,10 +26545,8 @@ function activateInitialQuestCostyl() {
 
 
 &lt;&lt;br 3&gt;&gt;
-&lt;&lt;system_return&gt;&gt;</tw-passagedata><tw-passagedata pid="33" name="Info_Story" tags="System nobr" position="1325,250" size="100,100">-- THIS PAGE IS IN DEVELOPMENT  -- &lt;&lt;br 2&gt;&gt;
-
-
-In a world filled with magic, demons, monsters and elves, our story begins in a quaint village known as Elmdale. &lt;&lt;br&gt;&gt; 
+&lt;&lt;system_return&gt;&gt;</tw-passagedata><tw-passagedata pid="33" name="Info_Story" tags="System nobr" position="1325,250" size="100,100">In a world filled with magic, demons, monsters and elves, our story begins in a quaint village known as Elmdale. &lt;&lt;br&gt;&gt; 
+Elmdale is a village of the kingdom of Alderia. &lt;&lt;info_tip &#39;tip_geoposition&#39; &#39;large&#39;&gt;&gt; &lt;&lt;br&gt;&gt; 
 It&#39;s a peaceful place, nestled near a vast and mysterious forest that stretches far and wide. &lt;&lt;br&gt;&gt; &lt;&lt;br&gt;&gt; 
 
 Legend has it that long ago, humans and elves struck a pact to safeguard the deep woods, their mutual home. &lt;&lt;br&gt;&gt; 
@@ -26536,17 +26557,12 @@ Yet, for centuries, the villagers of Elmdale hadn&#39;t glimpsed an elf. &lt;&lt
 Representatives of this race, who concealed themselves with enchantments, remained hidden, leaving their existence to become the stuff of legends.&lt;&lt;br&gt;&gt; &lt;&lt;br&gt;&gt; 
 
 Elmdale, although an average-sized village, flourished thanks to its distance from the any turmoils of war. &lt;&lt;br&gt;&gt; 
-In fact, it was considered to be one of the most tranquil places in the entire Alderia realm, and then perhaps even in whole world of Fanthira.&lt;&lt;br&gt;&gt;  &lt;&lt;br&gt;&gt; 
-
-A significant mark on this world was made by travelers from other realms, now referred to as &quot;trespassers.&quot; &lt;&lt;br&gt;&gt; 
-This was primarily due to the two Interworld Crises that resulted from their actions and the subsequent establishment of international anti-trespasser laws. &lt;&lt;br&gt;&gt; 
-These laws not only restrict the advancement of new technologies but also enforce regulations more rigorously than even the most powerful of magical practices. &lt;&lt;br&gt;&gt; 
-Nonetheless, a few essential comforts crafted from ancient technologies and magic, that are an alternative to comforts introduced by trespassers, remain in common use. &lt;&lt;br&gt;&gt;
-Rumors suggest that the appearances of trespassers are increasing, hinting at a looming Third Interworld Crisis. Yet, such talk is often dismissed as the ramblings of the insane.   &lt;&lt;br&gt;&gt;  &lt;&lt;br&gt;&gt; 
+In fact, it was considered to be one of the most tranquil places in the entire Alderia realm, and then perhaps even in whole world of Fanthira.&lt;&lt;br&gt;&gt;
+Even the impact of trespassers &lt;&lt;info_tip &#39;tip_trespassers&#39; &#39;large&#39;&gt;&gt; &amp;nbsp; barely disrupted the village&#39;s way of life.  &lt;&lt;br&gt;&gt; &lt;&lt;br&gt;&gt;
 
 Our main character is no one of great renown or importance, he&#39;s just a young villager from a family of carpenters, known as the Wrights.&lt;&lt;br&gt;&gt; &lt;&lt;br&gt;&gt; 
 
-And so, our story unfolds with that young boy from Elmdale, as he becomes entangled in a world far more complex and perilous than one could ever have imagined.&lt;&lt;br&gt;&gt; 
+And so, our story unfolds with that young boy from Elmdale, as he becomes entangled in a world far more complex and perilous than one could have ever imagined.&lt;&lt;br&gt;&gt; 
 &lt;&lt;text_system &#39;info_story&#39; &#39;info_story_2&#39;&gt;&gt; &lt;span class=&quot;mc&quot;&gt; &lt;&lt;= $misc.player_name&gt;&gt;&lt;/span&gt;.&lt;&lt;info_tip &#39;tip_name&#39;&gt;&gt;&lt;&lt;br&gt;&gt;
 &lt;&lt;br 4&gt;&gt;
 
@@ -28189,8 +28205,10 @@ Quest Info:
 	&lt;&lt;widget &#39;info_tip&#39;&gt;&gt;
 		&lt;&lt;set _string_idn = $args[0]&gt;&gt;
 		&lt;&lt;set _string = &#39;&lt;&lt;text_system &quot;tips&quot; _string_idn&gt;&gt;&#39;&gt;&gt;
+		&lt;&lt;set _size = $args[1] ?? false&gt;&gt;
+		&lt;&lt;set _extra_tip_class = (_size == &#39;large&#39;) ? &#39;info_tip-container--large&#39; : &#39;&#39;&gt;&gt;
 
-		&lt;div class=&quot;info_tip-container&quot;&gt;
+		&lt;div @class=&quot;`info_tip-container ${_extra_tip_class}`&quot;&gt;
 			&lt;img class=&quot;info_tip-icon&quot; src=&quot;media/icons/info_tip.png&quot; alt=&quot;info_tip&quot;&gt;
 			&lt;img class=&quot;info_tip-icon--hover&quot; src=&quot;media/icons/info_tip_hover.png&quot; alt=&quot;info_tip&quot;&gt;
 			&lt;span class=&quot;info_tip-text tip_gen&quot;&gt;_string&lt;/span&gt; 
