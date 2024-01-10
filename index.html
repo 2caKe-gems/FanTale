@@ -136,6 +136,7 @@ body, tw-story {
   	font-family: serif;
 }
 
+
 p, h1, h2, h3, h4, h5, h6, span, a, button, input{
   	margin: 0;
 	font-family: 'VT323';
@@ -13473,10 +13474,6 @@ const sketch_list = {
           "text_type": "thought"
         },
         "el_11": {
-          "type": "injection",
-          "injection": "<<set $player = $characters.mc;>>"
-        },
-        "el_12": {
           "type": "choice",
           "passage": "Home_Bedroom",
           "move_to": "page",
@@ -13708,8 +13705,9 @@ const sketch_list = {
           "text_type": "default"
         },
         "el_30": {
-          "type": "text",
-          "text_type": "thought"
+          "type": "speech",
+          "character": "melissa",
+          "posture": "default"
         },
         "el_31": {
           "type": "text",
@@ -26180,6 +26178,7 @@ function executeActionByType(action) {
             action.battle ? State.variables.characters[character_idn]['battle'] :
                 State.variables.characters[character_idn];
 
+
         switch (action.change_type) {
             case "set":
                 targetObject[action.relation || action.battle || action.param] = Number(action.value);
@@ -27650,7 +27649,6 @@ function getTaskLinkText(cur_task) {
 }
 
 function passTaskLinkConditions(cur_task) {
-    console.log('passTaskLinkConditions')
     
     const search_link_condition = (cur_task) => {
         const search_stamina = (random(15,18) * 10/2); // 75-90 stamina
@@ -28715,7 +28713,7 @@ function activateThelpersListener() {
         $(parent_elem).find('.thelper-message').stop().fadeOut().remove();
         clearTimeout(timer);
     });
-}</script><tw-tag name="DeadEnd" color="orange"></tw-tag><tw-tag name="Dialog" color="purple"></tw-tag><tw-tag name="Location" color="orange"></tw-tag><tw-tag name="NeedCheck" color="green"></tw-tag><tw-tag name="Options" color="red"></tw-tag><tw-tag name="Sandbox" color="green"></tw-tag><tw-tag name="Script" color="blue"></tw-tag><tw-tag name="NPC" color="yellow"></tw-tag><tw-tag name="Story" color="blue"></tw-tag><tw-tag name="System" color="red"></tw-tag><tw-tag name="dialog" color="gray"></tw-tag><tw-tag name="option" color="red"></tw-tag><tw-passagedata pid="1" name="City" tags="questionable" position="2400,1350" size="100,100">[[Return|Ferryman]]</tw-passagedata><tw-passagedata pid="2" name="Dream" tags="Location autosave nobr noreturn" position="1600,450" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_dream_out&#39; $return_passage&gt;&gt;
+}</script><tw-tag name="Location" color="orange"></tw-tag><tw-tag name="NeedCheck" color="green"></tw-tag><tw-tag name="Options" color="red"></tw-tag><tw-tag name="Sandbox" color="green"></tw-tag><tw-tag name="option" color="red"></tw-tag><tw-tag name="DeadEnd" color="orange"></tw-tag><tw-tag name="NPC" color="yellow"></tw-tag><tw-tag name="Script" color="blue"></tw-tag><tw-tag name="Story" color="blue"></tw-tag><tw-tag name="System" color="red"></tw-tag><tw-tag name="dialog" color="gray"></tw-tag><tw-tag name="Dialog" color="purple"></tw-tag><tw-passagedata pid="1" name="City" tags="questionable" position="2400,1350" size="100,100">[[Return|Ferryman]]</tw-passagedata><tw-passagedata pid="2" name="Dream" tags="Location autosave nobr noreturn" position="1600,450" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_dream_out&#39; $return_passage&gt;&gt;
     &lt;&lt;set $player.health += 10;&gt;&gt;
     &lt;&lt;set $player.stamina=$player.stamina_max;&gt;&gt;
 &lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Elf_House_Bloodhound" tags="Location nobr" position="3101,1898" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_village&#39; &#39;Elf_Village&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="Elf_House_Elder" tags="Location nobr" position="3101,1898" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_village&#39; &#39;Elf_Village&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="Elf_House_Herb" tags="Location nobr" position="2968,2099" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_store_herb&#39; &#39;Uni_Store&#39; &#39;gem&#39;&gt;&gt;
