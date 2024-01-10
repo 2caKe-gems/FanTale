@@ -13474,6 +13474,10 @@ const sketch_list = {
           "text_type": "thought"
         },
         "el_11": {
+          "type": "injection",
+          "injection": "<<set $player = $characters.mc;>>"
+        },
+        "el_12": {
           "type": "choice",
           "passage": "Home_Bedroom",
           "move_to": "page",
@@ -13705,9 +13709,8 @@ const sketch_list = {
           "text_type": "default"
         },
         "el_30": {
-          "type": "speech",
-          "character": "melissa",
-          "posture": "default"
+          "type": "text",
+          "text_type": "thought"
         },
         "el_31": {
           "type": "text",
@@ -26178,7 +26181,6 @@ function executeActionByType(action) {
             action.battle ? State.variables.characters[character_idn]['battle'] :
                 State.variables.characters[character_idn];
 
-
         switch (action.change_type) {
             case "set":
                 targetObject[action.relation || action.battle || action.param] = Number(action.value);
@@ -27649,6 +27651,7 @@ function getTaskLinkText(cur_task) {
 }
 
 function passTaskLinkConditions(cur_task) {
+    console.log('passTaskLinkConditions')
     
     const search_link_condition = (cur_task) => {
         const search_stamina = (random(15,18) * 10/2); // 75-90 stamina
