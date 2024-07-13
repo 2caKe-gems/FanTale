@@ -343,6 +343,7 @@ tw-link:after {
     margin-top: 10px;
     width: fit-content; 
     box-shadow: 2px 4px 20px 5px #1b2042;
+    height: auto;
 }
 
 .btn-apply p,
@@ -651,6 +652,8 @@ th.localization-table__header-idn {
     left: -15px;
     height: 92px;
     width: 92px;
+    min-height: 92px;
+    min-width: 92px;
     margin-right: 10px;
     border: 2px solid white;
     border-radius: 50%;
@@ -4548,6 +4551,7 @@ label.toggle-button span {
     padding-top: 5em; 
     left: 0;
     top: 0;
+    min-width: 320px;
     width: 100%; 
     height: 100%; 
     overflow: auto; 
@@ -4584,9 +4588,26 @@ label.toggle-button span {
 
 
 .modal.modal--ml .modal-content {
-    margin-right: clamp(75px, 50px, calc(35em - 75px));
+    margin-right: clamp(75px, 20em, calc(20em - 75px));
     margin-left: clamp(75px, 20em, calc(20em - 75px));
 }
+
+
+@media only screen and (min-width: 1440px) {
+    .modal.modal--ml .modal-content {
+        margin-right: clamp(75px, 50px, calc(35em - 75px));
+        margin-left: clamp(75px, 20em, calc(20em - 75px));
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .modal.modal--ml .modal-content {
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+
+
 
 /* Add Animation */
 @-webkit-keyframes animatetop {
@@ -4926,7 +4947,7 @@ label.toggle-button span {
     font-family: 'VT323', monospace;    
     font-weight: 500;
     gap: 0 14px;
-    height: 40px;
+    min-height: 40px;
     outline: none;
     padding: 4px 12px;
     position: relative;
@@ -5324,10 +5345,23 @@ label.toggle-button span {
 
 
 
-.text-block {
+.text-block { 
     display: inline-flex;
     padding-left: 4em;
 }
+
+@media only screen and (min-width: 480px) {
+	.text-block {
+        padding-left: 2em;
+	}
+}
+
+@media only screen and (min-width: 400px) {
+	.text-block {
+        padding-left: 1em;
+	}
+}
+
 
 .gesture-block {
     position: relative;
@@ -30204,7 +30238,7 @@ function updateJsonLists() {
 function getSocialLink(social) {
     const company_socials = {
         discord: "https://discordapp.com/channels/1172881425998037094/1172881425998037096",
-        itchio: "https://itch.io",
+        itchio: "https://2cake-gems.itch.io/",
         jira: "https://2cake.atlassian.net"
     }
 
@@ -35289,7 +35323,8 @@ setup.showMenuStory = function () {
         }
     }
 
-    if (!State.variables.settings.debug) delete menu_list.debug;
+    if (State.variables.settings.debug != 1) delete menu_list.debug;
+    console.log('Test', State.variables.settings.debug, menu_list)
 
     $.each(menu_list, function (menu_list_item_index, menu_list_item) {
         const menu_item_text = getLocalizedSystemText(localization_list, menu_list_item.text);
@@ -36056,8 +36091,8 @@ $(document).on(":passagerender", function () {
 $(document).on(":passagedisplay", function () {
     const $bar_body = $('#ui-bar-body');
     const $story = $('#story');    
-    $bar_body.hide().fadeIn(900);
-    $story.hide().fadeIn(900);
+    $bar_body.hide().fadeIn(1000);
+    $story.hide().fadeIn(1000);
 });
 
 
@@ -36102,7 +36137,7 @@ function getQuestMarkContent(type='quest') {
     `;
 
     return content;
-}</script><tw-tag name="Sandbox" color="green"></tw-tag><tw-tag name="Script" color="blue"></tw-tag><tw-tag name="Story" color="blue"></tw-tag><tw-tag name="dialog" color="gray"></tw-tag><tw-tag name="DeadEnd" color="orange"></tw-tag><tw-tag name="NPC" color="yellow"></tw-tag><tw-tag name="NeedCheck" color="green"></tw-tag><tw-tag name="System" color="red"></tw-tag><tw-tag name="option" color="red"></tw-tag><tw-tag name="Dialog" color="purple"></tw-tag><tw-tag name="Location" color="orange"></tw-tag><tw-tag name="Options" color="red"></tw-tag><tw-passagedata pid="1" name="City" tags="questionable" position="2400,1350" size="100,100">[[Return|Ferryman]]</tw-passagedata><tw-passagedata pid="2" name="Dream" tags="Location autosave nobr noreturn" position="1600,450" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_dream_out&#39; $return_passage&gt;&gt;
+}</script><tw-tag name="option" color="red"></tw-tag><tw-tag name="NPC" color="yellow"></tw-tag><tw-tag name="NeedCheck" color="green"></tw-tag><tw-tag name="Sandbox" color="green"></tw-tag><tw-tag name="System" color="red"></tw-tag><tw-tag name="dialog" color="gray"></tw-tag><tw-tag name="Story" color="blue"></tw-tag><tw-tag name="DeadEnd" color="orange"></tw-tag><tw-tag name="Dialog" color="purple"></tw-tag><tw-tag name="Location" color="orange"></tw-tag><tw-tag name="Options" color="red"></tw-tag><tw-tag name="Script" color="blue"></tw-tag><tw-passagedata pid="1" name="City" tags="questionable" position="2400,1350" size="100,100">[[Return|Ferryman]]</tw-passagedata><tw-passagedata pid="2" name="Dream" tags="Location autosave nobr noreturn" position="1600,450" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_dream_out&#39; $return_passage&gt;&gt;
     &lt;&lt;set $player.health += 10;&gt;&gt;
     &lt;&lt;set $player.stamina=$player.stamina_max;&gt;&gt;
 &lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Elf_House_Bloodhound" tags="Location nobr" position="3101,1898" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_village&#39; &#39;Elf_Village&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="Elf_House_Elder" tags="Location nobr" position="3101,1898" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_village&#39; &#39;Elf_Village&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="Elf_House_Herb" tags="Location nobr" position="2968,2099" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_store_herb&#39; &#39;Uni_Store&#39; &#39;gem&#39;&gt;&gt;
