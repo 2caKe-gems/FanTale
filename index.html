@@ -124,11 +124,13 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 :root {
 	--quest-color: #ffdd40;
 	--task-color: #009CCF;
-    --green: #90ee90 !important;
-	--green-t6: #2ade2a !important;	
+    --green: #00ff95 !important;
+	--green-darker: #00ba6c !important;
+	--green-t6: #00FFAA !important;	
     --black: #111;
 	--red: red;
 }
+
 
 body, tw-story {
     color: #BBBBBB;  
@@ -217,10 +219,26 @@ img#story{
 }
 
 #story-title {
-    margin: 14px auto;
+    margin: 0 auto;
     width: 200px;
     line-height: 24px;
-    color: var(--green);
+    /* color: var(--green); */ 
+	background: linear-gradient(45deg,#09009f, #04809A, #02BF98, #00ff95 80%);
+	background: -webkit-linear-gradient(45deg, #09009f, #04809A, #02BF98, #00ff95 80%); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 3px 3px 4px #37aa9475;
+    /* border-radius: 5px; */
+    /* box-shadow: 2px 13px 30px -16px #32a666a8; */
+}
+
+#story-banner img {
+    margin-left: -1.5em;
+    width: calc(100% + 3em);
+    /* width: 100%; */
+	margin-top: -10px;
+	margin-bottom: -10px;
+    border-radius: 5px;
 }
 
 .story-title,
@@ -254,9 +272,20 @@ body.nosave #menu-item-saves {
 }
 
 .sidebar-signature {
-	margin: 0 auto !important;
+	display: flex;
+	flex-direction: column;
 }
 
+.sidebar-signature__company-logo {
+	width: 35px; 
+    height: 32px;
+    margin-top: -5px;
+}
+
+.sidebar-signature__company-block {
+	display: flex;
+	margin: auto;
+}
 
 
 /* 
@@ -306,7 +335,21 @@ tw-link:after {
 	color: #ccc;
 	font-size: 1rem;
 }
-/* twine-user-stylesheet #4: "button_apply.css" */
+/* twine-user-stylesheet #4: "bottom_notification.css" */
+
+.b_ntfy__container {
+    height: auto;
+    max-height: 60px;
+    background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,0), rgba(255,0,0,0), rgba(255,0,0,.1), rgba(255,0,0,.1), rgba(255,0,0,.3), rgba(255,0,0,1));
+    width: 160px;
+}
+  
+.b_ntfy__text {
+    padding: 8px;
+    padding-left: 40px;
+    text-overflow: ellipsis;
+}
+/* twine-user-stylesheet #5: "button_apply.css" */
 
 
 .custom-btn {    
@@ -426,7 +469,7 @@ tw-link:after {
 }
 
 
-/* twine-user-stylesheet #5: "characters.css" */
+/* twine-user-stylesheet #6: "characters.css" */
 .npc_text {
     font-weight: bold;
     font-size: 20px;
@@ -484,7 +527,7 @@ tw-link:after {
 .odo {
     color: grey;
 }
-/* twine-user-stylesheet #6: "constructor_table.css" */
+/* twine-user-stylesheet #7: "constructor_table.css" */
 .constructor-table {
     width: 100%;
     display: table;
@@ -565,7 +608,7 @@ th.localization-table__header-idn {
 .search-container input[type=search] {
     min-width: 300px;
 }
-/* twine-user-stylesheet #7: "dialog.css" */
+/* twine-user-stylesheet #8: "dialog.css" */
 
 .speech__character-image:hover {
     z-index: 44;
@@ -643,6 +686,7 @@ th.localization-table__header-idn {
     margin-bottom: 5px;
     min-height: 76px;
     cursor: default;
+    margin-top: 6px;
 }
 
 .speech-style--1 .speech__character-image {
@@ -693,7 +737,7 @@ th.localization-table__header-idn {
 .speech-style--1 .speech__text {
     padding: 2px 0 6px;
 }
-/* twine-user-stylesheet #8: "fight.css" */
+/* twine-user-stylesheet #9: "fight.css" */
 #passage-fight {
     margin-right: -2em;
 }
@@ -822,7 +866,7 @@ th.localization-table__header-idn {
     height: 40px;
     padding: 0 10px;
 }
-/* twine-user-stylesheet #9: "form.css" */
+/* twine-user-stylesheet #10: "form.css" */
 
 .form-block {
     display: flex;
@@ -1049,7 +1093,7 @@ th.localization-table__header-idn {
     margin-bottom: 30px;
     margin-top: 20px;
 }
-/* twine-user-stylesheet #10: "general.css" */
+/* twine-user-stylesheet #11: "general.css" */
 
 
 .deadend *{
@@ -1088,7 +1132,7 @@ th.localization-table__header-idn {
 .passage-list > *:last-child {
     margin-bottom: 20px;
 }
-/* twine-user-stylesheet #11: "images.css" */
+/* twine-user-stylesheet #12: "images.css" */
 
 .location-image { 
     display: block;
@@ -1106,7 +1150,7 @@ th.localization-table__header-idn {
     max-width: 220px;
     max-height: none;
 }
-/* twine-user-stylesheet #12: "index.css" */
+/* twine-user-stylesheet #13: "index.css" */
 .disclaimer-header *{
     font-size: 72px;
     font-weight: bold;
@@ -1127,12 +1171,12 @@ th.localization-table__header-idn {
     font-size: 1.25rem;
     font-family: sans-serif;
 }
-/* twine-user-stylesheet #13: "interface description.css" */
+/* twine-user-stylesheet #14: "interface description.css" */
 .interface-desc__image {
     width: auto;
     border: 1px solid #fff;
 }
-/* twine-user-stylesheet #14: "inventory.css" */
+/* twine-user-stylesheet #15: "inventory.css" */
 
 .table-items {
     display: table;
@@ -1161,7 +1205,7 @@ th.localization-table__header-idn {
 .table-items__image {
     width: 80px;
 }
-/* twine-user-stylesheet #15: "levels.css" */
+/* twine-user-stylesheet #16: "levels.css" */
 .level-container {
     display: flex;
   	align-items: center;
@@ -1224,7 +1268,7 @@ th.localization-table__header-idn {
     transition-property: all;
     transition-duration: 1s;    
 }
-/* twine-user-stylesheet #16: "rpg-awesome.css" */
+/* twine-user-stylesheet #17: "rpg-awesome.css" */
 @charset "UTF-8";
 /*!
  * RPG Awesome 0.0.2 by Daniela Howe, Ivan Montiel
@@ -3403,7 +3447,7 @@ th.localization-table__header-idn {
 }
 
 /*# sourceMappingURL=rpg-awesome.css.map */
-/* twine-user-stylesheet #17: "rpg-awesome.custom.css" */
+/* twine-user-stylesheet #18: "rpg-awesome.custom.css" */
 
 .ra-location:before {
     content: url("media/icons/location.png");
@@ -3416,7 +3460,7 @@ th.localization-table__header-idn {
 .ra {
     max-height: 16px;
 }
-/* twine-user-stylesheet #18: "select2.custom.css" */
+/* twine-user-stylesheet #19: "select2.custom.css" */
 
 
 .form-block .select2 {
@@ -3459,9 +3503,9 @@ th.localization-table__header-idn {
     background-color: #444 !important;
 }
 
-/* twine-user-stylesheet #19: "select2.min.css" */
+/* twine-user-stylesheet #20: "select2.min.css" */
 .select2-container{box-sizing:border-box;display:inline-block;margin:0;position:relative;vertical-align:middle}.select2-container .select2-selection--single{box-sizing:border-box;cursor:pointer;display:block;height:28px;user-select:none;-webkit-user-select:none}.select2-container .select2-selection--single .select2-selection__rendered{display:block;padding-left:8px;padding-right:20px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.select2-container .select2-selection--single .select2-selection__clear{position:relative}.select2-container[dir="rtl"] .select2-selection--single .select2-selection__rendered{padding-right:8px;padding-left:20px}.select2-container .select2-selection--multiple{box-sizing:border-box;cursor:pointer;display:block;min-height:32px;user-select:none;-webkit-user-select:none}.select2-container .select2-selection--multiple .select2-selection__rendered{display:inline-block;overflow:hidden;padding-left:8px;text-overflow:ellipsis;white-space:nowrap}.select2-container .select2-search--inline{float:left}.select2-container .select2-search--inline .select2-search__field{box-sizing:border-box;border:none;font-size:100%;margin-top:5px;padding:0}.select2-dropdown{background-color:white;border:1px solid #aaa;border-radius:4px;box-sizing:border-box;display:block;position:absolute;left:-100000px;width:100%;z-index:1051}.select2-results{display:block}.select2-results__options{list-style:none;margin:0;padding:0}.select2-results__option{padding:6px;user-select:none;-webkit-user-select:none}.select2-results__option[aria-selected]{cursor:pointer}.select2-container--open .select2-dropdown{left:0}.select2-container--open .select2-dropdown--above{border-bottom:none;border-bottom-left-radius:0;border-bottom-right-radius:0}.select2-container--open .select2-dropdown--below{border-top:none;border-top-left-radius:0;border-top-right-radius:0}.select2-search--dropdown{display:block;padding:4px}.select2-search--dropdown .select2-search__field{padding:4px;width:100%;box-sizing:border-box}.select2-search--dropdown.select2-search--hide{display:none}.select2-close-mask{border:0;margin:0;padding:0;display:block;position:fixed;left:0;top:0;min-height:100%;min-width:100%;height:auto;width:auto;opacity:0;z-index:99;background-color:#fff;filter:alpha(opacity=0)}.select2-hidden-accessible{border:0 !important;clip:rect(0 0 0 0) !important;-webkit-clip-path:inset(50%) !important;clip-path:inset(50%) !important;height:1px !important;overflow:hidden !important;padding:0 !important;position:absolute !important;width:1px !important;white-space:nowrap !important}.select2-container--default .select2-selection--single{background-color:#fff;border:1px solid #aaa;border-radius:4px}.select2-container--default .select2-selection--single .select2-selection__rendered{color:#444;line-height:28px}.select2-container--default .select2-selection--single .select2-selection__clear{cursor:pointer;float:right;font-weight:bold}.select2-container--default .select2-selection--single .select2-selection__placeholder{color:#999}.select2-container--default .select2-selection--single .select2-selection__arrow{height:26px;position:absolute;top:1px;right:1px;width:20px}.select2-container--default .select2-selection--single .select2-selection__arrow b{border-color:#888 transparent transparent transparent;border-style:solid;border-width:5px 4px 0 4px;height:0;left:50%;margin-left:-4px;margin-top:-2px;position:absolute;top:50%;width:0}.select2-container--default[dir="rtl"] .select2-selection--single .select2-selection__clear{float:left}.select2-container--default[dir="rtl"] .select2-selection--single .select2-selection__arrow{left:1px;right:auto}.select2-container--default.select2-container--disabled .select2-selection--single{background-color:#eee;cursor:default}.select2-container--default.select2-container--disabled .select2-selection--single .select2-selection__clear{display:none}.select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b{border-color:transparent transparent #888 transparent;border-width:0 4px 5px 4px}.select2-container--default .select2-selection--multiple{background-color:white;border:1px solid #aaa;border-radius:4px;cursor:text}.select2-container--default .select2-selection--multiple .select2-selection__rendered{box-sizing:border-box;list-style:none;margin:0;padding:0 5px;width:100%}.select2-container--default .select2-selection--multiple .select2-selection__rendered li{list-style:none}.select2-container--default .select2-selection--multiple .select2-selection__clear{cursor:pointer;float:right;font-weight:bold;margin-top:5px;margin-right:10px;padding:1px}.select2-container--default .select2-selection--multiple .select2-selection__choice{background-color:#e4e4e4;border:1px solid #aaa;border-radius:4px;cursor:default;float:left;margin-right:5px;margin-top:5px;padding:0 5px}.select2-container--default .select2-selection--multiple .select2-selection__choice__remove{color:#999;cursor:pointer;display:inline-block;font-weight:bold;margin-right:2px}.select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover{color:#333}.select2-container--default[dir="rtl"] .select2-selection--multiple .select2-selection__choice,.select2-container--default[dir="rtl"] .select2-selection--multiple .select2-search--inline{float:right}.select2-container--default[dir="rtl"] .select2-selection--multiple .select2-selection__choice{margin-left:5px;margin-right:auto}.select2-container--default[dir="rtl"] .select2-selection--multiple .select2-selection__choice__remove{margin-left:2px;margin-right:auto}.select2-container--default.select2-container--focus .select2-selection--multiple{border:solid black 1px;outline:0}.select2-container--default.select2-container--disabled .select2-selection--multiple{background-color:#eee;cursor:default}.select2-container--default.select2-container--disabled .select2-selection__choice__remove{display:none}.select2-container--default.select2-container--open.select2-container--above .select2-selection--single,.select2-container--default.select2-container--open.select2-container--above .select2-selection--multiple{border-top-left-radius:0;border-top-right-radius:0}.select2-container--default.select2-container--open.select2-container--below .select2-selection--single,.select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple{border-bottom-left-radius:0;border-bottom-right-radius:0}.select2-container--default .select2-search--dropdown .select2-search__field{border:1px solid #aaa}.select2-container--default .select2-search--inline .select2-search__field{background:transparent;border:none;outline:0;box-shadow:none;}.select2-container--default .select2-results>.select2-results__options{max-height:200px;overflow-y:auto}.select2-container--default .select2-results__option[role=group]{padding:0}.select2-container--default .select2-results__option[aria-disabled=true]{color:#999}.select2-container--default .select2-results__option[aria-selected=true]{background-color:#ddd}.select2-container--default .select2-results__option .select2-results__option{padding-left:1em}.select2-container--default .select2-results__option .select2-results__option .select2-results__group{padding-left:0}.select2-container--default .select2-results__option .select2-results__option .select2-results__option{margin-left:-1em;padding-left:2em}.select2-container--default .select2-results__option .select2-results__option .select2-results__option .select2-results__option{margin-left:-2em;padding-left:3em}.select2-container--default .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option{margin-left:-3em;padding-left:4em}.select2-container--default .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option{margin-left:-4em;padding-left:5em}.select2-container--default .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option .select2-results__option{margin-left:-5em;padding-left:6em}.select2-container--default .select2-results__option--highlighted[aria-selected]{background-color:#5897fb;color:white}.select2-container--default .select2-results__group{cursor:default;display:block;padding:6px}.select2-container--classic .select2-selection--single{background-color:#f7f7f7;border:1px solid #aaa;border-radius:4px;outline:0;background-image:-webkit-linear-gradient(top, #fff 50%, #eee 100%);background-image:-o-linear-gradient(top, #fff 50%, #eee 100%);background-image:linear-gradient(to bottom, #fff 50%, #eee 100%);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFFFF', endColorstr='#FFEEEEEE', GradientType=0)}.select2-container--classic .select2-selection--single:focus{border:1px solid #5897fb}.select2-container--classic .select2-selection--single .select2-selection__rendered{color:#444;line-height:28px}.select2-container--classic .select2-selection--single .select2-selection__clear{cursor:pointer;float:right;font-weight:bold;margin-right:10px}.select2-container--classic .select2-selection--single .select2-selection__placeholder{color:#999}.select2-container--classic .select2-selection--single .select2-selection__arrow{background-color:#ddd;border:none;border-left:1px solid #aaa;border-top-right-radius:4px;border-bottom-right-radius:4px;height:26px;position:absolute;top:1px;right:1px;width:20px;background-image:-webkit-linear-gradient(top, #eee 50%, #ccc 100%);background-image:-o-linear-gradient(top, #eee 50%, #ccc 100%);background-image:linear-gradient(to bottom, #eee 50%, #ccc 100%);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFEEEEEE', endColorstr='#FFCCCCCC', GradientType=0)}.select2-container--classic .select2-selection--single .select2-selection__arrow b{border-color:#888 transparent transparent transparent;border-style:solid;border-width:5px 4px 0 4px;height:0;left:50%;margin-left:-4px;margin-top:-2px;position:absolute;top:50%;width:0}.select2-container--classic[dir="rtl"] .select2-selection--single .select2-selection__clear{float:left}.select2-container--classic[dir="rtl"] .select2-selection--single .select2-selection__arrow{border:none;border-right:1px solid #aaa;border-radius:0;border-top-left-radius:4px;border-bottom-left-radius:4px;left:1px;right:auto}.select2-container--classic.select2-container--open .select2-selection--single{border:1px solid #5897fb}.select2-container--classic.select2-container--open .select2-selection--single .select2-selection__arrow{background:transparent;border:none}.select2-container--classic.select2-container--open .select2-selection--single .select2-selection__arrow b{border-color:transparent transparent #888 transparent;border-width:0 4px 5px 4px}.select2-container--classic.select2-container--open.select2-container--above .select2-selection--single{border-top:none;border-top-left-radius:0;border-top-right-radius:0;background-image:-webkit-linear-gradient(top, #fff 0%, #eee 50%);background-image:-o-linear-gradient(top, #fff 0%, #eee 50%);background-image:linear-gradient(to bottom, #fff 0%, #eee 50%);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFFFF', endColorstr='#FFEEEEEE', GradientType=0)}.select2-container--classic.select2-container--open.select2-container--below .select2-selection--single{border-bottom:none;border-bottom-left-radius:0;border-bottom-right-radius:0;background-image:-webkit-linear-gradient(top, #eee 50%, #fff 100%);background-image:-o-linear-gradient(top, #eee 50%, #fff 100%);background-image:linear-gradient(to bottom, #eee 50%, #fff 100%);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFEEEEEE', endColorstr='#FFFFFFFF', GradientType=0)}.select2-container--classic .select2-selection--multiple{background-color:white;border:1px solid #aaa;border-radius:4px;cursor:text;outline:0}.select2-container--classic .select2-selection--multiple:focus{border:1px solid #5897fb}.select2-container--classic .select2-selection--multiple .select2-selection__rendered{list-style:none;margin:0;padding:0 5px}.select2-container--classic .select2-selection--multiple .select2-selection__clear{display:none}.select2-container--classic .select2-selection--multiple .select2-selection__choice{background-color:#e4e4e4;border:1px solid #aaa;border-radius:4px;cursor:default;float:left;margin-right:5px;margin-top:5px;padding:0 5px}.select2-container--classic .select2-selection--multiple .select2-selection__choice__remove{color:#888;cursor:pointer;display:inline-block;font-weight:bold;margin-right:2px}.select2-container--classic .select2-selection--multiple .select2-selection__choice__remove:hover{color:#555}.select2-container--classic[dir="rtl"] .select2-selection--multiple .select2-selection__choice{float:right;margin-left:5px;margin-right:auto}.select2-container--classic[dir="rtl"] .select2-selection--multiple .select2-selection__choice__remove{margin-left:2px;margin-right:auto}.select2-container--classic.select2-container--open .select2-selection--multiple{border:1px solid #5897fb}.select2-container--classic.select2-container--open.select2-container--above .select2-selection--multiple{border-top:none;border-top-left-radius:0;border-top-right-radius:0}.select2-container--classic.select2-container--open.select2-container--below .select2-selection--multiple{border-bottom:none;border-bottom-left-radius:0;border-bottom-right-radius:0}.select2-container--classic .select2-search--dropdown .select2-search__field{border:1px solid #aaa;outline:0}.select2-container--classic .select2-search--inline .select2-search__field{outline:0;box-shadow:none}.select2-container--classic .select2-dropdown{background-color:#fff;border:1px solid transparent}.select2-container--classic .select2-dropdown--above{border-bottom:none}.select2-container--classic .select2-dropdown--below{border-top:none}.select2-container--classic .select2-results>.select2-results__options{max-height:200px;overflow-y:auto}.select2-container--classic .select2-results__option[role=group]{padding:0}.select2-container--classic .select2-results__option[aria-disabled=true]{color:grey}.select2-container--classic .select2-results__option--highlighted[aria-selected]{background-color:#3875d7;color:#fff}.select2-container--classic .select2-results__group{cursor:default;display:block;padding:6px}.select2-container--classic.select2-container--open .select2-dropdown{border-color:#5897fb}
-/* twine-user-stylesheet #20: "links.css" */
+/* twine-user-stylesheet #21: "links.css" */
 :root {
     --link-width: 2px;
     --link-color: var(--green);
@@ -4187,7 +4231,7 @@ th.localization-table__header-idn {
     padding-right: 0;
     transition: .5s ease;
 }
-/* twine-user-stylesheet #21: "list_arrows.css" */
+/* twine-user-stylesheet #22: "list_arrows.css" */
 
 
 .list-arrow__container {
@@ -4284,7 +4328,7 @@ th.localization-table__header-idn {
     padding-right: 6px;
     gap: 6px;
 }
-/* twine-user-stylesheet #22: "macro_notify.css" */
+/* twine-user-stylesheet #23: "macro_notify.css" */
 #notify {
     position : fixed;
     display : block;
@@ -4303,7 +4347,7 @@ th.localization-table__header-idn {
 #notify.open { 
     right : 0; 
 }
-/* twine-user-stylesheet #23: "macro_toggle.css" */
+/* twine-user-stylesheet #24: "macro_toggle.css" */
 
 label.toggle-button input[type="checkbox"] {
     display: none;
@@ -4353,7 +4397,7 @@ label.toggle-button span {
     -ms-user-select: none;
     user-select: none;
 }
-/* twine-user-stylesheet #24: "party.css" */
+/* twine-user-stylesheet #25: "party.css" */
 .party-member__block {
     display: flex;
     align-items: center;
@@ -4364,7 +4408,7 @@ label.toggle-button span {
 .party-member__block img {
     width: 120px;
 }
-/* twine-user-stylesheet #25: "questlog.css" */
+/* twine-user-stylesheet #26: "questlog.css" */
 #questlog-container {
     padding: 10px 4px;
     border: 2px solid red;
@@ -4406,7 +4450,7 @@ label.toggle-button span {
     margin-right: 40px;
     font-style: 12px;
 }
-/* twine-user-stylesheet #26: "menu.css" */
+/* twine-user-stylesheet #27: "menu.css" */
 #menu {
   display: none;
 }
@@ -4525,7 +4569,7 @@ label.toggle-button span {
   margin-top: 24px;
   margin-bottom: 12px;
 }
-/* twine-user-stylesheet #27: "misc.css" */
+/* twine-user-stylesheet #28: "misc.css" */
 .refresh-link {
     display: inline-block;
     width: fit-content;
@@ -4542,7 +4586,7 @@ label.toggle-button span {
 .refresh-link:hover .refresh-icon {
     transform: rotate(180deg);
 }
-/* twine-user-stylesheet #28: "modal.css" */
+/* twine-user-stylesheet #29: "modal.css" */
 .modal {
     display: none; 
     position: fixed;
@@ -4673,7 +4717,7 @@ label.toggle-button span {
 
 .modal-header {
     padding: 2px 16px;
-    background-color: #5cb85c;
+    background-color: var(--green-darker);
     color: white;
     border-radius: 2px;
     
@@ -4689,7 +4733,7 @@ label.toggle-button span {
 
 .modal-footer {
     padding: 2px 16px;
-    background-color: #5cb85c;
+    background-color: var(--green-darker);
     color: white;
     border-radius: 2px;
 }
@@ -4756,7 +4800,7 @@ label.toggle-button span {
     font-weight: bold;
     font-style: italic;
 }
-/* twine-user-stylesheet #29: "on_hold.css" */
+/* twine-user-stylesheet #30: "on_hold.css" */
 :root {
     --onholdHeight: 100px;
     --onholdWidth: 100px;
@@ -4790,11 +4834,11 @@ label.toggle-button span {
     bottom: 0px;
     opacity: .4;
 }
-/* twine-user-stylesheet #30: "passage-list.css" */
+/* twine-user-stylesheet #31: "passage-list.css" */
 .passage-list:first-child {
     margin-bottom: 20px;
 }
-/* twine-user-stylesheet #31: "popup.css" */
+/* twine-user-stylesheet #32: "popup.css" */
 :root {
     --popupHeight: 30px;
     --popupWidth: 320px;
@@ -4890,7 +4934,7 @@ label.toggle-button span {
     border-color: gainsboro;
 }
 
-/* twine-user-stylesheet #32: "port_data.css" */
+/* twine-user-stylesheet #33: "port_data.css" */
 
 .port__import-input {
     display: none;
@@ -4937,7 +4981,7 @@ label.toggle-button span {
     gap: 20px; 
     margin-left: auto;
 }
-/* twine-user-stylesheet #33: "quest-btn.css" */
+/* twine-user-stylesheet #34: "quest-btn.css" */
 
 .quest-btn {
     align-items: center;
@@ -5060,7 +5104,7 @@ label.toggle-button span {
 }
 
 
-/* twine-user-stylesheet #34: "rarity.css" */
+/* twine-user-stylesheet #35: "rarity.css" */
 .defective {
     font-weight: bold;
     color: #534936;
@@ -5106,7 +5150,7 @@ label.toggle-button span {
     color: red;
 }
 
-/* twine-user-stylesheet #35: "scrolls.css" */
+/* twine-user-stylesheet #36: "scrolls.css" */
 ::-webkit-scrollbar {
     width: 12px;
 }
@@ -5139,7 +5183,7 @@ label.toggle-button span {
 ::-webkit-scrollbar-thumb:hover {
     background-color: #cfcfcf;
 }
-/* twine-user-stylesheet #36: "shadowed_img.css" */
+/* twine-user-stylesheet #37: "shadowed_img.css" */
 .shadowed-img__container {
     width: fit-content;
     position: relative;
@@ -5175,7 +5219,7 @@ label.toggle-button span {
     object-fit: cover;
     z-index: 6;
 }
-/* twine-user-stylesheet #37: "sidebar.css" */
+/* twine-user-stylesheet #38: "sidebar.css" */
 .sidebar-icon {
     width: 24px;
     height: auto;
@@ -5241,7 +5285,7 @@ label.toggle-button span {
     width: fit-content;
     margin: auto;
 }
-/* twine-user-stylesheet #38: "sketch.css" */
+/* twine-user-stylesheet #39: "sketch.css" */
 
 .text {
     font-weight: 400;
@@ -5463,7 +5507,7 @@ label.toggle-button span {
     padding-right: 20px;
     text-shadow: 2px 2px 10px #dadada;
 }
-/* twine-user-stylesheet #39: "socials.css" */
+/* twine-user-stylesheet #40: "socials.css" */
 .social_link {
     display: flex !important;
     gap: 5px;
@@ -5475,7 +5519,7 @@ label.toggle-button span {
     height: 48px;
     width: 160px;
 }
-/* twine-user-stylesheet #40: "store.css" */
+/* twine-user-stylesheet #41: "store.css" */
 .store-item__image {
     width: 80px;
     height: 80px;
@@ -5491,7 +5535,7 @@ label.toggle-button span {
     color: red;
     font-weight: bold;
 }
-/* twine-user-stylesheet #41: "tabs.css" */
+/* twine-user-stylesheet #42: "tabs.css" */
 .menu-tabs {
     overflow-x: auto;
     border: 1px solid #ccc;
@@ -5536,7 +5580,7 @@ label.toggle-button span {
     text-decoration: underline;
 }
   
-/* twine-user-stylesheet #42: "talk_menu.css" */
+/* twine-user-stylesheet #43: "talk_menu.css" */
 .talk-menu__item {
     margin-bottom: 30px;
 }
@@ -5559,7 +5603,7 @@ label.toggle-button span {
     border-radius: 4px;
     border: 1px solid #222;
 }
-/* twine-user-stylesheet #43: "thelper.css" */
+/* twine-user-stylesheet #44: "thelper.css" */
 .thelper-message {
     display: block !important;
     position: absolute;
@@ -5606,7 +5650,7 @@ label.toggle-button span {
     from { opacity: 0; }
       to { opacity: 1; }
 }
-/* twine-user-stylesheet #44: "tips.css" */
+/* twine-user-stylesheet #45: "tips.css" */
 
 
 .tip_gen {
@@ -5647,6 +5691,7 @@ label.toggle-button span {
     max-width: 360px;
     width: max-content;
     background-color: #111;
+    z-index: 7;
 }
 
 @media screen and (max-width: 768px){
@@ -5675,7 +5720,6 @@ label.toggle-button span {
 
 .info_tip-container:hover .info_tip-text {
     display: block;
-    z-index: 7;
 }
 
 
@@ -6155,16 +6199,16 @@ localization_text['en'] = {
   "task_prologue_search_2_description": "Need to find the brooch that Melissa lost.",
   "task_prologue_gather_name": "Grab the brooch",
   "task_prologue_gather_description": "A shinny object I saw could be a brooch I'm looking for.",
-  "sk_prologue_loc_2_p_1_el_2_text": "You arrived at the lake. \n The atmosphere is incredibly serene and peaceful. ",
-  "sk_prologue_loc_2_p_1_el_3_text": "It's really peaceful and chill here.",
-  "sk_prologue_loc_2_p_1_el_4_text": "Need to come here more often.",
-  "sk_prologue_loc_2_p_1_el_5_text": "You've been diving in search of anything that matches the description of the brooch your sister gave you. \n However, you haven't had any luck so far.",
-  "sk_prologue_loc_2_p_1_el_6_text": "I'm really tired. I should take a break before I continue.",
-  "sk_prologue_loc_2_p_1_el_7_text": "I should definitely teach Melissa how to swim.\n It'd be good if she could manage things like this herself next time.",
-  "sk_prologue_loc_2_p_1_el_8_text": "I need to keep searching for that brooch.",
-  "sk_prologue_loc_2_p_1_el_9_text": "But maybe I could use a bit more rest.",
-  "sk_prologue_loc_3_p_1_el_2_text": "The last time I dived, I caught a glimpse of something glowing off to my left.",
-  "sk_prologue_loc_3_p_1_el_3_text": "I should dive over there again and get whatever it is.",
+  "sk_prologue_loc_2_p_1_el_3_text": "You arrived at the lake. \n The atmosphere is incredibly serene and peaceful. ",
+  "sk_prologue_loc_2_p_1_el_4_text": "It's really peaceful and chill here.",
+  "sk_prologue_loc_2_p_1_el_5_text": "Need to come here more often.",
+  "sk_prologue_loc_2_p_1_el_6_text": "You've been diving in search of anything that matches the description of the brooch your sister gave you. \n However, you haven't had any luck so far.",
+  "sk_prologue_loc_2_p_1_el_7_text": "I'm really tired. I should take a break before I continue.",
+  "sk_prologue_loc_2_p_1_el_8_text": "I should definitely teach Melissa how to swim.\n It'd be good if she could manage things like this herself next time.",
+  "sk_prologue_loc_2_p_1_el_9_text": "I need to keep searching for that brooch.",
+  "sk_prologue_loc_2_p_1_el_10_text": "But maybe I could use a bit more rest.",
+  "sk_prologue_loc_3_p_1_el_2_text": "I guess caught a glimpse of something glowing off to my left during the last dive.",
+  "sk_prologue_loc_3_p_1_el_3_text": "I should explore that spot again and get it, whatever it is.",
   "sk_prologue_loc_3_p_1_el_4_text": "Even if it's not the brooch, it might still be something valuable.\n It could be a piece of jewelry that I could sell or give as a gift.",
   "sk_prologue_sk_2_p_1_el_1_text": "Diving near that spot, you found out that it is indeed the brooch you were looking for.",
   "sk_prologue_sk_2_p_1_el_3_text": "However, there is something else present as well.",
@@ -6744,6 +6788,7 @@ localization_text['en'] = {
   "sk_sketch_personal_mc_p_1_el_4_text": "About that brooch..",
   "sk_sketch_personal_mc_p_1_el_5_text": "About Barret..",
   "sk_sketch_personal_mc_p_1_el_6_text": "Had I changed?",
+  "sk_sketch_personal_mc_p_1_el_7_text": "Future Content (WIP)",
   "sk_sketch_personal_mc_locations_limit_p_1_el_1_text": "Regarding the recent events, I will probably refrain from going outside the village for now.",
   "sk_sketch_personal_mc_locations_limit_p_1_el_2_text": "Better wait and see if villagers mention anything suspicious or out of the ordinary happening out there.",
   "sk_sketch_personal_mc_locations_limit_p_1_el_3_text": "Stick with it for now",
@@ -7662,11 +7707,12 @@ localization_text['ua'] = {
   "sk_prologue_loc_2_p_1_el_5_text": "Ти пірнав і пірнав, шукаючи щось, що відповідало б опису брошки. \n Однак поки що тобі не поталанило її знайти.",
   "sk_prologue_loc_2_p_1_el_6_text": "Я дуже втомився. Треба зробити перерву, перш ніж продовжувати.",
   "sk_prologue_loc_2_p_1_el_7_text": "Треба вже навчити Мелісу плавати. \n Було б добре, якби наступного разу вона сама могла б впоратися з такими речами.",
-  "sk_prologue_loc_2_p_1_el_8_text": "Мені потрібно продовжити шукати цю брошку.",
-  "sk_prologue_loc_2_p_1_el_9_text": "Але, можливо, мені потрібен відпочити трохи більше.",
-  "sk_prologue_loc_3_p_1_el_2_text": "Останнього разу коли я пірнав, я краєм ока помітив, що ліворуч є щось, що відзеркалює світло.",
+  "sk_prologue_loc_2_p_1_el_8_text": "Мені треба продовжити шукати цю брошку.",
+  "sk_prologue_loc_2_p_1_el_9_text": "Але, можливо, мені потрібно відпочити трохи більше.",
+  "sk_prologue_loc_3_p_1_el_2_text": "Останнього разу коли я пірнав, Я краєм ока помітив, що ліворуч є щось, що відзеркалює світло. ",
+  "sk_prologue_loc_3_p_1_el_2_text": "Здається, під час останнього занурення я побачив щось, що світилося ліворуч від мене. ",
   "sk_prologue_loc_3_p_1_el_3_text": "Мені варто знову пірнути туди і взяти ту річ.",
-  "sk_prologue_loc_3_p_1_el_4_text": "Навіть якщо це не брошка, це може бути чимось коштовним. \n Це може бути якась прикраса, яку можна було б продати чи подарувати.",
+  "sk_prologue_loc_3_p_1_el_4_text": "Навіть якщо це не брошка, це може бути чимось коштовним. \n Це цілком може бути якась коштовна прикраса, яку можна було б продати чи подарувати.",
   "sk_prologue_sk_2_p_1_el_1_text": "Пірнувши біля того місця, ти з'ясував, що це і справді та брошка, яку ти шукав.",
   "sk_prologue_sk_2_p_1_el_3_text": "Однак там також є щось інше.",
   "sk_prologue_sk_2_p_1_el_4_text": "Ти намагаєшся схопити і цю річ також.",
@@ -8238,6 +8284,7 @@ localization_text['ua'] = {
   "sk_sketch_personal_mc_p_1_el_4_text": "Про ту брошку...",
   "sk_sketch_personal_mc_p_1_el_5_text": "Про Баррета...",
   "sk_sketch_personal_mc_p_1_el_6_text": "Чи змінився я?",
+  "sk_sketch_personal_mc_p_1_el_7_text": "Майбутній контент (WIP)",
   "sk_sketch_personal_mc_locations_limit_p_1_el_1_text": "Враховуючи недавні події, я мабуть утримаюся від виходу за межі села наразі.",
   "sk_sketch_personal_mc_locations_limit_p_1_el_2_text": "Краще почекати і подивитися, чи будуть жителі розмовляти про щось підозріле або незвичайне.",
   "sk_sketch_personal_mc_locations_limit_p_1_el_3_text": "Дотримуватимусь цього поки що",
@@ -9346,7 +9393,7 @@ localization_system_text['en'] = {
         'work_on_fields': 'Work on fields',
         'q_return_brooch': 'Returning the brooch'
     },
-    activities: {
+    activity_titles: {
         'rest': 'Rest',
         'nap': 'Nap',
         'sleep': 'Sleep',
@@ -9364,7 +9411,7 @@ localization_system_text['en'] = {
         'countdown': 'You did that recently, you need to wait some time before doing it again.',
         'stamina': 'You are not tired to have a rest.'
     },
-    tasks: {
+    task_types_titles: {
         'sketch': 'Start conversation about',
         'gather': 'Gather',
         'distribute': 'Distribute',
@@ -9423,6 +9470,7 @@ localization_system_text['en'] = {
         tip_already_chatted: 'You have already talked enough for now.'
     },
     thelper: {
+        company: "2caKe gems company",
         day_of_week: 'Current day of the week',
         month: 'Current month',
         time: 'Current time',
@@ -9738,7 +9786,7 @@ localization_system_text['fr'] = {
         'preparing_festival': 'Se prépare pour un festival',
         'daydreaming': 'Rêvasse',
     },
-    activities: {
+    activity_titles: {
         'rest': 'Rest',
         'nap': 'Lainer',
         'sleep': 'Dormir',
@@ -9752,7 +9800,7 @@ localization_system_text['fr'] = {
         'work': 'Travailler',
         'clean': 'Nettoyer'
     },
-    tasks: {
+    task_types_titles: {
         'interact': 'Interagir',
         'gather': 'Rassembler',
         'distribute': 'Distribuer',
@@ -9976,7 +10024,7 @@ localization_system_text['ru'] = {
         'preparing_festival': 'Подготавливается к фестивалю',
         'daydreaming': 'Мечтает'
     },        
-    activities: {
+    activity_titles: {
         'rest': 'Отдыхать',
         'nap': 'Вздремнуть',
         'sleep': 'Спать',
@@ -9990,7 +10038,7 @@ localization_system_text['ru'] = {
         'work': 'Работать',
         'clean': 'Убирать'
     },
-    tasks: {
+    task_types_titles: {
         'interact': 'Взаимодействовать',
         'gather': 'Собирать',
         'distribute': 'Доставить',
@@ -10492,7 +10540,7 @@ localization_system_text['ua'] = {
         'work_on_fields': 'Працює в полі',
         'q_return_brooch': 'Повертає брошку'
     },
-    activities: {
+    activity_titles: {
         'rest': 'Відпочити',
         'nap': 'Подрімати',
         'sleep': 'Спати',
@@ -10510,7 +10558,7 @@ localization_system_text['ua'] = {
         'countdown': 'Ви це недавно робили, вам потрібно трохи зачекати, перш ніж знову робити це.',
         'stamina': 'Ви не втомлені, щоб відпочивати.'
     },
-    tasks: {
+    task_types_titles: {
         'interact': 'Взаємодіяти',
         'gather': 'Зібрати',
         'distribute': 'Доставляти',
@@ -10549,7 +10597,7 @@ localization_system_text['ua'] = {
         tip_trespassers: `
         Значний слід у цьому світі залишили мандрівники з інших світів, яких тепер називають «перетиначами». <br>
         Це сталося насамперед через дві Міжсвітові Кризи, які стали результатом їхніх дій, та подальше встановлення міжнародних законів проти перетиначів. <br>
-        Ці закони не лише обмежують розвиток нових технологій, які ґрунтуються на будь-чому, що стосується перетиначів, але також забезпечують дотримання правил щодо використання будь-якої спадщини перетиначів суворіше, ніж навіть щодо найпотужніших та заборонені магічні практики. <br>
+        Ці закони не лише обмежують розвиток нових технологій, які ґрунтуються на будь-чому, що стосується перетиначів, але також забезпечують дотримання правил щодо використання будь-якої спадщини перетиначів суворіше, ніж навіть щодо найпотужніших та заборонених магічних практик. <br>
         Тим не менш, кілька важливих технік для зручності, створених на основі стародавніх технологій та магії, які є альтернативою зручностям, запровадженим перетиначами, залишаються у загальному вжитку.
         Ходять чутки, що кількість перетиначів зростає, натякаючи на Третю Міжсвітову Кризу. Однак такі розмови часто відкидають як балаканину божевільних.
         `,
@@ -10569,7 +10617,8 @@ localization_system_text['ua'] = {
         tip_leave_escort_not_finish: 'Ви ще не знаходитесь на правильній локації. Якщо відпустити цього персонажа зараз, то завдання відкинеться на крок назад.',
         tip_already_chatted: 'Ви вже поговорили достатньо.'
     },
-    thelper: {
+    thelper: {        
+        company: "2caKe gems компанія",
         day_of_week: 'Поточний день тижня',
         month: 'Поточний місяць',
         time: 'Поточний час',
@@ -11703,11 +11752,9 @@ const image_list =
         'House_Wizard.jpg',
         'kalithara.png',
         'kalithara_mirror.png',
-        'lake_1.webp',
-        'lake_2.webp',
-        'lake_3.webp',
-        'lake_4.jpg',
-        'lake_5.jpg',
+        'lake_morning.webp',
+        'Village_Outside_Lake.jpg',
+        'lake_diving.png',
         'melissa_anticipation.png',
         'melissa_crying.png',
         'melissa_grin.png',
@@ -15725,13 +15772,37 @@ const sketch_list = {
       "page_1": {
         "el_1": {
           "type": "image",
+          "conditions": [
+            {
+              "type": "check_task_counter",
+              "quest": "q_search_brooch",
+              "task": "prologue_search",
+              "comparatives": "less",
+              "value": "1"
+            }
+          ],
           "media_folder": "prologue",
-          "media_file": "lake_1.webp",
+          "media_file": "lake_morning.webp",
           "width": "580",
           "height": "320",
           "img_style": "location"
         },
         "el_2": {
+          "type": "image",
+          "conditions": [
+            {
+              "type": "check_task_counter",
+              "quest": "q_search_brooch",
+              "task": "prologue_search",
+              "comparatives": "greater_equal",
+              "value": "1"
+            }
+          ],
+          "media_folder": "prologue",
+          "media_file": "Village_Outside_Lake.jpg",
+          "img_style": "location"
+        },
+        "el_3": {
           "type": "text",
           "conditions": [
             {
@@ -15744,7 +15815,7 @@ const sketch_list = {
           ],
           "text_type": "default"
         },
-        "el_3": {
+        "el_4": {
           "type": "text",
           "conditions": [
             {
@@ -15764,7 +15835,7 @@ const sketch_list = {
           ],
           "text_type": "default"
         },
-        "el_4": {
+        "el_5": {
           "type": "text",
           "conditions": [
             {
@@ -15777,7 +15848,7 @@ const sketch_list = {
           ],
           "text_type": "thought"
         },
-        "el_5": {
+        "el_6": {
           "type": "text",
           "conditions": [
             {
@@ -15790,7 +15861,7 @@ const sketch_list = {
           ],
           "text_type": "default"
         },
-        "el_6": {
+        "el_7": {
           "type": "text",
           "conditions": [
             {
@@ -15803,7 +15874,7 @@ const sketch_list = {
           ],
           "text_type": "thought"
         },
-        "el_7": {
+        "el_8": {
           "type": "text",
           "conditions": [
             {
@@ -15816,7 +15887,7 @@ const sketch_list = {
           ],
           "text_type": "thought"
         },
-        "el_8": {
+        "el_9": {
           "type": "text",
           "conditions": [
             {
@@ -15836,7 +15907,7 @@ const sketch_list = {
           ],
           "text_type": "thought"
         },
-        "el_9": {
+        "el_10": {
           "type": "text",
           "conditions": [
             {
@@ -15866,9 +15937,10 @@ const sketch_list = {
         "el_1": {
           "type": "image",
           "media_folder": "prologue",
-          "media_file": "lake_4.jpg",
-          "width": "500",
-          "height": "320"
+          "media_file": "lake_diving.png",
+          "width": "420",
+          "height": "320",
+          "img_style": "location"
         },
         "el_2": {
           "type": "text",
@@ -19570,6 +19642,40 @@ const sketch_list = {
           "sketch_idn": "sketch_personal_mc_i_changed",
           "fake": "",
           "link_type": "personal_quest",
+        },
+        "el_7": {
+          "type": "choice",
+          "conditions": [
+            {
+              "type": "check_quest_status",
+              "quest": "q_return_brooch",
+              "comparatives": "greater_equal",
+              "value": "2"
+            },
+            {
+              "type": "check_quest_status",
+              "quest": "q_barrets_matters",
+              "comparatives": "greater_equal",
+              "value": "2"
+            },
+            {
+              "type": "check_quest_status",
+              "quest": "q_had_i_changed",
+              "comparatives": "greater_equal",
+              "value": "2"
+            }
+          ],
+          "move_to": "passage",
+          "passage": "Info_Project",
+          "sketch_idn": "sketch_warning",
+          "fake": "",
+          "link_type": "personal_quest",
+          "actions": [
+            {
+              "type": "injection_action",
+              "injection_action": "<<set $temp.menu_tab = 4>>"
+            }
+          ]
         }
       }
     }
@@ -22563,7 +22669,7 @@ $(document).on(":passagedisplay", function () {
 
 
 function addActivityLink(activity, activity_location) {
-    const activity_text = getLocalizedSystemText('activities', activity.id_name);
+    const activity_text = getLocalizedSystemText('activity_titles', activity.id_name);
 
     const activity_link = `
         <a 
@@ -22583,7 +22689,7 @@ function addActivityLink(activity, activity_location) {
 
 
 function addFakeActivityLink(activity, reasons) {
-    const activity_text = getLocalizedSystemText('activities', activity.id_name);
+    const activity_text = getLocalizedSystemText('activity_titles', activity.id_name);
 
     const fake_activity_link = `
         <div class="link-activity link-contents link-activity--fake">
@@ -25416,8 +25522,7 @@ function sketchConstructor () {
             time_countdown: 'Time countdown',
             check_quest_status: 'Quest status',
             check_task_status: 'Task status',
-            check_task_counter: 'Task counter',
-            custom: 'Custom (N/A)'
+            check_task_counter: 'Task counter'
         };
 
         
@@ -25449,8 +25554,7 @@ function sketchConstructor () {
             finish_task: 'Finish task',
             fail_task: 'Fail task',
             time_countdown: 'Time countdown',
-            injection_action: 'Injection action',
-            custom: 'Custom (N/A)'
+            injection_action: 'Injection action'
         };
 
 
@@ -26408,11 +26512,6 @@ function getSketchConditionFields(type) {
         'condition_task',
         'condition_comparatives',
         'condition_value'
-    ],
-    custom_options = [
-        'condition_custom',
-        'condition_comparatives',
-        'condition_value'
     ]
 
     return {
@@ -26426,8 +26525,7 @@ function getSketchConditionFields(type) {
         time_countdown: time_countdown_options,
         check_quest_status: check_quest_status_options,
         check_task_status: check_task_status_options,
-        check_task_counter: check_task_counter_options,
-        custom: custom_options
+        check_task_counter: check_task_counter_options
     }[type]
 }
 
@@ -27375,35 +27473,6 @@ function getConditionOptionContent(option, spid, seid, scid, sketch_condition={}
     }
 
     
-
-    
-    const content_condition_custom = () => {  
-        const global_variables = $.extend(true,{},State.variables);     // deep cloning for not to change State.variables
-        $.each(global_variables, (prop, value ) => {  if (typeof value == 'function')  delete global_variables[prop] });
-
-        const content = `
-            <div class="form-block">
-                <label> 1 Level </label>
-                <select 
-                    class="select2 sketch-condition__custom" 
-                    name="pages[page_${spid}][el_${seid}][conditions][${scid}][custom_lvl_1]"
-                >                    
-                    <option disabled selected value="-1">-- select --</option>
-                    ${Object.keys(global_variables).map((value) => (     
-                        `<option 
-                            ${(value == sketch_condition.custom_lvl_1) ? 'selected' : ''}
-                            value="${value}"
-                        >
-                            ${value}
-                        </option>`
-                    )).join('')}
-                </select>
-            </div>   
-        `;
-
-        return content;        
-    }
-
     return {
         condition_character: content_condition_character,
         condition_param: content_condition_param,
@@ -27418,7 +27487,6 @@ function getConditionOptionContent(option, spid, seid, scid, sketch_condition={}
         condition_timeline_hours: content_condition_timeline_hours,
         condition_timeline_day_of_week: content_condition_timeline_day_of_week,
         condition_timeline_month: content_condition_timeline_month,
-        condition_custom: content_condition_custom,
         condition_quest: content_condition_quest,
         condition_task: content_condition_task
     }[option];
@@ -29799,6 +29867,8 @@ function moveToLocation(location) {
     } else if (isCustomLocation) {
         State.variables.temp.custom_location = location;
         Engine.play('Uni_Location');
+    } else if (location == 'Info_Project') { // For Mirror notification about future releases. Condition can be removed later on.
+        Engine.play(location);
     } else {
         console.error(`Cannot move to location: "${location}" !`);
         alert(`Cannot move to location: "${location}" !`);
@@ -30192,7 +30262,7 @@ function getSketchPersonalIdn(target_location, character_idn=false) {
 
 function ifUserOnPage() {
     const isVisibilityHiddenState = 'hidden';
-    const sec_to_notify = 20;
+    const seconds_to_notify = 20;
     let time_leave = 0;
     let time_return = 0;
 
@@ -30207,10 +30277,10 @@ function ifUserOnPage() {
             const restricted_passages = ['index', 'Info_Disclaimer', 'Info_Project', 'Info_Interface', 'Info_Story', 'Uni_Constructor', 'Uni_Constructor_Table'];
 
             const pass_settings = (State.variables.settings.return_notification == 1);
-            const pass_timer = (seconds >= sec_to_notify);
+            const pass_timer = (seconds >= seconds_to_notify);
             const pass_passages = !restricted_passages.includes(passage());  
 
-            if (pass_settings && pass_timer && pass_passages) showUserReturnNotification(seconds);
+            if (pass_settings && pass_timer && pass_passages) checkAndShowUserReturnNotification();
         }
     }
     
@@ -30219,10 +30289,21 @@ function ifUserOnPage() {
 
 ifUserOnPage()  // Should be started only once, not on passage change!
 
-function showUserReturnNotification(seconds) {
+
+function checkAndShowUserReturnNotification() {
+    const pass_size = (window.innerWidth > 900); 
     const is_active_modal = !($('#modal-container').css('display') == 'none'); // Condition is used for not to add modal with tips in queue and show it only once
-    if (!is_active_modal) showModal('show_clues');
+    
+    if (pass_size && !is_active_modal)  showModal('show_clues');
 }
+
+function handleUserReturnNotification() {
+    // Call checkAndShowModel initially and also add an event listener to check when the window is resized
+    checkAndShowModel();
+    window.addEventListener('resize', checkAndShowUserReturnNotification);
+}
+
+
 
 
 function updateJsonLists() {
@@ -32721,7 +32802,7 @@ function getSketchHtmlBlockByType(element, sketch_idn, page_id, element_key) {
 
         const image = `
             <img 
-                style="width: ${(!!element.width) ? `${element.width}px` : 'auto'}; height: ${(!!element.height) ? `${element.height}px` : 'auto'}" 
+                style="width: ${(!!element.width) ? `${element.width}px` : 'auto'}; height: ${(!!element.height) ? `${element.height}px` : 'auto'}; ${(!!element.width) ? `max-width: ${element.width}px` : ''};" 
                 class="${imgClass}" 
                 src="media/sketches/${element.media_folder}/${element.media_file}" 
                 alt="${element.media_file}" 
@@ -33329,32 +33410,43 @@ function executeActionByType(action) {
     }
 
     function executeActionChangeScheduleCurrentHour(action) {
+        const { lists, time, temp } = State.variables;
         const character_idn = action.character;
         const assignment_idn = action.assignment;
-        const assignment = State.variables.lists.assignments[assignment_idn];
+        const assignment = lists.assignments[assignment_idn];
+        const cur_hour = time.hour;
         const random_location_index = random(0, assignment.locations.length - 1);
-
-        const cur_hour = State.variables.time.hour;
-        const character_daily_schedule = State.variables.temp?.schedule_day[character_idn];
+        const character_daily_schedule = temp?.schedule_day[character_idn];
 
         if (!character_daily_schedule) {
             console.error(`No daily schedule for ${character_idn}!`)
             alert(`No daily schedule for ${character_idn}!`)
         }
 
-        const cur_period = character_daily_schedule.find(period => period.hours.includes(cur_hour.toString()));
+        const cur_daily_assignment = character_daily_schedule.find(period => period.hours.includes(cur_hour.toString()));
 
-        if (!cur_period) {
+        if (!cur_daily_assignment) {
             console.error(`No schedule entry found for ${character_idn} at hour ${cur_hour}!`);
             alert(`No schedule entry found for ${character_idn} at hour ${cur_hour}!`);
             return;
         }
-
-        Object.assign(cur_period, {
+    
+        const new_hours = [cur_hour.toString()];
+        const is_cur_hour_almost_finished = (time.minute >= 50); // If current hour has less then 10 minutes left, then current activity would be too short.
+        if (is_cur_hour_almost_finished) new_hours.push((cur_hour + 1).toString()); // If current activity is too short, then add one more hour for that activity.
+ 
+        const new_daily_assignment = new Object({
             location: assignment.locations[random_location_index],
             availability: assignment.availability ?? true,
-            activity: assignment.activity
+            activity: assignment.activity,
+            hours: new_hours
         });
+
+        character_daily_schedule.push(new_daily_assignment)
+        
+        // Optional. System works correctly even without those changes. But better safe then sorry. 
+        const cur_daily_assignment_hours = cur_daily_assignment.hours.filter(hour => !new_hours.includes(hour));
+        Object.assign(cur_daily_assignment, { hours: cur_daily_assignment_hours});
     }
 
 
@@ -34291,10 +34383,10 @@ function activateTask (task_json) {
 
 
 // Observers for tasks types
-const tasks_types = State.variables.lists.task_types;  
+const task_types = State.variables.lists.task_types;  
 const tasks_observers = {};
 
-for (const type of tasks_types) {
+for (const type of task_types) {
     const observer = `${type}Observer`;
 
     tasks_observers[observer] = new EventObserver();
@@ -34729,39 +34821,39 @@ function getTaskLinkAutoText(cur_task) {
     
     const sketch_link_text = () => {
         const tasn_name = getLocalizedEntityText(cur_task.id_name, 'task', 'name');   
-        const start_talk_about = getLocalizedSystemText('tasks', 'sketch'); 
+        const start_talk_about = getLocalizedSystemText('task_types_titles', 'sketch'); 
         const result = `${start_talk_about} - '${tasn_name}'`;
         return result;
     } 
 
     // const interact_link_text = () => {
-    //     const interact = getLocalizedSystemText('tasks', 'interact');
+    //     const interact = getLocalizedSystemText('task_types_titles', 'interact');
     //     const result = `${interact}`;
     //     return result;
     // } 
 
     const gather_link_text = () => {
-        const gather = getLocalizedSystemText('tasks', 'gather');
+        const gather = getLocalizedSystemText('task_types_titles', 'gather');
         const item = getLocalizedSystemText('item_list', cur_task.subject);
         const result = `${gather} - ${item}`;
         return result;
     } 
 
     const distribute_link_text = () => {
-        const distribute = getLocalizedSystemText('tasks', 'distribute');
+        const distribute = getLocalizedSystemText('task_types_titles', 'distribute');
         const item = getLocalizedSystemText('item_list', cur_task.subject);
         const result = `${distribute} - ${item}`;
         return result;
     } 
     
     const fight_link_text = () => {
-        const fight = getLocalizedSystemText('tasks', 'fight');
+        const fight = getLocalizedSystemText('task_types_titles', 'fight');
         const result = `${fight} - ${cur_task.amount} ${cur_task.subject}`;
         return result;
     } 
 
     const search_link_text = () => {
-        const result = getLocalizedSystemText('tasks', 'search');
+        const result = getLocalizedSystemText('task_types_titles', 'search');
         return result;
     } 
     
@@ -35324,7 +35416,6 @@ setup.showMenuStory = function () {
     }
 
     if (State.variables.settings.debug != 1) delete menu_list.debug;
-    console.log('Test', State.variables.settings.debug, menu_list)
 
     $.each(menu_list, function (menu_list_item_index, menu_list_item) {
         const menu_item_text = getLocalizedSystemText(localization_list, menu_list_item.text);
@@ -35399,11 +35490,15 @@ $('#ui-bar-body').on('click', '.menu-core__link', function () {
 setup.showSignature = function () {
     const company_name = `2caKe gems`;
     const version_string = getLocalizedSystemText('sidebar', 'caption_version');
-    const version_number = '0.1.032';
+    const version_number = '0.1.034';
 
+    
     const content = `
-        <div class='sidebar-signature'>
-            <p id="company_name" data-thelper="company_name">[${company_name}]</p>
+        <div class='sidebar-signature'>        
+            <div class="sidebar-signature__company-block">
+                <p id="company_name" data-thelper="company_name"> <span>[${company_name}] </span></p>  
+                <img class="sidebar-signature__company-logo" src="media/logo/company_logo.svg" alt="company_logo" data-thelper="company"/>   
+            </div>        
             <p id="game_version">${version_string}: ${version_number}</p>
         </div>
     `;
@@ -36080,27 +36175,7 @@ function activateThelpersListener() {
 
 }
 
-/* twine-user-script #89: "websystem_optimizations.js" */
-
-
-$(document).on(":passagerender", function () {
-    document.documentElement.setAttribute('lang', State.variables.settings.lang);
-});
-
-// To avoid blinking. Blinking happens because one data is loading faster then another.
-$(document).on(":passagedisplay", function () {
-    const $bar_body = $('#ui-bar-body');
-    const $story = $('#story');    
-    $bar_body.hide().fadeIn(1000);
-    $story.hide().fadeIn(1000);
-});
-
-
-/* twine-user-script #90: "widgets.js" */
-
-setup.getInfoTipContent = function(string_idn, size) {
-    return nobr( getInfoTipContent(string_idn, size) );
-}
+/* twine-user-script #89: "tips.js" */
 
 function getInfoTipContent(string_idn, size) {
     const localized_string = getLocalizedSystemText('tips', string_idn);
@@ -36119,6 +36194,55 @@ function getInfoTipContent(string_idn, size) {
     return content;
 }
 
+function setupTooltips() {
+    $(document).ready(function() {
+        const tooltips = document.querySelectorAll('.info_tip-container');
+
+        if (tooltips.length > 0) {
+            tooltips.forEach(container => {
+                container.addEventListener('mouseover', adjustTooltipPosition);
+            });
+        }
+    });
+}
+
+function adjustTooltipPosition() {
+    const tooltip = this.querySelector('.info_tip-text.tip_gen');
+    if (!tooltip) return;
+
+    const rect = tooltip.getBoundingClientRect();
+
+    const rightOverflowAmount = rect.right - window.innerWidth;
+    const overflowsRight = rightOverflowAmount > 0;
+
+    if (overflowsRight) {
+        tooltip.style.left = `-${rightOverflowAmount + 10}px`;
+        tooltip.style.top = '40px';
+    } 
+}
+
+setupTooltips();
+/* twine-user-script #90: "websystem_optimizations.js" */
+
+
+$(document).on(":passagerender", function () {
+    document.documentElement.setAttribute('lang', State.variables.settings.lang);
+});
+
+// To avoid blinking. Blinking happens because one data is loading faster then another.
+$(document).on(":passagedisplay", function () {
+    const $bar_body = $('#ui-bar-body');
+    const $story = $('#story');    
+    $bar_body.hide().fadeIn(1000);
+    $story.hide().fadeIn(1000);
+});
+
+
+/* twine-user-script #91: "widgets.js" */
+
+setup.getInfoTipContent = function(string_idn, size) {
+    return nobr( getInfoTipContent(string_idn, size) );
+}
 
 setup.getQuestMarkContent = function(entity) {
     return nobr( getQuestMarkContent(entity) );
@@ -36137,7 +36261,9 @@ function getQuestMarkContent(type='quest') {
     `;
 
     return content;
-}</script><tw-tag name="option" color="red"></tw-tag><tw-tag name="NPC" color="yellow"></tw-tag><tw-tag name="NeedCheck" color="green"></tw-tag><tw-tag name="Sandbox" color="green"></tw-tag><tw-tag name="System" color="red"></tw-tag><tw-tag name="dialog" color="gray"></tw-tag><tw-tag name="Story" color="blue"></tw-tag><tw-tag name="DeadEnd" color="orange"></tw-tag><tw-tag name="Dialog" color="purple"></tw-tag><tw-tag name="Location" color="orange"></tw-tag><tw-tag name="Options" color="red"></tw-tag><tw-tag name="Script" color="blue"></tw-tag><tw-passagedata pid="1" name="City" tags="questionable" position="2400,1350" size="100,100">[[Return|Ferryman]]</tw-passagedata><tw-passagedata pid="2" name="Dream" tags="Location autosave nobr noreturn" position="1600,450" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_dream_out&#39; $return_passage&gt;&gt;
+}
+
+</script><tw-tag name="DeadEnd" color="orange"></tw-tag><tw-tag name="Location" color="orange"></tw-tag><tw-tag name="option" color="red"></tw-tag><tw-tag name="System" color="red"></tw-tag><tw-tag name="Dialog" color="purple"></tw-tag><tw-tag name="NPC" color="yellow"></tw-tag><tw-tag name="NeedCheck" color="green"></tw-tag><tw-tag name="Options" color="red"></tw-tag><tw-tag name="Sandbox" color="green"></tw-tag><tw-tag name="Script" color="blue"></tw-tag><tw-tag name="Story" color="blue"></tw-tag><tw-tag name="dialog" color="gray"></tw-tag><tw-passagedata pid="1" name="City" tags="questionable" position="2400,1350" size="100,100">[[Return|Ferryman]]</tw-passagedata><tw-passagedata pid="2" name="Dream" tags="Location autosave nobr noreturn" position="1600,450" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_dream_out&#39; $return_passage&gt;&gt;
     &lt;&lt;set $player.health += 10;&gt;&gt;
     &lt;&lt;set $player.stamina=$player.stamina_max;&gt;&gt;
 &lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Elf_House_Bloodhound" tags="Location nobr" position="3101,1898" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_village&#39; &#39;Elf_Village&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="Elf_House_Elder" tags="Location nobr" position="3101,1898" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_village&#39; &#39;Elf_Village&#39;&gt;&gt;&lt;&lt;/passage&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="Elf_House_Herb" tags="Location nobr" position="2968,2099" size="100,100">&lt;&lt;passage &#39;passages&#39; &#39;passage_elf_store_herb&#39; &#39;Uni_Store&#39; &#39;gem&#39;&gt;&gt;
@@ -36504,14 +36630,14 @@ function getQuestMarkContent(type='quest') {
     &lt;&lt;text_system &#39;info_interface&#39; &#39;info_location_activities_1&#39;&gt;&gt;  &lt;&lt;br&gt;&gt;
 
     &lt;a class=&quot;link-internal link-contents link-activity&quot; tabindex=&quot;0&quot;&gt;     
-       &lt;&lt;text_system &#39;activities&#39; &#39;wait&#39;&gt;&gt;  
+       &lt;&lt;text_system &#39;activity_titles&#39; &#39;wait&#39;&gt;&gt;  
     &lt;/a&gt;&lt;&lt;br&gt;&gt;
 
     &lt;div class=&quot;link-activity link-contents link-activity--fake&quot;&gt;             
         &lt;p class=&quot;link-fake__tip-text tip_gen&quot;&gt; &lt;&lt;text_system &#39;activity_reasons&#39; &#39;time&#39;&gt;&gt;   &lt;/p&gt;             
         &lt;div class=&quot;link-content-wrapper&quot;&gt;                 
             &lt;div class=&quot;link-content-container link-underline-container&quot;&gt;                               
-                &lt;&lt;text_system &#39;activities&#39; &#39;sleep&#39;&gt;&gt;                 
+                &lt;&lt;text_system &#39;activity_titles&#39; &#39;sleep&#39;&gt;&gt;                 
             &lt;/div&gt;             
         &lt;/div&gt;         
     &lt;/div&gt;&lt;&lt;br 2&gt;&gt;
@@ -36582,7 +36708,7 @@ function getQuestMarkContent(type='quest') {
         &lt;p class=&quot;link-fake__tip-text tip_gen&quot;&gt; &lt;&lt;text_system &#39;task_conditions&#39; &#39;search&#39;&gt;&gt; &lt;/p&gt;
         
         &lt;img class=&quot;task-link__icon&quot; src=&quot;media/icons/task/search.png&quot; data-thelper=&quot;task_type__search&quot; alt=&quot;search&quot;&gt;
-        &lt;p class=&quot;task-link__text&quot;&gt;&lt;&lt;text_system &#39;tasks&#39; &#39;search&#39;&gt;&gt;&lt;/p&gt;
+        &lt;p class=&quot;task-link__text&quot;&gt;&lt;&lt;text_system &#39;task_types_titles&#39; &#39;search&#39;&gt;&gt;&lt;/p&gt;
     &lt;/div&gt;
     &lt;&lt;br&gt;&gt;
 
@@ -37380,18 +37506,19 @@ Quest Info:
 
 /* &lt;div class=&quot;passage-list passage-list__narration&quot;&gt;&lt;/div&gt; */
 
-/* &lt;div class=&quot;passage-list passage-list__locations&quot;&gt;&lt;/div&gt; */</tw-passagedata><tw-passagedata pid="49" name="StoryBanner" tags="System questionable" position="25,125" size="100,100">&lt;img src=&quot;media/icons/logo.svg&quot; style=&quot;width: 64px; height: 64px;&quot; alt=&quot;Fanthira Tales: wRight on cue&quot;&gt;</tw-passagedata><tw-passagedata pid="50" name="StoryCaption" tags="System nobr" position="650,125" size="100,100">&lt;&lt;if $settings.debug == 1&gt;&gt;
-	&lt;span&gt;&lt;&lt;print passage()&gt;&gt;&lt;/span&gt;:
-	&lt;&lt;link &quot;refresh&quot;&gt;&gt;&lt;&lt;goto `passage()`&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;&lt;br&gt;&gt;
-	
-	&lt;&lt;if passage() == &#39;Uni_Location&#39;&gt;&gt; &lt;&lt;= $temp.custom_location&gt;&gt;, &lt;&lt;= $temp.cur_page ?? &#39;page_1&#39;&gt;&gt; &lt;&lt;br&gt;&gt;	&lt;&lt;/if&gt;&gt; 
-	&lt;&lt;if passage() == &#39;Uni_Sketch&#39;&gt;&gt;   &lt;&lt;= $temp.cur_sketch&gt;&gt;, &lt;&lt;= $temp.cur_page&gt;&gt;	&lt;&lt;br&gt;&gt;	&lt;&lt;/if&gt;&gt;
+/* &lt;div class=&quot;passage-list passage-list__locations&quot;&gt;&lt;/div&gt; */</tw-passagedata><tw-passagedata pid="49" name="StoryBanner" tags="System questionable" position="25,125" size="100,100">&lt;img src=&quot;media/logo/game_logo.png&quot; alt=&quot;Fanthira Tales: wRight on cue&quot;&gt;</tw-passagedata><tw-passagedata pid="50" name="StoryCaption" tags="System nobr" position="650,125" size="100,100">&lt;&lt;if $settings.debug == 1&gt;&gt;
+	&lt;div&gt;
+		&lt;span&gt;&lt;&lt;print passage()&gt;&gt;&lt;/span&gt;:
+		&lt;&lt;link &quot;refresh&quot;&gt;&gt;&lt;&lt;goto `passage()`&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;&lt;br&gt;&gt;
+		
+		&lt;&lt;if passage() == &#39;Uni_Location&#39;&gt;&gt; &lt;&lt;= $temp.custom_location&gt;&gt;, &lt;&lt;= $temp.cur_page ?? &#39;page_1&#39;&gt;&gt; &lt;&lt;br&gt;&gt;	&lt;&lt;/if&gt;&gt; 
+		&lt;&lt;if passage() == &#39;Uni_Sketch&#39;&gt;&gt;   &lt;&lt;= $temp.cur_sketch&gt;&gt;, &lt;&lt;= $temp.cur_page&gt;&gt;	&lt;&lt;br&gt;&gt;	&lt;&lt;/if&gt;&gt;
 
-    &lt;&lt;text_system &#39;sidebar&#39; &quot;caption_lang&quot;&gt;&gt;: &quot;&lt;&lt;text_system &#39;lang_list&#39; $settings.lang&gt;&gt;&quot; &lt;&lt;br&gt;&gt;
-	&lt;&lt;text_system &#39;sidebar&#39; &quot;caption_name&quot;&gt;&gt;: &lt;span&gt;&lt;&lt;print $misc.player_name&gt;&gt;&lt;/span&gt; 
+		&lt;&lt;text_system &#39;sidebar&#39; &quot;caption_lang&quot;&gt;&gt;: &quot;&lt;&lt;text_system &#39;lang_list&#39; $settings.lang&gt;&gt;&quot; &lt;&lt;br&gt;&gt;
+		&lt;&lt;text_system &#39;sidebar&#39; &quot;caption_name&quot;&gt;&gt;: &lt;span&gt;&lt;&lt;print $misc.player_name&gt;&gt;&lt;/span&gt; 
 
-	&lt;&lt;link &quot;+30&quot; `passage()`&gt;&gt;&lt;&lt;set $time.minute += 30 &gt;&gt; &lt;&lt;/link&gt;&gt;&lt;&lt;br 2&gt;&gt;
-
+		&lt;&lt;link &quot;+30&quot; `passage()`&gt;&gt;&lt;&lt;set $time.minute += 30 &gt;&gt; &lt;&lt;/link&gt;&gt;&lt;&lt;br 2&gt;&gt;
+    &lt;/div&gt;
 &lt;&lt;/if&gt;&gt;
 
 
@@ -37609,8 +37736,8 @@ Quest Info:
 &lt;&lt;run setup.initOnce()&gt;&gt;</tw-passagedata><tw-passagedata pid="52" name="StoryShare" tags="System questionable" position="400,125" size="100,100">&lt;&lt;set _link_itchio = setup.getSocialLink(&#39;itchio&#39;)&gt;&gt;
 &lt;&lt;set _link_discord = setup.getSocialLink(&#39;discord&#39;)&gt;&gt;
 
-&lt;a class=&quot;social_link&quot; @href=_link_itchio&gt;&lt;img class=&quot;social_link__icon&quot; src=&quot;media/icons/socials/itchio.svg&quot;&gt;&lt;/a&gt;
-&lt;a class=&quot;social_link&quot; @href=_link_discord&gt;&lt;img class=&quot;social_link__icon&quot; src=&quot;media/icons/socials/discord.svg&quot;&gt;&lt;/a&gt;</tw-passagedata><tw-passagedata pid="53" name="Talk_Generated" tags="Location nobr" position="3600,1200" size="100,100">&lt;&lt;set _phrase_num = random(0,$current_speaker.phrases.length-1)&gt;&gt;
+&lt;a class=&quot;social_link&quot; @href=_link_itchio&gt;&lt;img class=&quot;social_link__icon&quot; src=&quot;media/logo/socials/itchio.svg&quot;&gt;&lt;/a&gt;
+&lt;a class=&quot;social_link&quot; @href=_link_discord&gt;&lt;img class=&quot;social_link__icon&quot; src=&quot;media/logo/socials/discord.svg&quot;&gt;&lt;/a&gt;</tw-passagedata><tw-passagedata pid="53" name="Talk_Generated" tags="Location nobr" position="3600,1200" size="100,100">&lt;&lt;set _phrase_num = random(0,$current_speaker.phrases.length-1)&gt;&gt;
 &lt;&lt;print $current_speaker.name&gt;&gt; says to you &lt;strong&gt; &lt;&lt;print $current_speaker.phrases[_phrase_num]&gt;&gt; &lt;/strong&gt;&lt;&lt;br&gt;&gt;
 
 &lt;&lt;br&gt;&gt;
@@ -38250,7 +38377,7 @@ Remove exp
     &lt;&lt;passage &#39;passages&#39; &#39;passage_village_shed&#39; &#39;Village_West_Shed&#39; &#39;location&#39; true true&gt;&gt;&lt;&lt;/passage&gt;&gt; &lt;&lt;br&gt;&gt;
 
     &lt;&lt;passage &#39;passages&#39; &#39;passage_house_alura&#39; &#39;House_Alura&#39; &gt;&gt;&lt;&lt;set $time.minute += 2&gt;&gt;&lt;&lt;/passage&gt;&gt;
-    &lt;&lt;passage &#39;passages&#39; &#39;passage_house_taylor&#39; &#39;House_Taylor&#39;&gt;&gt;&lt;&lt;set $time.minute += 2&gt;&gt;&lt;&lt;/passage&gt;&gt;
+    &lt;&lt;passage &#39;passages&#39; &#39;passage_house_taylor&#39; &#39;House_Taylor&#39; &#39;location&#39; true true&gt;&gt;&lt;&lt;/passage&gt;&gt; &lt;&lt;br&gt;&gt;
     &lt;&lt;passage &#39;passages&#39; &#39;passage_house_smith&#39; &#39;House_Smith&#39;&gt;&gt;&lt;&lt;set $time.minute += 2&gt;&gt;&lt;&lt;/passage&gt;&gt; &lt;&lt;br&gt;&gt;
 
     &lt;&lt;passage &#39;passages&#39; &#39;passage_village_center&#39; &#39;Village_Center&#39; &#39;location&#39; true true &gt;&gt;&lt;&lt;/passage&gt;&gt;
@@ -38445,7 +38572,7 @@ Remove exp
 							&lt;i @class=&quot;`ra ra-${_icon_class}`&quot;&gt;&lt;/i&gt;
 						&lt;&lt;/if&gt;&gt;
 						
-						&lt;&lt;text_system &#39;activities&#39; _text&gt;&gt;
+						&lt;&lt;text_system &#39;activity_titles&#39; _text&gt;&gt;
 					&lt;/div&gt;
 				&lt;/div&gt;
 			&lt;/a&gt;
@@ -38465,7 +38592,7 @@ Remove exp
 							&lt;i @class=&quot;`ra ra-${_icon_class}`&quot;&gt;&lt;/i&gt;
 						&lt;&lt;/if&gt;&gt;
 						
-						&lt;&lt;text_system &#39;activities&#39; _text&gt;&gt;
+						&lt;&lt;text_system &#39;activity_titles&#39; _text&gt;&gt;
 					&lt;/div&gt;
 				&lt;/div&gt;
 			&lt;/div&gt;
